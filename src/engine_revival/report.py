@@ -97,18 +97,25 @@ def _records_if_present(root: Path, kind: str) -> list[dict[str, object]]:
 
 
 def _coverage_summary(root: Path) -> str:
+    targets = _records_if_present(root, "target")
     artifacts = _records_if_present(root, "artifact")
     accessions = _records_if_present(root, "accession")
+    tasks = _records_if_present(root, "task")
+    target_ids = {str(payload["id"]) for payload in targets}
+    task_target_ids = {str(payload["target_id"]) for payload in tasks}
     artifact_ids = {str(payload["id"]) for payload in artifacts}
     accession_artifact_ids = {str(payload["artifact_id"]) for payload in accessions}
-    covered = len(artifact_ids & accession_artifact_ids)
-    missing = sorted(artifact_ids - accession_artifact_ids)
+    accession_covered = len(artifact_ids & accession_artifact_ids)
+    task_covered = len(target_ids & task_target_ids)
+    missing_accessions = sorted(artifact_ids - accession_artifact_ids)
+    missing_tasks = sorted(target_ids - task_target_ids)
     lines = [
         "# Coverage",
         "",
         "| Metric | Covered | Total |",
         "|---|---:|---:|",
-        f"| Artifact accession coverage | {covered} | {len(artifact_ids)} |",
+        f"| Artifact accession coverage | {accession_covered} | {len(artifact_ids)} |",
+        f"| Target task coverage | {task_covered} | {len(target_ids)} |",
         "",
         "| Record kind | Count |",
         "|---|---:|",
@@ -116,10 +123,15 @@ def _coverage_summary(root: Path) -> str:
     for kind in ("target", "source", "artifact", "accession", "task", "milestone"):
         lines.append(f"| {kind} | {len(_records_if_present(root, kind))} |")
     lines.extend(["", "## Missing Artifact Accessions", ""])
-    if missing:
-        lines.extend(f"- `{artifact_id}`" for artifact_id in missing)
+    if missing_accessions:
+        lines.extend(f"- `{artifact_id}`" for artifact_id in missing_accessions)
     else:
         lines.append("No missing artifact accessions.")
+    lines.extend(["", "## Missing Target Tasks", ""])
+    if missing_tasks:
+        lines.extend(f"- `{target_id}`" for target_id in missing_tasks)
+    else:
+        lines.append("No missing target tasks.")
     return "\n".join(lines) + "\n"
 
 

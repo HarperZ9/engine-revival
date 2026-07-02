@@ -109,3 +109,14 @@ def test_write_reports_creates_coverage_summary(tmp_path):
     text = coverage.read_text(encoding="utf-8")
     assert "| Artifact accession coverage | 1 | 1 |" in text
     assert "No missing artifact accessions." in text
+
+
+def test_write_reports_creates_target_task_coverage(tmp_path):
+    seed_workspace(tmp_path)
+    (tmp_path / "tasks" / "brender-triage.json").unlink()
+    coverage = tmp_path / "docs" / "generated" / "coverage.md"
+    assert coverage in write_reports(tmp_path)
+    text = coverage.read_text(encoding="utf-8")
+    assert "| Target task coverage | 21 | 22 |" in text
+    assert "## Missing Target Tasks" in text
+    assert "- `brender`" in text
