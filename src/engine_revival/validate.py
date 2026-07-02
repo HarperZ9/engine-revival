@@ -1,0 +1,64 @@
+from __future__ import annotations
+
+from pathlib import Path
+
+from engine_revival.records import RECORD_DIRS, RecordFile, load_records
+from engine_revival.schema import SchemaSpec, load_schema, validate_required_fields
+
+
+TYPE_MAP = {
+    "array": list,
+    "integer": int,
+    "object": dict,
+    "string": str,
+}
+
+
+def _schema_root() -> Path:
+    return Path(__file__).resolve().parents[2]
+
+
+def _validate_types(record: RecordFile, schema: SchemaSpec) -> list[str]:
+    messages: list[str] = []
+    for field, expected in schema.properties.items():
+        if field not in record.payload:
+            continue
+        expected_type = TYPE_MAP.get(expected)
+        if expected_type and not isinstance(record.payload[field], expected_type):
+            messages.append(f"{record.path}: {field} must be {expected}")
+    return messages
+
+
+def _validate_kind(root: Path, kind: str) -> tuple[list[RecordFile], list[str]]:
+    directory = root / RECORD_DIRS[kind]
+    if not directory.exists():
+        return [], []
+    schema = load_schema(_schema_root(), kind)
+    records = load_records(root, kind)
+    messages: list[str] = []
+    for record in records:
+        for message in validate_required_fields(record.payload, schema):
+            messages.append(f"{record.path}: {message}")
+        messages.extend(_validate_types(record, schema))
+    return records, messages
+
+
+def validate_workspace(root: Path) -> list[str]:
+    messages: list[str] = []
+    if not (root / "targets").exists():
+        messages.append("missing record directory: targets")
+        return messages
+
+    records_by_kind: dict[str, list[RecordFile]] = {}
+    for kind in RECORD_DIRS:
+        records, kind_messages = _validate_kind(root, kind)
+        records_by_kind[kind] = records
+        messages.extend(kind_messages)
+
+    target_ids = {str(record.payload.get("id")) for record in records_by_kind["target"]}
+    for kind in ("artifact", "task", "milestone"):
+        for record in records_by_kind[kind]:
+            target_id = str(record.payload.get("target_id"))
+            if target_id not in target_ids:
+                messages.append(f"{record.path}: unknown target_id: {target_id}")
+    return messages
