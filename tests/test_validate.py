@@ -108,3 +108,37 @@ def test_artifact_source_ids_must_reference_sources(tmp_path):
     )
     messages = validate_workspace(tmp_path)
     assert any("unknown source_id: missing-source" in message for message in messages)
+
+
+def test_accession_artifact_id_must_reference_artifact(tmp_path):
+    _write_accession_workspace(tmp_path)
+    (tmp_path / "accessions" / "brender-v132-source-planned.json").unlink()
+    _write_json(tmp_path / "accessions" / "bad.json", {
+        "id": "bad",
+        "artifact_id": "missing-artifact",
+        "package_type": "metadata-only",
+        "capture_status": "metadata-only",
+        "storage_class": "not-held",
+        "fixity_status": "not-applicable",
+        "rights_review": "metadata-only",
+        "public_notes": "Metadata only.",
+    })
+    messages = validate_workspace(tmp_path)
+    assert any("unknown artifact_id: missing-artifact" in message for message in messages)
+
+
+def test_accession_source_ids_must_reference_sources(tmp_path):
+    _write_accession_workspace(tmp_path)
+    _write_json(tmp_path / "accessions" / "bad-source.json", {
+        "id": "bad-source",
+        "artifact_id": "brender-v132-source",
+        "package_type": "metadata-only",
+        "capture_status": "metadata-only",
+        "storage_class": "not-held",
+        "fixity_status": "not-applicable",
+        "rights_review": "metadata-only",
+        "public_notes": "Metadata only.",
+        "source_ids": ["missing-source"],
+    })
+    messages = validate_workspace(tmp_path)
+    assert any("unknown source_id: missing-source" in message for message in messages)
