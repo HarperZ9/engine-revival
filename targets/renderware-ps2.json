@@ -1,0 +1,14 @@
+{
+  "category": "middleware",
+  "era": "1980s-2000s",
+  "id": "renderware-ps2",
+  "name": "RenderWare PS2",
+  "platforms": [],
+  "priority": 82,
+  "public_status": "seeded",
+  "related_targets": [],
+  "restricted_status": "metadata-only",
+  "revival_lane": "compatibility-reimplementation",
+  "rights_posture": "restricted",
+  "summary": "Seed public record for RenderWare PS2."
+}
