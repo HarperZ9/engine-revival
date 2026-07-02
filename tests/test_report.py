@@ -63,3 +63,12 @@ def test_write_reports_creates_accession_summary(tmp_path):
     accessions = tmp_path / "docs" / "generated" / "accessions.md"
     assert accessions in write_reports(tmp_path)
     assert "brender-source" in accessions.read_text(encoding="utf-8")
+
+
+def test_write_reports_creates_task_board(tmp_path):
+    seed_workspace(tmp_path)
+    tasks = tmp_path / "docs" / "generated" / "tasks.md"
+    assert tasks in write_reports(tmp_path)
+    task_board = tasks.read_text(encoding="utf-8")
+    assert "brender-triage" in task_board
+    assert "triage-public-record" in task_board

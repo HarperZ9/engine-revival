@@ -65,6 +65,28 @@ def _accession_summary(root: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _task_summary(root: Path) -> str:
+    if not (root / "tasks").exists():
+        return "# Tasks\n\nNo task records yet.\n"
+    lines = [
+        "# Tasks",
+        "",
+        "| Target | Task | Type | Status | Notes |",
+        "|---|---|---|---|---|",
+    ]
+    records = sorted(
+        load_records(root, "task"),
+        key=lambda record: (record.payload["target_id"], record.payload["id"]),
+    )
+    for record in records:
+        payload = record.payload
+        lines.append(
+            f"| {payload['target_id']} | {payload['id']} | {payload['task_type']} | "
+            f"{payload['status']} | {payload['public_notes']} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
 def write_reports(root: Path) -> list[Path]:
     targets = build_target_index(root)
     generated = root / "docs" / "generated"
@@ -74,4 +96,5 @@ def write_reports(root: Path) -> list[Path]:
         _write(generated / "rights-summary.md", _rights_summary(targets)),
         _write(generated / "artifacts.md", _artifact_summary(root)),
         _write(generated / "accessions.md", _accession_summary(root)),
+        _write(generated / "tasks.md", _task_summary(root)),
     ]
