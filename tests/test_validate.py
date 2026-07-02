@@ -175,3 +175,17 @@ def test_record_id_must_match_filename_stem(tmp_path):
     })
     messages = validate_workspace(tmp_path)
     assert any("source id must match filename stem" in message for message in messages)
+
+
+def test_task_blocked_by_must_reference_tasks(tmp_path):
+    _write_accession_workspace(tmp_path)
+    _write_json(tmp_path / "tasks" / "brender-triage.json", {
+        "id": "brender-triage",
+        "target_id": "brender",
+        "task_type": "triage",
+        "status": "planned",
+        "public_notes": "Triage the BRender record.",
+        "blocked_by": ["missing-task"],
+    })
+    messages = validate_workspace(tmp_path)
+    assert any("unknown blocked_by task_id: missing-task" in message for message in messages)
