@@ -6,7 +6,9 @@ def test_write_reports_creates_public_index(tmp_path):
     seed_workspace(tmp_path)
     index = tmp_path / "docs" / "generated" / "index.md"
     assert index in write_reports(tmp_path)
-    assert "Argonaut BRender" in index.read_text(encoding="utf-8")
+    text = index.read_text(encoding="utf-8")
+    assert "| Priority | Target | Rights | Revival lane | Artifacts | Accessions | Tasks |" in text
+    assert "| 89 | Argonaut BRender | open | critical-edition | 0 | 0 | 1 |" in text
 
 
 def test_write_reports_creates_artifact_summary(tmp_path):
