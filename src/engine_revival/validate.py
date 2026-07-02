@@ -43,6 +43,20 @@ def _validate_kind(root: Path, kind: str) -> tuple[list[RecordFile], list[str]]:
     return records, messages
 
 
+def _validate_unique_ids(records: list[RecordFile], kind: str) -> list[str]:
+    messages: list[str] = []
+    seen: dict[str, Path] = {}
+    for record in records:
+        record_id = str(record.payload.get("id"))
+        if record_id in seen:
+            messages.append(
+                f"{record.path}: duplicate {kind} id: {record_id} also in {seen[record_id]}"
+            )
+        else:
+            seen[record_id] = record.path
+    return messages
+
+
 def validate_workspace(root: Path) -> list[str]:
     messages: list[str] = []
     if not (root / "targets").exists():
@@ -54,6 +68,7 @@ def validate_workspace(root: Path) -> list[str]:
         records, kind_messages = _validate_kind(root, kind)
         records_by_kind[kind] = records
         messages.extend(kind_messages)
+        messages.extend(_validate_unique_ids(records, kind))
 
     target_ids = {str(record.payload.get("id")) for record in records_by_kind["target"]}
     source_ids = {str(record.payload.get("id")) for record in records_by_kind["source"]}
