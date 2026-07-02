@@ -1,0 +1,14 @@
+{
+  "category": "rendering-standard",
+  "era": "1980s-2000s",
+  "id": "renderman-interface",
+  "name": "RenderMan Interface",
+  "platforms": [],
+  "priority": 74,
+  "public_status": "seeded",
+  "related_targets": [],
+  "restricted_status": "metadata-only",
+  "revival_lane": "documentation-anchor",
+  "rights_posture": "public-reference-only",
+  "summary": "Seed public record for RenderMan Interface."
+}

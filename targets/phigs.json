@@ -1,0 +1,14 @@
+{
+  "category": "graphics-standard",
+  "era": "1980s-2000s",
+  "id": "phigs",
+  "name": "PHIGS",
+  "platforms": [],
+  "priority": 62,
+  "public_status": "seeded",
+  "related_targets": [],
+  "restricted_status": "metadata-only",
+  "revival_lane": "upstream-dependency-atlas",
+  "rights_posture": "public-reference-only",
+  "summary": "Seed public record for PHIGS."
+}

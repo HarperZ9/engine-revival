@@ -1,0 +1,14 @@
+{
+  "category": "rendering-technique",
+  "era": "1980s-2000s",
+  "id": "tri-ace-ps2-renderer",
+  "name": "tri-Ace PS2 renderer",
+  "platforms": [],
+  "priority": 74,
+  "public_status": "seeded",
+  "related_targets": [],
+  "restricted_status": "metadata-only",
+  "revival_lane": "documentation-based-reconstruction",
+  "rights_posture": "public-reference-only",
+  "summary": "Seed public record for tri-Ace PS2 renderer."
+}

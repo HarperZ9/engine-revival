@@ -30,6 +30,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         for message in messages:
             print(message)
         return 1 if messages else 0
+    if args.command == "seed":
+        from engine_revival.seed import seed_workspace
+
+        for path in seed_workspace(Path(args.root)):
+            print(path)
+        return 0
     if args.command == "audit-public":
         from engine_revival.audit import audit_public_workspace
 
