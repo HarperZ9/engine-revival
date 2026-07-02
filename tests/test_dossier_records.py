@@ -17,6 +17,11 @@ def test_first_dossier_artifacts_are_recorded():
         "artifacts/ps2-linux-release-10-official.json",
         "artifacts/ps2-ps2sdk-open-source-sdk.json",
         "artifacts/ps2-sn-systems-prodg-lineage.json",
+        "artifacts/gool-andy-gavin-developer-article.json",
+        "artifacts/opengoal-jak-project-source.json",
+        "artifacts/opengoal-project-overview-docs.json",
+        "artifacts/tri-ace-pbr-implementation-course-notes.json",
+        "artifacts/tri-ace-ps2-sh-lighting-hdr-gdc2005.json",
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []

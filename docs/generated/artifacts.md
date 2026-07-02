@@ -7,7 +7,10 @@
 | brender | BRender 3D Movie Maker variant source release | source-release | open | public |
 | brender | BRender preservation index | curation-index | public-reference-only | public |
 | brender | BRender v1.3.2 public source release | source-release | open | public |
+| gool-goal | Andy Gavin GOOL developer article | developer-article | public-reference-only | public |
 | ps1-programmer-tool | Net Yaroze documentation set | documentation-set | public-reference-only | public |
+| gool-goal | OpenGOAL jak-project source repository | source-toolchain | open | public |
+| gool-goal | OpenGOAL project overview documentation | toolchain-documentation | public-reference-only | public |
 | ps1-programmer-tool | PSn00bSDK open-source PS1 SDK | clean-room-sdk | open | public |
 | ps1-programmer-tool | PlayStation Programmer Tool Runtime Library Version 3.3 Redump entry | disc-metadata | do-not-redistribute | metadata-only |
 | ps1-programmer-tool | SDevTC Development Environment manual | manual-archive | public-reference-only | public |
@@ -17,3 +20,5 @@
 | ps2-prodg-eb-linux | SN Systems ProDG toolchain lineage | toolchain-lineage | public-reference-only | public |
 | renderware-ps2 | RenderWare3 PS2 Gold 1.3 update release notes | release-notes | public-reference-only | public |
 | renderware-ps2 | RenderWare SDK 3.10 PS2 archive item | sdk-archive-metadata | do-not-redistribute | metadata-only |
+| tri-ace-ps2-renderer | Practical Implementation at tri-Ace course notes | course-notes | public-reference-only | public |
+| tri-ace-ps2-renderer | Practical Implementation of SH Lighting and HDR Rendering on PlayStation 2 | presentation-metadata | public-reference-only | public |
