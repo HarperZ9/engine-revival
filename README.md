@@ -19,3 +19,12 @@ engine-revival index
 engine-revival report
 python -m pytest
 ```
+
+## Public Docs
+
+- [Public boundary](docs/PUBLIC-BOUNDARY.md)
+- [Recovery workflow](docs/RECOVERY-WORKFLOW.md)
+- [Generated public index](docs/generated/index.md)
+- [Generated targets](docs/generated/targets.md)
+- [Generated rights summary](docs/generated/rights-summary.md)
+- [Contributing](CONTRIBUTING.md)
