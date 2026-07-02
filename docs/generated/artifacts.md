@@ -51,6 +51,7 @@
 | quickdraw-3d | 3D Graphics Programming with QuickDraw 3D 1.5.4 | manual-reference | public-reference-only | public |
 | reality-lab | RenderMorphics Reality Lab release-two public report | trade-press-product-record | public-reference-only | public |
 | reality-lab | RenderMorphics acquisition and Reality Lab Windows plan | acquisition-lineage-record | public-reference-only | public |
+| renderman-interface | RenderMan Interface (Ri) official documentation | official-documentation-reference | public-reference-only | public |
 | renderman-interface | RenderMan Interface Specification v3.1 public PDF | specification-reference | public-reference-only | public |
 | renderware-ps2 | RenderWare3 PS2 Gold 1.3 update release notes | release-notes | public-reference-only | public |
 | renderware-ps2 | RenderWare SDK 3.10 PS2 archive item | sdk-archive-metadata | do-not-redistribute | metadata-only |

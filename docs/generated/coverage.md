@@ -4,15 +4,15 @@
 
 | Metric | Covered | Total |
 |---|---:|---:|
-| Artifact accession coverage | 57 | 57 |
+| Artifact accession coverage | 58 | 58 |
 | Target task coverage | 22 | 22 |
 
 | Record kind | Count |
 |---|---:|
 | target | 22 |
-| source | 74 |
-| artifact | 57 |
-| accession | 57 |
+| source | 75 |
+| artifact | 58 |
+| accession | 58 |
 | task | 22 |
 | milestone | 0 |
 
