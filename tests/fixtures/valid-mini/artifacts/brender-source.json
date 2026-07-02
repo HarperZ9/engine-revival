@@ -6,5 +6,6 @@
   "origin": "public repository",
   "redistribution_status": "open",
   "access_level": "public",
-  "evidence_quality": "public-source"
+  "evidence_quality": "public-source",
+  "source_ids": ["brender-github"]
 }

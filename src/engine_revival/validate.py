@@ -70,6 +70,15 @@ def _validate_filename_ids(records: list[RecordFile], kind: str) -> list[str]:
     return messages
 
 
+def _validate_source_ids_present(records: list[RecordFile], kind: str) -> list[str]:
+    messages: list[str] = []
+    for record in records:
+        source_ids = record.payload.get("source_ids")
+        if not isinstance(source_ids, list) or not source_ids:
+            messages.append(f"{record.path}: {kind} must include source_ids")
+    return messages
+
+
 def validate_workspace(root: Path) -> list[str]:
     messages: list[str] = []
     if not (root / "targets").exists():
@@ -91,6 +100,7 @@ def validate_workspace(root: Path) -> list[str]:
     task_target_ids = {
         str(record.payload.get("target_id")) for record in records_by_kind["task"]
     }
+    messages.extend(_validate_source_ids_present(records_by_kind["artifact"], "artifact"))
     for kind in ("artifact", "task", "milestone"):
         for record in records_by_kind[kind]:
             target_id = str(record.payload.get("target_id"))
@@ -105,6 +115,7 @@ def validate_workspace(root: Path) -> list[str]:
                         messages.append(
                             f"{record.path}: unknown blocked_by task_id: {blocked_id}"
                         )
+    messages.extend(_validate_source_ids_present(records_by_kind["accession"], "accession"))
     for record in records_by_kind["accession"]:
         artifact_id = str(record.payload.get("artifact_id"))
         if artifact_id not in artifact_ids:
