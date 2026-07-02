@@ -18,6 +18,7 @@ RECORD_DIRS = {
     "source": "sources",
     "task": "tasks",
     "milestone": "milestones",
+    "accession": "accessions",
 }
 
 
