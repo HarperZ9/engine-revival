@@ -13,6 +13,7 @@ RESTRICTED_LABELS = {
 }
 PUBLISHABLE_LEVELS = {"public", "publishable", "downloadable"}
 UNSAFE_WORDS = {"upload included", "download the sdk", "leaked source", "private contact"}
+ACCESSION_RESTRICTED_REVIEWS = {"restricted", "unknown", "rights-holder-needed"}
 
 
 def audit_public_workspace(root: Path) -> list[str]:
@@ -28,4 +29,14 @@ def audit_public_workspace(root: Path) -> list[str]:
         for word in UNSAFE_WORDS:
             if word in text:
                 messages.append(f"{record.path}: unsafe public wording: {word}")
+    if (root / "accessions").exists():
+        for record in load_records(root, "accession"):
+            rights_review = str(record.payload.get("rights_review", ""))
+            storage_class = str(record.payload.get("storage_class", ""))
+            text = " ".join(str(value).lower() for value in record.payload.values())
+            if rights_review in ACCESSION_RESTRICTED_REVIEWS and storage_class == "local-public":
+                messages.append(f"{record.path}: restricted accession cannot use public storage")
+            for word in UNSAFE_WORDS:
+                if word in text:
+                    messages.append(f"{record.path}: unsafe public wording: {word}")
     return messages
