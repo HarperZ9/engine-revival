@@ -4,6 +4,7 @@
 
 | Target | Artifact | Type | Status | Access |
 |---|---|---|---|---|
+| softimage-alias-bridge | Alias Autodesk acquisition record | acquisition-lineage-record | public-reference-only | public |
 | aqsis | Aqsis renderer source repository | renderer-source | open | public |
 | aqsis | Aqsis renderer tooling metadata | tooling-metadata | open | public |
 | brender | BRender 3D Movie Maker variant source release | source-release | open | public |
@@ -15,6 +16,8 @@
 | reality-lab | Direct3D DirectX 2 release record | successor-api-release-record | public-reference-only | public |
 | reality-lab | DirectX SDK legacy samples archive | successor-sample-archive | open | public |
 | gool-goal | Andy Gavin GOOL developer article | developer-article | public-reference-only | public |
+| iris-gl-opengl-bridge | IRIS GL to OpenGL public history record | api-lineage-record | public-reference-only | public |
+| japan-studio-team-ico | Japan Studio reorganization public report | studio-reorganization-record | public-reference-only | public |
 | mesa | Mesa API and license summary | license-and-api-summary | open | public |
 | mesa | Mesa upstream source repository | source-repository-record | open | public |
 | ps1-programmer-tool | Net Yaroze documentation set | documentation-set | public-reference-only | public |
@@ -25,8 +28,12 @@
 | opengl-performer | OpenGL Performer Getting Started Guide 3.0 | manual-reference | public-reference-only | public |
 | opengl-performer | OpenGL Performer product brochure | product-brochure | public-reference-only | public |
 | opengl-performer | OpenGL Performer Programmer's Guide 3.2 | manual-reference | public-reference-only | public |
+| iris-gl-opengl-bridge | Khronos OpenGL registry specification anchor | standards-registry-anchor | public-reference-only | public |
 | gool-goal | OpenGOAL jak-project source repository | source-toolchain | open | public |
 | gool-goal | OpenGOAL project overview documentation | toolchain-documentation | public-reference-only | public |
+| phigs | OpenPHIGS public source reimplementation | source-reimplementation-record | open-with-license-review | public |
+| phigs | NIST PHIGS validation tests public record | validation-suite-publication | public-reference-only | public |
+| phigs | PHIGS ISO standard public metadata | standards-catalog-record | public-reference-only | public |
 | pixie | Pixie renderer source mirror | source-mirror | open | public |
 | pixie | Pixie SourceForge project record | project-registry-record | open | public |
 | ps1-programmer-tool | PSn00bSDK open-source PS1 SDK | clean-room-sdk | open | public |
@@ -36,6 +43,8 @@
 | ps2-prodg-eb-linux | Linux for PlayStation 2 Release 1.0 | official-release-record | public-reference-only | public |
 | ps2-prodg-eb-linux | PS2SDK open-source PS2 SDK | open-source-sdk | open | public |
 | ps2-prodg-eb-linux | SN Systems ProDG toolchain lineage | toolchain-lineage | public-reference-only | public |
+| psygnosis-studio-liverpool | Studio Liverpool closure public report | studio-closure-record | public-reference-only | public |
+| psygnosis-studio-liverpool | Psygnosis / Studio Liverpool public history | studio-lineage-record | public-reference-only | public |
 | quesa | Quesa 1.6d13 release report | release-report | public-reference-only | public |
 | quesa | Quesa QuickDraw 3D API reimplementation source | source-reimplementation | open | public |
 | quickdraw-3d | QuickDraw 3D documentation Technical Q&A | documentation-index | public-reference-only | public |
@@ -45,5 +54,10 @@
 | renderman-interface | RenderMan Interface Specification v3.1 public PDF | specification-reference | public-reference-only | public |
 | renderware-ps2 | RenderWare3 PS2 Gold 1.3 update release notes | release-notes | public-reference-only | public |
 | renderware-ps2 | RenderWare SDK 3.10 PS2 archive item | sdk-archive-metadata | do-not-redistribute | metadata-only |
+| softimage-alias-bridge | Softimage Autodesk acquisition record | acquisition-lineage-record | public-reference-only | public |
+| softimage-alias-bridge | Softimage last release transition FAQ | product-transition-record | public-reference-only | public |
+| softimage-alias-bridge | Softimage Microsoft acquisition record | acquisition-lineage-record | public-reference-only | public |
+| japan-studio-team-ico | Team Ico official PlayStation public pages | official-title-metadata | public-reference-only | public |
+| japan-studio-team-ico | Fumito Ueda PlayStation Blog interview | oral-history-interview | public-reference-only | public |
 | tri-ace-ps2-renderer | Practical Implementation at tri-Ace course notes | course-notes | public-reference-only | public |
 | tri-ace-ps2-renderer | Practical Implementation of SH Lighting and HDR Rendering on PlayStation 2 | presentation-metadata | public-reference-only | public |
