@@ -34,11 +34,27 @@ def test_write_reports_creates_artifact_summary(tmp_path):
 
 def test_write_reports_creates_source_catalog(tmp_path):
     seed_workspace(tmp_path)
+    (tmp_path / "artifacts").mkdir()
+    (tmp_path / "artifacts" / "brender-source.json").write_text(
+        """{
+  "id": "brender-source",
+  "target_id": "brender",
+  "artifact_type": "source-release",
+  "title": "BRender source release",
+  "origin": "public repository",
+  "redistribution_status": "open",
+  "access_level": "public",
+  "evidence_quality": "public-source",
+  "source_ids": ["initial-research-reports"]
+}""",
+        encoding="utf-8",
+    )
     sources = tmp_path / "docs" / "generated" / "sources.md"
     assert sources in write_reports(tmp_path)
     text = sources.read_text(encoding="utf-8")
-    assert "| Source | Type | Confidence | Scope | URL |" in text
+    assert "| Source | Type | Confidence | Uses | Scope | URL |" in text
     assert "Initial engine revival research reports" in text
+    assert "| Initial engine revival research reports | local-research-summary | moderate | 1 |" in text
     assert "initial target selection" in text
 
 

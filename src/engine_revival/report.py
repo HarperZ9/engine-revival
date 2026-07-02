@@ -42,20 +42,33 @@ def _artifact_summary(root: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _source_usage_counts(root: Path) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for kind in ("artifact", "accession", "task"):
+        for payload in _records_if_present(root, kind):
+            value = payload.get("source_ids", [])
+            if isinstance(value, list):
+                for source_id in set(str(item) for item in value):
+                    counts[source_id] = counts.get(source_id, 0) + 1
+    return counts
+
+
 def _source_summary(root: Path) -> str:
     if not (root / "sources").exists():
         return "# Sources\n\nNo source records yet.\n"
+    usage_counts = _source_usage_counts(root)
     lines = [
         "# Sources",
         "",
-        "| Source | Type | Confidence | Scope | URL |",
-        "|---|---|---|---|---|",
+        "| Source | Type | Confidence | Uses | Scope | URL |",
+        "|---|---|---|---:|---|---|",
     ]
     for record in load_records(root, "source"):
         payload = record.payload
         lines.append(
             f"| {payload['title']} | {payload['source_type']} | {payload['confidence']} | "
-            f"{payload['claim_scope']} | {payload.get('url', '')} |"
+            f"{usage_counts.get(str(payload['id']), 0)} | {payload['claim_scope']} | "
+            f"{payload.get('url', '')} |"
         )
     return "\n".join(lines) + "\n"
 
