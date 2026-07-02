@@ -9,10 +9,19 @@
 | brender | BRender 3D Movie Maker variant source release | source-release | open | public |
 | brender | BRender preservation index | curation-index | public-reference-only | public |
 | brender | BRender v1.3.2 public source release | source-release | open | public |
+| open-inventor | Coin3D Open Inventor API compatibility record | compatibility-lineage | public-reference-only | public |
+| crystal-space | Crystal Space source repository | source-repository | open | public |
+| crystal-space | Crystal Space SourceForge project record | project-registry-record | open | public |
 | reality-lab | Direct3D DirectX 2 release record | successor-api-release-record | public-reference-only | public |
 | reality-lab | DirectX SDK legacy samples archive | successor-sample-archive | open | public |
 | gool-goal | Andy Gavin GOOL developer article | developer-article | public-reference-only | public |
+| mesa | Mesa API and license summary | license-and-api-summary | open | public |
+| mesa | Mesa upstream source repository | source-repository-record | open | public |
 | ps1-programmer-tool | Net Yaroze documentation set | documentation-set | public-reference-only | public |
+| ogre | OGRE MIT licensing record | license-record | open | public |
+| ogre | OGRE source repository | source-repository | open | public |
+| open-inventor | Open Inventor README.FIRST build notes | build-and-release-notes | open | public |
+| open-inventor | Open Inventor public source release | source-release | open | public |
 | opengl-performer | OpenGL Performer Getting Started Guide 3.0 | manual-reference | public-reference-only | public |
 | opengl-performer | OpenGL Performer product brochure | product-brochure | public-reference-only | public |
 | opengl-performer | OpenGL Performer Programmer's Guide 3.2 | manual-reference | public-reference-only | public |

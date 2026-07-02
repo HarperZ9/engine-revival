@@ -38,6 +38,15 @@ def test_first_dossier_artifacts_are_recorded():
         "artifacts/quickdraw-3d-manual-154-public-pdf.json",
         "artifacts/reality-lab-release-2-public-report.json",
         "artifacts/reality-lab-rendermorphics-acquisition-record.json",
+        "artifacts/coin3d-open-inventor-api-compatibility.json",
+        "artifacts/crystal-space-github-source-repository.json",
+        "artifacts/crystal-space-sourceforge-project-record.json",
+        "artifacts/mesa-license-and-api-summary.json",
+        "artifacts/mesa-source-repository.json",
+        "artifacts/ogre-licensing-record.json",
+        "artifacts/ogre-source-repository.json",
+        "artifacts/open-inventor-readme-first-build-notes.json",
+        "artifacts/open-inventor-source-release.json",
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
