@@ -6,5 +6,6 @@
   "storage_class": "external-url",
   "fixity_status": "not-started",
   "rights_review": "open-license",
-  "public_notes": "Planned public source accession."
+  "public_notes": "Planned public source accession.",
+  "source_ids": ["brender-github"]
 }

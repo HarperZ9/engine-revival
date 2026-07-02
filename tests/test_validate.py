@@ -117,6 +117,22 @@ def test_artifact_source_ids_must_reference_sources(tmp_path):
     assert any("unknown source_id: missing-source" in message for message in messages)
 
 
+def test_artifact_must_include_source_ids(tmp_path):
+    _write_accession_workspace(tmp_path)
+    _write_json(tmp_path / "artifacts" / "brender-v132-source.json", {
+        "id": "brender-v132-source",
+        "target_id": "brender",
+        "artifact_type": "source-release",
+        "title": "BRender source",
+        "origin": "public repository",
+        "redistribution_status": "open",
+        "access_level": "public",
+        "evidence_quality": "public-source",
+    })
+    messages = validate_workspace(tmp_path)
+    assert any("artifact must include source_ids" in message for message in messages)
+
+
 def test_accession_artifact_id_must_reference_artifact(tmp_path):
     _write_accession_workspace(tmp_path)
     (tmp_path / "accessions" / "brender-v132-source-planned.json").unlink()
@@ -149,6 +165,22 @@ def test_accession_source_ids_must_reference_sources(tmp_path):
     })
     messages = validate_workspace(tmp_path)
     assert any("unknown source_id: missing-source" in message for message in messages)
+
+
+def test_accession_must_include_source_ids(tmp_path):
+    _write_accession_workspace(tmp_path)
+    _write_json(tmp_path / "accessions" / "brender-v132-source-planned.json", {
+        "id": "brender-v132-source-planned",
+        "artifact_id": "brender-v132-source",
+        "package_type": "source-snapshot",
+        "capture_status": "planned",
+        "storage_class": "external-url",
+        "fixity_status": "not-started",
+        "rights_review": "open-license",
+        "public_notes": "Planned accession.",
+    })
+    messages = validate_workspace(tmp_path)
+    assert any("accession must include source_ids" in message for message in messages)
 
 
 def test_artifact_must_have_accession_record(tmp_path):
