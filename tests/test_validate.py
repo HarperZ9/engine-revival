@@ -55,6 +55,13 @@ def _write_accession_workspace(root):
         "public_notes": "Planned accession.",
         "source_ids": ["brender-source"],
     })
+    _write_json(root / "tasks" / "brender-triage.json", {
+        "id": "brender-triage",
+        "target_id": "brender",
+        "task_type": "triage",
+        "status": "planned",
+        "public_notes": "Triage the BRender record.",
+    })
 
 
 def test_valid_fixture_has_no_validation_errors():
@@ -179,13 +186,20 @@ def test_record_id_must_match_filename_stem(tmp_path):
 
 def test_task_blocked_by_must_reference_tasks(tmp_path):
     _write_accession_workspace(tmp_path)
-    _write_json(tmp_path / "tasks" / "brender-triage.json", {
-        "id": "brender-triage",
+    _write_json(tmp_path / "tasks" / "brender-package.json", {
+        "id": "brender-package",
         "target_id": "brender",
-        "task_type": "triage",
+        "task_type": "package",
         "status": "planned",
-        "public_notes": "Triage the BRender record.",
+        "public_notes": "Package the BRender record.",
         "blocked_by": ["missing-task"],
     })
     messages = validate_workspace(tmp_path)
     assert any("unknown blocked_by task_id: missing-task" in message for message in messages)
+
+
+def test_targets_must_have_task_records(tmp_path):
+    _write_accession_workspace(tmp_path)
+    (tmp_path / "tasks" / "brender-triage.json").unlink()
+    messages = validate_workspace(tmp_path)
+    assert any("missing task for target_id: brender" in message for message in messages)
