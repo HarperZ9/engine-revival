@@ -13,7 +13,12 @@ RESTRICTED_LABELS = {
 }
 PUBLISHABLE_LEVELS = {"public", "publishable", "downloadable"}
 UNSAFE_WORDS = {"upload included", "download the sdk", "leaked source", "private contact"}
-ACCESSION_RESTRICTED_REVIEWS = {"restricted", "unknown", "rights-holder-needed"}
+ACCESSION_RESTRICTED_REVIEWS = {
+    "restricted",
+    "unknown",
+    "rights-holder-needed",
+    "do-not-redistribute",
+}
 
 
 def audit_public_workspace(root: Path) -> list[str]:
