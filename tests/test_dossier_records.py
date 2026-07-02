@@ -130,3 +130,36 @@ def test_lineage_history_accession_batch_is_recorded():
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
+
+
+def test_documentation_spec_accession_batch_is_recorded():
+    expected = {
+        "accessions/brender-preservation-index-public-reference.json",
+        "accessions/gool-andy-gavin-developer-article-public-reference.json",
+        "accessions/opengl-performer-getting-started-guide-30-public-reference.json",
+        "accessions/opengl-performer-programmers-guide-32-public-reference.json",
+        "accessions/opengoal-project-overview-docs-public-reference.json",
+        "accessions/phigs-nist-validation-tests-public-reference.json",
+        "accessions/phigs-standard-public-metadata-public-reference.json",
+        "accessions/quickdraw-3d-documentation-qa-public-reference.json",
+        "accessions/quickdraw-3d-manual-154-public-pdf-public-reference.json",
+        "accessions/renderman-interface-spec-31-public-pdf-public-reference.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
+
+
+def test_studio_course_accession_batch_is_recorded():
+    expected = {
+        "accessions/japan-studio-restructure-public-report-public-reference.json",
+        "accessions/opengl-performer-product-brochure-public-reference.json",
+        "accessions/psygnosis-studio-liverpool-closure-report-public-reference.json",
+        "accessions/psygnosis-studio-liverpool-public-history-public-reference.json",
+        "accessions/quesa-16d13-release-report-public-reference.json",
+        "accessions/team-ico-playstation-official-pages-public-reference.json",
+        "accessions/team-ico-ueda-playstation-blog-interview-public-reference.json",
+        "accessions/tri-ace-pbr-implementation-course-notes-public-reference.json",
+        "accessions/tri-ace-ps2-sh-lighting-hdr-gdc2005-public-reference.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
