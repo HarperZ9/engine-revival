@@ -30,4 +30,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         for message in messages:
             print(message)
         return 1 if messages else 0
+    if args.command == "audit-public":
+        from engine_revival.audit import audit_public_workspace
+
+        messages = audit_public_workspace(Path(args.root))
+        for message in messages:
+            print(message)
+        return 1 if messages else 0
     return 0
