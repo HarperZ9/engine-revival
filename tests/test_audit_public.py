@@ -43,6 +43,17 @@ def test_restricted_accession_with_public_storage_fails_public_audit(tmp_path):
     assert any("restricted accession cannot use public storage" in message for message in messages)
 
 
+def test_do_not_redistribute_accession_with_public_storage_fails_public_audit(tmp_path):
+    (tmp_path / "artifacts").mkdir()
+    _write_accession(
+        tmp_path / "accessions" / "do-not-redistribute-public.json",
+        "do-not-redistribute",
+        "local-public",
+    )
+    messages = audit_public_workspace(tmp_path)
+    assert any("restricted accession cannot use public storage" in message for message in messages)
+
+
 def test_metadata_only_restricted_accession_not_held_passes_public_audit(tmp_path):
     (tmp_path / "artifacts").mkdir()
     _write_accession(

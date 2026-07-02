@@ -81,3 +81,18 @@ def test_first_accession_batch_is_recorded():
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
+
+
+def test_rights_constrained_accession_batch_is_recorded():
+    expected = {
+        "accessions/net-yaroze-documentation-set-public-reference.json",
+        "accessions/ps1-runtime-library-33-redump-entry-metadata-only.json",
+        "accessions/ps1-sdevtc-development-environment-manual-public-reference.json",
+        "accessions/ps2-linux-pal-installation-discs-archive-item-metadata-only.json",
+        "accessions/ps2-linux-release-10-official-public-reference.json",
+        "accessions/ps2-sn-systems-prodg-lineage-public-reference.json",
+        "accessions/renderware-ps2-gold-release-notes-public-reference.json",
+        "accessions/renderware-sdk-310-ps2-archive-item-metadata-only.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
