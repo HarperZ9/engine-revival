@@ -42,6 +42,24 @@ def _artifact_summary(root: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _source_summary(root: Path) -> str:
+    if not (root / "sources").exists():
+        return "# Sources\n\nNo source records yet.\n"
+    lines = [
+        "# Sources",
+        "",
+        "| Source | Type | Confidence | Scope | URL |",
+        "|---|---|---|---|---|",
+    ]
+    for record in load_records(root, "source"):
+        payload = record.payload
+        lines.append(
+            f"| {payload['title']} | {payload['source_type']} | {payload['confidence']} | "
+            f"{payload['claim_scope']} | {payload.get('url', '')} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
 def _accession_summary(root: Path) -> str:
     if not (root / "accessions").exists():
         return "# Accessions\n\nNo accession records yet.\n"
@@ -142,6 +160,7 @@ def write_reports(root: Path) -> list[Path]:
         _write(generated / "index.md", "# Engine Revival Public Index\n\n" + render_target_table(targets)),
         _write(generated / "targets.md", "# Targets\n\n" + render_target_table(targets)),
         _write(generated / "rights-summary.md", _rights_summary(targets)),
+        _write(generated / "sources.md", _source_summary(root)),
         _write(generated / "artifacts.md", _artifact_summary(root)),
         _write(generated / "accessions.md", _accession_summary(root)),
         _write(generated / "tasks.md", _task_summary(root)),
