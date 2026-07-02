@@ -257,17 +257,24 @@ def _records_if_present(root: Path, kind: str) -> list[dict[str, object]]:
 
 def _coverage_summary(root: Path) -> str:
     targets = _records_if_present(root, "target")
+    sources = _records_if_present(root, "source")
     artifacts = _records_if_present(root, "artifact")
     accessions = _records_if_present(root, "accession")
     tasks = _records_if_present(root, "task")
     target_ids = {str(payload["id"]) for payload in targets}
+    source_ids = {str(payload["id"]) for payload in sources}
+    used_source_ids = {
+        source_id for source_id, count in _source_usage_counts(root).items() if count > 0
+    }
     task_target_ids = {str(payload["target_id"]) for payload in tasks}
     artifact_ids = {str(payload["id"]) for payload in artifacts}
     accession_artifact_ids = {str(payload["artifact_id"]) for payload in accessions}
     accession_covered = len(artifact_ids & accession_artifact_ids)
     task_covered = len(target_ids & task_target_ids)
+    source_covered = len(source_ids & used_source_ids)
     missing_accessions = sorted(artifact_ids - accession_artifact_ids)
     missing_tasks = sorted(target_ids - task_target_ids)
+    unused_sources = sorted(source_ids - used_source_ids)
     lines = [
         "# Coverage",
         "",
@@ -275,6 +282,7 @@ def _coverage_summary(root: Path) -> str:
         "|---|---:|---:|",
         f"| Artifact accession coverage | {accession_covered} | {len(artifact_ids)} |",
         f"| Target task coverage | {task_covered} | {len(target_ids)} |",
+        f"| Source usage coverage | {source_covered} | {len(source_ids)} |",
         "",
         "| Record kind | Count |",
         "|---|---:|",
@@ -291,6 +299,11 @@ def _coverage_summary(root: Path) -> str:
         lines.extend(f"- `{target_id}`" for target_id in missing_tasks)
     else:
         lines.append("No missing target tasks.")
+    lines.extend(["", "## Unused Sources", ""])
+    if unused_sources:
+        lines.extend(f"- `{source_id}`" for source_id in unused_sources)
+    else:
+        lines.append("No unused sources.")
     return "\n".join(lines) + "\n"
 
 

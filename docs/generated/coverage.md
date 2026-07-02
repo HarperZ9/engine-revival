@@ -6,6 +6,7 @@
 |---|---:|---:|
 | Artifact accession coverage | 58 | 58 |
 | Target task coverage | 22 | 22 |
+| Source usage coverage | 74 | 75 |
 
 | Record kind | Count |
 |---|---:|
@@ -23,3 +24,7 @@ No missing artifact accessions.
 ## Missing Target Tasks
 
 No missing target tasks.
+
+## Unused Sources
+
+- `initial-research-reports`
