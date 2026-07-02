@@ -3,12 +3,12 @@
   "era": "1980s-2000s",
   "id": "crystal-space",
   "name": "Crystal Space",
-  "platforms": [],
+  "platforms": ["Unix", "Linux", "Windows", "macOS", "OpenGL", "C++"],
   "priority": 68,
-  "public_status": "seeded",
-  "related_targets": [],
+  "public_status": "curated-public-sources",
+  "related_targets": ["mesa", "ogre"],
   "restricted_status": "none-known",
   "revival_lane": "public-source-preservation",
   "rights_posture": "open",
-  "summary": "Seed public record for Crystal Space."
+  "summary": "Public records now track Crystal Space's SourceForge project registry, GitHub source repository, feature summary, and LGPL metadata."
 }
