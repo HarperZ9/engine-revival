@@ -8,7 +8,7 @@ def test_write_reports_creates_public_index(tmp_path):
     assert index in write_reports(tmp_path)
     text = index.read_text(encoding="utf-8")
     assert "| Priority | Target | Rights | Revival lane | Artifacts | Accessions | Tasks |" in text
-    assert "| 89 | Argonaut BRender | open | critical-edition | 0 | 0 | 1 |" in text
+    assert "| 89 | [Argonaut BRender](targets/brender.md) | open | critical-edition | 0 | 0 | 1 |" in text
 
 
 def test_write_reports_creates_artifact_summary(tmp_path):
@@ -40,6 +40,48 @@ def test_write_reports_creates_source_catalog(tmp_path):
     assert "| Source | Type | Confidence | Scope | URL |" in text
     assert "Initial engine revival research reports" in text
     assert "initial target selection" in text
+
+
+def test_write_reports_creates_target_dossier(tmp_path):
+    seed_workspace(tmp_path)
+    (tmp_path / "artifacts").mkdir()
+    (tmp_path / "accessions").mkdir()
+    (tmp_path / "artifacts" / "brender-source.json").write_text(
+        """{
+  "id": "brender-source",
+  "target_id": "brender",
+  "artifact_type": "source-release",
+  "title": "BRender source release",
+  "origin": "public repository",
+  "redistribution_status": "open",
+  "access_level": "public",
+  "evidence_quality": "public-source",
+  "source_ids": ["initial-research-reports"]
+}""",
+        encoding="utf-8",
+    )
+    (tmp_path / "accessions" / "brender-source-planned.json").write_text(
+        """{
+  "id": "brender-source-planned",
+  "artifact_id": "brender-source",
+  "package_type": "source-snapshot",
+  "capture_status": "planned",
+  "storage_class": "external-url",
+  "fixity_status": "not-started",
+  "rights_review": "open-license",
+  "public_notes": "Planned public source accession.",
+  "source_ids": ["initial-research-reports"]
+}""",
+        encoding="utf-8",
+    )
+    dossier = tmp_path / "docs" / "generated" / "targets" / "brender.md"
+    assert dossier in write_reports(tmp_path)
+    text = dossier.read_text(encoding="utf-8")
+    assert "# Argonaut BRender" in text
+    assert "BRender source release" in text
+    assert "brender-source-planned" in text
+    assert "brender-triage" in text
+    assert "Initial engine revival research reports" in text
 
 
 def test_write_reports_creates_accession_summary(tmp_path):

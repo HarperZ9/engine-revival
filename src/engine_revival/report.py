@@ -60,6 +60,134 @@ def _source_summary(root: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _source_ids_from(payloads: list[dict[str, object]]) -> set[str]:
+    source_ids: set[str] = set()
+    for payload in payloads:
+        value = payload.get("source_ids", [])
+        if isinstance(value, list):
+            source_ids.update(str(source_id) for source_id in value)
+    return source_ids
+
+
+def _target_artifacts(root: Path, target_id: str) -> list[dict[str, object]]:
+    return [
+        payload for payload in _records_if_present(root, "artifact")
+        if str(payload["target_id"]) == target_id
+    ]
+
+
+def _target_accessions(root: Path, artifacts: list[dict[str, object]]) -> list[dict[str, object]]:
+    artifact_ids = {str(payload["id"]) for payload in artifacts}
+    return [
+        payload
+        for payload in _records_if_present(root, "accession")
+        if str(payload["artifact_id"]) in artifact_ids
+    ]
+
+
+def _target_tasks(root: Path, target_id: str) -> list[dict[str, object]]:
+    return [
+        payload for payload in _records_if_present(root, "task")
+        if str(payload["target_id"]) == target_id
+    ]
+
+
+def _target_sources(root: Path, records: list[dict[str, object]]) -> list[dict[str, object]]:
+    source_ids = _source_ids_from(records)
+    return [
+        payload for payload in _records_if_present(root, "source")
+        if str(payload["id"]) in source_ids
+    ]
+
+
+def _target_header(target: dict[str, object], target_id: str) -> list[str]:
+    return [
+        f"# {target['name']}",
+        "",
+        "| Field | Value |",
+        "|---|---|",
+        f"| Target ID | {target_id} |",
+        f"| Category | {target['category']} |",
+        f"| Priority | {target['priority']} |",
+        f"| Rights | {target['rights_posture']} |",
+        f"| Revival lane | {target['revival_lane']} |",
+        f"| Public status | {target['public_status']} |",
+        f"| Restricted status | {target['restricted_status']} |",
+        "",
+        "## Summary",
+        "",
+        str(target["summary"]),
+    ]
+
+
+def _target_artifact_section(artifacts: list[dict[str, object]]) -> list[str]:
+    lines = ["", "## Artifacts", ""]
+    if not artifacts:
+        return lines + ["No artifact records yet."]
+    lines.extend(["| Artifact | Type | Status | Access |", "|---|---|---|---|"])
+    for payload in sorted(artifacts, key=lambda item: str(item["id"])):
+        lines.append(
+            f"| {payload['title']} | {payload['artifact_type']} | "
+            f"{payload['redistribution_status']} | {payload['access_level']} |"
+        )
+    return lines
+
+
+def _target_accession_section(accessions: list[dict[str, object]]) -> list[str]:
+    lines = ["", "## Accessions", ""]
+    if not accessions:
+        return lines + ["No accession records yet."]
+    lines.extend(["| Accession | Artifact | Capture | Storage | Rights |", "|---|---|---|---|---|"])
+    for payload in sorted(accessions, key=lambda item: str(item["id"])):
+        lines.append(
+            f"| {payload['id']} | {payload['artifact_id']} | {payload['capture_status']} | "
+            f"{payload['storage_class']} | {payload['rights_review']} |"
+        )
+    return lines
+
+
+def _target_task_section(tasks: list[dict[str, object]]) -> list[str]:
+    lines = ["", "## Tasks", ""]
+    if not tasks:
+        return lines + ["No task records yet."]
+    lines.extend(["| Task | Type | Status | Notes |", "|---|---|---|---|"])
+    for payload in sorted(tasks, key=lambda item: str(item["id"])):
+        lines.append(
+            f"| {payload['id']} | {payload['task_type']} | "
+            f"{payload['status']} | {payload['public_notes']} |"
+        )
+    return lines
+
+
+def _target_source_section(sources: list[dict[str, object]]) -> list[str]:
+    lines = ["", "## Evidence Sources", ""]
+    if not sources:
+        return lines + ["No linked source records yet."]
+    lines.extend(["| Source | Type | Confidence | Scope | URL |", "|---|---|---|---|---|"])
+    for payload in sorted(sources, key=lambda item: str(item["id"])):
+        lines.append(
+            f"| {payload['title']} | {payload['source_type']} | {payload['confidence']} | "
+            f"{payload['claim_scope']} | {payload.get('url', '')} |"
+        )
+    return lines
+
+
+def _target_dossier(root: Path, target: dict[str, object]) -> str:
+    target_id = str(target["id"])
+    artifacts = _target_artifacts(root, target_id)
+    accessions = _target_accessions(root, artifacts)
+    tasks = [
+        payload for payload in _target_tasks(root, target_id)
+    ]
+    sources = _target_sources(root, artifacts + accessions + tasks)
+    lines = _target_header(target, target_id)
+    lines.extend(_target_artifact_section(artifacts))
+    lines.extend(_target_accession_section(accessions))
+    lines.extend(_target_task_section(tasks))
+    lines.extend(_target_source_section(sources))
+    return "\n".join(lines) + "\n"
+
+
 def _accession_summary(root: Path) -> str:
     if not (root / "accessions").exists():
         return "# Accessions\n\nNo accession records yet.\n"
@@ -156,7 +284,7 @@ def _coverage_summary(root: Path) -> str:
 def write_reports(root: Path) -> list[Path]:
     targets = build_target_index(root)
     generated = root / "docs" / "generated"
-    return [
+    written = [
         _write(generated / "index.md", "# Engine Revival Public Index\n\n" + render_target_table(targets)),
         _write(generated / "targets.md", "# Targets\n\n" + render_target_table(targets)),
         _write(generated / "rights-summary.md", _rights_summary(targets)),
@@ -166,3 +294,12 @@ def write_reports(root: Path) -> list[Path]:
         _write(generated / "tasks.md", _task_summary(root)),
         _write(generated / "coverage.md", _coverage_summary(root)),
     ]
+    if (root / "targets").exists():
+        for record in load_records(root, "target"):
+            written.append(
+                _write(
+                    generated / "targets" / f"{record.payload['id']}.md",
+                    _target_dossier(root, record.payload),
+                )
+            )
+    return written

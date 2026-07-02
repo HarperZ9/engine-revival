@@ -4,25 +4,25 @@
 
 | Priority | Target | Rights | Revival lane | Artifacts | Accessions | Tasks |
 |---:|---|---|---|---:|---:|---:|
-| 89 | Argonaut BRender | open | critical-edition | 3 | 3 | 1 |
-| 84 | PS1 Programmer's Tool / SDevTC / Net Yaroze | clean-room-only | clean-room-api-compatible | 4 | 4 | 1 |
-| 82 | RenderWare PS2 | restricted | compatibility-reimplementation | 2 | 2 | 1 |
-| 80 | GOOL and GOAL | clean-room-only | tooling-only-legal-copy-assets | 3 | 3 | 1 |
-| 78 | PS2 ProDG / EB / Linux stack | rights-holder-needed | clean-room-and-corporate-outreach | 4 | 4 | 1 |
-| 77 | RenderMorphics Reality Lab | rights-holder-needed | private-lead-public-metadata | 4 | 4 | 1 |
-| 76 | OpenGL Performer | public-reference-only | partial-public-archive | 3 | 3 | 1 |
-| 74 | RenderMan Interface | public-reference-only | documentation-anchor | 2 | 2 | 1 |
-| 74 | tri-Ace PS2 renderer | public-reference-only | documentation-based-reconstruction | 2 | 2 | 1 |
-| 73 | Psygnosis / Studio Liverpool | public-reference-only | asset-pipeline-reconstruction | 2 | 2 | 1 |
-| 73 | QuickDraw 3D | public-reference-only | distribution-media-recovery | 2 | 2 | 1 |
-| 72 | Mesa | open | public-source-preservation | 2 | 2 | 1 |
-| 72 | OGRE | open | public-source-preservation | 2 | 2 | 1 |
-| 72 | Open Inventor | open | public-source-preservation | 3 | 3 | 1 |
-| 71 | Softimage / Alias bridge | public-reference-only | pipeline-history | 4 | 4 | 1 |
-| 70 | Quesa | open | public-source-preservation | 2 | 2 | 1 |
-| 69 | Japan Studio / Team Ico | restricted | oral-history-and-binary-archaeology | 3 | 3 | 1 |
-| 68 | Crystal Space | open | public-source-preservation | 2 | 2 | 1 |
-| 68 | IRIS GL / OpenGL bridge | public-reference-only | upstream-dependency-atlas | 2 | 2 | 1 |
-| 66 | Aqsis | open | public-source-preservation | 2 | 2 | 1 |
-| 65 | Pixie | open | public-source-preservation | 2 | 2 | 1 |
-| 62 | PHIGS | public-reference-only | upstream-dependency-atlas | 3 | 3 | 1 |
+| 89 | [Argonaut BRender](targets/brender.md) | open | critical-edition | 3 | 3 | 1 |
+| 84 | [PS1 Programmer's Tool / SDevTC / Net Yaroze](targets/ps1-programmer-tool.md) | clean-room-only | clean-room-api-compatible | 4 | 4 | 1 |
+| 82 | [RenderWare PS2](targets/renderware-ps2.md) | restricted | compatibility-reimplementation | 2 | 2 | 1 |
+| 80 | [GOOL and GOAL](targets/gool-goal.md) | clean-room-only | tooling-only-legal-copy-assets | 3 | 3 | 1 |
+| 78 | [PS2 ProDG / EB / Linux stack](targets/ps2-prodg-eb-linux.md) | rights-holder-needed | clean-room-and-corporate-outreach | 4 | 4 | 1 |
+| 77 | [RenderMorphics Reality Lab](targets/reality-lab.md) | rights-holder-needed | private-lead-public-metadata | 4 | 4 | 1 |
+| 76 | [OpenGL Performer](targets/opengl-performer.md) | public-reference-only | partial-public-archive | 3 | 3 | 1 |
+| 74 | [RenderMan Interface](targets/renderman-interface.md) | public-reference-only | documentation-anchor | 2 | 2 | 1 |
+| 74 | [tri-Ace PS2 renderer](targets/tri-ace-ps2-renderer.md) | public-reference-only | documentation-based-reconstruction | 2 | 2 | 1 |
+| 73 | [Psygnosis / Studio Liverpool](targets/psygnosis-studio-liverpool.md) | public-reference-only | asset-pipeline-reconstruction | 2 | 2 | 1 |
+| 73 | [QuickDraw 3D](targets/quickdraw-3d.md) | public-reference-only | distribution-media-recovery | 2 | 2 | 1 |
+| 72 | [Mesa](targets/mesa.md) | open | public-source-preservation | 2 | 2 | 1 |
+| 72 | [OGRE](targets/ogre.md) | open | public-source-preservation | 2 | 2 | 1 |
+| 72 | [Open Inventor](targets/open-inventor.md) | open | public-source-preservation | 3 | 3 | 1 |
+| 71 | [Softimage / Alias bridge](targets/softimage-alias-bridge.md) | public-reference-only | pipeline-history | 4 | 4 | 1 |
+| 70 | [Quesa](targets/quesa.md) | open | public-source-preservation | 2 | 2 | 1 |
+| 69 | [Japan Studio / Team Ico](targets/japan-studio-team-ico.md) | restricted | oral-history-and-binary-archaeology | 3 | 3 | 1 |
+| 68 | [Crystal Space](targets/crystal-space.md) | open | public-source-preservation | 2 | 2 | 1 |
+| 68 | [IRIS GL / OpenGL bridge](targets/iris-gl-opengl-bridge.md) | public-reference-only | upstream-dependency-atlas | 2 | 2 | 1 |
+| 66 | [Aqsis](targets/aqsis.md) | open | public-source-preservation | 2 | 2 | 1 |
+| 65 | [Pixie](targets/pixie.md) | open | public-source-preservation | 2 | 2 | 1 |
+| 62 | [PHIGS](targets/phigs.md) | public-reference-only | upstream-dependency-atlas | 3 | 3 | 1 |

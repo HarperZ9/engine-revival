@@ -63,8 +63,9 @@ def render_target_table(targets: list[TargetSummary]) -> str:
         "|---:|---|---|---|---:|---:|---:|",
     ]
     for target in targets:
+        target_link = f"[{target.name}](targets/{target.id}.md)"
         lines.append(
-            f"| {target.priority} | {target.name} | {target.rights_posture} | "
+            f"| {target.priority} | {target_link} | {target.rights_posture} | "
             f"{target.revival_lane} | {target.artifact_count} | "
             f"{target.accession_count} | {target.task_count} |"
         )
