@@ -22,6 +22,11 @@ def test_first_dossier_artifacts_are_recorded():
         "artifacts/opengoal-project-overview-docs.json",
         "artifacts/tri-ace-pbr-implementation-course-notes.json",
         "artifacts/tri-ace-ps2-sh-lighting-hdr-gdc2005.json",
+        "artifacts/aqsis-renderer-source.json",
+        "artifacts/aqsis-renderer-tooling-metadata.json",
+        "artifacts/pixie-renderer-source-mirror.json",
+        "artifacts/pixie-sourceforge-project-record.json",
+        "artifacts/renderman-interface-spec-31-public-pdf.json",
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []

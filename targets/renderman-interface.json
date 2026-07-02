@@ -3,12 +3,12 @@
   "era": "1980s-2000s",
   "id": "renderman-interface",
   "name": "RenderMan Interface",
-  "platforms": [],
+  "platforms": ["RenderMan Interface", "RIB", "RSL", "production rendering"],
   "priority": 74,
-  "public_status": "seeded",
-  "related_targets": [],
+  "public_status": "curated-public-metadata",
+  "related_targets": ["aqsis", "pixie"],
   "restricted_status": "metadata-only",
   "revival_lane": "documentation-anchor",
   "rights_posture": "public-reference-only",
-  "summary": "Seed public record for RenderMan Interface."
+  "summary": "Public records now anchor the RenderMan Interface to a public v3.1 specification copy and related open renderer lanes."
 }
