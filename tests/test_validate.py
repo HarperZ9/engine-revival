@@ -142,3 +142,10 @@ def test_accession_source_ids_must_reference_sources(tmp_path):
     })
     messages = validate_workspace(tmp_path)
     assert any("unknown source_id: missing-source" in message for message in messages)
+
+
+def test_artifact_must_have_accession_record(tmp_path):
+    _write_accession_workspace(tmp_path)
+    (tmp_path / "accessions" / "brender-v132-source-planned.json").unlink()
+    messages = validate_workspace(tmp_path)
+    assert any("missing accession for artifact_id: brender-v132-source" in message for message in messages)

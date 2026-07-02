@@ -73,4 +73,9 @@ def validate_workspace(root: Path) -> list[str]:
         for source_id in record.payload.get("source_ids", []):
             if str(source_id) not in source_ids:
                 messages.append(f"{record.path}: unknown source_id: {source_id}")
+    accession_artifact_ids = {
+        str(record.payload.get("artifact_id")) for record in records_by_kind["accession"]
+    }
+    for artifact_id in sorted(artifact_ids - accession_artifact_ids):
+        messages.append(f"missing accession for artifact_id: {artifact_id}")
     return messages
