@@ -47,6 +47,20 @@ def test_first_dossier_artifacts_are_recorded():
         "artifacts/ogre-source-repository.json",
         "artifacts/open-inventor-readme-first-build-notes.json",
         "artifacts/open-inventor-source-release.json",
+        "artifacts/alias-autodesk-acquisition-record.json",
+        "artifacts/iris-gl-opengl-history-record.json",
+        "artifacts/japan-studio-restructure-public-report.json",
+        "artifacts/opengl-registry-spec-anchor.json",
+        "artifacts/openphigs-source-reimplementation.json",
+        "artifacts/phigs-standard-public-metadata.json",
+        "artifacts/psygnosis-studio-liverpool-closure-report.json",
+        "artifacts/psygnosis-studio-liverpool-public-history.json",
+        "artifacts/phigs-nist-validation-tests.json",
+        "artifacts/softimage-autodesk-acquisition-record.json",
+        "artifacts/softimage-last-release-transition-faq.json",
+        "artifacts/softimage-microsoft-acquisition-record.json",
+        "artifacts/team-ico-playstation-official-pages.json",
+        "artifacts/team-ico-ueda-playstation-blog-interview.json",
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
