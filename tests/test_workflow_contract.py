@@ -8,4 +8,6 @@ def test_seeded_public_archive_contract(tmp_path):
     seed_workspace(tmp_path)
     assert validate_workspace(tmp_path) == []
     assert audit_public_workspace(tmp_path) == []
-    assert tmp_path / "docs" / "generated" / "index.md" in write_reports(tmp_path)
+    reports = write_reports(tmp_path)
+    assert tmp_path / "docs" / "generated" / "index.md" in reports
+    assert tmp_path / "docs" / "generated" / "accessions.md" in reports
