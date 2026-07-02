@@ -6,48 +6,44 @@ Workspace: `C:\dev\public\engine-revival`
 
 ## Purpose
 
-`engine-revival` is a public-facing tooling-first archive for reviving,
+`engine-revival` is a public-facing, tooling-first archive for reviving,
 documenting, and curating historical game engines, rendering libraries, CGI
 toolkits, platform SDKs, and studio technology lineages.
 
-The project starts with tooling and structured evidence rather than a visual
-exhibit. Its first responsibility is to keep public records accurate,
-reviewable, and safe to publish. A website or exhibit can later consume the
-same records.
+The first responsibility is evidence discipline: public records must be
+accurate, reviewable, and safe to publish. A visual exhibit or website can later
+consume the same records.
 
 ## Context
 
-The seed research comes from two local reports:
+Seed research:
 
 - `C:\Users\Zain\Downloads\deep-research-report2.md`
 - `C:\Users\Zain\Downloads\deep-research-report3.md`
 
-Those reports identify two simultaneous preservation lanes:
+The reports define two lanes:
 
-- Stabilize public/open recoverable material, such as BRender, Open Inventor,
-  Quesa, Mesa, Crystal Space, OGRE, Aqsis, and Pixie.
-- Track fragmented or rights-constrained material through public-safe metadata,
-  clean-room notes, and recovery tasks, such as RenderWare PS2, Reality Lab,
-  OpenGL Performer, QuickDraw 3D, PS1/PS2 developer toolchains, GOOL/GOAL,
-  tri-Ace rendering, Psygnosis, and Japan Studio/Team Ico.
+- Stabilize public/open recoverable material: BRender, Open Inventor, Quesa,
+  Mesa, Crystal Space, OGRE, Aqsis, Pixie.
+- Track fragmented or rights-constrained material through public-safe metadata:
+  RenderWare PS2, Reality Lab, OpenGL Performer, QuickDraw 3D, PS1/PS2
+  toolchains, GOOL/GOAL, tri-Ace rendering, Psygnosis, Japan Studio/Team Ico.
 
 ## Goals
 
 - Create a public repo at `C:\dev\public\engine-revival`.
 - Define schemas for targets, artifacts, sources, tasks, and milestones.
-- Provide a Python CLI that validates records, builds indexes, audits public
-  safety, and generates Markdown reports.
-- Seed the archive with the full initial target set from the research reports.
+- Provide a Python CLI for validation, public-safety audit, indexing, seeding,
+  and Markdown report generation.
+- Seed all initial targets from the two reports.
 - Make public/restricted boundaries explicit and mechanically checked.
-- Enable later public website generation without changing the record model.
 
 ## Non-Goals
 
 - Do not publish proprietary SDK binaries, leaked source, game assets, private
-  donor material, private contact data, credentials, or restricted media.
+  donor files, private contact data, credentials, or restricted media.
 - Do not build the public website in the first implementation slice.
-- Do not attempt exact engine restoration for restricted targets in this repo.
-  This repo records public metadata, clean-room lanes, and recovery state.
+- Do not attempt exact restoration for restricted targets in this repo.
 - Do not make unverified legal claims. Rights labels describe archive posture,
   not legal advice.
 
@@ -55,164 +51,57 @@ Those reports identify two simultaneous preservation lanes:
 
 The repo has four layers.
 
-### `schemas/`
-
-JSON Schemas for the public record model:
-
-- target records
-- artifact records
-- source records
-- revival task records
-- milestone records
-
-Schemas define required identifiers, status labels, confidence fields, and
+`schemas/`: JSON Schemas for target, artifact, source, task, and milestone
+records. Schemas define required IDs, status labels, confidence fields, and
 public-safety fields.
 
-### `engine_revival/`
-
-A small Python package and CLI. It validates records, builds generated indexes,
+`engine_revival/`: Python package and CLI. It validates records, builds indexes,
 emits provenance summaries, and catches unsafe or ambiguous publication states.
 
-The implementation should avoid unnecessary dependencies in the first slice.
-If validation needs JSON Schema support, use one well-scoped dependency and
-document it in `pyproject.toml`.
+Record directories: `targets/`, `artifacts/`, `sources/`, `tasks/`. First
+record format is JSON for straightforward schema validation.
 
-### Record Directories
-
-Structured public records live in separate directories:
-
-- `targets/`
-- `artifacts/`
-- `sources/`
-- `tasks/`
-
-The preferred first record format is JSON for straightforward schema
-validation. YAML can be considered later if contributor ergonomics outweigh the
-extra parser dependency.
-
-### `docs/`
-
-Generated and hand-written public docs:
-
-- target matrix
-- priority table
-- rights/status summary
-- recovery workflow
-- contribution guide
-- archival ethics
-- how to submit leads
-- per-target public summaries
-
-Generated docs should clearly identify themselves so hand-written docs are not
-silently overwritten.
+`docs/`: generated and hand-written public docs: target matrix, priority table,
+rights/status summary, recovery workflow, contribution guide, archival ethics,
+lead submission guidance, and per-target summaries. Generated docs go under
+`docs/generated/`.
 
 ## Data Model
 
-### Target
+`target`: recoverable engine, SDK, toolchain, renderer, studio lineage,
+middleware family, or upstream graphics system.
 
-A recoverable engine, SDK, toolchain, renderer, studio lineage, middleware
-family, or upstream graphics system.
+Required: `id`, `name`, `category`, `era`, `platforms`, `priority`,
+`revival_lane`, `rights_posture`, `summary`, `public_status`,
+`restricted_status`.
 
-Required fields:
+Optional: `related_targets`, `notes`, `tags`.
 
-- `id`
-- `name`
-- `category`
-- `era`
-- `platforms`
-- `priority`
-- `revival_lane`
-- `rights_posture`
-- `summary`
-- `public_status`
-- `restricted_status`
+`artifact`: specific source, repo, manual, disc, ISO, paper, release note, SDK
+package, talk, press disc, or other recoverable item.
 
-Optional fields:
+Required: `id`, `target_id`, `artifact_type`, `title`, `origin`,
+`redistribution_status`, `access_level`, `evidence_quality`.
 
-- `related_targets`
-- `notes`
-- `tags`
+Optional: `version`, `date`, `location`, `hashes`, `source_ids`, `notes`.
 
-### Artifact
+`source`: citation or provenance pointer.
 
-A specific source, repo, manual, disc, ISO, paper, release note, SDK package,
-talk, press disc, or other recoverable item.
+Required: `id`, `title`, `source_type`, `confidence`, `claim_scope`.
 
-Required fields:
+Optional: `url`, `local_pointer`, `publisher`, `retrieved_at`, `notes`.
 
-- `id`
-- `target_id`
-- `artifact_type`
-- `title`
-- `origin`
-- `redistribution_status`
-- `access_level`
-- `evidence_quality`
+`revival_task`: concrete recovery or reconstruction task.
 
-Optional fields:
+Required: `id`, `target_id`, `task_type`, `status`, `public_notes`.
 
-- `version`
-- `date`
-- `location`
-- `hashes`
-- `source_ids`
-- `notes`
+Optional: `owner`, `inputs`, `outputs`, `blocked_by`, `source_ids`.
 
-### Source
+`milestone`: target state checkpoint.
 
-A citation or provenance pointer supporting a claim.
+Required: `id`, `target_id`, `milestone_type`, `status`, `evidence`.
 
-Required fields:
-
-- `id`
-- `title`
-- `source_type`
-- `confidence`
-- `claim_scope`
-
-Optional fields:
-
-- `url`
-- `local_pointer`
-- `publisher`
-- `retrieved_at`
-- `notes`
-
-### Revival Task
-
-A concrete recovery or reconstruction task.
-
-Required fields:
-
-- `id`
-- `target_id`
-- `task_type`
-- `status`
-- `public_notes`
-
-Optional fields:
-
-- `owner`
-- `inputs`
-- `outputs`
-- `blocked_by`
-- `source_ids`
-
-### Milestone
-
-A target state checkpoint.
-
-Required fields:
-
-- `id`
-- `target_id`
-- `milestone_type`
-- `status`
-- `evidence`
-
-## Controlled Status Labels
-
-Rights and access labels should be conservative and machine-checkable.
+## Controlled Labels
 
 Initial labels:
 
@@ -224,48 +113,29 @@ Initial labels:
 - `rights-holder-needed`
 - `do-not-redistribute`
 
-The CLI should fail records that imply publication or redistribution while also
+The CLI must fail records that imply publication or redistribution while also
 using `restricted`, `unknown`, `rights-holder-needed`, or
 `do-not-redistribute`.
 
 ## CLI Surface
 
-Initial commands:
+`engine-revival seed`: creates starter public-safe records for the initial
+target set. It must not overwrite edited records.
 
-### `engine-revival seed`
+`engine-revival validate`: validates records against schemas and reports exact
+file paths for failures.
 
-Creates starter public-safe records for the initial target set. It should not
-overwrite edited records unless an explicit force flag is added later.
+`engine-revival audit-public`: fails records that omit rights posture or access
+level, use ambiguous redistribution language, attach restricted material as a
+publishable artifact, or describe private/proprietary files as public
+deliverables.
 
-### `engine-revival validate`
+`engine-revival index`: builds generated target matrix, priority table,
+rights/status rollup, and task board data.
 
-Validates all records against schemas and reports exact file paths for failures.
+`engine-revival report`: generates Markdown summaries under `docs/generated/`.
 
-### `engine-revival audit-public`
-
-Checks publication safety. It fails when records:
-
-- omit rights posture
-- omit access level
-- use ambiguous redistribution language
-- attach restricted material as a publishable artifact
-- describe private or proprietary files as public deliverables
-
-### `engine-revival index`
-
-Builds generated index artifacts:
-
-- target matrix
-- priority table
-- rights/status rollup
-- task board
-
-### `engine-revival report`
-
-Generates Markdown summaries under `docs/generated/`, including a public index
-and per-target summaries.
-
-## First Successful Workflow
+First successful workflow:
 
 ```powershell
 python -m pip install -e ".[test]"
@@ -278,8 +148,6 @@ python -m pytest
 ```
 
 ## Initial Target Set
-
-Seed these targets first:
 
 - BRender
 - PS1 Programmer's Tool / SDevTC / Net Yaroze
@@ -306,7 +174,7 @@ Seed these targets first:
 
 ## Public Boundary
 
-Allowed in the public repo:
+Allowed:
 
 - public metadata
 - public citations
@@ -318,7 +186,7 @@ Allowed in the public repo:
 - generated public docs
 - schemas and validation tools
 
-Not allowed in the public repo:
+Not allowed:
 
 - proprietary SDK binaries
 - leaked source
@@ -333,26 +201,23 @@ Restricted leads are represented as metadata with access status, not as files.
 
 ## Verification
 
-Tests must assert meaningful behavior:
+Tests must assert:
 
 - schema validation accepts good records and rejects malformed records
-- generated docs are stable for the seeded records
+- generated docs are stable for seeded records
 - `audit-public` fails unsafe publication states
 - status labels are controlled and consistent
 - target IDs referenced by artifacts, tasks, and milestones exist
 - CLI commands exit nonzero on invalid input
 
-The success criterion is not "the CLI runs." The success criterion is that the
-repo catches unsafe or incoherent public archive states before publication.
+Success is not "the CLI runs." Success is catching unsafe or incoherent public
+archive states before publication.
 
 ## Implementation Slices
 
-The implementation plan should split work into small reviewable slices:
-
 1. Repo bootstrap: package metadata, AGENTS, README, tests, minimal CLI.
 2. Schemas: target, artifact, source, task, milestone.
-3. Validation engine: record discovery, schema validation, cross-reference
-   checks.
+3. Validation engine: discovery, schema validation, cross-reference checks.
 4. Public audit: rights/access enforcement and unsafe-language checks.
 5. Seed data: initial target records from the reports.
 6. Index/report generation: generated docs and summary tables.
@@ -360,11 +225,11 @@ The implementation plan should split work into small reviewable slices:
 
 ## Approval Record
 
-User-approved decisions:
+Approved decisions:
 
 - Use `C:\dev` as the canonical workspace.
 - Make the archive public-facing from the start.
-- Create a new public repo/workspace at `C:\dev\public\engine-revival`.
+- Create `C:\dev\public\engine-revival`.
 - Choose a tooling-first archive approach.
 - Use the architecture, data model, CLI workflow, public boundary, and
-  verification model described in this spec.
+  verification model in this spec.
