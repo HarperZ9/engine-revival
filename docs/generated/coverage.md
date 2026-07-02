@@ -5,6 +5,7 @@
 | Metric | Covered | Total |
 |---|---:|---:|
 | Artifact accession coverage | 57 | 57 |
+| Target task coverage | 22 | 22 |
 
 | Record kind | Count |
 |---|---:|
@@ -18,3 +19,7 @@
 ## Missing Artifact Accessions
 
 No missing artifact accessions.
+
+## Missing Target Tasks
+
+No missing target tasks.
