@@ -1,6 +1,14 @@
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _json_records(directory):
+    return [
+        json.loads(path.read_text(encoding="utf-8"))
+        for path in sorted((ROOT / directory).glob("*.json"))
+    ]
 
 
 def test_first_dossier_artifacts_are_recorded():
@@ -163,3 +171,12 @@ def test_studio_course_accession_batch_is_recorded():
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
+
+
+def test_live_sources_are_cited_by_archive_records():
+    source_ids = {record["id"] for record in _json_records("sources")}
+    used_source_ids = set()
+    for directory in ("artifacts", "accessions", "tasks"):
+        for record in _json_records(directory):
+            used_source_ids.update(str(source_id) for source_id in record.get("source_ids", []))
+    assert sorted(source_ids - used_source_ids) == []

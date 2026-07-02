@@ -22,7 +22,6 @@
 | Sony closes Wipeout's Studio Liverpool | trade-report | high | 2 | Studio Liverpool closure confirmation, Psygnosis lineage, Sony statement excerpts, and Liverpool facility clarification | https://www.gamedeveloper.com/business/sony-closes-i-wipeout-i-s-studio-liverpool |
 | CERN/OpenPHIGS | source-repository | high | 2 | OpenPHIGS repository with OpenGL backend and data-preservation extensions | https://github.com/CERN/OpenPHIGS |
 | fbradasc/OpenPHIGS LICENSE | license-file | high | 2 | License notices for the public OpenPHIGS source tree based on X Consortium and Sun Microsystems permissions | https://raw.githubusercontent.com/fbradasc/OpenPHIGS/main/LICENSE |
-| Initial engine revival research reports | local-research-summary | moderate | 0 | initial target selection |  |
 | Net Yaroze documentation archive item | documentation-archive | high | 2 | Net Yaroze documentation set contents and public metadata | https://archive.org/details/NetYarozeDocumentation |
 | PS2 Linux PAL installation discs archive item | archive-item | moderate | 2 | PS2 Linux PAL installation disc archive item metadata | https://archive.org/details/disc-1_20220424 |
 | RenderWare3 (PS2 Gold - 1.3 update) Release Notes | release-notes-ocr | high | 2 | RenderWare3 PS2 Gold 1.3 update release notes content and rights warning | https://archive.org/stream/render-ware-3-ps-2-gold-1.3-update-release-notes/RenderWare3%20%28PS2%20Gold%20-%201.3%20update%29%20Release%20Notes_djvu.txt |
