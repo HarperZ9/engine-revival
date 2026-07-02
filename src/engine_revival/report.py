@@ -87,6 +87,42 @@ def _task_summary(root: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _records_if_present(root: Path, kind: str) -> list[dict[str, object]]:
+    directory = root / f"{kind}s"
+    if kind == "accession":
+        directory = root / "accessions"
+    if not directory.exists():
+        return []
+    return [record.payload for record in load_records(root, kind)]
+
+
+def _coverage_summary(root: Path) -> str:
+    artifacts = _records_if_present(root, "artifact")
+    accessions = _records_if_present(root, "accession")
+    artifact_ids = {str(payload["id"]) for payload in artifacts}
+    accession_artifact_ids = {str(payload["artifact_id"]) for payload in accessions}
+    covered = len(artifact_ids & accession_artifact_ids)
+    missing = sorted(artifact_ids - accession_artifact_ids)
+    lines = [
+        "# Coverage",
+        "",
+        "| Metric | Covered | Total |",
+        "|---|---:|---:|",
+        f"| Artifact accession coverage | {covered} | {len(artifact_ids)} |",
+        "",
+        "| Record kind | Count |",
+        "|---|---:|",
+    ]
+    for kind in ("target", "source", "artifact", "accession", "task", "milestone"):
+        lines.append(f"| {kind} | {len(_records_if_present(root, kind))} |")
+    lines.extend(["", "## Missing Artifact Accessions", ""])
+    if missing:
+        lines.extend(f"- `{artifact_id}`" for artifact_id in missing)
+    else:
+        lines.append("No missing artifact accessions.")
+    return "\n".join(lines) + "\n"
+
+
 def write_reports(root: Path) -> list[Path]:
     targets = build_target_index(root)
     generated = root / "docs" / "generated"
@@ -97,4 +133,5 @@ def write_reports(root: Path) -> list[Path]:
         _write(generated / "artifacts.md", _artifact_summary(root)),
         _write(generated / "accessions.md", _accession_summary(root)),
         _write(generated / "tasks.md", _task_summary(root)),
+        _write(generated / "coverage.md", _coverage_summary(root)),
     ]

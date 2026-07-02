@@ -29,5 +29,6 @@ python -m pytest
 - [Generated artifacts](docs/generated/artifacts.md)
 - [Generated accessions](docs/generated/accessions.md)
 - [Generated tasks](docs/generated/tasks.md)
+- [Generated coverage](docs/generated/coverage.md)
 - [Generated rights summary](docs/generated/rights-summary.md)
 - [Contributing](CONTRIBUTING.md)
