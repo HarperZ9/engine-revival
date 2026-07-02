@@ -32,6 +32,16 @@ def test_write_reports_creates_artifact_summary(tmp_path):
     assert "BRender source release" in artifacts.read_text(encoding="utf-8")
 
 
+def test_write_reports_creates_source_catalog(tmp_path):
+    seed_workspace(tmp_path)
+    sources = tmp_path / "docs" / "generated" / "sources.md"
+    assert sources in write_reports(tmp_path)
+    text = sources.read_text(encoding="utf-8")
+    assert "| Source | Type | Confidence | Scope | URL |" in text
+    assert "Initial engine revival research reports" in text
+    assert "initial target selection" in text
+
+
 def test_write_reports_creates_accession_summary(tmp_path):
     seed_workspace(tmp_path)
     (tmp_path / "artifacts").mkdir()

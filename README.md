@@ -26,6 +26,7 @@ python -m pytest
 - [Recovery workflow](docs/RECOVERY-WORKFLOW.md)
 - [Generated public index](docs/generated/index.md)
 - [Generated targets](docs/generated/targets.md)
+- [Generated sources](docs/generated/sources.md)
 - [Generated artifacts](docs/generated/artifacts.md)
 - [Generated accessions](docs/generated/accessions.md)
 - [Generated tasks](docs/generated/tasks.md)
