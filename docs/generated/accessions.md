@@ -4,13 +4,17 @@
 
 | Artifact | Package | Capture | Fixity | Storage | Rights | Notes |
 |---|---|---|---|---|---|---|
+| alias-autodesk-acquisition-record | acquisition-record-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for Alias acquisition lineage metadata. |
 | aqsis-renderer-source | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public/open source metadata; archival master not stored in git. |
 | aqsis-renderer-tooling-metadata | tooling-metadata | metadata-only | not-applicable | external-url | open-license | Public-reference accession for Aqsis tooling metadata; archival master not stored in git. |
 | brender-3dmm-source | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public/open source metadata; archival master not stored in git. |
 | brender-v132-source | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public/open source metadata; archival master not stored in git. |
+| coin3d-open-inventor-api-compatibility | compatibility-lineage-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for Coin3D and Open Inventor API compatibility metadata. |
 | crystal-space-github-source-repository | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public/open source metadata; archival master not stored in git. |
 | crystal-space-sourceforge-project-record | project-registry-metadata | metadata-only | not-applicable | external-url | open-license | Public-reference accession for Crystal Space SourceForge project metadata. |
+| direct3d-directx2-release-record | successor-api-release-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for Direct3D DirectX 2 successor-lineage metadata. |
 | directx-sdk-legacy-samples-archive | sample-source-snapshot | planned | not-started | external-url | open-license | Planned accession for public Microsoft legacy DirectX SDK sample sources. |
+| iris-gl-opengl-history-record | api-lineage-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for IRIS GL to OpenGL lineage metadata. |
 | mesa-license-and-api-summary | license-and-api-metadata | metadata-only | not-applicable | external-url | open-license | Public-reference accession for Mesa API and license metadata. |
 | mesa-source-repository | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public/open source metadata; archival master not stored in git. |
 | net-yaroze-documentation-set | documentation-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for Net Yaroze documentation metadata; archival master not stored in git. |
@@ -18,6 +22,7 @@
 | ogre-source-repository | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public/open source metadata; archival master not stored in git. |
 | open-inventor-readme-first-build-notes | build-notes-metadata | metadata-only | not-applicable | external-url | open-license | Public-reference accession for Open Inventor README.FIRST build notes. |
 | open-inventor-source-release | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public/open source metadata; archival master not stored in git. |
+| opengl-registry-spec-anchor | standards-registry-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for Khronos OpenGL registry metadata. |
 | opengoal-jak-project-source | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public OpenGOAL source metadata; game assets remain outside this archive. |
 | openphigs-source-reimplementation | source-snapshot | planned | not-started | external-url | public-ok | Planned accession for public OpenPHIGS metadata; license review is required before mirroring any archival master. |
 | pixie-renderer-source-mirror | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public/open source metadata; archival master not stored in git. |
@@ -30,5 +35,10 @@
 | ps2-ps2sdk-open-source-sdk | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public PS2SDK source metadata; this is not a ProDG mirror. |
 | ps2-sn-systems-prodg-lineage | lineage-record-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for SN Systems and ProDG lineage metadata. |
 | quesa-source-reimplementation | source-snapshot | planned | not-started | external-url | open-license | Planned accession for public/open source metadata; archival master not stored in git. |
+| reality-lab-release-2-public-report | trade-press-product-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for Reality Lab release-two product report metadata. |
+| reality-lab-rendermorphics-acquisition-record | acquisition-record-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for RenderMorphics acquisition and Reality Lab lineage metadata. |
 | renderware-ps2-gold-release-notes | release-notes-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for RenderWare PS2 release-note metadata; licensed software is not held here. |
 | renderware-sdk-310-ps2-archive-item | sdk-archive-metadata | metadata-only | not-applicable | not-held | do-not-redistribute | Metadata-only accession for a public archive item; SDK files are not held or redistributed here. |
+| softimage-autodesk-acquisition-record | acquisition-record-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for Softimage acquisition lineage metadata. |
+| softimage-last-release-transition-faq | product-transition-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for Softimage final-release transition metadata; vendor PDF is not mirrored here. |
+| softimage-microsoft-acquisition-record | acquisition-record-metadata | metadata-only | not-applicable | external-url | public-reference-only | Public-reference accession for Softimage Microsoft-era lineage metadata. |

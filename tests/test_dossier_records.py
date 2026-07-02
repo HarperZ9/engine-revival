@@ -113,3 +113,20 @@ def test_open_project_accession_batch_is_recorded():
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
+
+
+def test_lineage_history_accession_batch_is_recorded():
+    expected = {
+        "accessions/alias-autodesk-acquisition-record-public-reference.json",
+        "accessions/coin3d-open-inventor-api-compatibility-public-reference.json",
+        "accessions/direct3d-directx2-release-record-public-reference.json",
+        "accessions/iris-gl-opengl-history-record-public-reference.json",
+        "accessions/opengl-registry-spec-anchor-public-reference.json",
+        "accessions/reality-lab-release-2-public-report-public-reference.json",
+        "accessions/reality-lab-rendermorphics-acquisition-record-public-reference.json",
+        "accessions/softimage-autodesk-acquisition-record-public-reference.json",
+        "accessions/softimage-last-release-transition-faq-public-reference.json",
+        "accessions/softimage-microsoft-acquisition-record-public-reference.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
