@@ -9,8 +9,13 @@
 | brender | BRender 3D Movie Maker variant source release | source-release | open | public |
 | brender | BRender preservation index | curation-index | public-reference-only | public |
 | brender | BRender v1.3.2 public source release | source-release | open | public |
+| reality-lab | Direct3D DirectX 2 release record | successor-api-release-record | public-reference-only | public |
+| reality-lab | DirectX SDK legacy samples archive | successor-sample-archive | open | public |
 | gool-goal | Andy Gavin GOOL developer article | developer-article | public-reference-only | public |
 | ps1-programmer-tool | Net Yaroze documentation set | documentation-set | public-reference-only | public |
+| opengl-performer | OpenGL Performer Getting Started Guide 3.0 | manual-reference | public-reference-only | public |
+| opengl-performer | OpenGL Performer product brochure | product-brochure | public-reference-only | public |
+| opengl-performer | OpenGL Performer Programmer's Guide 3.2 | manual-reference | public-reference-only | public |
 | gool-goal | OpenGOAL jak-project source repository | source-toolchain | open | public |
 | gool-goal | OpenGOAL project overview documentation | toolchain-documentation | public-reference-only | public |
 | pixie | Pixie renderer source mirror | source-mirror | open | public |
@@ -22,6 +27,12 @@
 | ps2-prodg-eb-linux | Linux for PlayStation 2 Release 1.0 | official-release-record | public-reference-only | public |
 | ps2-prodg-eb-linux | PS2SDK open-source PS2 SDK | open-source-sdk | open | public |
 | ps2-prodg-eb-linux | SN Systems ProDG toolchain lineage | toolchain-lineage | public-reference-only | public |
+| quesa | Quesa 1.6d13 release report | release-report | public-reference-only | public |
+| quesa | Quesa QuickDraw 3D API reimplementation source | source-reimplementation | open | public |
+| quickdraw-3d | QuickDraw 3D documentation Technical Q&A | documentation-index | public-reference-only | public |
+| quickdraw-3d | 3D Graphics Programming with QuickDraw 3D 1.5.4 | manual-reference | public-reference-only | public |
+| reality-lab | RenderMorphics Reality Lab release-two public report | trade-press-product-record | public-reference-only | public |
+| reality-lab | RenderMorphics acquisition and Reality Lab Windows plan | acquisition-lineage-record | public-reference-only | public |
 | renderman-interface | RenderMan Interface Specification v3.1 public PDF | specification-reference | public-reference-only | public |
 | renderware-ps2 | RenderWare3 PS2 Gold 1.3 update release notes | release-notes | public-reference-only | public |
 | renderware-ps2 | RenderWare SDK 3.10 PS2 archive item | sdk-archive-metadata | do-not-redistribute | metadata-only |

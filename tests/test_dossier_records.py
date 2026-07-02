@@ -27,6 +27,17 @@ def test_first_dossier_artifacts_are_recorded():
         "artifacts/pixie-renderer-source-mirror.json",
         "artifacts/pixie-sourceforge-project-record.json",
         "artifacts/renderman-interface-spec-31-public-pdf.json",
+        "artifacts/direct3d-directx2-release-record.json",
+        "artifacts/directx-sdk-legacy-samples-archive.json",
+        "artifacts/opengl-performer-getting-started-guide-30.json",
+        "artifacts/opengl-performer-product-brochure.json",
+        "artifacts/opengl-performer-programmers-guide-32.json",
+        "artifacts/quesa-16d13-release-report.json",
+        "artifacts/quesa-source-reimplementation.json",
+        "artifacts/quickdraw-3d-documentation-qa.json",
+        "artifacts/quickdraw-3d-manual-154-public-pdf.json",
+        "artifacts/reality-lab-release-2-public-report.json",
+        "artifacts/reality-lab-rendermorphics-acquisition-record.json",
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
