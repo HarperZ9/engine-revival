@@ -72,3 +72,40 @@ def test_write_reports_creates_task_board(tmp_path):
     task_board = tasks.read_text(encoding="utf-8")
     assert "brender-triage" in task_board
     assert "triage-public-record" in task_board
+
+
+def test_write_reports_creates_coverage_summary(tmp_path):
+    seed_workspace(tmp_path)
+    (tmp_path / "artifacts").mkdir()
+    (tmp_path / "accessions").mkdir()
+    (tmp_path / "artifacts" / "brender-source.json").write_text(
+        """{
+  "id": "brender-source",
+  "target_id": "brender",
+  "artifact_type": "source-release",
+  "title": "BRender source",
+  "origin": "public",
+  "redistribution_status": "open",
+  "access_level": "public",
+  "evidence_quality": "public-source"
+}""",
+        encoding="utf-8",
+    )
+    (tmp_path / "accessions" / "brender-source-planned.json").write_text(
+        """{
+  "id": "brender-source-planned",
+  "artifact_id": "brender-source",
+  "package_type": "source-snapshot",
+  "capture_status": "planned",
+  "storage_class": "external-url",
+  "fixity_status": "not-started",
+  "rights_review": "open-license",
+  "public_notes": "Planned public source accession."
+}""",
+        encoding="utf-8",
+    )
+    coverage = tmp_path / "docs" / "generated" / "coverage.md"
+    assert coverage in write_reports(tmp_path)
+    text = coverage.read_text(encoding="utf-8")
+    assert "| Artifact accession coverage | 1 | 1 |" in text
+    assert "No missing artifact accessions." in text
