@@ -57,6 +57,7 @@ def validate_workspace(root: Path) -> list[str]:
 
     target_ids = {str(record.payload.get("id")) for record in records_by_kind["target"]}
     source_ids = {str(record.payload.get("id")) for record in records_by_kind["source"]}
+    artifact_ids = {str(record.payload.get("id")) for record in records_by_kind["artifact"]}
     for kind in ("artifact", "task", "milestone"):
         for record in records_by_kind[kind]:
             target_id = str(record.payload.get("target_id"))
@@ -65,4 +66,11 @@ def validate_workspace(root: Path) -> list[str]:
             for source_id in record.payload.get("source_ids", []):
                 if str(source_id) not in source_ids:
                     messages.append(f"{record.path}: unknown source_id: {source_id}")
+    for record in records_by_kind["accession"]:
+        artifact_id = str(record.payload.get("artifact_id"))
+        if artifact_id not in artifact_ids:
+            messages.append(f"{record.path}: unknown artifact_id: {artifact_id}")
+        for source_id in record.payload.get("source_ids", []):
+            if str(source_id) not in source_ids:
+                messages.append(f"{record.path}: unknown source_id: {source_id}")
     return messages
