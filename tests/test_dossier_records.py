@@ -64,3 +64,20 @@ def test_first_dossier_artifacts_are_recorded():
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
+
+
+def test_first_accession_batch_is_recorded():
+    expected = {
+        "accessions/aqsis-renderer-source-planned.json",
+        "accessions/brender-3dmm-source-planned.json",
+        "accessions/brender-v132-source-planned.json",
+        "accessions/crystal-space-github-source-repository-planned.json",
+        "accessions/mesa-source-repository-planned.json",
+        "accessions/ogre-source-repository-planned.json",
+        "accessions/open-inventor-source-release-planned.json",
+        "accessions/openphigs-source-reimplementation-planned.json",
+        "accessions/pixie-renderer-source-mirror-planned.json",
+        "accessions/quesa-source-reimplementation-planned.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
