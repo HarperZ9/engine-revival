@@ -42,6 +42,29 @@ def _artifact_summary(root: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _accession_summary(root: Path) -> str:
+    if not (root / "accessions").exists():
+        return "# Accessions\n\nNo accession records yet.\n"
+    lines = [
+        "# Accessions",
+        "",
+        "| Artifact | Package | Capture | Fixity | Storage | Rights | Notes |",
+        "|---|---|---|---|---|---|---|",
+    ]
+    records = sorted(
+        load_records(root, "accession"),
+        key=lambda record: (record.payload["artifact_id"], record.payload["id"]),
+    )
+    for record in records:
+        payload = record.payload
+        lines.append(
+            f"| {payload['artifact_id']} | {payload['package_type']} | "
+            f"{payload['capture_status']} | {payload['fixity_status']} | "
+            f"{payload['storage_class']} | {payload['rights_review']} | {payload['public_notes']} |"
+        )
+    return "\n".join(lines) + "\n"
+
+
 def write_reports(root: Path) -> list[Path]:
     targets = build_target_index(root)
     generated = root / "docs" / "generated"
@@ -50,4 +73,5 @@ def write_reports(root: Path) -> list[Path]:
         _write(generated / "targets.md", "# Targets\n\n" + render_target_table(targets)),
         _write(generated / "rights-summary.md", _rights_summary(targets)),
         _write(generated / "artifacts.md", _artifact_summary(root)),
+        _write(generated / "accessions.md", _accession_summary(root)),
     ]
