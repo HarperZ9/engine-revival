@@ -162,3 +162,16 @@ def test_duplicate_record_ids_fail_validation(tmp_path):
     })
     messages = validate_workspace(tmp_path)
     assert any("duplicate source id: brender-source" in message for message in messages)
+
+
+def test_record_id_must_match_filename_stem(tmp_path):
+    _write_accession_workspace(tmp_path)
+    _write_json(tmp_path / "sources" / "wrong-file-name.json", {
+        "id": "renamed-source",
+        "title": "Renamed source",
+        "source_type": "source-repository",
+        "confidence": "low",
+        "claim_scope": "Filename drift fixture.",
+    })
+    messages = validate_workspace(tmp_path)
+    assert any("source id must match filename stem" in message for message in messages)

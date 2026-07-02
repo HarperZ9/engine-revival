@@ -57,6 +57,19 @@ def _validate_unique_ids(records: list[RecordFile], kind: str) -> list[str]:
     return messages
 
 
+def _validate_filename_ids(records: list[RecordFile], kind: str) -> list[str]:
+    messages: list[str] = []
+    for record in records:
+        record_id = record.payload.get("id")
+        if not isinstance(record_id, str):
+            continue
+        if record.path.stem != record_id:
+            messages.append(
+                f"{record.path}: {kind} id must match filename stem: {record_id} != {record.path.stem}"
+            )
+    return messages
+
+
 def validate_workspace(root: Path) -> list[str]:
     messages: list[str] = []
     if not (root / "targets").exists():
@@ -69,6 +82,7 @@ def validate_workspace(root: Path) -> list[str]:
         records_by_kind[kind] = records
         messages.extend(kind_messages)
         messages.extend(_validate_unique_ids(records, kind))
+        messages.extend(_validate_filename_ids(records, kind))
 
     target_ids = {str(record.payload.get("id")) for record in records_by_kind["target"]}
     source_ids = {str(record.payload.get("id")) for record in records_by_kind["source"]}
