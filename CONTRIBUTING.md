@@ -16,6 +16,13 @@ paper, talk, repository, release note, or package record. Do not attach files.
 Use `redistribution_status` and `access_level` to describe whether the artifact
 can be referenced, mirrored, or only tracked as metadata.
 
+## Add An Accession
+
+Create `accessions/<artifact-id>-<status>.json` when tracking capture, custody,
+fixity, or review status for an artifact. Use `storage_class` to separate
+external URLs, local non-public holdings, public mirrors, and metadata-only
+records. Restricted or unclear accessions must not use `local-public`.
+
 ## Choose Rights Labels
 
 Use the most conservative accurate label:

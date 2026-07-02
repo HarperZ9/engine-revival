@@ -27,5 +27,6 @@ python -m pytest
 - [Generated public index](docs/generated/index.md)
 - [Generated targets](docs/generated/targets.md)
 - [Generated artifacts](docs/generated/artifacts.md)
+- [Generated accessions](docs/generated/accessions.md)
 - [Generated rights summary](docs/generated/rights-summary.md)
 - [Contributing](CONTRIBUTING.md)
