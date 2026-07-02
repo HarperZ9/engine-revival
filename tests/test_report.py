@@ -181,6 +181,16 @@ def test_write_reports_creates_coverage_summary(tmp_path):
     assert "No missing artifact accessions." in text
 
 
+def test_write_reports_creates_source_usage_coverage(tmp_path):
+    seed_workspace(tmp_path)
+    coverage = tmp_path / "docs" / "generated" / "coverage.md"
+    assert coverage in write_reports(tmp_path)
+    text = coverage.read_text(encoding="utf-8")
+    assert "| Source usage coverage | 0 | 1 |" in text
+    assert "## Unused Sources" in text
+    assert "- `initial-research-reports`" in text
+
+
 def test_write_reports_creates_target_task_coverage(tmp_path):
     seed_workspace(tmp_path)
     (tmp_path / "tasks" / "brender-triage.json").unlink()
