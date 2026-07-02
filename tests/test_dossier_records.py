@@ -96,3 +96,20 @@ def test_rights_constrained_accession_batch_is_recorded():
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
+
+
+def test_open_project_accession_batch_is_recorded():
+    expected = {
+        "accessions/aqsis-renderer-tooling-metadata-public-reference.json",
+        "accessions/crystal-space-sourceforge-project-record-public-reference.json",
+        "accessions/directx-sdk-legacy-samples-archive-planned.json",
+        "accessions/mesa-license-and-api-summary-public-reference.json",
+        "accessions/ogre-licensing-record-public-reference.json",
+        "accessions/opengoal-jak-project-source-planned.json",
+        "accessions/open-inventor-readme-first-build-notes-public-reference.json",
+        "accessions/pixie-sourceforge-project-record-public-reference.json",
+        "accessions/ps1-psnoobsdk-open-source-sdk-planned.json",
+        "accessions/ps2-ps2sdk-open-source-sdk-planned.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
