@@ -3,12 +3,16 @@
   "era": "1980s-2000s",
   "id": "renderware-ps2",
   "name": "RenderWare PS2",
-  "platforms": [],
+  "platforms": [
+    "PlayStation 2",
+    "Linux development host",
+    "Windows PC tools"
+  ],
   "priority": 82,
-  "public_status": "seeded",
+  "public_status": "curated-public-metadata",
   "related_targets": [],
   "restricted_status": "metadata-only",
   "revival_lane": "compatibility-reimplementation",
   "rights_posture": "restricted",
-  "summary": "Seed public record for RenderWare PS2."
+  "summary": "Public records now track PS2 Gold release-note evidence and SDK archive metadata without redistributing restricted RenderWare material."
 }
