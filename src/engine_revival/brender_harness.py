@@ -5,6 +5,17 @@ from pathlib import Path
 
 
 CORE_FLOAT_DIRS = ("fw", "host", "std", "pixelmap", "dosio", "v1db", "math", "fmt")
+CORE_FLOAT_DEFINES = (
+    "BASED_FLOAT=1",
+    "BASED_FIXED=0",
+    "INLINE_FIXED=0",
+    "__386__=1",
+    "DEBUG=0",
+    "PARANOID=0",
+    "EVAL=0",
+    "STATIC=static",
+    "ADD_RCS_ID=0",
+)
 OUTPUT_FILES = (
     "CMakeLists.txt",
     "README.md",
@@ -78,7 +89,7 @@ target_include_directories(brender_core_float PRIVATE
   "${BRENDER_SOURCE_DIR}/core/math"
   "${BRENDER_SOURCE_DIR}/core/fmt"
 )
-target_compile_definitions(brender_core_float PRIVATE BASED_FLOAT=1 __386__=1)
+target_compile_definitions(brender_core_float PRIVATE BASED_FLOAT=1 BASED_FIXED=0 INLINE_FIXED=0 __386__=1 DEBUG=0 PARANOID=0 EVAL=0 STATIC=static ADD_RCS_ID=0)
 """
 
 
@@ -125,6 +136,7 @@ def _manifest_json() -> str:
         "target_id": "brender",
         "harness_type": "portable-cmake-core-scaffold",
         "core_float_dirs": list(CORE_FLOAT_DIRS),
+        "compile_definitions": list(CORE_FLOAT_DEFINES),
         "source_policy": "out-of-tree; no vendored source or generated binaries",
     }
     return json.dumps(payload, indent=2, sort_keys=True) + "\n"
