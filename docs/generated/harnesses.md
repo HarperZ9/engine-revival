@@ -4,4 +4,4 @@
 
 | Target | Harness | Status | Type | Build |
 |---|---|---|---|---|
-| brender | [brender-v132-portable-core-plan](harnesses/brender-v132-portable-core-plan.md) | portable-core-framework-startup-smoke-passing | portable-build-plan | brender-v132-build-environment |
+| brender | [brender-v132-portable-core-plan](harnesses/brender-v132-portable-core-plan.md) | portable-core-wireframe-render-smoke-passing | portable-build-plan | brender-v132-build-environment |

@@ -80,6 +80,15 @@ target_compile_definitions(brender_core_startup_smoke PRIVATE
 )
 target_link_libraries(brender_core_startup_smoke PRIVATE brender_core_float)
 add_test(NAME brender_core_startup_smoke COMMAND brender_core_startup_smoke)
+
+add_executable(brender_core_render_smoke smoke/brender-core-render-smoke.c)
+target_include_directories(brender_core_render_smoke PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_render_smoke PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_render_smoke PRIVATE brender_core_float)
+add_test(NAME brender_core_render_smoke
+  COMMAND brender_core_render_smoke brender-core-render-smoke.ppm)
 """
 
 
@@ -95,8 +104,15 @@ cmake -S . -B build -A Win32 "-DBRENDER_SOURCE_DIR=<path-to-public-brender-check
 cmake --build build --config Debug --target brender_core_float
 cmake --build build --config Debug --target brender_core_smoke
 cmake --build build --config Debug --target brender_core_startup_smoke
+cmake --build build --config Debug --target brender_core_render_smoke
 ctest --test-dir build -C Debug --output-on-failure
 ```
+
+The `brender_core_render_smoke` target renders a projected 3D wireframe cube
+into an in-memory pixelmap through the pure-C memory dispatch path (no assembly
+software driver) and writes a PPM image next to the executable. Keep the
+generated image out of git unless it is intentionally reviewed as a public
+release artifact.
 
 The first compiler run is expected to produce portability findings. Record the
 transcript before advancing production-readiness status.
