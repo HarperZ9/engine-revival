@@ -16,5 +16,6 @@ def test_seeded_public_archive_contract(tmp_path):
     assert tmp_path / "docs" / "generated" / "milestones.md" in reports
     assert tmp_path / "docs" / "generated" / "packets.md" in reports
     assert tmp_path / "docs" / "generated" / "reproductions.md" in reports
+    assert tmp_path / "docs" / "generated" / "snapshots.md" in reports
     assert tmp_path / "docs" / "generated" / "database.json" in reports
     assert tmp_path / "docs" / "generated" / "coverage.md" in reports

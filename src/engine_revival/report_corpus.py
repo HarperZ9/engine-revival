@@ -139,6 +139,59 @@ def reproduction_page(record: dict[str, object]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def snapshot_records(root: Path) -> list[dict[str, object]]:
+    return _records_if_present(root, "snapshot")
+
+
+def snapshot_index(root: Path) -> str:
+    records = sorted(snapshot_records(root), key=lambda item: str(item["id"]))
+    lines = [
+        "# Snapshots",
+        "",
+        "| Artifact | Snapshot | Type | Ref | Commit |",
+        "|---|---|---|---|---|",
+    ]
+    for record in records:
+        record_id = str(record["id"])
+        lines.append(
+            f"| {record['artifact_id']} | [{record_id}](snapshots/{record_id}.md) | "
+            f"{record['snapshot_type']} | {record['ref']} | {record['commit']} |"
+        )
+    if not records:
+        lines.append("| none | none | none | none | none |")
+    return "\n".join(lines) + "\n"
+
+
+def snapshot_page(record: dict[str, object]) -> str:
+    lines = [
+        f"# {record['id']}",
+        "",
+        "| Field | Value |",
+        "|---|---|",
+        f"| Artifact | {record['artifact_id']} |",
+        f"| Type | {record['snapshot_type']} |",
+        f"| Source URL | {record['source_url']} |",
+        f"| Ref | {record['ref']} |",
+        f"| Commit | {record['commit']} |",
+        f"| Retrieved | {record['retrieved_at']} |",
+        "",
+        "## Capture Command",
+        "",
+        "```powershell",
+        str(record["capture_command"]),
+        "```",
+        "",
+        "## Public Notes",
+        "",
+        str(record["public_notes"]),
+        "",
+        "## Evidence Sources",
+        "",
+        *_as_bullets(record.get("source_ids")),
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def _records_by_id(records: list[dict[str, object]]) -> dict[str, dict[str, object]]:
     return {str(record["id"]): record for record in records}
 
@@ -148,6 +201,14 @@ def _records_by_target(records: list[dict[str, object]]) -> dict[str, list[dict[
     for record in records:
         target_id = str(record["target_id"])
         grouped.setdefault(target_id, []).append(record)
+    return grouped
+
+
+def _records_by_artifact(records: list[dict[str, object]]) -> dict[str, list[dict[str, object]]]:
+    grouped: dict[str, list[dict[str, object]]] = {}
+    for record in records:
+        artifact_id = str(record["artifact_id"])
+        grouped.setdefault(artifact_id, []).append(record)
     return grouped
 
 
@@ -174,6 +235,7 @@ def corpus_database(root: Path) -> dict[str, object]:
     tasks = _records_if_present(root, "task")
     milestones = _records_if_present(root, "milestone")
     reproductions = reproduction_records(root)
+    snapshots = snapshot_records(root)
     return {
         "schema": "engine-revival-corpus-v1",
         "counts": {
@@ -184,6 +246,7 @@ def corpus_database(root: Path) -> dict[str, object]:
             "tasks": len(tasks),
             "milestones": len(milestones),
             "reproductions": len(reproductions),
+            "snapshots": len(snapshots),
         },
         "targets": targets,
         "sources": sources,
@@ -192,6 +255,7 @@ def corpus_database(root: Path) -> dict[str, object]:
         "tasks": tasks,
         "milestones": milestones,
         "reproductions": reproductions,
+        "snapshots": snapshots,
         "targets_by_id": _records_by_id(targets),
         "sources_by_id": _records_by_id(sources),
         "artifacts_by_target": _records_by_target(artifacts),
@@ -199,4 +263,5 @@ def corpus_database(root: Path) -> dict[str, object]:
         "tasks_by_target": _records_by_target(tasks),
         "milestones_by_target": _records_by_target(milestones),
         "reproductions_by_target": _records_by_target(reproductions),
+        "snapshots_by_artifact": _records_by_artifact(snapshots),
     }

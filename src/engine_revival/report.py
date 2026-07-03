@@ -14,6 +14,9 @@ from engine_revival.report_corpus import (
     reproduction_index,
     reproduction_page,
     reproduction_records,
+    snapshot_index,
+    snapshot_page,
+    snapshot_records,
 )
 from engine_revival.report_targets import target_dossier
 
@@ -61,7 +64,7 @@ def _artifact_summary(root: Path) -> str:
 
 def _source_usage_counts(root: Path) -> dict[str, int]:
     counts: dict[str, int] = {}
-    for kind in ("artifact", "accession", "task", "milestone", "reproduction"):
+    for kind in ("artifact", "accession", "task", "milestone", "reproduction", "snapshot"):
         for payload in _records_if_present(root, kind):
             value = payload.get("source_ids", [])
             if isinstance(value, list):
@@ -203,7 +206,16 @@ def _coverage_summary(root: Path) -> str:
         "| Record kind | Count |",
         "|---|---:|",
     ]
-    for kind in ("target", "source", "artifact", "accession", "task", "milestone", "reproduction"):
+    for kind in (
+        "target",
+        "source",
+        "artifact",
+        "accession",
+        "task",
+        "milestone",
+        "reproduction",
+        "snapshot",
+    ):
         lines.append(f"| {kind} | {len(_records_if_present(root, kind))} |")
     lines.extend(["", "## Missing Artifact Accessions", ""])
     if missing_accessions:
@@ -241,6 +253,7 @@ def write_reports(root: Path) -> list[Path]:
         _write(generated / "tasks.md", _task_summary(root)),
         _write(generated / "packets.md", packet_index(root)),
         _write(generated / "reproductions.md", reproduction_index(root)),
+        _write(generated / "snapshots.md", snapshot_index(root)),
         _write(generated / "milestones.md", _milestone_summary(root)),
         _write(generated / "coverage.md", _coverage_summary(root)),
         _write_json(generated / "database.json", corpus_database(root)),
@@ -257,6 +270,13 @@ def write_reports(root: Path) -> list[Path]:
             _write(
                 generated / "reproductions" / f"{reproduction['id']}.md",
                 reproduction_page(reproduction),
+            )
+        )
+    for snapshot in snapshot_records(root):
+        written.append(
+            _write(
+                generated / "snapshots" / f"{snapshot['id']}.md",
+                snapshot_page(snapshot),
             )
         )
     if (root / "targets").exists():

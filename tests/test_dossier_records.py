@@ -203,3 +203,12 @@ def test_first_reproduction_recipe_is_recorded():
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
+
+
+def test_first_brender_source_snapshots_are_recorded():
+    expected = {
+        "snapshots/brender-3dmm-main-head.json",
+        "snapshots/brender-v132-main-head.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
