@@ -44,6 +44,12 @@ Public standards and validation-history record for PHIGS, with OpenPHIGS reimple
 |---|---|---|---|
 | phigs-baseline | public-dossier-established | curated | Public dossier has curated PHIGS source, accession, and task records. |
 
+## Reproductions
+
+| Reproduction | Type | Status | Notes |
+|---|---|---|---|
+| openphigs-source-build | source-reimplementation-build | planned | Planned reproduction recipe for building OpenPHIGS as a public PHIGS/OpenGL reimplementation while keeping license review visible. |
+
 ## Snapshots
 
 | Snapshot | Artifact | Ref | Commit |

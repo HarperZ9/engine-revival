@@ -44,6 +44,12 @@ Public records now track the SGI-origin Open Inventor source release, build note
 |---|---|---|---|
 | open-inventor-baseline | public-dossier-established | curated | Public dossier has curated Open Inventor source, accession, and task records. |
 
+## Reproductions
+
+| Reproduction | Type | Status | Notes |
+|---|---|---|---|
+| open-inventor-source-build | source-build | planned | Planned reproduction recipe for rebuilding the public Open Inventor source release and documenting compatibility assumptions from README.FIRST. |
+
 ## Snapshots
 
 | Snapshot | Artifact | Ref | Commit |

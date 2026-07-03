@@ -45,6 +45,12 @@ Public records now track Andy Gavin's GOOL article and OpenGOAL's GOAL compiler/
 |---|---|---|---|
 | gool-goal-baseline | public-dossier-established | curated | Public dossier has curated GOOL and GOAL source, accession, and task records. |
 
+## Reproductions
+
+| Reproduction | Type | Status | Notes |
+|---|---|---|---|
+| opengoal-jak-project-toolchain-build | clean-room-toolchain-build | planned | Planned clean-room reproduction recipe for building the public OpenGOAL toolchain while keeping game assets and legal-copy validation outside the public repo. |
+
 ## Snapshots
 
 | Snapshot | Artifact | Ref | Commit |

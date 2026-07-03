@@ -249,6 +249,22 @@ def test_open_source_remote_head_snapshots_are_recorded():
     assert missing == []
 
 
+def test_open_source_snapshot_targets_have_reproduction_recipes():
+    artifacts = {record["id"]: record for record in _json_records("artifacts")}
+    reproduction_targets = {
+        record["target_id"] for record in _json_records("reproductions")
+    }
+    snapshot_targets = set()
+    for snapshot in _json_records("snapshots"):
+        artifact = artifacts[snapshot["artifact_id"]]
+        if (
+            str(artifact["redistribution_status"]).startswith("open")
+            and artifact["access_level"] == "public"
+        ):
+            snapshot_targets.add(artifact["target_id"])
+    assert sorted(snapshot_targets - reproduction_targets) == []
+
+
 def test_mesa_reproduction_recipe_is_recorded():
     expected = {
         "sources/mesa-build-docs.json",
