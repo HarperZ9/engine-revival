@@ -1,13 +1,13 @@
 {
   "blockers": [
     "x64 startup is not claimed; pointer-width portability still needs audit and modernization",
-    "rendering coverage is limited to a wireframe drawn through the pure-C memory pixelmap path; the assembly softrend rasterizer, shaded and textured triangles, and depth buffering are not covered",
+    "rendering coverage reaches the v1db scene-graph transform and a wireframe drawn through the pure-C memory pixelmap path; shaded and textured triangles and depth buffering still need the assembly softrend renderer device",
     "portable core and host fallback stubs need semantic tests before they can be treated as production replacements",
     "image output is a raw PPM dump; the native BrPixelmapSave datafile path and drivers are not built",
     "release packaging has not been implemented",
     "drivers and deferred FIXED variants have not been translated"
   ],
-  "build_status": "portable-core-library-and-render-smoke-built",
+  "build_status": "portable-core-library-and-scene-smoke-built",
   "build_ids": [
     "brender-v132-build-environment"
   ],
@@ -33,9 +33,13 @@
     "2026-07-03 confirmed the FLOAT build resolves BR_SIN/BR_COS to libc sin/cos in inc/angles.h, so BrMatrix4Perspective links without an engine sine table",
     "2026-07-03 brender_core_render_smoke target added; allocates a BR_PMT_RGB_888 memory pixelmap, builds a BrMatrix4Perspective projection, transforms a unit cube through BrMatrix4Mul and BrMatrix4ApplyP, and draws twelve edges with BrPixelmapLine",
     "2026-07-03 brender_core_render_smoke.exe direct-ran with exit 0, self-verified fill, pixel set/get round-trip, red diagonal endpoints, eight cube vertices projecting in front of the camera, and 1051 lit pixels, then wrote a 320x240 PPM (230415 bytes)",
-    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 3/3 cases including brender_core_render_smoke"
+    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 3/3 cases including brender_core_render_smoke",
+    "2026-07-03 verified BrBegin auto-starts the v1db scene database (explicit BrV1dbBegin returned BRE_ALLREADY_ACTIVE) and BrEnd performs the matching teardown",
+    "2026-07-03 brender_core_scene_smoke target added; builds a world/camera/model actor tree, prepares a br_model cube with BrModelUpdate under BR_MODF_UPDATEABLE (engine computed bounding radius 1.732), and projects it with BrActorToScreenMatrix4",
+    "2026-07-03 brender_core_scene_smoke.exe direct-ran with exit 0, projected all eight cube vertices inside the viewport, drew twelve triangle faces, produced 1382 lit pixels, and wrote a 320x240 PPM",
+    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 4/4 cases including brender_core_scene_smoke"
   ],
-  "flagship_score": 48,
+  "flagship_score": 55,
   "harness_ids": [
     "brender-v132-portable-core-plan"
   ],
@@ -47,23 +51,25 @@
     "brender-v132-explicit-sources-core-build",
     "brender-v132-vector-smoke-runtime",
     "brender-v132-framework-startup-smoke-win32",
-    "brender-v132-portable-core-render-smoke"
+    "brender-v132-portable-core-render-smoke",
+    "brender-v132-portable-core-scene-smoke"
   ],
   "id": "brender-production-readiness",
   "modernization_status": "core-portability-audit-needed",
   "next_actions": [
+    "translate the softrend renderer device so BrZbModelRender can produce shaded and depth-buffered scene output",
+    "extend the scene smoke to load a model and materials from a BRender datafile",
     "add semantic tests for portable core and host fallback behavior",
-    "extend the render path from wireframe toward filled and shaded primitives after auditing the generic renderer",
     "audit and classify the MSVC warning transcript",
-    "translate the softrend driver and deferred FIXED variants after the core library and render path are stable"
+    "translate the deferred FIXED variants after the core library and scene path are stable"
   ],
   "packaging_status": "not-started",
-  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, vector math runtime smoke, BrBegin/BrEnd framework startup smoke, and a wireframe render smoke through CTest under a Visual Studio Win32 target. The render smoke allocates an RGB_888 memory pixelmap, projects a unit cube through the engine matrix pipeline, rasterizes the twelve edges with BrPixelmapLine, verifies pixels by read-back, and dumps a 320x240 PPM, all through the pure-C memory pixelmap dispatch with no assembly software driver. The produced brender_core_float.lib, smoke executables, and PPM output remain outside this metadata repo. x64 portability, shaded and textured rendering, the native datafile save path, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
-  "readiness_stage": "portable-core-wireframe-render-smoke-passing",
+  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, vector math runtime smoke, BrBegin/BrEnd framework startup smoke, a wireframe render smoke, and a v1db scene-graph render smoke through CTest under a Visual Studio Win32 target. The render smoke projects a hand-built cube through the engine matrix pipeline; the scene smoke goes further and renders a model out of BRender's own scene database, building a world/camera/model actor tree, preparing a br_model with BrModelUpdate, and projecting it with the engine's BrActorToScreenMatrix4 before drawing the faces with BrPixelmapLine. Both draw entirely through the pure-C memory pixelmap dispatch with no assembly software driver, verify pixels by read-back, and dump a 320x240 PPM. The produced brender_core_float.lib, smoke executables, and PPM output remain outside this metadata repo. x64 portability, shaded and textured scene rendering (which needs the softrend renderer device), datafile model loading, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
+  "readiness_stage": "portable-core-scene-graph-render-smoke-passing",
   "reproduction_ids": [
     "brender-critical-edition-source-build"
   ],
-  "runtime_status": "wireframe-render-smoke-passing",
+  "runtime_status": "scene-graph-render-smoke-passing",
   "snapshot_ids": [
     "brender-v132-main-head",
     "brender-3dmm-main-head"
@@ -74,5 +80,5 @@
     "blazingrender-index"
   ],
   "target_id": "brender",
-  "test_status": "wireframe-render-smoke-passing"
+  "test_status": "scene-graph-render-smoke-passing"
 }
