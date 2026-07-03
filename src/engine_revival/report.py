@@ -7,6 +7,12 @@ from pathlib import Path
 from engine_revival.indexer import TargetSummary, build_target_index, render_target_table
 from engine_revival.records import load_records
 from engine_revival.report_accessions import accession_index, accession_page, accession_records
+from engine_revival.report_artifacts import (
+    artifact_index,
+    artifact_page,
+    artifact_records,
+    artifact_relations,
+)
 from engine_revival.report_corpus import (
     corpus_database,
     packet_index,
@@ -42,24 +48,6 @@ def _rights_summary(targets: list[TargetSummary]) -> str:
     lines = ["# Rights Summary", "", "| Rights posture | Count |", "|---|---:|"]
     for posture, count in sorted(counts.items()):
         lines.append(f"| {posture} | {count} |")
-    return "\n".join(lines) + "\n"
-
-
-def _artifact_summary(root: Path) -> str:
-    if not (root / "artifacts").exists():
-        return "# Artifacts\n\nNo artifact records yet.\n"
-    lines = [
-        "# Artifacts",
-        "",
-        "| Target | Artifact | Type | Status | Access |",
-        "|---|---|---|---|---|",
-    ]
-    for record in load_records(root, "artifact"):
-        payload = record.payload
-        lines.append(
-            f"| {payload['target_id']} | {payload['title']} | {payload['artifact_type']} | "
-            f"{payload['redistribution_status']} | {payload['access_level']} |"
-        )
     return "\n".join(lines) + "\n"
 
 
@@ -225,12 +213,15 @@ def write_reports(root: Path) -> list[Path]:
         str(payload["id"]): payload
         for payload in _records_if_present(root, "source")
     }
+    accessions_by_artifact, snapshots_by_artifact, reproductions_by_artifact = (
+        artifact_relations(root)
+    )
     written = [
         _write(generated / "index.md", "# Engine Revival Public Index\n\n" + render_target_table(targets)),
         _write(generated / "targets.md", "# Targets\n\n" + render_target_table(targets)),
         _write(generated / "rights-summary.md", _rights_summary(targets)),
         _write(generated / "sources.md", _source_summary(root)),
-        _write(generated / "artifacts.md", _artifact_summary(root)),
+        _write(generated / "artifacts.md", artifact_index(root)),
         _write(generated / "accessions.md", accession_index(root)),
         _write(generated / "tasks.md", _task_summary(root)),
         _write(generated / "packets.md", packet_index(root)),
@@ -252,6 +243,20 @@ def write_reports(root: Path) -> list[Path]:
             _write(
                 generated / "accessions" / f"{accession['id']}.md",
                 accession_page(accession, sources_by_id),
+            )
+        )
+    for artifact in artifact_records(root):
+        artifact_id = str(artifact["id"])
+        written.append(
+            _write(
+                generated / "artifacts" / f"{artifact_id}.md",
+                artifact_page(
+                    artifact,
+                    accessions_by_artifact.get(artifact_id, []),
+                    snapshots_by_artifact.get(artifact_id, []),
+                    reproductions_by_artifact.get(artifact_id, []),
+                    sources_by_id,
+                ),
             )
         )
     for reproduction in reproduction_records(root):
