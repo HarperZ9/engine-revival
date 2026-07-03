@@ -36,7 +36,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Readiness | Stage | Build | Score | Next Actions |
 |---|---|---|---:|---|
-| brender-production-readiness | portable-core-scene-graph-render-smoke-passing | portable-core-library-and-scene-smoke-built | 55 | translate the softrend renderer device so BrZbModelRender can produce shaded and depth-buffered scene output; extend the scene smoke to load a model and materials from a BRender datafile; add semantic tests for portable core and host fallback behavior; audit and classify the MSVC warning transcript; translate the deferred FIXED variants after the core library and scene path are stable |
+| brender-production-readiness | portable-core-solid-shaded-render-smoke-passing | portable-core-library-and-solid-shaded-smoke-built | 62 | translate the softrend renderer device so BrZbModelRender can produce shaded and depth-buffered scene output; extend the scene smoke to load a model and materials from a BRender datafile; add semantic tests for portable core and host fallback behavior; audit and classify the MSVC warning transcript; translate the deferred FIXED variants after the core library and scene path are stable |
 
 ## Tasks
 
@@ -67,7 +67,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Harness | Status | Type | Build |
 |---|---|---|---|
-| brender-v132-portable-core-plan | portable-core-scene-graph-render-smoke-passing | portable-build-plan | brender-v132-build-environment |
+| brender-v132-portable-core-plan | portable-core-solid-shaded-render-smoke-passing | portable-build-plan | brender-v132-build-environment |
 
 ## Attempts
 
@@ -79,6 +79,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 | brender-v132-framework-startup-smoke-win32 | cmake-runtime-smoke | completed | The guarded harness configured with -A Win32, built both smoke executables, direct-ran brender_core_smoke.exe and brender_core_startup_smoke.exe with exit 0, and passed 2/2 CTest cases with -C Debug. |
 | brender-v132-harness-materializer-smoke | harness-materialization | completed | Materializer wrote CMakeLists.txt, README.md, cmake/brender-core-sources.cmake, and harness-manifest.json into the external harness workspace. |
 | brender-v132-period-defines-build-attempt | cmake-build | failed | The updated harness configured and began compiling with MSVC after adding FLOAT, fixed-inline-disabled, and period release build definitions. The build then failed because the harness source glob included files that the period makefiles did not compile as normal C translation units. |
+| brender-v132-portable-core-fill-smoke | cmake-solid-shaded-smoke | completed | The guarded harness configured with -A Win32, built brender_core_float.lib plus all five smoke executables, direct-ran brender_core_fill_smoke.exe with exit 0 (solid flat-shaded cube, 8509 lit pixels, three grey levels), and passed 5/5 CTest cases with -C Debug. |
 | brender-v132-portable-core-render-smoke | cmake-render-smoke | completed | The guarded harness configured with -A Win32, built brender_core_float.lib plus all three smoke executables, direct-ran brender_core_render_smoke.exe with exit 0 (320x240 RGB_888, 1051 lit pixels, eight cube vertices projected inside the viewport, PPM written), and passed 3/3 CTest cases with -C Debug. |
 | brender-v132-portable-core-scene-smoke | cmake-scene-graph-smoke | completed | The guarded harness configured with -A Win32, built brender_core_float.lib plus all four smoke executables, direct-ran brender_core_scene_smoke.exe with exit 0 (v1db scene database, actor tree, engine-prepared cube radius 1.732, BrActorToScreenMatrix4 projection, 1382 lit pixels, PPM written), and passed 4/4 CTest cases with -C Debug. |
 | brender-v132-vector-smoke-runtime | cmake-runtime-smoke | completed | The smoke harness configured with Visual Studio 18 2026, built brender_core_float.lib and brender_core_smoke.exe with MSVC 19.50.35721.0, and passed 1/1 CTest case with -C Debug. |
