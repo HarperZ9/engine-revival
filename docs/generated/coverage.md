@@ -7,18 +7,18 @@
 | Artifact accession coverage | 60 | 60 |
 | Target task coverage | 23 | 23 |
 | Target milestone coverage | 23 | 23 |
-| Source usage coverage | 76 | 76 |
+| Source usage coverage | 77 | 77 |
 
 | Record kind | Count |
 |---|---:|
 | target | 23 |
-| source | 76 |
+| source | 77 |
 | artifact | 60 |
 | accession | 60 |
 | task | 31 |
 | milestone | 23 |
-| reproduction | 2 |
-| snapshot | 12 |
+| reproduction | 3 |
+| snapshot | 13 |
 
 ## Missing Artifact Accessions
 

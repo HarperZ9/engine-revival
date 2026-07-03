@@ -8,6 +8,7 @@
 | brender-3dmm-source | [brender-3dmm-main-head](snapshots/brender-3dmm-main-head.md) | git-remote-head | refs/heads/main | 5273a0bd2977d8ec08e4b81e680641a570a914b4 |
 | brender-v132-source | [brender-v132-main-head](snapshots/brender-v132-main-head.md) | git-remote-head | refs/heads/main | d88d0ed41122664b9781015b517db64353e16f19 |
 | crystal-space-github-source-repository | [crystal-space-master-head](snapshots/crystal-space-master-head.md) | git-remote-head | refs/heads/master | 3029384a26f1f16d0fa7b05142c2d8aaf5102726 |
+| mesa-source-repository | [mesa-main-head](snapshots/mesa-main-head.md) | git-remote-head | refs/heads/main | 99637537e1b33afb21b21bb39290b647b7b67e59 |
 | ogre-source-repository | [ogre-master-head](snapshots/ogre-master-head.md) | git-remote-head | refs/heads/master | 1bc01a4a1cca3b417835cd4cebfd437519cbf0a8 |
 | open-inventor-source-release | [open-inventor-master-head](snapshots/open-inventor-master-head.md) | git-remote-head | refs/heads/master | 0813fbbc2e778d31c66325c8561404d26c659c52 |
 | opengoal-jak-project-source | [opengoal-jak-project-master-head](snapshots/opengoal-jak-project-master-head.md) | git-remote-head | refs/heads/master | 2490c94e97f8cd7a15b9a9803f80bbf748a5553b |
