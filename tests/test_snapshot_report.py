@@ -48,3 +48,8 @@ def test_write_reports_creates_snapshot_pages(tmp_path):
     assert "# brender-source-main" in page_text
     assert "d88d0ed41122664b9781015b517db64353e16f19" in page_text
     assert "git ls-remote --symref" in page_text
+    assert "| Source | Type | Confidence | Scope | URL |" in page_text
+    assert (
+        "| Initial engine revival research reports | local-research-summary | "
+        "moderate | initial target selection |  |"
+    ) in page_text

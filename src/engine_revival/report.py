@@ -280,7 +280,7 @@ def write_reports(root: Path) -> list[Path]:
         written.append(
             _write(
                 generated / "snapshots" / f"{snapshot['id']}.md",
-                snapshot_page(snapshot),
+                snapshot_page(snapshot, sources_by_id),
             )
         )
     if (root / "targets").exists():

@@ -23,4 +23,6 @@ Verified public upstream master branch head for the Open Inventor source release
 
 ## Evidence Sources
 
-- open-inventor-github
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Open Inventor source repository | repository | high | Open Inventor public source repository, SGI origin, OpenGL scene graph role, and LGPL metadata | https://github.com/aumuell/open-inventor |

@@ -23,5 +23,7 @@ Verified public upstream master branch head for the OGRE source repository.
 
 ## Evidence Sources
 
-- ogre-github
-- ogre-site
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| OGRE source repository | repository | high | OGRE public source repository, renderer role, APIs, languages, and license metadata | https://github.com/OGRECave/ogre |
+| OGRE project site | project-site | high | OGRE project overview, platform support, documentation, and MIT license statement | https://www.ogre3d.org/ |

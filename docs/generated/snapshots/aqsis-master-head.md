@@ -23,4 +23,6 @@ Verified public upstream master branch head for the Aqsis renderer source reposi
 
 ## Evidence Sources
 
-- aqsis-github
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Aqsis source repository | repository | high | Aqsis public source repository, RenderMan compatibility claim, tool list, and license metadata | https://github.com/aqsis/aqsis |

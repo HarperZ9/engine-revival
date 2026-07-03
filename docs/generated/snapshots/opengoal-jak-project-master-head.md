@@ -23,5 +23,7 @@ Verified public upstream master branch head for the OpenGOAL jak-project source 
 
 ## Evidence Sources
 
-- opengoal-jak-project-github
-- opengoal-license
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| OpenGOAL jak-project source repository | repository | high | OpenGOAL public source project, decompiler/compiler methodology, and platform support | https://github.com/open-goal/jak-project |
+| OpenGOAL repository license | license | high | OpenGOAL repository license metadata | https://raw.githubusercontent.com/open-goal/jak-project/master/LICENSE |
