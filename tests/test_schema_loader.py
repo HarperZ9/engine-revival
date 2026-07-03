@@ -19,3 +19,8 @@ def test_validate_required_fields_reports_missing_keys():
 def test_load_reproduction_schema_required_fields():
     schema = load_schema(ROOT, "reproduction")
     assert {"id", "target_id", "environment", "steps", "expected_outputs"} <= set(schema.required)
+
+
+def test_load_snapshot_schema_required_fields():
+    schema = load_schema(ROOT, "snapshot")
+    assert {"id", "artifact_id", "source_url", "commit", "capture_command"} <= set(schema.required)

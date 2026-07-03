@@ -20,6 +20,7 @@ RECORD_DIRS = {
     "milestone": "milestones",
     "accession": "accessions",
     "reproduction": "reproductions",
+    "snapshot": "snapshots",
 }
 
 
