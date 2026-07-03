@@ -5,6 +5,9 @@
     "root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR"
   ],
   "build_status": "source-inspected",
+  "build_ids": [
+    "brender-v132-build-environment"
+  ],
   "evidence": [
     "2026-07-03 local public checkout: git rev-parse HEAD returned d88d0ed41122664b9781015b517db64353e16f19",
     "2026-07-03 source tree probe counted 332 C files, 350 headers, and 68 make/mak/mk files",

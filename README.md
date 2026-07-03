@@ -36,6 +36,7 @@ python -m pytest
 - [Generated reproductions](docs/generated/reproductions.md)
 - [Generated snapshots](docs/generated/snapshots.md)
 - [Generated production readiness](docs/generated/production-readiness.md)
+- [Generated build environments](docs/generated/builds.md)
 - [Generated coverage](docs/generated/coverage.md)
 - [Generated rights summary](docs/generated/rights-summary.md)
 - [Contributing](CONTRIBUTING.md)

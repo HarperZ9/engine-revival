@@ -1,0 +1,50 @@
+{
+  "blockers": [
+    "period BRender make environment needs reconstruction",
+    "local PATH probe found cmake only; make, nmake, cl, and gcc were not available",
+    "root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR",
+    "no compiled output or runtime execution has been produced yet"
+  ],
+  "build_system": "period makefiles with BR_* environment imports",
+  "host_platform": "Windows local probe",
+  "id": "brender-v132-build-environment",
+  "next_actions": [
+    "create an out-of-tree build environment manifest from the period make variables",
+    "port or emulate the subdir make helper without proprietary inputs",
+    "capture a compiler transcript for the first public core-library build attempt"
+  ],
+  "observed_layout": {
+    "c_files": 332,
+    "headers": 350,
+    "makefiles": 68
+  },
+  "public_notes": "BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata, but no build success is claimed.",
+  "reproduction_id": "brender-critical-edition-source-build",
+  "required_variables": [
+    "BR_SOURCE_DIR",
+    "BR_MAKEFILE",
+    "BR_TARGET_DIR",
+    "BR_MAKE_DIR"
+  ],
+  "snapshot_ids": [
+    "brender-v132-main-head"
+  ],
+  "source_checkout": "out-of-tree public checkout at recorded snapshot commit d88d0ed41122664b9781015b517db64353e16f19",
+  "source_ids": [
+    "foone-brender-v132",
+    "blazingrender-index"
+  ],
+  "status": "source-inspected",
+  "target_id": "brender",
+  "toolchain_probe": {
+    "available": [
+      "cmake"
+    ],
+    "missing": [
+      "make",
+      "nmake",
+      "cl",
+      "gcc"
+    ]
+  }
+}

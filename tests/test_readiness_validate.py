@@ -146,12 +146,14 @@ def test_readiness_evidence_links_must_reference_known_records(tmp_path):
         tmp_path,
         reproduction_ids=["missing-reproduction"],
         snapshot_ids=["missing-snapshot"],
+        build_ids=["missing-build"],
     )
 
     messages = validate_workspace(tmp_path)
 
     assert any("unknown reproduction_id: missing-reproduction" in message for message in messages)
     assert any("unknown snapshot_id: missing-snapshot" in message for message in messages)
+    assert any("unknown build_id: missing-build" in message for message in messages)
 
 
 def test_readiness_with_known_evidence_links_passes_validation(tmp_path):
