@@ -125,6 +125,16 @@ target_compile_definitions(brender_core_texture_smoke PRIVATE
 target_link_libraries(brender_core_texture_smoke PRIVATE brender_core_float)
 add_test(NAME brender_core_texture_smoke
   COMMAND brender_core_texture_smoke brender-core-texture-smoke.ppm)
+
+add_executable(brender_core_model_smoke smoke/brender-core-model-smoke.c)
+target_include_directories(brender_core_model_smoke PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_model_smoke PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_model_smoke PRIVATE brender_core_float)
+add_test(NAME brender_core_model_smoke
+  COMMAND brender_core_model_smoke
+    "${{BRENDER_SOURCE_DIR}}/dat/duck.dat" brender-core-model-smoke.ppm)
 """
 
 
@@ -145,8 +155,14 @@ cmake --build build --config Debug --target brender_core_scene_smoke
 cmake --build build --config Debug --target brender_core_fill_smoke
 cmake --build build --config Debug --target brender_core_depth_smoke
 cmake --build build --config Debug --target brender_core_texture_smoke
+cmake --build build --config Debug --target brender_core_model_smoke
 ctest --test-dir build -C Debug --output-on-failure
 ```
+
+The `brender_core_model_smoke` target loads a real period model from the public
+checkout's `dat/` directory with `BrModelLoad` and renders it solid, flat-shaded
+and depth-buffered. It reads the model file directly from `BRENDER_SOURCE_DIR`;
+no BRender asset is copied into the harness.
 
 The `brender_core_render_smoke` target renders a projected 3D wireframe cube
 into an in-memory pixelmap through the pure-C memory dispatch path (no assembly
