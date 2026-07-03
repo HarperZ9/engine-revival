@@ -51,6 +51,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "smoke" / "brender-core-smoke.c",
         output / "smoke" / "brender-core-startup-smoke.c",
         output / "smoke" / "brender-core-render-smoke.c",
+        output / "smoke" / "brender-core-scene-smoke.c",
         output / "harness-manifest.json",
     ]
     cmake = (output / "CMakeLists.txt").read_text(encoding="utf-8")
@@ -65,6 +66,9 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "add_executable(brender_core_render_smoke" in cmake
     assert "target_link_libraries(brender_core_render_smoke PRIVATE brender_core_float)" in cmake
     assert "add_test(NAME brender_core_render_smoke" in cmake
+    assert "add_executable(brender_core_scene_smoke" in cmake
+    assert "target_link_libraries(brender_core_scene_smoke PRIVATE brender_core_float)" in cmake
+    assert "add_test(NAME brender_core_scene_smoke" in cmake
     assert "compat/brender-portable-core-stubs.c" in cmake
     assert "compat/brender-portable-host-stubs.c" in cmake
     assert "CMAKE_SIZEOF_VOID_P" in cmake
@@ -113,6 +117,14 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "BrPixelmapLine(" in render_smoke
     assert "BrPixelmapPixelGet(" in render_smoke
     assert 'fprintf(f, "P6\\n%d %d\\n255\\n"' in render_smoke
+    scene_smoke = (output / "smoke" / "brender-core-scene-smoke.c").read_text(
+        encoding="utf-8"
+    )
+    assert "BrActorAllocate(BR_ACTOR_CAMERA" in scene_smoke
+    assert "BrModelAllocate(" in scene_smoke
+    assert "BrModelUpdate(model, BR_MODU_ALL)" in scene_smoke
+    assert "BrActorToScreenMatrix4(" in scene_smoke
+    assert "BrPixelmapLine(" in scene_smoke
     compat = (output / "compat" / "brender-portable-core-stubs.c").read_text(
         encoding="utf-8"
     )
@@ -142,6 +154,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         "brender_core_smoke",
         "brender_core_startup_smoke",
         "brender_core_render_smoke",
+        "brender_core_scene_smoke",
     ]
     assert manifest["portable_compat_source"] == "compat/brender-portable-core-stubs.c"
     assert manifest["portable_compat_sources"] == [
@@ -190,3 +203,4 @@ def test_cli_materializes_brender_harness(tmp_path, capsys):
     assert (output / "smoke" / "brender-core-smoke.c").exists()
     assert (output / "smoke" / "brender-core-startup-smoke.c").exists()
     assert (output / "smoke" / "brender-core-render-smoke.c").exists()
+    assert (output / "smoke" / "brender-core-scene-smoke.c").exists()
