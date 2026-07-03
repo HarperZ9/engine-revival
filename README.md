@@ -35,6 +35,7 @@ is captured.
 ## Public Docs
 
 - [Revival mission](docs/REVIVAL-MISSION.md)
+- [BRender archival packet](docs/BRENDER-ARCHIVAL.md)
 - [Public boundary](docs/PUBLIC-BOUNDARY.md)
 - [Recovery workflow](docs/RECOVERY-WORKFLOW.md)
 - [Generated public index](docs/generated/index.md)
