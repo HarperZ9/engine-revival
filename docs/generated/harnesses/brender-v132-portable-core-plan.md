@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | portable-core-multipart-model-render-passing |
+| Status | portable-core-gouraud-shaded-render-passing |
 | Type | portable-build-plan |
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
@@ -42,6 +42,7 @@ This is the first public harness design record for the BRender pilot. It convert
 - driver deferred target: ddraw
 - required public source variables: BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, BR_MAKE_DIR
 - core multimodel smoke target: brender_core_multimodel_smoke loads all model chunks of a datafile with BrModelLoadMany and depth-composites them (the full coupe car)
+- core gouraud smoke target: brender_core_gouraud_smoke computes per-vertex normals and interpolates shade across triangles for smooth Gouraud shading
 
 ## Steps
 
