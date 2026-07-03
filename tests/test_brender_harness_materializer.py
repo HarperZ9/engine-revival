@@ -53,6 +53,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "smoke" / "brender-core-render-smoke.c",
         output / "smoke" / "brender-core-scene-smoke.c",
         output / "smoke" / "brender-core-fill-smoke.c",
+        output / "smoke" / "brender-core-depth-smoke.c",
         output / "harness-manifest.json",
     ]
     cmake = (output / "CMakeLists.txt").read_text(encoding="utf-8")
@@ -73,6 +74,9 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "add_executable(brender_core_fill_smoke" in cmake
     assert "target_link_libraries(brender_core_fill_smoke PRIVATE brender_core_float)" in cmake
     assert "add_test(NAME brender_core_fill_smoke" in cmake
+    assert "add_executable(brender_core_depth_smoke" in cmake
+    assert "target_link_libraries(brender_core_depth_smoke PRIVATE brender_core_float)" in cmake
+    assert "add_test(NAME brender_core_depth_smoke" in cmake
     assert "compat/brender-portable-core-stubs.c" in cmake
     assert "compat/brender-portable-host-stubs.c" in cmake
     assert "CMAKE_SIZEOF_VOID_P" in cmake
@@ -135,6 +139,12 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "fill_triangle(" in fill_smoke
     assert "BrActorToScreenMatrix4(" in fill_smoke
     assert "BrMatrix34ApplyP(" in fill_smoke
+    depth_smoke = (output / "smoke" / "brender-core-depth-smoke.c").read_text(
+        encoding="utf-8"
+    )
+    assert "fill_triangle_z(" in depth_smoke
+    assert "g_zbuf" in depth_smoke
+    assert "g_rejections" in depth_smoke
     compat = (output / "compat" / "brender-portable-core-stubs.c").read_text(
         encoding="utf-8"
     )
@@ -166,6 +176,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         "brender_core_render_smoke",
         "brender_core_scene_smoke",
         "brender_core_fill_smoke",
+        "brender_core_depth_smoke",
     ]
     assert manifest["portable_compat_source"] == "compat/brender-portable-core-stubs.c"
     assert manifest["portable_compat_sources"] == [

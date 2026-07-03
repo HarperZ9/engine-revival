@@ -1,7 +1,7 @@
 {
   "blockers": [
     "x64 startup is not claimed; pointer-width portability still needs audit and modernization",
-    "rendering coverage reaches the v1db scene-graph transform plus a portable flat-shaded scanline fill; BRender's own softrend rasterizer, texture mapping, Gouraud shading, and a depth buffer are not yet covered and need the assembly renderer device",
+    "rendering coverage reaches the v1db scene-graph transform plus a portable flat-shaded, depth-buffered scanline rasterizer; texture mapping, Gouraud shading, datafile asset loading, and BRender's own period softrend rasterizer are not yet covered",
     "portable core and host fallback stubs need semantic tests before they can be treated as production replacements",
     "image output is a raw PPM dump; the native BrPixelmapSave datafile path and drivers are not built",
     "release packaging has not been implemented",
@@ -40,9 +40,11 @@
     "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 4/4 cases including brender_core_scene_smoke",
     "2026-07-03 brender_core_fill_smoke target added; reuses the scene projection, computes per-face world-space normals via BrMatrix34ApplyP, flat-shades by the absolute normal-light dot, and fills triangles with a portable C scanline rasterizer composited back-to-front",
     "2026-07-03 brender_core_fill_smoke.exe direct-ran with exit 0, produced a solid flat-shaded cube with 8509 lit pixels across three distinct grey levels, and wrote a 320x240 PPM",
-    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 5/5 cases including brender_core_fill_smoke"
+    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 5/5 cases including brender_core_fill_smoke",
+    "2026-07-03 brender_core_depth_smoke target added; a per-pixel float depth buffer over the rasterizer renders two overlapping cubes with correct per-pixel occlusion (near drawn first rejected 4391 far-cube fragments)",
+    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 6/6 cases including brender_core_depth_smoke"
   ],
-  "flagship_score": 62,
+  "flagship_score": 66,
   "harness_ids": [
     "brender-v132-portable-core-plan"
   ],
@@ -56,7 +58,8 @@
     "brender-v132-framework-startup-smoke-win32",
     "brender-v132-portable-core-render-smoke",
     "brender-v132-portable-core-scene-smoke",
-    "brender-v132-portable-core-fill-smoke"
+    "brender-v132-portable-core-fill-smoke",
+    "brender-v132-portable-core-depth-smoke"
   ],
   "id": "brender-production-readiness",
   "modernization_status": "core-portability-audit-needed",
@@ -69,11 +72,11 @@
   ],
   "packaging_status": "not-started",
   "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, vector math runtime smoke, BrBegin/BrEnd framework startup smoke, a wireframe render smoke, and a v1db scene-graph render smoke through CTest under a Visual Studio Win32 target. The render smoke projects a hand-built cube through the engine matrix pipeline; the scene smoke renders a model out of BRender's own scene database, building a world/camera/model actor tree, preparing a br_model with BrModelUpdate, and projecting it with the engine's BrActorToScreenMatrix4 before drawing the faces with BrPixelmapLine; the fill smoke turns that scene into a solid, flat-shaded image with a portable C scanline rasterizer, per-face world-space normals for lighting, and back-to-front compositing. All three draw entirely through the pure-C memory pixelmap dispatch with no assembly software driver, self-verify, and dump a 320x240 PPM. The produced brender_core_float.lib, smoke executables, and PPM output remain outside this metadata repo. x64 portability, shaded and textured scene rendering (which needs the softrend renderer device), datafile model loading, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
-  "readiness_stage": "portable-core-solid-shaded-render-smoke-passing",
+  "readiness_stage": "portable-core-depth-buffered-render-smoke-passing",
   "reproduction_ids": [
     "brender-critical-edition-source-build"
   ],
-  "runtime_status": "solid-shaded-render-smoke-passing",
+  "runtime_status": "depth-buffered-render-smoke-passing",
   "snapshot_ids": [
     "brender-v132-main-head",
     "brender-3dmm-main-head"
@@ -84,5 +87,5 @@
     "blazingrender-index"
   ],
   "target_id": "brender",
-  "test_status": "solid-shaded-render-smoke-passing"
+  "test_status": "depth-buffered-render-smoke-passing"
 }
