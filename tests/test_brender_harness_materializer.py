@@ -19,7 +19,20 @@ def _write_source_fixture(root):
     for name in CORE_DIRS:
         directory = root / "core" / name
         directory.mkdir(parents=True)
-        (directory / f"{name}.c").write_text("void fixture(void) {}\n", encoding="utf-8")
+        (directory / f"{name}_listed.c").write_text("void fixture(void) {}\n", encoding="utf-8")
+        (directory / f"{name}_unlisted.c").write_text("void skip_me(void) {}\n", encoding="utf-8")
+        (directory / f"{name}_commented.c").write_text("void skip_comment(void) {}\n", encoding="utf-8")
+        (directory / "makefile").write_text(
+            "\n".join([
+                "OBJS_C=\\",
+                f"    $(BLD_DIR)/{name}_listed$(OBJ_EXT)\\",
+                f"#   $(BLD_DIR)/{name}_commented$(OBJ_EXT)\\",
+                "",
+                "OBJS_ASM=\\",
+                "",
+            ]),
+            encoding="utf-8",
+        )
 
 
 def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
@@ -38,18 +51,34 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     cmake = (output / "CMakeLists.txt").read_text(encoding="utf-8")
     assert "project(brender_v132_portable_core C)" in cmake
     assert "add_library(brender_core_float STATIC" in cmake
-    assert (
-        "target_compile_definitions(brender_core_float PRIVATE "
-        "BASED_FLOAT=1 BASED_FIXED=0 INLINE_FIXED=0 __386__=1 "
-        "DEBUG=0 PARANOID=0 EVAL=0 STATIC=static ADD_RCS_ID=0)"
-    ) in cmake
+    assert "target_compile_definitions(brender_core_float PRIVATE" in cmake
+    for definition in [
+        "BASED_FLOAT=1",
+        "BASED_FIXED=0",
+        "INLINE_FIXED=0",
+        "__386__=1",
+        "DEBUG=0",
+        "PARANOID=0",
+        "EVAL=0",
+        "STATIC=static",
+        "ADD_RCS_ID=0",
+    ]:
+        assert f"  {definition}" in cmake
     assert "BRENDER_SOURCE_DIR" in cmake
+    source_manifest = (output / "cmake" / "brender-core-sources.cmake").read_text(
+        encoding="utf-8"
+    )
+    assert "file(GLOB" not in source_manifest
+    assert '"${BRENDER_SOURCE_DIR}/core/fw/fw_listed.c"' in source_manifest
+    assert "fw_unlisted.c" not in source_manifest
+    assert "fw_commented.c" not in source_manifest
     readme = (output / "README.md").read_text(encoding="utf-8")
     assert "does not vendor BRender source" in readme
     assert '"-DBRENDER_SOURCE_DIR=<path-to-public-brender-checkout>"' in readme
     manifest = json.loads((output / "harness-manifest.json").read_text(encoding="utf-8"))
     assert manifest["target_id"] == "brender"
     assert manifest["core_float_dirs"] == list(CORE_DIRS)
+    assert manifest["source_lists"]["fw"] == ["fw_listed.c"]
     assert manifest["compile_definitions"] == [
         "BASED_FLOAT=1",
         "BASED_FIXED=0",

@@ -1,11 +1,11 @@
 {
   "blockers": [
-    "period BRender make environment needs reconstruction",
-    "direct PATH probe found cmake only; make, nmake, cl, and gcc were not available through PATH",
-    "root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR",
-    "portable harness source selection still uses module-wide C file globs instead of period makefile object lists"
+    "MSVC x64 build emits pointer-truncation, enum-conversion, const-qualifier, and duplicate-symbol warnings that need portability audit",
+    "runtime smoke tests have not been implemented",
+    "release packaging has not been implemented",
+    "drivers and deferred FIXED variants have not been translated"
   ],
-  "build_status": "period-defines-complete-source-selection-blocked",
+  "build_status": "portable-core-library-built",
   "build_ids": [
     "brender-v132-build-environment"
   ],
@@ -19,9 +19,10 @@
     "2026-07-03 CMake configure succeeded with Visual Studio 18 2026 and MSVC 19.50.35721.0 in an external build tree",
     "2026-07-03 brender_core_float build reached compilation and failed on legacy inline x86 assembly in inc/mscifix.h under x64 MSVC",
     "2026-07-03 materializer added BASED_FIXED=0, INLINE_FIXED=0, STATIC=static, DEBUG=0, PARANOID=0, EVAL=0, and ADD_RCS_ID=0 to mirror period release CFLAGS",
-    "2026-07-03 period-defines build attempt moved past mscifix.h and STATIC failures, then failed because module-wide C file globbing included files outside the period OBJS_C lists"
+    "2026-07-03 period-defines build attempt moved past mscifix.h and STATIC failures, then failed because module-wide C file globbing included files outside the period OBJS_C lists",
+    "2026-07-03 explicit-source harness configured with Visual Studio 18 2026 and built brender_core_float.lib with MSVC 19.50.35721.0 in an external build tree"
   ],
-  "flagship_score": 26,
+  "flagship_score": 34,
   "harness_ids": [
     "brender-v132-portable-core-plan"
   ],
@@ -29,18 +30,20 @@
     "brender-v132-harness-materializer-smoke",
     "brender-v132-cmake-configure",
     "brender-v132-core-build-attempt",
-    "brender-v132-period-defines-build-attempt"
+    "brender-v132-period-defines-build-attempt",
+    "brender-v132-explicit-sources-core-build"
   ],
   "id": "brender-production-readiness",
-  "modernization_status": "period-defines-complete-source-selection-blocked",
+  "modernization_status": "core-portability-audit-needed",
   "next_actions": [
-    "replace CMake source globs with explicit period makefile OBJS_C source lists",
-    "model generated-token inputs such as core/fw/pretok before direct compilation",
-    "rerun the public core-library build after source selection matches the makefiles"
+    "audit and classify the x64 MSVC warning transcript",
+    "add a minimal link or runtime smoke test around the core library",
+    "model generated-token inputs such as core/fw/pretok for reproducible source regeneration",
+    "translate deferred FIXED variants and driver targets after the core library path is stable"
   ],
   "packaging_status": "not-started",
-  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure pass for a portable-core harness. The current blocker is explicit source-list reconstruction from period makefiles; no compiled output or runtime execution is claimed yet.",
-  "readiness_stage": "period-defines-complete-source-selection-blocked",
+  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure and core-library build for the FLOAT path. The produced brender_core_float.lib remains outside this metadata repo. Runtime execution, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
+  "readiness_stage": "portable-core-library-built",
   "reproduction_ids": [
     "brender-critical-edition-source-build"
   ],

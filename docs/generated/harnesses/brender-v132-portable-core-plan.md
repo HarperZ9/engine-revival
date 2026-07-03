@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | period-defines-complete-source-selection-blocked |
+| Status | portable-core-library-built |
 | Type | portable-build-plan |
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
@@ -19,12 +19,13 @@ Use only the public BRender v1.3.2 checkout at the recorded snapshot commit. Do 
 
 ## Public Notes
 
-This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary, has produced out-of-tree configure passes, and now carries the FLOAT, fixed-inline-disabled, and period release build definitions. It does not claim a compiled output.
+This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary, carries the FLOAT, fixed-inline-disabled, and period release build definitions, and now builds the FLOAT core library with explicit OBJS_C source lists in an external CMake/MSVC tree. It does not claim runtime execution, warning cleanup, packaging, drivers, or FIXED variants.
 
 ## Implementation Units
 
 - root dispatch: core and drivers active, tools and samples deferred
 - core order: inc, fw, host, std, pixelmap, dosio, v1db FLOAT, math FLOAT, fmt FLOAT
+- core source selection: explicit period makefile OBJS_C lists
 - core deferred variants: v1db FIXED, math FIXED, fmt FIXED
 - driver order: vesa, mcga, softrend FLOAT/FIXED, pentprim FLOAT/FIXED
 - driver deferred target: ddraw
@@ -48,15 +49,16 @@ This is the first public harness design record for the BRender pilot. It convert
 
 ## Blockers
 
-- source selection still uses module-wide C file globs instead of period makefile object lists
-- core/fw pretok token-generation boundary has not been modeled
+- core/fw pretok token-generation boundary has not been modeled for source regeneration
+- MSVC x64 build emits pointer-truncation, enum-conversion, const-qualifier, and duplicate-symbol warnings that need portability audit
 - driver and deferred fixed-point variants are not translated yet
 
 ## Next Actions
 
-- replace CMake file globs with explicit sources from the period OBJS_C rules
-- model generated-token inputs such as core/fw/pretok before direct compilation
-- rerun the core build without storing generated binaries in git
+- audit the x64 MSVC warning set before declaring the core library portable
+- add a minimal runtime or link smoke test for the produced core library
+- model generated-token inputs such as core/fw/pretok for reproducible source regeneration
+- translate deferred FIXED variants and driver targets after the core library path is stable
 
 ## Evidence Sources
 

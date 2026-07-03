@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | period-defines-complete-source-selection-blocked |
+| Status | portable-core-library-built |
 | Reproduction | brender-critical-edition-source-build |
 | Host Platform | Windows local probe |
 | Source Checkout | out-of-tree public checkout at recorded snapshot commit d88d0ed41122664b9781015b517db64353e16f19 |
@@ -14,7 +14,7 @@
 
 ## Public Notes
 
-BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake and compiles past the first inline-assembly and STATIC macro blockers, but no compiled output or runtime execution is claimed.
+BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake and builds brender_core_float.lib with explicit period OBJS_C source lists in an external MSVC tree. No generated binary, runtime execution, or packaged release is committed or claimed.
 
 ## Required Variables
 
@@ -54,16 +54,16 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 
 ## Blockers
 
-- period BRender make environment needs reconstruction
-- direct PATH probe found cmake only; make, nmake, cl, and gcc were not available through PATH
-- root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR
-- portable harness source selection still uses module-wide C file globs instead of period makefile object lists
+- portable core build currently targets only the FLOAT core library; FIXED variants and drivers are deferred
+- MSVC x64 build emits pointer-truncation, enum-conversion, const-qualifier, and duplicate-symbol warnings that need portability audit
+- no runtime smoke test or packaged release artifact is claimed
 
 ## Next Actions
 
-- replace CMake source globs with explicit source lists derived from period OBJS_C rules
-- model the fw pretok token-generation boundary before direct compilation
-- rerun the public core-library build after source selection matches the makefiles
+- audit the completed core-library warning transcript
+- add a link or runtime smoke test around the produced core library
+- translate deferred FIXED variants and driver targets
+- model the fw pretok token-generation boundary for reproducible source regeneration
 
 ## Evidence Sources
 
