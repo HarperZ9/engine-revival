@@ -45,6 +45,19 @@ Open BRender source releases and historical SDK references are now tracked as th
 |---|---|---|---|
 | brender-baseline | public-dossier-established | curated | Public dossier has curated BRender source, accession, and task records. |
 
+## Reproductions
+
+| Reproduction | Type | Status | Notes |
+|---|---|---|---|
+| brender-critical-edition-source-build | source-build | planned | First public reproduction recipe for turning BRender from archived source records into a repeatable critical-edition build track. |
+
+## Snapshots
+
+| Snapshot | Artifact | Ref | Commit |
+|---|---|---|---|
+| brender-3dmm-main-head | brender-3dmm-source | refs/heads/main | 5273a0bd2977d8ec08e4b81e680641a570a914b4 |
+| brender-v132-main-head | brender-v132-source | refs/heads/main | d88d0ed41122664b9781015b517db64353e16f19 |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

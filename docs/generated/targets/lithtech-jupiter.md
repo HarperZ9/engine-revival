@@ -42,6 +42,12 @@ Public records now track the LithTech Jupiter build 51 archive item, development
 |---|---|---|---|
 | lithtech-jupiter-baseline | public-dossier-established | curated | Public dossier has curated LithTech Jupiter target, source, artifact, accession, task, and reproduction records without holding restricted package contents. |
 
+## Reproductions
+
+| Reproduction | Type | Status | Notes |
+|---|---|---|---|
+| lithtech-jupiter-user-supplied-build | user-supplied-historical-build | planned | Rights-safe reproduction recipe for users who already have a lawful local copy. The public repo records metadata, environment requirements, and build observations only. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

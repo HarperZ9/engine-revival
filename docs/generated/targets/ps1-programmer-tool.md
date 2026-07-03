@@ -47,6 +47,12 @@ Public records now track SDevTC, Net Yaroze documentation, Redump disc metadata,
 |---|---|---|---|
 | ps1-programmer-tool-baseline | public-dossier-established | curated | Public dossier has curated PS1 Programmer's Tool source, accession, and task records. |
 
+## Snapshots
+
+| Snapshot | Artifact | Ref | Commit |
+|---|---|---|---|
+| psnoobsdk-master-head | ps1-psnoobsdk-open-source-sdk | refs/heads/master | 5d9aa2d3dfc7d6e51c2eb942ab4cdbae5571a40a |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

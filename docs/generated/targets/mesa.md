@@ -42,10 +42,23 @@ Public records now track Mesa's official API summary, upstream freedesktop.org r
 |---|---|---|---|
 | mesa-baseline | public-dossier-established | curated | Public dossier has curated Mesa source, accession, and task records. |
 
+## Reproductions
+
+| Reproduction | Type | Status | Notes |
+|---|---|---|---|
+| mesa-meson-local-build | source-build | planned | First Mesa reproduction recipe for turning the public source repository and official build documentation into a repeatable local-build track. |
+
+## Snapshots
+
+| Snapshot | Artifact | Ref | Commit |
+|---|---|---|---|
+| mesa-main-head | mesa-source-repository | refs/heads/main | 99637537e1b33afb21b21bb39290b647b7b67e59 |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Mesa compiling and installing documentation | build-documentation | high | Mesa build prerequisites, Meson/Ninja setup commands, install flow, and local-run instructions | https://docs.mesa3d.org/install.html |
 | The Mesa 3D Graphics Library | project-site | high | Mesa project identity and supported graphics API implementations | https://www.mesa3d.org/ |
 | Mesa license and copyright documentation | license-documentation | high | Mesa license posture for core library and component-level licenses | https://docs.mesa3d.org/license.html |
 | Mesa source code repository documentation | repository-documentation | high | Mesa upstream repository location and anonymous Git access | https://docs.mesa3d.org/repository.html |

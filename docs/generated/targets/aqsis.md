@@ -42,6 +42,12 @@ Public records now track the Aqsis RenderMan-compatible renderer source reposito
 |---|---|---|---|
 | aqsis-baseline | public-dossier-established | curated | Public dossier has curated Aqsis source, accession, and task records. |
 
+## Snapshots
+
+| Snapshot | Artifact | Ref | Commit |
+|---|---|---|---|
+| aqsis-master-head | aqsis-renderer-source | refs/heads/master | 937ead9ac0c7770bbc5ef843e2356a61e5ad23c1 |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |
