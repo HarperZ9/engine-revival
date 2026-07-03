@@ -176,7 +176,7 @@ def test_studio_course_accession_batch_is_recorded():
 def test_live_sources_are_cited_by_archive_records():
     source_ids = {record["id"] for record in _json_records("sources")}
     used_source_ids = set()
-    for directory in ("artifacts", "accessions", "tasks", "milestones"):
+    for directory in ("artifacts", "accessions", "tasks", "milestones", "reproductions", "snapshots"):
         for record in _json_records(directory):
             used_source_ids.update(str(source_id) for source_id in record.get("source_ids", []))
     assert sorted(source_ids - used_source_ids) == []
@@ -235,6 +235,7 @@ def test_open_source_remote_head_snapshots_are_recorded():
     expected = {
         "snapshots/aqsis-master-head.json",
         "snapshots/crystal-space-master-head.json",
+        "snapshots/mesa-main-head.json",
         "snapshots/ogre-master-head.json",
         "snapshots/open-inventor-master-head.json",
         "snapshots/quesa-master-head.json",
@@ -243,6 +244,15 @@ def test_open_source_remote_head_snapshots_are_recorded():
         "snapshots/opengoal-jak-project-master-head.json",
         "snapshots/psnoobsdk-master-head.json",
         "snapshots/ps2sdk-master-head.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
+
+
+def test_mesa_reproduction_recipe_is_recorded():
+    expected = {
+        "sources/mesa-build-docs.json",
+        "reproductions/mesa-meson-local-build.json",
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []

@@ -33,9 +33,10 @@
 | History of OpenGL | standards-wiki | moderate | 3 | OpenGL creation as an open alternative to proprietary IRIS GL and the early OpenGL 1.0 lineage | https://wikis.khronos.org/opengl/History_of_OpenGL |
 | KhronosGroup/OpenGL-Registry | source-repository | high | 3 | OpenGL-family API and extension registry repository, XML API registry, headers, and related registry tools | https://github.com/KhronosGroup/OpenGL-Registry |
 | Khronos OpenGL Registry | standards-registry | high | 3 | Official OpenGL Registry contents including API, shading-language, extension, header, GLX, WGL, and GLU specifications | https://registry.khronos.org/OpenGL/index_gl.php |
+| Mesa compiling and installing documentation | build-documentation | high | 1 | Mesa build prerequisites, Meson/Ninja setup commands, install flow, and local-run instructions | https://docs.mesa3d.org/install.html |
 | The Mesa 3D Graphics Library | project-site | high | 3 | Mesa project identity and supported graphics API implementations | https://www.mesa3d.org/ |
-| Mesa license and copyright documentation | license-documentation | high | 3 | Mesa license posture for core library and component-level licenses | https://docs.mesa3d.org/license.html |
-| Mesa source code repository documentation | repository-documentation | high | 3 | Mesa upstream repository location and anonymous Git access | https://docs.mesa3d.org/repository.html |
+| Mesa license and copyright documentation | license-documentation | high | 4 | Mesa license posture for core library and component-level licenses | https://docs.mesa3d.org/license.html |
+| Mesa source code repository documentation | repository-documentation | high | 5 | Mesa upstream repository location and anonymous Git access | https://docs.mesa3d.org/repository.html |
 | Microsoft acquisition history - RenderMorphics, Ltd. | corporate-acquisition-record | high | 2 | Microsoft acquisition date for RenderMorphics Ltd. | https://www.microsoft.com/en-us/investor/acquisition-history |
 | Microsoft ships Direct3D | press-release | high | 3 | Direct3D final release in the DirectX 2 SDK and Windows 95 availability | https://news.microsoft.com/source/1996/06/13/microsoft-ships-direct3d/ |
 | DirectX SDK Legacy Samples | repository | high | 3 | Legacy DirectX SDK sample archive, educational/historical reference posture, and MIT license metadata | https://github.com/microsoft/DirectX-SDK-Samples |
