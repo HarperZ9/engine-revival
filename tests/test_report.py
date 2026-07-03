@@ -1,3 +1,5 @@
+import json
+
 from engine_revival.report import write_reports
 from engine_revival.seed import seed_workspace
 
@@ -149,6 +151,52 @@ def test_write_reports_creates_task_board(tmp_path):
     task_board = tasks.read_text(encoding="utf-8")
     assert "brender-triage" in task_board
     assert "triage-public-record" in task_board
+
+
+def test_write_reports_creates_packet_pages(tmp_path):
+    seed_workspace(tmp_path)
+    packet_task = tmp_path / "tasks" / "brender-critical-edition-packet.json"
+    packet_task.write_text(
+        """{
+  "id": "brender-critical-edition-packet",
+  "target_id": "brender",
+  "task_type": "build-archive-packet",
+  "status": "planned",
+  "public_notes": "Build the BRender critical-edition packet.",
+  "inputs": ["public source branches", "BRender accessions"],
+  "outputs": ["standalone archival packet", "version graph"],
+  "blocked_by": ["brender-triage"],
+  "source_ids": ["initial-research-reports"]
+}""",
+        encoding="utf-8",
+    )
+    reports = write_reports(tmp_path)
+    packet_index = tmp_path / "docs" / "generated" / "packets.md"
+    packet_page = tmp_path / "docs" / "generated" / "packets" / "brender-critical-edition-packet.md"
+    assert packet_index in reports
+    assert packet_page in reports
+    index_text = packet_index.read_text(encoding="utf-8")
+    assert "| brender | [brender-critical-edition-packet](packets/brender-critical-edition-packet.md) | planned |" in index_text
+    page_text = packet_page.read_text(encoding="utf-8")
+    assert "# brender-critical-edition-packet" in page_text
+    assert "Build the BRender critical-edition packet." in page_text
+    assert "- public source branches" in page_text
+    assert "- standalone archival packet" in page_text
+    assert "- initial-research-reports" in page_text
+
+
+def test_write_reports_creates_corpus_database_export(tmp_path):
+    seed_workspace(tmp_path)
+    database = tmp_path / "docs" / "generated" / "database.json"
+    assert database in write_reports(tmp_path)
+    payload = json.loads(database.read_text(encoding="utf-8"))
+    assert payload["schema"] == "engine-revival-corpus-v1"
+    assert payload["counts"]["targets"] == 22
+    assert payload["counts"]["tasks"] == 22
+    assert payload["targets"][0]["id"]
+    assert payload["targets_by_id"]["brender"]["name"] == "Argonaut BRender"
+    assert payload["tasks_by_target"]["brender"][0]["id"] == "brender-triage"
+    assert payload["sources_by_id"]["initial-research-reports"]["confidence"] == "moderate"
 
 
 def test_write_reports_creates_milestone_summary(tmp_path):
