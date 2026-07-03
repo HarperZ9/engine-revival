@@ -5,11 +5,13 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | designed |
+| Status | materializer-available |
 | Type | portable-build-plan |
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
 | Entrypoint | docs/generated/harnesses/brender-v132-portable-core-plan.md |
+| Materializer | engine-revival materialize-brender-harness --source-root <public-brender-checkout> --output-root <out-of-tree-harness-dir> |
+| Output Policy | Write generated harness files outside the BRender source checkout and outside this metadata repo unless they are intentionally reviewed as public-safe scaffolding. |
 
 ## Source Policy
 
@@ -31,7 +33,8 @@ This is the first public harness design record for the BRender pilot. It convert
 ## Steps
 
 - start from the recorded BRender v1.3.2 public source snapshot
-- materialize build files outside the source tree
+- run the engine-revival materializer to create build files outside the source tree
+- verify the materialized scaffold references BRENDER_SOURCE_DIR instead of copying source
 - translate the active core FLOAT path before deferred FIXED variants
 - translate driver targets after the core library path is captured
 - record compiler output as transcript evidence before advancing readiness
@@ -45,13 +48,13 @@ This is the first public harness design record for the BRender pilot. It convert
 
 ## Blockers
 
-- portable harness files have not been emitted yet
 - first compiler transcript has not been captured
 - period make macros still need translation into modern build targets
+- modern compiler compatibility findings have not been triaged
 
 ## Next Actions
 
-- emit a portable CMake or make-compatible harness outside the source checkout
+- run CMake configure against the generated out-of-tree scaffold
 - map period include and library output directories to explicit modern targets
 - capture the first compiler transcript without storing generated binaries in git
 

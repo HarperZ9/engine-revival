@@ -20,6 +20,18 @@ engine-revival report
 python -m pytest
 ```
 
+## BRender Harness
+
+```powershell
+engine-revival materialize-brender-harness `
+  --source-root C:\path\to\BRender-v1.3.2 `
+  --output-root C:\path\to\brender-v132-portable-core-harness
+```
+
+The command writes a CMake scaffold outside the source checkout. It does not
+vendor BRender source or claim the scaffold compiles until a compiler transcript
+is captured.
+
 ## Public Docs
 
 - [Revival mission](docs/REVIVAL-MISSION.md)

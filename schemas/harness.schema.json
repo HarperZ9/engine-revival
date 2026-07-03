@@ -25,6 +25,8 @@
     "status": "string",
     "harness_type": "string",
     "entrypoint": "string",
+    "materializer_command": "string",
+    "output_policy": "string",
     "source_policy": "string",
     "implementation_units": "array",
     "steps": "array",

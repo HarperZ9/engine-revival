@@ -49,6 +49,7 @@ def harness_page(
         f"| Build | {record['build_id']} |",
         f"| Reproduction | {record['reproduction_id']} |",
         f"| Entrypoint | {record['entrypoint']} |",
+        *_optional_field_rows(record, ("materializer_command", "output_policy")),
         "",
         "## Source Policy",
         "",
@@ -107,6 +108,20 @@ def _bullets(value: object) -> list[str]:
     if not isinstance(value, list) or not value:
         return ["- none recorded"]
     return [f"- {item}" for item in value]
+
+
+def _optional_field_rows(record: dict[str, object], keys: tuple[str, ...]) -> list[str]:
+    labels = {
+        "materializer_command": "Materializer",
+        "output_policy": "Output Policy",
+    }
+    rows: list[str] = []
+    for key in keys:
+        value = record.get(key)
+        if value:
+            label = labels.get(key, key.replace("_", " ").title())
+            rows.append(f"| {label} | {value} |")
+    return rows
 
 
 def _source_table(

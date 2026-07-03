@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 from collections.abc import Sequence
 from pathlib import Path
+import sys
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -14,6 +15,9 @@ def build_parser() -> argparse.ArgumentParser:
     for name in ("seed", "validate", "audit-public", "index", "report"):
         command = subparsers.add_parser(name)
         command.add_argument("--root", default=".", help="workspace root")
+    materialize = subparsers.add_parser("materialize-brender-harness")
+    materialize.add_argument("--source-root", required=True, help="public BRender checkout")
+    materialize.add_argument("--output-root", required=True, help="out-of-tree harness output")
     return parser
 
 
@@ -58,6 +62,22 @@ def _run_report(root: Path) -> int:
     return 0
 
 
+def _run_materialize_brender_harness(source_root: Path, output_root: Path) -> int:
+    from engine_revival.brender_harness import (
+        HarnessMaterializationError,
+        materialize_brender_core_harness,
+    )
+
+    try:
+        written = materialize_brender_core_harness(source_root, output_root)
+    except HarnessMaterializationError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+    for path in written:
+        print(path)
+    return 0
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     parser = build_parser()
     try:
@@ -74,4 +94,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_index(Path(args.root))
     if args.command == "report":
         return _run_report(Path(args.root))
+    if args.command == "materialize-brender-harness":
+        return _run_materialize_brender_harness(
+            Path(args.source_root),
+            Path(args.output_root),
+        )
     return 0
