@@ -42,6 +42,12 @@ Public records now track Crystal Space's SourceForge project registry, GitHub so
 |---|---|---|---|
 | crystal-space-baseline | public-dossier-established | curated | Public dossier has curated Crystal Space source, accession, and task records. |
 
+## Reproductions
+
+| Reproduction | Type | Status | Notes |
+|---|---|---|---|
+| crystal-space-source-build | source-build | planned | Planned reproduction recipe for rebuilding Crystal Space from its public source repository and recording legacy dependency assumptions. |
+
 ## Snapshots
 
 | Snapshot | Artifact | Ref | Commit |

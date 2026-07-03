@@ -42,6 +42,12 @@ Public records now track OGRE's source repository, rendering-backend role, platf
 |---|---|---|---|
 | ogre-baseline | public-dossier-established | curated | Public dossier has curated OGRE source, accession, and task records. |
 
+## Reproductions
+
+| Reproduction | Type | Status | Notes |
+|---|---|---|---|
+| ogre-source-build | source-build | planned | Planned reproduction recipe for rebuilding OGRE from the public source snapshot and preserving renderer/backend build choices. |
+
 ## Snapshots
 
 | Snapshot | Artifact | Ref | Commit |

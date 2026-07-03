@@ -42,6 +42,12 @@ Public records now track Pixie's SourceForge project registry, feature metadata,
 |---|---|---|---|
 | pixie-baseline | public-dossier-established | curated | Public dossier has curated Pixie source, accession, and task records. |
 
+## Reproductions
+
+| Reproduction | Type | Status | Notes |
+|---|---|---|---|
+| pixie-renderer-source-build | source-build | planned | Planned reproduction recipe for rebuilding the public Pixie renderer source mirror and recording renderer-output constraints. |
+
 ## Snapshots
 
 | Snapshot | Artifact | Ref | Commit |

@@ -17,7 +17,7 @@
 | accession | 60 |
 | task | 31 |
 | milestone | 23 |
-| reproduction | 3 |
+| reproduction | 13 |
 | snapshot | 13 |
 
 ## Missing Artifact Accessions

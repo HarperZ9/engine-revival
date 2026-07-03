@@ -47,6 +47,12 @@ Public records now track SDevTC, Net Yaroze documentation, Redump disc metadata,
 |---|---|---|---|
 | ps1-programmer-tool-baseline | public-dossier-established | curated | Public dossier has curated PS1 Programmer's Tool source, accession, and task records. |
 
+## Reproductions
+
+| Reproduction | Type | Status | Notes |
+|---|---|---|---|
+| psnoobsdk-clean-room-sdk-build | clean-room-sdk-build | planned | Planned clean-room reproduction recipe for building PSn00bSDK as a public PS1 compatibility lane without redistributing proprietary Programmer's Tool material. |
+
 ## Snapshots
 
 | Snapshot | Artifact | Ref | Commit |
