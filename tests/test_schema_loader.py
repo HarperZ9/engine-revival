@@ -14,3 +14,8 @@ def test_validate_required_fields_reports_missing_keys():
     schema = load_schema(ROOT, "target")
     messages = validate_required_fields({"id": "brender"}, schema)
     assert "target missing required field: name" in messages
+
+
+def test_load_reproduction_schema_required_fields():
+    schema = load_schema(ROOT, "reproduction")
+    assert {"id", "target_id", "environment", "steps", "expected_outputs"} <= set(schema.required)

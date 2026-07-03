@@ -277,3 +277,39 @@ def test_targets_must_have_milestone_records(tmp_path):
     (tmp_path / "milestones" / "brender-baseline.json").unlink()
     messages = validate_workspace(tmp_path)
     assert any("missing milestone for target_id: brender" in message for message in messages)
+
+
+def test_reproduction_links_must_reference_sources_and_artifacts(tmp_path):
+    _write_accession_workspace(tmp_path)
+    _write_json(tmp_path / "reproductions" / "bad-reproduction.json", {
+        "id": "bad-reproduction",
+        "target_id": "brender",
+        "reproduction_type": "source-build",
+        "status": "planned",
+        "environment": ["host compiler"],
+        "steps": ["clone source"],
+        "expected_outputs": ["build artifacts"],
+        "artifact_ids": ["missing-artifact"],
+        "public_notes": "Bad reproduction links.",
+        "source_ids": ["missing-source"],
+    })
+    messages = validate_workspace(tmp_path)
+    assert any("unknown artifact_id: missing-artifact" in message for message in messages)
+    assert any("unknown source_id: missing-source" in message for message in messages)
+
+
+def test_reproduction_must_include_source_ids(tmp_path):
+    _write_accession_workspace(tmp_path)
+    _write_json(tmp_path / "reproductions" / "brender-build.json", {
+        "id": "brender-build",
+        "target_id": "brender",
+        "reproduction_type": "source-build",
+        "status": "planned",
+        "environment": ["host compiler"],
+        "steps": ["clone source"],
+        "expected_outputs": ["build artifacts"],
+        "artifact_ids": ["brender-v132-source"],
+        "public_notes": "BRender build recipe.",
+    })
+    messages = validate_workspace(tmp_path)
+    assert any("reproduction must include source_ids" in message for message in messages)

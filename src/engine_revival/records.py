@@ -19,6 +19,7 @@ RECORD_DIRS = {
     "task": "tasks",
     "milestone": "milestones",
     "accession": "accessions",
+    "reproduction": "reproductions",
 }
 
 
