@@ -58,6 +58,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "smoke" / "brender-core-model-smoke.c",
         output / "smoke" / "brender-core-material-smoke.c",
         output / "smoke" / "brender-core-multimodel-smoke.c",
+        output / "smoke" / "brender-core-gouraud-smoke.c",
         output / "harness-manifest.json",
     ]
     cmake = (output / "CMakeLists.txt").read_text(encoding="utf-8")
@@ -93,6 +94,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "${BRENDER_SOURCE_DIR}/dat/sph32.dat" in cmake
     assert "add_executable(brender_core_multimodel_smoke" in cmake
     assert "${BRENDER_SOURCE_DIR}/dat/coupe.dat" in cmake
+    assert "add_executable(brender_core_gouraud_smoke" in cmake
     assert "compat/brender-portable-core-stubs.c" in cmake
     assert "compat/brender-portable-host-stubs.c" in cmake
     assert "CMAKE_SIZEOF_VOID_P" in cmake
@@ -181,6 +183,8 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "model->vertices[i].map" in material_smoke
     multimodel_smoke = (output / "smoke" / "brender-core-multimodel-smoke.c").read_text(encoding="utf-8")
     assert "BrModelLoadMany(" in multimodel_smoke
+    gouraud_smoke = (output / "smoke" / "brender-core-gouraud-smoke.c").read_text(encoding="utf-8")
+    assert "fill_triangle_gouraud(" in gouraud_smoke
     compat = (output / "compat" / "brender-portable-core-stubs.c").read_text(
         encoding="utf-8"
     )
@@ -217,6 +221,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         "brender_core_model_smoke",
         "brender_core_material_smoke",
         "brender_core_multimodel_smoke",
+        "brender_core_gouraud_smoke",
     ]
     assert manifest["portable_compat_source"] == "compat/brender-portable-core-stubs.c"
     assert manifest["portable_compat_sources"] == [
