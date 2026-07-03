@@ -30,8 +30,10 @@ Build the PS2 ProDG / EB / Linux packet around public Linux material, PS2SDK cle
 
 ## Evidence Sources
 
-- sie-ps2-linux-release-2002
-- internet-archive-ps2-linux-pal-discs
-- ps2dev-site
-- ps2dev-ps2sdk-github
-- sie-sn-systems-acquisition-2005
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Sony Computer Entertainment announces worldwide release of Linux for PlayStation 2 | press-release | high | Linux for PlayStation 2 Release 1.0 product contents and release timing | https://sonyinteractive.com/en/press-releases/2002/sony-computer-entertainment-announces-worldwide-release-of-linux-for-playstation2/ |
+| PS2 Linux PAL installation discs archive item | archive-item | moderate | PS2 Linux PAL installation disc archive item metadata | https://archive.org/details/disc-1_20220424 |
+| ps2dev project site | project-site | high | Open-source PS2 development environment overview | https://ps2dev.github.io/ |
+| PS2SDK source repository | repository | high | Open-source PS2SDK libraries and homebrew development environment | https://github.com/ps2dev/ps2sdk |
+| Sony Computer Entertainment to acquire SN Systems | press-release | high | SN Systems custody and ProDG tooling lineage | https://sonyinteractive.com/en/press-releases/2005/sony-computer-entertainment-to-acquire-sn-systems/ |

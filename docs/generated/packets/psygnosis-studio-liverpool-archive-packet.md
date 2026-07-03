@@ -30,6 +30,8 @@ Build the Psygnosis / Studio Liverpool packet around public studio history, clos
 
 ## Evidence Sources
 
-- national-museums-liverpool-psygnosis-history
-- gamedeveloper-studio-liverpool-closure
-- wired-studio-liverpool-closure
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Psygnosis: how did a Liverpool company transform the gaming world? | museum-heritage-article | high | Psygnosis public heritage history, Liverpool origin, PlayStation-era influence, and Wipeout/Colony Wars context | https://www.liverpoolmuseums.org.uk/stories/psygnosis-how-did-liverpool-company-transform-gaming-world-big-question |
+| Sony closes Wipeout's Studio Liverpool | trade-report | high | Studio Liverpool closure confirmation, Psygnosis lineage, Sony statement excerpts, and Liverpool facility clarification | https://www.gamedeveloper.com/business/sony-closes-i-wipeout-i-s-studio-liverpool |
+| Sony Shuts Down Wipeout Developer Studio Liverpool | trade-report | high | Studio Liverpool closure report and public lineage from Psygnosis through Wipeout, Formula One, and PlayStation-era development | https://www.wired.com/2012/08/wireduk-studio-liverpool-closed/ |

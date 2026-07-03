@@ -30,7 +30,9 @@ Build the PS1 Programmer's Tool packet around SDevTC, Net Yaroze documentation, 
 
 ## Evidence Sources
 
-- internet-archive-net-yaroze-documentation
-- internet-archive-sdevtc-aug1998
-- redump-ps1-runtime-library-33
-- psnoobsdk-github
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Net Yaroze documentation archive item | documentation-archive | high | Net Yaroze documentation set contents and public metadata | https://archive.org/details/NetYarozeDocumentation |
+| SDevTC Development Environment manual archive item | manual-archive | high | SDevTC development environment manual metadata and tool list | https://archive.org/details/SCE-SDevTC-Aug1998 |
+| PlayStation Programmer Tool Runtime Library Version 3.3 Redump entry | disc-database | high | PlayStation Programmer Tool Runtime Library Version 3.3 disc metadata | https://redump.org/disc/50387/ |
+| PSn00bSDK source repository | repository | high | Open-source PS1 SDK and compatibility development lane | https://github.com/Lameguy64/PSn00bSDK/ |

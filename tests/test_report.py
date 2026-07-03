@@ -182,7 +182,8 @@ def test_write_reports_creates_packet_pages(tmp_path):
     assert "Build the BRender critical-edition packet." in page_text
     assert "- public source branches" in page_text
     assert "- standalone archival packet" in page_text
-    assert "- initial-research-reports" in page_text
+    assert "| Source | Type | Confidence | Scope | URL |" in page_text
+    assert "Initial engine revival research reports" in page_text
 
 
 def test_write_reports_creates_corpus_database_export(tmp_path):

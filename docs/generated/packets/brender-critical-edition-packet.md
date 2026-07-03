@@ -30,6 +30,8 @@ Build the BRender critical-edition packet: released branches, version graph, bui
 
 ## Evidence Sources
 
-- foone-brender-v132
-- foone-brender-3dmm
-- blazingrender-index
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Argonaut Blazing Render (BRender) v1.3.2 source repository | repository | high | BRender 1.3.2 source availability, provenance, and MIT license posture | https://github.com/foone/BRender-v1.3.2 |
+| BRender-3DMM source repository | repository | high | BRender 3D Movie Maker variant source availability, provenance, and MIT license posture | https://github.com/foone/BRender-3DMM |
+| BRender preservation index | curated-index | high | BRender source-release and binary-SDK index | https://blazingrender.net/ |

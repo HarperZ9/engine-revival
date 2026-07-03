@@ -30,7 +30,9 @@ Build the GOOL/GOAL packet around public OpenGOAL materials, creator testimony, 
 
 ## Evidence Sources
 
-- andy-gavin-gool-article
-- opengoal-project-overview
-- opengoal-jak-project-github
-- opengoal-license
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Making Crash Bandicoot - GOOL - part 9 | developer-article | high | GOOL authorship, purpose, and relationship to Crash Bandicoot and GOAL | https://all-things-andy-gavin.com/tag/gool/ |
+| OpenGOAL project overview | project-documentation | high | OpenGOAL compiler, decompiler, source tree, and runtime architecture | https://github.com/open-goal/jak-project/blob/master/docs/project-overview.md |
+| OpenGOAL jak-project source repository | repository | high | OpenGOAL public source project, decompiler/compiler methodology, and platform support | https://github.com/open-goal/jak-project |
+| OpenGOAL repository license | license | high | OpenGOAL repository license metadata | https://raw.githubusercontent.com/open-goal/jak-project/master/LICENSE |

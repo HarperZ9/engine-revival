@@ -266,7 +266,7 @@ def write_reports(root: Path) -> list[Path]:
         written.append(
             _write(
                 generated / "packets" / f"{packet['id']}.md",
-                packet_page(packet),
+                packet_page(packet, sources_by_id),
             )
         )
     for reproduction in reproduction_records(root):

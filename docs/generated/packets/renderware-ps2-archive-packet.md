@@ -30,6 +30,8 @@ Build the RenderWare PS2 packet around public release-note metadata, SDK package
 
 ## Evidence Sources
 
-- internet-archive-renderware-ps2-gold-notes
-- internet-archive-rw310-ps2
-- strong-gene-buckle-renderware
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| RenderWare3 (PS2 Gold - 1.3 update) Release Notes | release-notes-ocr | high | RenderWare3 PS2 Gold 1.3 update release notes content and rights warning | https://archive.org/stream/render-ware-3-ps-2-gold-1.3-update-release-notes/RenderWare3%20%28PS2%20Gold%20-%201.3%20update%29%20Release%20Notes_djvu.txt |
+| Renderware SDK 3.10 PS2 archive item | archive-item | moderate | RenderWare SDK 3.10 PS2 public archive item metadata | https://archive.org/details/rw310-ps2 |
+| Guide to the Gene Buckle Papers, 1981-2000 | finding-aid | high | Institutional finding aid listing Renderware 3 PS2 Gold release notes | https://www.museumofplay.org/app/uploads/2025/01/Guide-to-the-Gene-Buckle-papers.pdf |

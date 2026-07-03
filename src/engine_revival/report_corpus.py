@@ -69,7 +69,11 @@ def packet_index(root: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
-def packet_page(packet: dict[str, object]) -> str:
+def packet_page(
+    packet: dict[str, object],
+    sources_by_id: dict[str, dict[str, object]] | None = None,
+) -> str:
+    sources = sources_by_id or {}
     lines = [
         f"# {packet['id']}",
         "",
@@ -97,7 +101,7 @@ def packet_page(packet: dict[str, object]) -> str:
         "",
         "## Evidence Sources",
         "",
-        *_as_bullets(packet.get("source_ids")),
+        *_source_table(packet.get("source_ids"), sources),
     ]
     return "\n".join(lines) + "\n"
 
