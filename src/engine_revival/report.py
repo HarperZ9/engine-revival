@@ -26,6 +26,7 @@ from engine_revival.report_corpus import (
     snapshot_page,
     snapshot_records,
 )
+from engine_revival.report_harnesses import harness_index, harness_page, harness_records
 from engine_revival.report_readiness import readiness_index
 from engine_revival.report_targets import target_dossier
 
@@ -72,6 +73,7 @@ def _source_usage_counts(root: Path) -> dict[str, int]:
         "snapshot",
         "readiness",
         "build",
+        "harness",
     ):
         for payload in _records_if_present(root, kind):
             value = payload.get("source_ids", [])
@@ -200,6 +202,7 @@ def _coverage_summary(root: Path) -> str:
         "snapshot",
         "readiness",
         "build",
+        "harness",
     ):
         lines.append(f"| {kind} | {len(_records_if_present(root, kind))} |")
     lines.extend(["", "## Missing Artifact Accessions", ""])
@@ -248,6 +251,7 @@ def write_reports(root: Path) -> list[Path]:
         _write(generated / "snapshots.md", snapshot_index(root)),
         _write(generated / "production-readiness.md", readiness_index(root)),
         _write(generated / "builds.md", build_index(root)),
+        _write(generated / "harnesses.md", harness_index(root)),
         _write(generated / "milestones.md", _milestone_summary(root)),
         _write(generated / "coverage.md", _coverage_summary(root)),
         _write_json(generated / "database.json", corpus_database(root)),
@@ -299,6 +303,13 @@ def write_reports(root: Path) -> list[Path]:
             _write(
                 generated / "builds" / f"{build['id']}.md",
                 build_page(build, sources_by_id),
+            )
+        )
+    for harness in harness_records(root):
+        written.append(
+            _write(
+                generated / "harnesses" / f"{harness['id']}.md",
+                harness_page(harness, sources_by_id),
             )
         )
     if (root / "targets").exists():

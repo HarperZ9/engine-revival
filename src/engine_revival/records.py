@@ -23,6 +23,7 @@ RECORD_DIRS = {
     "snapshot": "snapshots",
     "readiness": "readiness",
     "build": "builds",
+    "harness": "harnesses",
 }
 
 

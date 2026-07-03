@@ -36,7 +36,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Readiness | Stage | Build | Score | Next Actions |
 |---|---|---|---:|---|
-| brender-production-readiness | build-harness-candidate | source-inspected | 12 | create out-of-tree build environment manifest; port or emulate the period make rules without proprietary inputs; capture compiler transcript for first public core-library build |
+| brender-production-readiness | build-harness-designed | harness-plan-recorded | 16 | emit portable CMake or make-compatible harness files from the recorded topology; port or emulate the period make rules without proprietary inputs; capture compiler transcript for first public core-library build |
 
 ## Tasks
 
@@ -62,6 +62,12 @@ Open BRender source releases and historical SDK references are now tracked as th
 | Build | Status | Host | Reproduction |
 |---|---|---|---|
 | brender-v132-build-environment | source-inspected | Windows local probe | brender-critical-edition-source-build |
+
+## Harnesses
+
+| Harness | Status | Type | Build |
+|---|---|---|---|
+| brender-v132-portable-core-plan | designed | portable-build-plan | brender-v132-build-environment |
 
 ## Snapshots
 

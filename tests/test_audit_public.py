@@ -63,3 +63,22 @@ def test_metadata_only_restricted_accession_not_held_passes_public_audit(tmp_pat
         "not-applicable",
     )
     assert audit_public_workspace(tmp_path) == []
+
+
+def test_harness_with_unsafe_public_wording_fails_public_audit(tmp_path):
+    (tmp_path / "harnesses").mkdir()
+    (tmp_path / "harnesses" / "unsafe-harness.json").write_text(
+        json.dumps(
+            {
+                "id": "unsafe-harness",
+                "public_notes": "download the sdk before building",
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    messages = audit_public_workspace(tmp_path)
+
+    assert any("unsafe public wording: download the sdk" in message for message in messages)

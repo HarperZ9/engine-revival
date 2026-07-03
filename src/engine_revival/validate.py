@@ -101,6 +101,7 @@ def validate_workspace(root: Path) -> list[str]:
     }
     snapshot_ids = {str(record.payload.get("id")) for record in records_by_kind["snapshot"]}
     build_ids = {str(record.payload.get("id")) for record in records_by_kind["build"]}
+    harness_ids = {str(record.payload.get("id")) for record in records_by_kind["harness"]}
     task_ids = {str(record.payload.get("id")) for record in records_by_kind["task"]}
     task_target_ids = {
         str(record.payload.get("target_id")) for record in records_by_kind["task"]
@@ -114,6 +115,7 @@ def validate_workspace(root: Path) -> list[str]:
     messages.extend(_validate_source_ids_present(records_by_kind["snapshot"], "snapshot"))
     messages.extend(_validate_source_ids_present(records_by_kind["readiness"], "readiness"))
     messages.extend(_validate_source_ids_present(records_by_kind["build"], "build"))
+    messages.extend(_validate_source_ids_present(records_by_kind["harness"], "harness"))
     for kind in ("artifact", "task", "milestone"):
         for record in records_by_kind[kind]:
             target_id = str(record.payload.get("target_id"))
@@ -174,6 +176,9 @@ def validate_workspace(root: Path) -> list[str]:
         for build_id in record.payload.get("build_ids", []):
             if str(build_id) not in build_ids:
                 messages.append(f"{record.path}: unknown build_id: {build_id}")
+        for harness_id in record.payload.get("harness_ids", []):
+            if str(harness_id) not in harness_ids:
+                messages.append(f"{record.path}: unknown harness_id: {harness_id}")
     for record in records_by_kind["build"]:
         target_id = str(record.payload.get("target_id"))
         if target_id not in target_ids:
@@ -184,6 +189,19 @@ def validate_workspace(root: Path) -> list[str]:
         for snapshot_id in record.payload.get("snapshot_ids", []):
             if str(snapshot_id) not in snapshot_ids:
                 messages.append(f"{record.path}: unknown snapshot_id: {snapshot_id}")
+        for source_id in record.payload.get("source_ids", []):
+            if str(source_id) not in source_ids:
+                messages.append(f"{record.path}: unknown source_id: {source_id}")
+    for record in records_by_kind["harness"]:
+        target_id = str(record.payload.get("target_id"))
+        if target_id not in target_ids:
+            messages.append(f"{record.path}: unknown target_id: {target_id}")
+        build_id = str(record.payload.get("build_id"))
+        if build_id not in build_ids:
+            messages.append(f"{record.path}: unknown build_id: {build_id}")
+        reproduction_id = str(record.payload.get("reproduction_id"))
+        if reproduction_id not in reproduction_ids:
+            messages.append(f"{record.path}: unknown reproduction_id: {reproduction_id}")
         for source_id in record.payload.get("source_ids", []):
             if str(source_id) not in source_ids:
                 messages.append(f"{record.path}: unknown source_id: {source_id}")

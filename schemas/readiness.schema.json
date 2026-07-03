@@ -32,6 +32,7 @@
     "reproduction_ids": "array",
     "snapshot_ids": "array",
     "build_ids": "array",
+    "harness_ids": "array",
     "evidence": "array"
   }
 }
