@@ -2,6 +2,26 @@
 
 # Engine Revival Public Index
 
+## Corpus Views
+
+- [Targets](targets.md)
+- [Sources](sources.md)
+- [Artifacts](artifacts.md)
+- [Accessions](accessions.md)
+- [Tasks](tasks.md)
+- [Packets](packets.md)
+- [Reproductions](reproductions.md)
+- [Snapshots](snapshots.md)
+- [Production readiness](production-readiness.md)
+- [Build environments](builds.md)
+- [Harnesses](harnesses.md)
+- [Attempts](attempts.md)
+- [Milestones](milestones.md)
+- [Coverage](coverage.md)
+- [Rights summary](rights-summary.md)
+
+## Targets
+
 | Priority | Target | Rights | Revival lane | Artifacts | Accessions | Tasks | Milestones |
 |---:|---|---|---|---:|---:|---:|---:|
 | 89 | [Argonaut BRender](targets/brender.md) | open | critical-edition | 3 | 3 | 2 | 1 |

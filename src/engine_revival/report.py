@@ -1,10 +1,9 @@
 from __future__ import annotations
 
-from collections import Counter
 import json
 from pathlib import Path
 
-from engine_revival.indexer import TargetSummary, build_target_index, render_target_table
+from engine_revival.indexer import build_target_index, render_target_table
 from engine_revival.records import load_records
 from engine_revival.report_accessions import accession_index, accession_page, accession_records
 from engine_revival.report_artifacts import (
@@ -13,6 +12,7 @@ from engine_revival.report_artifacts import (
     artifact_records,
     artifact_relations,
 )
+from engine_revival.report_attempts import attempt_index, attempt_page, attempt_records
 from engine_revival.report_builds import build_index, build_page, build_records
 from engine_revival.report_corpus import (
     corpus_database,
@@ -28,6 +28,14 @@ from engine_revival.report_corpus import (
 )
 from engine_revival.report_harnesses import harness_index, harness_page, harness_records
 from engine_revival.report_readiness import readiness_index
+from engine_revival.report_summaries import (
+    coverage_summary,
+    milestone_summary,
+    records_if_present,
+    rights_summary,
+    source_summary,
+    task_summary,
+)
 from engine_revival.report_targets import target_dossier
 
 
@@ -46,186 +54,33 @@ def _write_json(path: Path, payload: dict[str, object]) -> Path:
     return path
 
 
-def _rights_summary(targets: list[TargetSummary]) -> str:
-    counts = Counter(target.rights_posture for target in targets)
-    lines = ["# Rights Summary", "", "| Rights posture | Count |", "|---|---:|"]
-    for posture, count in sorted(counts.items()):
-        lines.append(f"| {posture} | {count} |")
-    return "\n".join(lines) + "\n"
-
-
-def _record_directory(root: Path, kind: str) -> Path:
-    if kind == "accession":
-        return root / "accessions"
-    if kind == "readiness":
-        return root / "readiness"
-    return root / f"{kind}s"
-
-
-def _source_usage_counts(root: Path) -> dict[str, int]:
-    counts: dict[str, int] = {}
-    for kind in (
-        "artifact",
-        "accession",
-        "task",
-        "milestone",
-        "reproduction",
-        "snapshot",
-        "readiness",
-        "build",
-        "harness",
-    ):
-        for payload in _records_if_present(root, kind):
-            value = payload.get("source_ids", [])
-            if isinstance(value, list):
-                for source_id in set(str(item) for item in value):
-                    counts[source_id] = counts.get(source_id, 0) + 1
-    return counts
-
-
-def _source_summary(root: Path) -> str:
-    if not (root / "sources").exists():
-        return "# Sources\n\nNo source records yet.\n"
-    usage_counts = _source_usage_counts(root)
+def _public_index(targets) -> str:
     lines = [
-        "# Sources",
+        "# Engine Revival Public Index",
         "",
-        "| Source | Type | Confidence | Uses | Scope | URL |",
-        "|---|---|---|---:|---|---|",
+        "## Corpus Views",
+        "",
+        "- [Targets](targets.md)",
+        "- [Sources](sources.md)",
+        "- [Artifacts](artifacts.md)",
+        "- [Accessions](accessions.md)",
+        "- [Tasks](tasks.md)",
+        "- [Packets](packets.md)",
+        "- [Reproductions](reproductions.md)",
+        "- [Snapshots](snapshots.md)",
+        "- [Production readiness](production-readiness.md)",
+        "- [Build environments](builds.md)",
+        "- [Harnesses](harnesses.md)",
+        "- [Attempts](attempts.md)",
+        "- [Milestones](milestones.md)",
+        "- [Coverage](coverage.md)",
+        "- [Rights summary](rights-summary.md)",
+        "",
+        "## Targets",
+        "",
+        render_target_table(targets),
     ]
-    for record in load_records(root, "source"):
-        payload = record.payload
-        lines.append(
-            f"| {payload['title']} | {payload['source_type']} | {payload['confidence']} | "
-            f"{usage_counts.get(str(payload['id']), 0)} | {payload['claim_scope']} | "
-            f"{payload.get('url', '')} |"
-        )
-    return "\n".join(lines) + "\n"
-
-
-def _task_summary(root: Path) -> str:
-    if not (root / "tasks").exists():
-        return "# Tasks\n\nNo task records yet.\n"
-    lines = [
-        "# Tasks",
-        "",
-        "| Target | Task | Type | Status | Notes |",
-        "|---|---|---|---|---|",
-    ]
-    records = sorted(
-        load_records(root, "task"),
-        key=lambda record: (record.payload["target_id"], record.payload["id"]),
-    )
-    for record in records:
-        payload = record.payload
-        lines.append(
-            f"| {payload['target_id']} | {payload['id']} | {payload['task_type']} | "
-            f"{payload['status']} | {payload['public_notes']} |"
-        )
-    return "\n".join(lines) + "\n"
-
-
-def _milestone_summary(root: Path) -> str:
-    if not (root / "milestones").exists():
-        return "# Milestones\n\nNo milestone records yet.\n"
-    lines = [
-        "# Milestones",
-        "",
-        "| Target | Milestone | Type | Status | Evidence |",
-        "|---|---|---|---|---|",
-    ]
-    records = sorted(
-        load_records(root, "milestone"),
-        key=lambda record: (record.payload["target_id"], record.payload["id"]),
-    )
-    for record in records:
-        payload = record.payload
-        lines.append(
-            f"| {payload['target_id']} | {payload['id']} | {payload['milestone_type']} | "
-            f"{payload['status']} | {payload['evidence']} |"
-        )
-    return "\n".join(lines) + "\n"
-
-
-def _records_if_present(root: Path, kind: str) -> list[dict[str, object]]:
-    directory = _record_directory(root, kind)
-    if not directory.exists():
-        return []
-    return [record.payload for record in load_records(root, kind)]
-
-
-def _coverage_summary(root: Path) -> str:
-    targets = _records_if_present(root, "target")
-    sources = _records_if_present(root, "source")
-    artifacts = _records_if_present(root, "artifact")
-    accessions = _records_if_present(root, "accession")
-    tasks = _records_if_present(root, "task")
-    milestones = _records_if_present(root, "milestone")
-    target_ids = {str(payload["id"]) for payload in targets}
-    source_ids = {str(payload["id"]) for payload in sources}
-    used_source_ids = {
-        source_id for source_id, count in _source_usage_counts(root).items() if count > 0
-    }
-    task_target_ids = {str(payload["target_id"]) for payload in tasks}
-    milestone_target_ids = {str(payload["target_id"]) for payload in milestones}
-    artifact_ids = {str(payload["id"]) for payload in artifacts}
-    accession_artifact_ids = {str(payload["artifact_id"]) for payload in accessions}
-    accession_covered = len(artifact_ids & accession_artifact_ids)
-    task_covered = len(target_ids & task_target_ids)
-    milestone_covered = len(target_ids & milestone_target_ids)
-    source_covered = len(source_ids & used_source_ids)
-    missing_accessions = sorted(artifact_ids - accession_artifact_ids)
-    missing_tasks = sorted(target_ids - task_target_ids)
-    missing_milestones = sorted(target_ids - milestone_target_ids)
-    unused_sources = sorted(source_ids - used_source_ids)
-    lines = [
-        "# Coverage",
-        "",
-        "| Metric | Covered | Total |",
-        "|---|---:|---:|",
-        f"| Artifact accession coverage | {accession_covered} | {len(artifact_ids)} |",
-        f"| Target task coverage | {task_covered} | {len(target_ids)} |",
-        f"| Target milestone coverage | {milestone_covered} | {len(target_ids)} |",
-        f"| Source usage coverage | {source_covered} | {len(source_ids)} |",
-        "",
-        "| Record kind | Count |",
-        "|---|---:|",
-    ]
-    for kind in (
-        "target",
-        "source",
-        "artifact",
-        "accession",
-        "task",
-        "milestone",
-        "reproduction",
-        "snapshot",
-        "readiness",
-        "build",
-        "harness",
-    ):
-        lines.append(f"| {kind} | {len(_records_if_present(root, kind))} |")
-    lines.extend(["", "## Missing Artifact Accessions", ""])
-    if missing_accessions:
-        lines.extend(f"- `{artifact_id}`" for artifact_id in missing_accessions)
-    else:
-        lines.append("No missing artifact accessions.")
-    lines.extend(["", "## Missing Target Tasks", ""])
-    if missing_tasks:
-        lines.extend(f"- `{target_id}`" for target_id in missing_tasks)
-    else:
-        lines.append("No missing target tasks.")
-    lines.extend(["", "## Missing Target Milestones", ""])
-    if missing_milestones:
-        lines.extend(f"- `{target_id}`" for target_id in missing_milestones)
-    else:
-        lines.append("No missing target milestones.")
-    lines.extend(["", "## Unused Sources", ""])
-    if unused_sources:
-        lines.extend(f"- `{source_id}`" for source_id in unused_sources)
-    else:
-        lines.append("No unused sources.")
-    return "\n".join(lines) + "\n"
+    return "\n".join(lines)
 
 
 def write_reports(root: Path) -> list[Path]:
@@ -233,27 +88,28 @@ def write_reports(root: Path) -> list[Path]:
     generated = root / "docs" / "generated"
     sources_by_id = {
         str(payload["id"]): payload
-        for payload in _records_if_present(root, "source")
+        for payload in records_if_present(root, "source")
     }
     accessions_by_artifact, snapshots_by_artifact, reproductions_by_artifact = (
         artifact_relations(root)
     )
     written = [
-        _write(generated / "index.md", "# Engine Revival Public Index\n\n" + render_target_table(targets)),
+        _write(generated / "index.md", _public_index(targets)),
         _write(generated / "targets.md", "# Targets\n\n" + render_target_table(targets)),
-        _write(generated / "rights-summary.md", _rights_summary(targets)),
-        _write(generated / "sources.md", _source_summary(root)),
+        _write(generated / "rights-summary.md", rights_summary(targets)),
+        _write(generated / "sources.md", source_summary(root)),
         _write(generated / "artifacts.md", artifact_index(root)),
         _write(generated / "accessions.md", accession_index(root)),
-        _write(generated / "tasks.md", _task_summary(root)),
+        _write(generated / "tasks.md", task_summary(root)),
         _write(generated / "packets.md", packet_index(root)),
         _write(generated / "reproductions.md", reproduction_index(root)),
         _write(generated / "snapshots.md", snapshot_index(root)),
         _write(generated / "production-readiness.md", readiness_index(root)),
         _write(generated / "builds.md", build_index(root)),
         _write(generated / "harnesses.md", harness_index(root)),
-        _write(generated / "milestones.md", _milestone_summary(root)),
-        _write(generated / "coverage.md", _coverage_summary(root)),
+        _write(generated / "attempts.md", attempt_index(root)),
+        _write(generated / "milestones.md", milestone_summary(root)),
+        _write(generated / "coverage.md", coverage_summary(root)),
         _write_json(generated / "database.json", corpus_database(root)),
     ]
     for packet in packet_tasks(root):
@@ -310,6 +166,13 @@ def write_reports(root: Path) -> list[Path]:
             _write(
                 generated / "harnesses" / f"{harness['id']}.md",
                 harness_page(harness, sources_by_id),
+            )
+        )
+    for attempt in attempt_records(root):
+        written.append(
+            _write(
+                generated / "attempts" / f"{attempt['id']}.md",
+                attempt_page(attempt, sources_by_id),
             )
         )
     if (root / "targets").exists():

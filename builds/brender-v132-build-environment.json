@@ -1,17 +1,17 @@
 {
   "blockers": [
     "period BRender make environment needs reconstruction",
-    "local PATH probe found cmake only; make, nmake, cl, and gcc were not available",
+    "direct PATH probe found cmake only; make, nmake, cl, and gcc were not available through PATH",
     "root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR",
-    "no compiled output or runtime execution has been produced yet"
+    "first x64 MSVC build attempt fails on legacy inline x86 assembly in inc/mscifix.h"
   ],
   "build_system": "period makefiles with BR_* environment imports",
   "host_platform": "Windows local probe",
   "id": "brender-v132-build-environment",
   "next_actions": [
-    "emit a portable harness from the recorded make-rule map",
+    "triage the inc/mscifix.h inline assembly compatibility strategy",
     "port or emulate the subdir make helper without proprietary inputs",
-    "capture a compiler transcript for the first public core-library build attempt"
+    "rerun the public core-library build after the first compiler blocker is isolated"
   ],
   "observed_layout": {
     "c_files": 332,
@@ -63,7 +63,7 @@
       "BR_MAKE_DIR"
     ]
   },
-  "public_notes": "BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata, but no build success is claimed.",
+  "public_notes": "BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake, but no compiled output or runtime execution is claimed.",
   "reproduction_id": "brender-critical-edition-source-build",
   "required_variables": [
     "BR_SOURCE_DIR",
@@ -79,16 +79,17 @@
     "foone-brender-v132",
     "blazingrender-index"
   ],
-  "status": "source-inspected",
+  "status": "configure-complete-build-failing",
   "target_id": "brender",
   "toolchain_probe": {
     "available": [
-      "cmake"
+      "cmake",
+      "Visual Studio 18 2026 CMake generator",
+      "MSVC 19.50.35721.0 via CMake generator"
     ],
     "missing": [
       "make",
       "nmake",
-      "cl",
       "gcc"
     ]
   }

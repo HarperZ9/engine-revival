@@ -110,7 +110,7 @@ v1.3.2 source checkout. It does not vendor BRender source, generated binaries,
 private assets, or restricted SDK material.
 
 ```powershell
-cmake -S . -B build -DBRENDER_SOURCE_DIR=<path-to-public-brender-checkout>
+cmake -S . -B build "-DBRENDER_SOURCE_DIR=<path-to-public-brender-checkout>"
 cmake --build build --target brender_core_float
 ```
 

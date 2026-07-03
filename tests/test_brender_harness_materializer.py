@@ -42,6 +42,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "BRENDER_SOURCE_DIR" in cmake
     readme = (output / "README.md").read_text(encoding="utf-8")
     assert "does not vendor BRender source" in readme
+    assert '"-DBRENDER_SOURCE_DIR=<path-to-public-brender-checkout>"' in readme
     manifest = json.loads((output / "harness-manifest.json").read_text(encoding="utf-8"))
     assert manifest["target_id"] == "brender"
     assert manifest["core_float_dirs"] == list(CORE_DIRS)

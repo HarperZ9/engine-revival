@@ -21,7 +21,8 @@
 | snapshot | 13 |
 | readiness | 22 |
 | build | 1 |
-| harness | 0 |
+| harness | 1 |
+| attempt | 3 |
 
 ## Missing Artifact Accessions
 

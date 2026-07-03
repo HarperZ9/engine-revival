@@ -13,6 +13,7 @@ def test_write_reports_creates_public_index(tmp_path):
         "| Priority | Target | Rights | Revival lane | Artifacts | Accessions | "
         "Tasks | Milestones |"
     ) in text
+    assert "- [Attempts](attempts.md)" in text
     assert (
         "| 89 | [Argonaut BRender](targets/brender.md) | open | "
         "critical-edition | 0 | 0 | 1 | 1 |"
