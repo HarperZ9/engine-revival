@@ -1,7 +1,7 @@
 {
   "blockers": [
     "MSVC x64 build emits pointer-truncation, enum-conversion, const-qualifier, and duplicate-symbol warnings that need portability audit",
-    "runtime smoke tests have not been implemented",
+    "runtime coverage is limited to a vector math smoke; BrBegin framework startup still needs period ASM or portable fallback modeling plus host-image platform definitions",
     "release packaging has not been implemented",
     "drivers and deferred FIXED variants have not been translated"
   ],
@@ -20,9 +20,12 @@
     "2026-07-03 brender_core_float build reached compilation and failed on legacy inline x86 assembly in inc/mscifix.h under x64 MSVC",
     "2026-07-03 materializer added BASED_FIXED=0, INLINE_FIXED=0, STATIC=static, DEBUG=0, PARANOID=0, EVAL=0, and ADD_RCS_ID=0 to mirror period release CFLAGS",
     "2026-07-03 period-defines build attempt moved past mscifix.h and STATIC failures, then failed because module-wide C file globbing included files outside the period OBJS_C lists",
-    "2026-07-03 explicit-source harness configured with Visual Studio 18 2026 and built brender_core_float.lib with MSVC 19.50.35721.0 in an external build tree"
+    "2026-07-03 explicit-source harness configured with Visual Studio 18 2026 and built brender_core_float.lib with MSVC 19.50.35721.0 in an external build tree",
+    "2026-07-03 brender_core_smoke target added to the out-of-tree harness; smoke source exercises BrVector3SetFloat and BrScalarToFloat without framework startup",
+    "2026-07-03 cmake --build completed target brender_core_smoke with exit 0 and produced Debug\\brender_core_smoke.exe",
+    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 1/1 brender_core_smoke test"
   ],
-  "flagship_score": 34,
+  "flagship_score": 36,
   "harness_ids": [
     "brender-v132-portable-core-plan"
   ],
@@ -31,23 +34,24 @@
     "brender-v132-cmake-configure",
     "brender-v132-core-build-attempt",
     "brender-v132-period-defines-build-attempt",
-    "brender-v132-explicit-sources-core-build"
+    "brender-v132-explicit-sources-core-build",
+    "brender-v132-vector-smoke-runtime"
   ],
   "id": "brender-production-readiness",
   "modernization_status": "core-portability-audit-needed",
   "next_actions": [
     "audit and classify the x64 MSVC warning transcript",
-    "add a minimal link or runtime smoke test around the core library",
+    "expand the runtime smoke from vector math to BrBegin framework startup after ASM, portable fallback, and host-image platform boundary modeling",
     "model generated-token inputs such as core/fw/pretok for reproducible source regeneration",
     "translate deferred FIXED variants and driver targets after the core library path is stable"
   ],
   "packaging_status": "not-started",
-  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure and core-library build for the FLOAT path. The produced brender_core_float.lib remains outside this metadata repo. Runtime execution, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
-  "readiness_stage": "portable-core-library-built",
+  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, and vector math runtime smoke through CTest. The produced brender_core_float.lib and brender_core_smoke.exe remain outside this metadata repo. BrBegin framework startup, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
+  "readiness_stage": "portable-core-vector-smoke-passing",
   "reproduction_ids": [
     "brender-critical-edition-source-build"
   ],
-  "runtime_status": "not-started",
+  "runtime_status": "vector-smoke-passing",
   "snapshot_ids": [
     "brender-v132-main-head",
     "brender-3dmm-main-head"
@@ -58,5 +62,5 @@
     "blazingrender-index"
   ],
   "target_id": "brender",
-  "test_status": "not-started"
+  "test_status": "vector-smoke-passing"
 }

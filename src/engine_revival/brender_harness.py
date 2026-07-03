@@ -20,6 +20,7 @@ OUTPUT_FILES = (
     "CMakeLists.txt",
     "README.md",
     "cmake/brender-core-sources.cmake",
+    "smoke/brender-core-smoke.c",
     "harness-manifest.json",
 )
 
@@ -38,6 +39,7 @@ def materialize_brender_core_harness(source_root: Path, output_root: Path) -> li
         "CMakeLists.txt": _cmake_project(),
         "README.md": _readme(),
         "cmake/brender-core-sources.cmake": _source_manifest_cmake(source_lists),
+        "smoke/brender-core-smoke.c": _smoke_source(),
         "harness-manifest.json": _manifest_json(source_lists),
     }
     written: list[Path] = []
@@ -71,6 +73,7 @@ def _cmake_project() -> str:
     compile_definitions = "\n".join(f"  {definition}" for definition in CORE_FLOAT_DEFINES)
     return f"""cmake_minimum_required(VERSION 3.20)
 project(brender_v132_portable_core C)
+enable_testing()
 
 set(BRENDER_SOURCE_DIR "" CACHE PATH "Path to the public BRender v1.3.2 checkout")
 if(NOT BRENDER_SOURCE_DIR)
@@ -80,8 +83,7 @@ get_filename_component(BRENDER_SOURCE_DIR "${{BRENDER_SOURCE_DIR}}" ABSOLUTE)
 
 include(${{CMAKE_CURRENT_LIST_DIR}}/cmake/brender-core-sources.cmake)
 
-add_library(brender_core_float STATIC ${{BRENDER_CORE_FLOAT_SOURCES}})
-target_include_directories(brender_core_float PRIVATE
+set(BRENDER_CORE_INCLUDE_DIRS
   "${{BRENDER_SOURCE_DIR}}/inc"
   "${{BRENDER_SOURCE_DIR}}/core/inc"
   "${{BRENDER_SOURCE_DIR}}/core/fw"
@@ -93,9 +95,20 @@ target_include_directories(brender_core_float PRIVATE
   "${{BRENDER_SOURCE_DIR}}/core/math"
   "${{BRENDER_SOURCE_DIR}}/core/fmt"
 )
+
+add_library(brender_core_float STATIC ${{BRENDER_CORE_FLOAT_SOURCES}})
+target_include_directories(brender_core_float PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
 target_compile_definitions(brender_core_float PRIVATE
 {compile_definitions}
 )
+
+add_executable(brender_core_smoke smoke/brender-core-smoke.c)
+target_include_directories(brender_core_smoke PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_smoke PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_smoke PRIVATE brender_core_float)
+add_test(NAME brender_core_smoke COMMAND brender_core_smoke)
 """
 
 
@@ -194,7 +207,9 @@ private assets, or restricted SDK material.
 
 ```powershell
 cmake -S . -B build "-DBRENDER_SOURCE_DIR=<path-to-public-brender-checkout>"
-cmake --build build --target brender_core_float
+cmake --build build --config Debug --target brender_core_float
+cmake --build build --config Debug --target brender_core_smoke
+ctest --test-dir build -C Debug --output-on-failure
 ```
 
 The first compiler run is expected to produce portability findings. Record the
@@ -209,6 +224,7 @@ def _manifest_json(source_lists: dict[str, list[str]]) -> str:
         "harness_type": "portable-cmake-core-scaffold",
         "core_float_dirs": list(CORE_FLOAT_DIRS),
         "compile_definitions": list(CORE_FLOAT_DEFINES),
+        "smoke_target": "brender_core_smoke",
         "source_lists": source_lists,
         "source_policy": (
             "out-of-tree; explicit period OBJS_C source lists; "
@@ -216,6 +232,28 @@ def _manifest_json(source_lists: dict[str, list[str]]) -> str:
         ),
     }
     return json.dumps(payload, indent=2, sort_keys=True) + "\n"
+
+
+def _smoke_source() -> str:
+    return """#define _NO_VECTOR_MACROS 1
+#include "brender.h"
+
+int main(void)
+{
+    br_vector3 vector;
+
+    BrVector3SetFloat(&vector, 1.0f, 2.0f, 3.0f);
+    if (BrScalarToFloat(vector.v[2]) != 3.0f) {
+        return 1;
+    }
+
+    if (BrScalarToFloat(vector.v[0]) != 1.0f) {
+        return 2;
+    }
+
+    return 0;
+}
+"""
 
 
 def _module_source_var(directory: str) -> str:
