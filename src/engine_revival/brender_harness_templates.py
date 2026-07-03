@@ -98,6 +98,15 @@ target_compile_definitions(brender_core_scene_smoke PRIVATE
 target_link_libraries(brender_core_scene_smoke PRIVATE brender_core_float)
 add_test(NAME brender_core_scene_smoke
   COMMAND brender_core_scene_smoke brender-core-scene-smoke.ppm)
+
+add_executable(brender_core_fill_smoke smoke/brender-core-fill-smoke.c)
+target_include_directories(brender_core_fill_smoke PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_fill_smoke PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_fill_smoke PRIVATE brender_core_float)
+add_test(NAME brender_core_fill_smoke
+  COMMAND brender_core_fill_smoke brender-core-fill-smoke.ppm)
 """
 
 
@@ -115,6 +124,7 @@ cmake --build build --config Debug --target brender_core_smoke
 cmake --build build --config Debug --target brender_core_startup_smoke
 cmake --build build --config Debug --target brender_core_render_smoke
 cmake --build build --config Debug --target brender_core_scene_smoke
+cmake --build build --config Debug --target brender_core_fill_smoke
 ctest --test-dir build -C Debug --output-on-failure
 ```
 
@@ -124,8 +134,11 @@ software driver) and writes a PPM image next to the executable. The
 `brender_core_scene_smoke` target goes further: it starts BRender's v1db scene
 database, builds a world/camera/model actor tree, and uses the engine's own
 `BrActorToScreenMatrix4` to project a registered `br_model` cube before drawing
-its faces. Keep the generated images out of git unless they are intentionally
-reviewed as public release artifacts.
+its faces. The `brender_core_fill_smoke` target goes one step further and
+produces a solid, flat-shaded image: it reuses the scene projection, then
+rasterizes each triangle face with a C scanline fill, shaded from the world-space
+face normal and composited back-to-front. Keep the generated images out of git
+unless they are intentionally reviewed as public release artifacts.
 
 The first compiler run is expected to produce portability findings. Record the
 transcript before advancing production-readiness status.

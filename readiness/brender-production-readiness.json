@@ -1,13 +1,13 @@
 {
   "blockers": [
     "x64 startup is not claimed; pointer-width portability still needs audit and modernization",
-    "rendering coverage reaches the v1db scene-graph transform and a wireframe drawn through the pure-C memory pixelmap path; shaded and textured triangles and depth buffering still need the assembly softrend renderer device",
+    "rendering coverage reaches the v1db scene-graph transform plus a portable flat-shaded scanline fill; BRender's own softrend rasterizer, texture mapping, Gouraud shading, and a depth buffer are not yet covered and need the assembly renderer device",
     "portable core and host fallback stubs need semantic tests before they can be treated as production replacements",
     "image output is a raw PPM dump; the native BrPixelmapSave datafile path and drivers are not built",
     "release packaging has not been implemented",
     "drivers and deferred FIXED variants have not been translated"
   ],
-  "build_status": "portable-core-library-and-scene-smoke-built",
+  "build_status": "portable-core-library-and-solid-shaded-smoke-built",
   "build_ids": [
     "brender-v132-build-environment"
   ],
@@ -37,9 +37,12 @@
     "2026-07-03 verified BrBegin auto-starts the v1db scene database (explicit BrV1dbBegin returned BRE_ALLREADY_ACTIVE) and BrEnd performs the matching teardown",
     "2026-07-03 brender_core_scene_smoke target added; builds a world/camera/model actor tree, prepares a br_model cube with BrModelUpdate under BR_MODF_UPDATEABLE (engine computed bounding radius 1.732), and projects it with BrActorToScreenMatrix4",
     "2026-07-03 brender_core_scene_smoke.exe direct-ran with exit 0, projected all eight cube vertices inside the viewport, drew twelve triangle faces, produced 1382 lit pixels, and wrote a 320x240 PPM",
-    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 4/4 cases including brender_core_scene_smoke"
+    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 4/4 cases including brender_core_scene_smoke",
+    "2026-07-03 brender_core_fill_smoke target added; reuses the scene projection, computes per-face world-space normals via BrMatrix34ApplyP, flat-shades by the absolute normal-light dot, and fills triangles with a portable C scanline rasterizer composited back-to-front",
+    "2026-07-03 brender_core_fill_smoke.exe direct-ran with exit 0, produced a solid flat-shaded cube with 8509 lit pixels across three distinct grey levels, and wrote a 320x240 PPM",
+    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 5/5 cases including brender_core_fill_smoke"
   ],
-  "flagship_score": 55,
+  "flagship_score": 62,
   "harness_ids": [
     "brender-v132-portable-core-plan"
   ],
@@ -52,7 +55,8 @@
     "brender-v132-vector-smoke-runtime",
     "brender-v132-framework-startup-smoke-win32",
     "brender-v132-portable-core-render-smoke",
-    "brender-v132-portable-core-scene-smoke"
+    "brender-v132-portable-core-scene-smoke",
+    "brender-v132-portable-core-fill-smoke"
   ],
   "id": "brender-production-readiness",
   "modernization_status": "core-portability-audit-needed",
@@ -64,12 +68,12 @@
     "translate the deferred FIXED variants after the core library and scene path are stable"
   ],
   "packaging_status": "not-started",
-  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, vector math runtime smoke, BrBegin/BrEnd framework startup smoke, a wireframe render smoke, and a v1db scene-graph render smoke through CTest under a Visual Studio Win32 target. The render smoke projects a hand-built cube through the engine matrix pipeline; the scene smoke goes further and renders a model out of BRender's own scene database, building a world/camera/model actor tree, preparing a br_model with BrModelUpdate, and projecting it with the engine's BrActorToScreenMatrix4 before drawing the faces with BrPixelmapLine. Both draw entirely through the pure-C memory pixelmap dispatch with no assembly software driver, verify pixels by read-back, and dump a 320x240 PPM. The produced brender_core_float.lib, smoke executables, and PPM output remain outside this metadata repo. x64 portability, shaded and textured scene rendering (which needs the softrend renderer device), datafile model loading, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
-  "readiness_stage": "portable-core-scene-graph-render-smoke-passing",
+  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, vector math runtime smoke, BrBegin/BrEnd framework startup smoke, a wireframe render smoke, and a v1db scene-graph render smoke through CTest under a Visual Studio Win32 target. The render smoke projects a hand-built cube through the engine matrix pipeline; the scene smoke renders a model out of BRender's own scene database, building a world/camera/model actor tree, preparing a br_model with BrModelUpdate, and projecting it with the engine's BrActorToScreenMatrix4 before drawing the faces with BrPixelmapLine; the fill smoke turns that scene into a solid, flat-shaded image with a portable C scanline rasterizer, per-face world-space normals for lighting, and back-to-front compositing. All three draw entirely through the pure-C memory pixelmap dispatch with no assembly software driver, self-verify, and dump a 320x240 PPM. The produced brender_core_float.lib, smoke executables, and PPM output remain outside this metadata repo. x64 portability, shaded and textured scene rendering (which needs the softrend renderer device), datafile model loading, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
+  "readiness_stage": "portable-core-solid-shaded-render-smoke-passing",
   "reproduction_ids": [
     "brender-critical-edition-source-build"
   ],
-  "runtime_status": "scene-graph-render-smoke-passing",
+  "runtime_status": "solid-shaded-render-smoke-passing",
   "snapshot_ids": [
     "brender-v132-main-head",
     "brender-3dmm-main-head"
@@ -80,5 +84,5 @@
     "blazingrender-index"
   ],
   "target_id": "brender",
-  "test_status": "scene-graph-render-smoke-passing"
+  "test_status": "solid-shaded-render-smoke-passing"
 }

@@ -10,6 +10,7 @@ from engine_revival.brender_compat_sources import (
 )
 from engine_revival.brender_render_sources import render_smoke_source
 from engine_revival.brender_scene_sources import scene_smoke_source
+from engine_revival.brender_fill_sources import fill_smoke_source
 from engine_revival.brender_host_sources import portable_host_stubs_source
 from engine_revival.brender_harness_templates import cmake_project_source, readme_source
 
@@ -37,6 +38,7 @@ OUTPUT_FILES = (
     "smoke/brender-core-startup-smoke.c",
     "smoke/brender-core-render-smoke.c",
     "smoke/brender-core-scene-smoke.c",
+    "smoke/brender-core-fill-smoke.c",
     "harness-manifest.json",
 )
 
@@ -61,6 +63,7 @@ def materialize_brender_core_harness(source_root: Path, output_root: Path) -> li
         "smoke/brender-core-startup-smoke.c": startup_smoke_source(),
         "smoke/brender-core-render-smoke.c": render_smoke_source(),
         "smoke/brender-core-scene-smoke.c": scene_smoke_source(),
+        "smoke/brender-core-fill-smoke.c": fill_smoke_source(),
         "harness-manifest.json": _manifest_json(source_lists),
     }
     written: list[Path] = []
@@ -196,6 +199,7 @@ def _manifest_json(source_lists: dict[str, list[str]]) -> str:
             "brender_core_startup_smoke",
             "brender_core_render_smoke",
             "brender_core_scene_smoke",
+            "brender_core_fill_smoke",
         ],
         "source_lists": source_lists,
         "source_policy": "out-of-tree; explicit period OBJS_C lists; no vendored BRender source",
