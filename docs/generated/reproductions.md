@@ -5,3 +5,4 @@
 | Target | Reproduction | Type | Status | Notes |
 |---|---|---|---|---|
 | brender | [brender-critical-edition-source-build](reproductions/brender-critical-edition-source-build.md) | source-build | planned | First public reproduction recipe for turning BRender from archived source records into a repeatable critical-edition build track. |
+| lithtech-jupiter | [lithtech-jupiter-user-supplied-build](reproductions/lithtech-jupiter-user-supplied-build.md) | user-supplied-historical-build | planned | Rights-safe reproduction recipe for users who already have a lawful local copy. The public repo records metadata, environment requirements, and build observations only. |

@@ -10,6 +10,7 @@
 | gool-goal | gool-goal-baseline | public-dossier-established | curated | Public dossier has curated GOOL and GOAL source, accession, and task records. |
 | iris-gl-opengl-bridge | iris-gl-opengl-bridge-baseline | public-dossier-established | curated | Public dossier has curated IRIS GL and OpenGL bridge source, accession, and task records. |
 | japan-studio-team-ico | japan-studio-team-ico-baseline | public-dossier-established | curated | Public dossier has curated Japan Studio and Team Ico source, accession, and task records. |
+| lithtech-jupiter | lithtech-jupiter-baseline | public-dossier-established | curated | Public dossier has curated LithTech Jupiter target, source, artifact, accession, task, and reproduction records without holding restricted package contents. |
 | mesa | mesa-baseline | public-dossier-established | curated | Public dossier has curated Mesa source, accession, and task records. |
 | ogre | ogre-baseline | public-dossier-established | curated | Public dossier has curated OGRE source, accession, and task records. |
 | open-inventor | open-inventor-baseline | public-dossier-established | curated | Public dossier has curated Open Inventor source, accession, and task records. |
