@@ -22,9 +22,11 @@ python -m pytest
 
 ## Public Docs
 
+- [Revival mission](docs/REVIVAL-MISSION.md)
 - [Public boundary](docs/PUBLIC-BOUNDARY.md)
 - [Recovery workflow](docs/RECOVERY-WORKFLOW.md)
 - [Generated public index](docs/generated/index.md)
+- [Generated corpus database](docs/generated/database.json)
 - [Generated targets](docs/generated/targets.md)
 - [Generated sources](docs/generated/sources.md)
 - [Generated artifacts](docs/generated/artifacts.md)
