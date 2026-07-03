@@ -1,12 +1,13 @@
 {
   "blockers": [
     "x64 startup is not claimed; pointer-width portability still needs audit and modernization",
-    "runtime coverage is limited to vector math plus BrBegin and BrEnd framework startup; no scene rendering, drivers, or full V1DB behavior is covered",
+    "rendering coverage is limited to a wireframe drawn through the pure-C memory pixelmap path; the assembly softrend rasterizer, shaded and textured triangles, and depth buffering are not covered",
     "portable core and host fallback stubs need semantic tests before they can be treated as production replacements",
+    "image output is a raw PPM dump; the native BrPixelmapSave datafile path and drivers are not built",
     "release packaging has not been implemented",
     "drivers and deferred FIXED variants have not been translated"
   ],
-  "build_status": "portable-core-library-and-startup-smoke-built",
+  "build_status": "portable-core-library-and-render-smoke-built",
   "build_ids": [
     "brender-v132-build-environment"
   ],
@@ -27,9 +28,14 @@
     "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 1/1 brender_core_smoke test",
     "2026-07-03 framework startup target added with portable core and host compatibility stubs for the period ASM boundary",
     "2026-07-03 unguarded x64 startup executable linked but crashed with 0xC0000005, so the materialized harness now requires a 32-bit C target",
-    "2026-07-03 guarded Visual Studio Win32 configure succeeded, brender_core_smoke.exe and brender_core_startup_smoke.exe direct-ran with exit 0, and CTest passed 2/2 cases"
+    "2026-07-03 guarded Visual Studio Win32 configure succeeded, brender_core_smoke.exe and brender_core_startup_smoke.exe direct-ran with exit 0, and CTest passed 2/2 cases",
+    "2026-07-03 verified the pure-C render path: memory pixelmap allocate, fill, line, pixelSet, and pixelQuery in core/pixelmap/pmmem.c dispatch through _MemPixelSet/_MemFill without the assembly softrend driver",
+    "2026-07-03 confirmed the FLOAT build resolves BR_SIN/BR_COS to libc sin/cos in inc/angles.h, so BrMatrix4Perspective links without an engine sine table",
+    "2026-07-03 brender_core_render_smoke target added; allocates a BR_PMT_RGB_888 memory pixelmap, builds a BrMatrix4Perspective projection, transforms a unit cube through BrMatrix4Mul and BrMatrix4ApplyP, and draws twelve edges with BrPixelmapLine",
+    "2026-07-03 brender_core_render_smoke.exe direct-ran with exit 0, self-verified fill, pixel set/get round-trip, red diagonal endpoints, eight cube vertices projecting in front of the camera, and 1051 lit pixels, then wrote a 320x240 PPM (230415 bytes)",
+    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 3/3 cases including brender_core_render_smoke"
   ],
-  "flagship_score": 40,
+  "flagship_score": 48,
   "harness_ids": [
     "brender-v132-portable-core-plan"
   ],
@@ -40,23 +46,24 @@
     "brender-v132-period-defines-build-attempt",
     "brender-v132-explicit-sources-core-build",
     "brender-v132-vector-smoke-runtime",
-    "brender-v132-framework-startup-smoke-win32"
+    "brender-v132-framework-startup-smoke-win32",
+    "brender-v132-portable-core-render-smoke"
   ],
   "id": "brender-production-readiness",
   "modernization_status": "core-portability-audit-needed",
   "next_actions": [
-    "audit and classify the MSVC warning transcript",
     "add semantic tests for portable core and host fallback behavior",
-    "model generated-token inputs such as core/fw/pretok for reproducible source regeneration",
-    "translate deferred FIXED variants and driver targets after the core library path is stable"
+    "extend the render path from wireframe toward filled and shaded primitives after auditing the generic renderer",
+    "audit and classify the MSVC warning transcript",
+    "translate the softrend driver and deferred FIXED variants after the core library and render path are stable"
   ],
   "packaging_status": "not-started",
-  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, vector math runtime smoke, and BrBegin/BrEnd framework startup smoke through CTest under a Visual Studio Win32 target. The produced brender_core_float.lib and smoke executables remain outside this metadata repo. x64 portability, full V1DB startup, scene rendering, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
-  "readiness_stage": "portable-core-framework-startup-smoke-passing",
+  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, vector math runtime smoke, BrBegin/BrEnd framework startup smoke, and a wireframe render smoke through CTest under a Visual Studio Win32 target. The render smoke allocates an RGB_888 memory pixelmap, projects a unit cube through the engine matrix pipeline, rasterizes the twelve edges with BrPixelmapLine, verifies pixels by read-back, and dumps a 320x240 PPM, all through the pure-C memory pixelmap dispatch with no assembly software driver. The produced brender_core_float.lib, smoke executables, and PPM output remain outside this metadata repo. x64 portability, shaded and textured rendering, the native datafile save path, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
+  "readiness_stage": "portable-core-wireframe-render-smoke-passing",
   "reproduction_ids": [
     "brender-critical-edition-source-build"
   ],
-  "runtime_status": "framework-startup-smoke-passing",
+  "runtime_status": "wireframe-render-smoke-passing",
   "snapshot_ids": [
     "brender-v132-main-head",
     "brender-3dmm-main-head"
@@ -67,5 +74,5 @@
     "blazingrender-index"
   ],
   "target_id": "brender",
-  "test_status": "framework-startup-smoke-passing"
+  "test_status": "wireframe-render-smoke-passing"
 }

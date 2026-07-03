@@ -10,4 +10,5 @@
 | brender | [brender-v132-framework-startup-smoke-win32](attempts/brender-v132-framework-startup-smoke-win32.md) | cmake-runtime-smoke | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-harness-materializer-smoke](attempts/brender-v132-harness-materializer-smoke.md) | harness-materialization | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-period-defines-build-attempt](attempts/brender-v132-period-defines-build-attempt.md) | cmake-build | failed | brender-v132-portable-core-plan |
+| brender | [brender-v132-portable-core-render-smoke](attempts/brender-v132-portable-core-render-smoke.md) | cmake-render-smoke | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-vector-smoke-runtime](attempts/brender-v132-vector-smoke-runtime.md) | cmake-runtime-smoke | completed | brender-v132-portable-core-plan |

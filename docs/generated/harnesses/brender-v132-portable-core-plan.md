@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | portable-core-framework-startup-smoke-passing |
+| Status | portable-core-wireframe-render-smoke-passing |
 | Type | portable-build-plan |
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
@@ -28,6 +28,7 @@ This is the first public harness design record for the BRender pilot. It convert
 - core source selection: explicit period makefile OBJS_C lists
 - core smoke target: brender_core_smoke links against brender_core_float and exercises vector math
 - core startup smoke target: brender_core_startup_smoke links against brender_core_float and exercises BrBegin and BrEnd
+- core render smoke target: brender_core_render_smoke links against brender_core_float, allocates an RGB_888 memory pixelmap, projects a unit cube through BrMatrix4Perspective/Mul/ApplyP, draws edges with BrPixelmapLine, verifies by read-back, and dumps a PPM
 - portable compatibility sources: compat/brender-portable-core-stubs.c and compat/brender-portable-host-stubs.c
 - CMake platform guard: require a 32-bit C target such as Visual Studio -A Win32
 - core deferred variants: v1db FIXED, math FIXED, fmt FIXED
@@ -42,7 +43,7 @@ This is the first public harness design record for the BRender pilot. It convert
 - verify the materialized scaffold references BRENDER_SOURCE_DIR instead of copying source
 - translate the active core FLOAT path before deferred FIXED variants
 - configure the harness with a 32-bit C target such as Visual Studio -A Win32
-- build brender_core_smoke and brender_core_startup_smoke and run CTest with the selected multi-config build configuration
+- build brender_core_smoke, brender_core_startup_smoke, and brender_core_render_smoke and run CTest with the selected multi-config build configuration
 - translate driver targets after the core library path is captured
 - record compiler output as transcript evidence before advancing readiness
 
@@ -53,6 +54,7 @@ This is the first public harness design record for the BRender pilot. It convert
 - core library build artifact
 - vector smoke executable and CTest transcript
 - framework startup smoke executable and CTest transcript
+- wireframe render smoke executable, PPM image, and CTest transcript
 - driver variant build matrix
 
 ## Blockers
