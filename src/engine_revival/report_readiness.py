@@ -30,9 +30,9 @@ def readiness_index(root: Path) -> str:
         "",
         (
             "| Target | Stage | Build | Runtime | Tests | Package | "
-            "Modernization | Score | Next Actions |"
+            "Modernization | Score | Evidence | Next Actions |"
         ),
-        "|---|---|---|---|---|---|---|---:|---|",
+        "|---|---|---|---|---|---|---|---:|---|---|",
     ]
     for record in records:
         lines.append(
@@ -40,10 +40,10 @@ def readiness_index(root: Path) -> str:
             f"{record['build_status']} | {record['runtime_status']} | "
             f"{record['test_status']} | {record['packaging_status']} | "
             f"{record['modernization_status']} | {record['flagship_score']} | "
-            f"{_list_cell(record.get('next_actions'))} |"
+            f"{_evidence_cell(record)} | {_list_cell(record.get('next_actions'))} |"
         )
     if not records:
-        lines.append("| none | none | none | none | none | none | none | 0 | none |")
+        lines.append("| none | none | none | none | none | none | none | 0 | none | none |")
     return "\n".join(lines) + "\n"
 
 
@@ -67,6 +67,17 @@ def readiness_section(records: list[dict[str, object]]) -> list[str]:
             f"{_list_cell(record.get('next_actions'))} |"
         )
     return lines
+
+
+def _evidence_cell(record: dict[str, object]) -> str:
+    evidence: list[str] = []
+    for key in ("reproduction_ids", "snapshot_ids"):
+        value = record.get(key)
+        if isinstance(value, list):
+            evidence.extend(str(item) for item in value)
+    if not evidence:
+        return "none recorded"
+    return "; ".join(evidence)
 
 
 def _list_cell(value: object) -> str:

@@ -66,6 +66,55 @@ def _write_readiness(root, **overrides):
     _write_json(root / "readiness" / f"{payload['id']}.json", payload)
 
 
+def _write_evidence_records(root):
+    _write_json(root / "artifacts" / "brender-v132-source.json", {
+        "id": "brender-v132-source",
+        "target_id": "brender",
+        "artifact_type": "source-release",
+        "title": "BRender source",
+        "origin": "public repository",
+        "redistribution_status": "open",
+        "access_level": "public",
+        "evidence_quality": "public-source",
+        "source_ids": ["brender-source"],
+    })
+    _write_json(root / "accessions" / "brender-v132-source-planned.json", {
+        "id": "brender-v132-source-planned",
+        "artifact_id": "brender-v132-source",
+        "package_type": "source-snapshot",
+        "capture_status": "planned",
+        "storage_class": "external-url",
+        "fixity_status": "not-started",
+        "rights_review": "open-license",
+        "public_notes": "Planned public source accession.",
+        "source_ids": ["brender-source"],
+    })
+    _write_json(root / "snapshots" / "brender-v132-main-head.json", {
+        "id": "brender-v132-main-head",
+        "artifact_id": "brender-v132-source",
+        "snapshot_type": "git-remote-head",
+        "source_url": "https://github.com/example/brender.git",
+        "ref": "refs/heads/main",
+        "commit": "d88d0ed41122664b9781015b517db64353e16f19",
+        "retrieved_at": "2026-07-03",
+        "capture_command": "git ls-remote --symref https://github.com/example/brender.git HEAD",
+        "public_notes": "Exact upstream source snapshot.",
+        "source_ids": ["brender-source"],
+    })
+    _write_json(root / "reproductions" / "brender-critical-edition-source-build.json", {
+        "id": "brender-critical-edition-source-build",
+        "target_id": "brender",
+        "reproduction_type": "source-build",
+        "status": "planned",
+        "environment": ["public source checkout"],
+        "steps": ["inspect source tree"],
+        "expected_outputs": ["build harness notes"],
+        "artifact_ids": ["brender-v132-source"],
+        "public_notes": "Build BRender from public source.",
+        "source_ids": ["brender-source"],
+    })
+
+
 def test_valid_readiness_record_passes_validation(tmp_path):
     _write_base_workspace(tmp_path)
     _write_readiness(tmp_path)
@@ -89,3 +138,29 @@ def test_readiness_must_include_source_ids(tmp_path):
     messages = validate_workspace(tmp_path)
 
     assert any("readiness must include source_ids" in message for message in messages)
+
+
+def test_readiness_evidence_links_must_reference_known_records(tmp_path):
+    _write_base_workspace(tmp_path)
+    _write_readiness(
+        tmp_path,
+        reproduction_ids=["missing-reproduction"],
+        snapshot_ids=["missing-snapshot"],
+    )
+
+    messages = validate_workspace(tmp_path)
+
+    assert any("unknown reproduction_id: missing-reproduction" in message for message in messages)
+    assert any("unknown snapshot_id: missing-snapshot" in message for message in messages)
+
+
+def test_readiness_with_known_evidence_links_passes_validation(tmp_path):
+    _write_base_workspace(tmp_path)
+    _write_evidence_records(tmp_path)
+    _write_readiness(
+        tmp_path,
+        reproduction_ids=["brender-critical-edition-source-build"],
+        snapshot_ids=["brender-v132-main-head"],
+    )
+
+    assert validate_workspace(tmp_path) == []

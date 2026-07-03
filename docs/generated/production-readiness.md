@@ -2,27 +2,27 @@
 
 # Production Readiness
 
-| Target | Stage | Build | Runtime | Tests | Package | Modernization | Score | Next Actions |
-|---|---|---|---|---|---|---|---:|---|
-| aqsis | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| brender | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| crystal-space | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| gool-goal | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| iris-gl-opengl-bridge | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| japan-studio-team-ico | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| mesa | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| ogre | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| open-inventor | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| opengl-performer | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| phigs | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| pixie | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| ps1-programmer-tool | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| ps2-prodg-eb-linux | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| psygnosis-studio-liverpool | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| quesa | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| quickdraw-3d | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| reality-lab | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| renderman-interface | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| renderware-ps2 | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| softimage-alias-bridge | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
-| tri-ace-ps2-renderer | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | create repeatable build harness |
+| Target | Stage | Build | Runtime | Tests | Package | Modernization | Score | Evidence | Next Actions |
+|---|---|---|---|---|---|---|---:|---|---|
+| brender | build-harness-candidate | source-inspected | not-started | not-started | not-started | toolchain-reconstruction-needed | 12 | brender-critical-edition-source-build; brender-v132-main-head; brender-3dmm-main-head | create out-of-tree build environment manifest; port or emulate the period make rules without proprietary inputs; capture compiler transcript for first public core-library build |
+| aqsis | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| crystal-space | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| gool-goal | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| iris-gl-opengl-bridge | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| japan-studio-team-ico | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| mesa | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| ogre | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| open-inventor | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| opengl-performer | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| phigs | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| pixie | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| ps1-programmer-tool | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| ps2-prodg-eb-linux | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| psygnosis-studio-liverpool | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| quesa | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| quickdraw-3d | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| reality-lab | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| renderman-interface | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| renderware-ps2 | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| softimage-alias-bridge | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
+| tri-ace-ps2-renderer | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |

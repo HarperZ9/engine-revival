@@ -28,6 +28,9 @@
     "blockers": "array",
     "next_actions": "array",
     "public_notes": "string",
-    "source_ids": "array"
+    "source_ids": "array",
+    "reproduction_ids": "array",
+    "snapshot_ids": "array",
+    "evidence": "array"
   }
 }
