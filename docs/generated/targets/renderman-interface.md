@@ -30,6 +30,12 @@ Public records now anchor the RenderMan Interface to a public v3.1 specification
 | renderman-interface-ri-official-docs-public-reference | renderman-interface-ri-official-docs | metadata-only | external-url | public-reference-only |
 | renderman-interface-spec-31-public-pdf-public-reference | renderman-interface-spec-31-public-pdf | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| renderman-interface-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -46,5 +52,6 @@ Public records now anchor the RenderMan Interface to a public v3.1 specification
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | The RenderMan Interface Specification v3.1 | specification-pdf | high | RenderMan Interface Specification v3.1 public reference copy and RIB conventions | https://groups.csail.mit.edu/graphics/classes/6.838/S97/rispec31_4.pdf |
 | RenderMan Interface (Ri) | official-documentation | high | Official public RenderMan Interface documentation for Ri API concepts | https://rmanwiki-26.pixar.com/space/REN26/19662055/RenderMan%2BInterface%2B%28Ri%29 |

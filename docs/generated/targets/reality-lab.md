@@ -34,6 +34,12 @@ Public records now track Reality Lab's RenderMorphics lineage, Microsoft's acqui
 | reality-lab-release-2-public-report-public-reference | reality-lab-release-2-public-report | metadata-only | external-url | public-reference-only |
 | reality-lab-rendermorphics-acquisition-record-public-reference | reality-lab-rendermorphics-acquisition-record | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| reality-lab-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -51,6 +57,7 @@ Public records now track Reality Lab's RenderMorphics lineage, Microsoft's acqui
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
 | JUL95: Of Interest - Reality Lab Windows plan | trade-press-archive | moderate | Reality Lab planned inclusion in Windows and hardware acceleration context | https://jacobfilipp.com/DrDobbs/articles/DDJ/1995/9507/9507q/9507q.htm |
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | Microsoft acquisition history - RenderMorphics, Ltd. | corporate-acquisition-record | high | Microsoft acquisition date for RenderMorphics Ltd. | https://www.microsoft.com/en-us/investor/acquisition-history |
 | Microsoft ships Direct3D | press-release | high | Direct3D final release in the DirectX 2 SDK and Windows 95 availability | https://news.microsoft.com/source/1996/06/13/microsoft-ships-direct3d/ |
 | DirectX SDK Legacy Samples | repository | high | Legacy DirectX SDK sample archive, educational/historical reference posture, and MIT license metadata | https://github.com/microsoft/DirectX-SDK-Samples |

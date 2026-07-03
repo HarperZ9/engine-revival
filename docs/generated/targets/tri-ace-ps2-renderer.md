@@ -30,6 +30,12 @@ Public records now track tri-Ace's official PS2 SH/HDR presentation metadata and
 | tri-ace-pbr-implementation-course-notes-public-reference | tri-ace-pbr-implementation-course-notes | metadata-only | external-url | public-reference-only |
 | tri-ace-ps2-sh-lighting-hdr-gdc2005-public-reference | tri-ace-ps2-sh-lighting-hdr-gdc2005 | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| tri-ace-ps2-renderer-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -47,5 +53,6 @@ Public records now track tri-Ace's official PS2 SH/HDR presentation metadata and
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | Practical Implementation at tri-Ace course notes | course-notes | high | tri-Ace physically based shading implementation notes and rendering lineage | https://research.tri-ace.com/Data/course_note_practical_implementation_at_triace.pdf |
 | tri-Ace Research and Development publications index | official-publication-index | high | tri-Ace rendering research publication index and PS2 SH/HDR presentation metadata | https://research.tri-ace.com/ |

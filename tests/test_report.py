@@ -62,7 +62,7 @@ def test_write_reports_creates_source_catalog(tmp_path):
     text = sources.read_text(encoding="utf-8")
     assert "| Source | Type | Confidence | Uses | Scope | URL |" in text
     assert "Initial engine revival research reports" in text
-    assert "| Initial engine revival research reports | local-research-summary | moderate | 23 |" in text
+    assert "| Initial engine revival research reports | local-research-summary | moderate | 45 |" in text
     assert "initial target selection" in text
 
 

@@ -30,6 +30,12 @@ Public records now track QuickDraw 3D 1.5.4 documentation, 3DMF/RAVE references,
 | quickdraw-3d-documentation-qa-public-reference | quickdraw-3d-documentation-qa | metadata-only | external-url | public-reference-only |
 | quickdraw-3d-manual-154-public-pdf-public-reference | quickdraw-3d-manual-154-public-pdf | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| quickdraw-3d-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -48,3 +54,4 @@ Public records now track QuickDraw 3D 1.5.4 documentation, 3DMF/RAVE references,
 |---|---|---|---|---|
 | QuickDraw 3D Documentation | technical-qa | moderate | QuickDraw 3D documentation set and developer CD references | https://leopard-adc.pepas.com/qa/qd3d/qd3d28.html |
 | 3D Graphics Programming with QuickDraw 3D 1.5.4 | manual-pdf | high | QuickDraw 3D 1.5.4 API manual, service list, 3DMF, RAVE, and rendering modes | https://worldcolleges.info/sites/default/files/3D_Graphics_With_QuickDraw_3D.pdf |
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |

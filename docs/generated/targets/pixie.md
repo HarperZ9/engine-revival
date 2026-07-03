@@ -30,6 +30,12 @@ Public records now track Pixie's SourceForge project registry, feature metadata,
 | pixie-renderer-source-mirror-planned | pixie-renderer-source-mirror | planned | external-url | open-license |
 | pixie-sourceforge-project-record-public-reference | pixie-sourceforge-project-record | metadata-only | external-url | open-license |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| pixie-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -58,6 +64,7 @@ Public records now track Pixie's SourceForge project registry, feature metadata,
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | Pixie source mirror | source-mirror | moderate | Pixie public source mirror and LGPL license metadata | https://github.com/daliborgaric/pixie |
 | Pixie SourceForge project page | project-registry | high | Pixie project metadata, feature summary, activity, operating systems, and LGPL license metadata | https://sourceforge.net/projects/pixie/ |
 | Pixie Renderer summary | project-summary | moderate | Pixie feature and historical summary | https://www.renderpixie.com/pixie_renderer.html |

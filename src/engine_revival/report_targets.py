@@ -2,13 +2,12 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from engine_revival.records import load_records
+from engine_revival.records import RECORD_DIRS, load_records
+from engine_revival.report_readiness import readiness_section
 
 
 def _records_if_present(root: Path, kind: str) -> list[dict[str, object]]:
-    directory = root / f"{kind}s"
-    if kind == "accession":
-        directory = root / "accessions"
+    directory = root / RECORD_DIRS[kind]
     if not directory.exists():
         return []
     return [record.payload for record in load_records(root, kind)]
@@ -191,14 +190,16 @@ def target_dossier(root: Path, target: dict[str, object]) -> str:
     tasks = _target_records(root, "task", target_id)
     milestones = _target_records(root, "milestone", target_id)
     reproductions = _target_records(root, "reproduction", target_id)
+    readiness = _target_records(root, "readiness", target_id)
     snapshots = _target_snapshots(root, artifacts)
     sources = _target_sources(
         root,
-        artifacts + accessions + tasks + milestones + reproductions + snapshots,
+        artifacts + accessions + tasks + milestones + reproductions + readiness + snapshots,
     )
     lines = _target_header(target, target_id)
     lines.extend(_target_artifact_section(artifacts))
     lines.extend(_target_accession_section(accessions))
+    lines.extend(readiness_section(readiness))
     lines.extend(_target_task_section(tasks))
     lines.extend(_target_milestone_section(milestones))
     lines.extend(_target_reproduction_section(reproductions))

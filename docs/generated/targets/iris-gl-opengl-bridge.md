@@ -30,6 +30,12 @@ Public lineage and standards-registry record for OpenGL's transition from SGI IR
 | iris-gl-opengl-history-record-public-reference | iris-gl-opengl-history-record | metadata-only | external-url | public-reference-only |
 | opengl-registry-spec-anchor-public-reference | opengl-registry-spec-anchor | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| iris-gl-opengl-bridge-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -46,6 +52,7 @@ Public lineage and standards-registry record for OpenGL's transition from SGI IR
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | History of OpenGL | standards-wiki | moderate | OpenGL creation as an open alternative to proprietary IRIS GL and the early OpenGL 1.0 lineage | https://wikis.khronos.org/opengl/History_of_OpenGL |
 | Khronos OpenGL Registry | standards-registry | high | Official OpenGL Registry contents including API, shading-language, extension, header, GLX, WGL, and GLU specifications | https://registry.khronos.org/OpenGL/index_gl.php |
 | KhronosGroup/OpenGL-Registry | source-repository | high | OpenGL-family API and extension registry repository, XML API registry, headers, and related registry tools | https://github.com/KhronosGroup/OpenGL-Registry |

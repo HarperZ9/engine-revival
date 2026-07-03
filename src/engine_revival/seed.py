@@ -75,6 +75,29 @@ def _milestone_payload(target: dict[str, object]) -> dict[str, object]:
     }
 
 
+def _readiness_payload(target: dict[str, object]) -> dict[str, object]:
+    target_id = str(target["id"])
+    return {
+        "id": f"{target_id}-production-readiness",
+        "target_id": target_id,
+        "readiness_stage": "baseline-assessment",
+        "build_status": "not-started",
+        "runtime_status": "not-started",
+        "test_status": "not-started",
+        "packaging_status": "not-started",
+        "modernization_status": "not-started",
+        "flagship_score": 0,
+        "blockers": ["production rebuild path not yet verified"],
+        "next_actions": ["create repeatable build harness"],
+        "public_notes": (
+            f"Baseline production-readiness record for {target['name']}. "
+            "No flagship-quality claim is made until build, runtime, tests, "
+            "packaging, and modernization evidence are recorded."
+        ),
+        "source_ids": ["initial-research-reports"],
+    }
+
+
 def seed_workspace(root: Path) -> list[Path]:
     written: list[Path] = []
     source = {
@@ -91,10 +114,13 @@ def seed_workspace(root: Path) -> list[Path]:
         target_path = root / "targets" / f"{target['id']}.json"
         task_path = root / "tasks" / f"{target['id']}-triage.json"
         milestone_path = root / "milestones" / f"{target['id']}-baseline.json"
+        readiness_path = root / "readiness" / f"{target['id']}-production-readiness.json"
         if _write_json(target_path, _target_payload(target)):
             written.append(target_path)
         if _write_json(task_path, _task_payload(target)):
             written.append(task_path)
         if _write_json(milestone_path, _milestone_payload(target)):
             written.append(milestone_path)
+        if _write_json(readiness_path, _readiness_payload(target)):
+            written.append(readiness_path)
     return written

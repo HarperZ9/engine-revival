@@ -21,6 +21,7 @@ RECORD_DIRS = {
     "accession": "accessions",
     "reproduction": "reproductions",
     "snapshot": "snapshots",
+    "readiness": "readiness",
 }
 
 

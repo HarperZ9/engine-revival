@@ -32,6 +32,12 @@ Public records now track OpenGL Performer manuals and SGI feature/interoperabili
 | opengl-performer-product-brochure-public-reference | opengl-performer-product-brochure | metadata-only | external-url | public-reference-only |
 | opengl-performer-programmers-guide-32-public-reference | opengl-performer-programmers-guide-32 | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| opengl-performer-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -48,6 +54,7 @@ Public records now track OpenGL Performer manuals and SGI feature/interoperabili
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | OpenGL Performer product brochure | product-brochure-pdf | moderate | OpenGL Performer feature and interoperability brochure metadata | https://ftp.jurassic.nl/pub/irix/press/3381.pdf |
 | OpenGL Performer Getting Started Guide 3.0 | manual-pdf | high | OpenGL Performer 3.0 Getting Started Guide public reference metadata and sample-code locations | https://www.infania.net/misc1/sgi_techpubs/techpubs/007-3560-004.pdf |
 | OpenGL Performer Programmer's Guide 3.2 | manual-pdf | high | OpenGL Performer 3.2 Programmer's Guide public reference metadata and restriction notice | https://irix7.com/techpubs/007-1680-100.pdf |

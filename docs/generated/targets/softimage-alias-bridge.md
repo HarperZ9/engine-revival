@@ -34,6 +34,12 @@ Public DCC pipeline lineage for Softimage and Alias through Microsoft, Avid, Aut
 | softimage-last-release-transition-faq-public-reference | softimage-last-release-transition-faq | metadata-only | external-url | public-reference-only |
 | softimage-microsoft-acquisition-record-public-reference | softimage-microsoft-acquisition-record | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| softimage-alias-bridge-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -53,5 +59,6 @@ Public DCC pipeline lineage for Softimage and Alias through Microsoft, Avid, Aut
 | Autodesk Completes Acquisition of Alias | press-release | high | Autodesk completion of Alias acquisition, Alias product families, Maya/MotionBuilder/FBX context, and acquisition value | https://investors.autodesk.com/news-releases/news-release-details/autodesk-completes-acquisition-alias |
 | Autodesk Completes Acquisition of Softimage | press-release | high | Autodesk completion of Softimage acquisition, Softimage product portfolio, and planned product integration | https://investors.autodesk.com/news-releases/news-release-details/autodesk-completes-acquisition-softimage |
 | Autodesk Softimage Last Release Announcement - Update May 20th, 2014 | vendor-faq-pdf | high | Softimage 2015 last-release notice, migration options, and support/hot-fix period through April 30, 2016 | https://damassets.autodesk.net/content/dam/autodesk/www/products/autodesk-softimage/docs/pdf/Softimage%20Last%20Release%20Announcement_FAQ_UPDATE_MAY_20.pdf |
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | The History of Microsoft - 1994 | corporate-history | high | Microsoft 1994 timeline entry for the definitive agreement to acquire Softimage of Montreal | https://learn.microsoft.com/en-us/shows/history/history-of-microsoft-1994 |
 | Microsoft Delivers High-End 3-D Animation Software for Microsoft Windows NT | press-release | high | Softimage 3D for Windows NT release context, production uses, and Microsoft's statement that Softimage merged with Microsoft in 1994 | https://news.microsoft.com/source/1996/01/16/microsoft-delivers-high-end-3-d-animation-software-for-microsoft-windows-nt/ |

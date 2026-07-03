@@ -30,6 +30,12 @@ Public records now track the Aqsis RenderMan-compatible renderer source reposito
 | aqsis-renderer-source-planned | aqsis-renderer-source | planned | external-url | open-license |
 | aqsis-renderer-tooling-metadata-public-reference | aqsis-renderer-tooling-metadata | metadata-only | external-url | open-license |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| aqsis-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -59,3 +65,4 @@ Public records now track the Aqsis RenderMan-compatible renderer source reposito
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
 | Aqsis source repository | repository | high | Aqsis public source repository, RenderMan compatibility claim, tool list, and license metadata | https://github.com/aqsis/aqsis |
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |

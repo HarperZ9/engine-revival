@@ -176,7 +176,15 @@ def test_studio_course_accession_batch_is_recorded():
 def test_live_sources_are_cited_by_archive_records():
     source_ids = {record["id"] for record in _json_records("sources")}
     used_source_ids = set()
-    for directory in ("artifacts", "accessions", "tasks", "milestones", "reproductions", "snapshots"):
+    for directory in (
+        "artifacts",
+        "accessions",
+        "tasks",
+        "milestones",
+        "reproductions",
+        "snapshots",
+        "readiness",
+    ):
         for record in _json_records(directory):
             used_source_ids.update(str(source_id) for source_id in record.get("source_ids", []))
     assert sorted(source_ids - used_source_ids) == []

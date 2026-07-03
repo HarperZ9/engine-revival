@@ -32,6 +32,12 @@ Public standards and validation-history record for PHIGS, with OpenPHIGS reimple
 | phigs-nist-validation-tests-public-reference | phigs-nist-validation-tests | metadata-only | external-url | public-reference-only |
 | phigs-standard-public-metadata-public-reference | phigs-standard-public-metadata | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| phigs-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -62,6 +68,7 @@ Public standards and validation-history record for PHIGS, with OpenPHIGS reimple
 |---|---|---|---|---|
 | CERN/OpenPHIGS | source-repository | high | OpenPHIGS repository with OpenGL backend and data-preservation extensions | https://github.com/CERN/OpenPHIGS |
 | fbradasc/OpenPHIGS LICENSE | license-file | high | License notices for the public OpenPHIGS source tree based on X Consortium and Sun Microsystems permissions | https://raw.githubusercontent.com/fbradasc/OpenPHIGS/main/LICENSE |
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | ISO/IEC 9592-3:1989 | standards-catalog | high | ISO public metadata for ISO/IEC 9592-3:1989 PHIGS clear-text archive encoding and its withdrawn status | https://www.iso.org/standard/17363.html |
 | User's Guide for the PHIGS Validation Tests (Version 2.1) | government-publication | high | NIST publication metadata for the User's Guide for the PHIGS Validation Tests Version 2.1 | https://www.nist.gov/publications/users-guide-phigs-validation-tests-version-21 |
 | Open PHIGS | project-registry | moderate | Open PHIGS project metadata, C library scope, PHIGS/OpenGL relationship, and ISO 9592/9593 references | https://sourceforge.net/projects/phigs/ |

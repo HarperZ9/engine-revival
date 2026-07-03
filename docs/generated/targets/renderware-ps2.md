@@ -30,6 +30,12 @@ Public records now track PS2 Gold release-note evidence and SDK archive metadata
 | renderware-ps2-gold-release-notes-public-reference | renderware-ps2-gold-release-notes | metadata-only | external-url | public-reference-only |
 | renderware-sdk-310-ps2-archive-item-metadata-only | renderware-sdk-310-ps2-archive-item | metadata-only | not-held | do-not-redistribute |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| renderware-ps2-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -47,6 +53,7 @@ Public records now track PS2 Gold release-note evidence and SDK archive metadata
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | RenderWare3 (PS2 Gold - 1.3 update) Release Notes | release-notes-ocr | high | RenderWare3 PS2 Gold 1.3 update release notes content and rights warning | https://archive.org/stream/render-ware-3-ps-2-gold-1.3-update-release-notes/RenderWare3%20%28PS2%20Gold%20-%201.3%20update%29%20Release%20Notes_djvu.txt |
 | Renderware SDK 3.10 PS2 archive item | archive-item | moderate | RenderWare SDK 3.10 PS2 public archive item metadata | https://archive.org/details/rw310-ps2 |
 | Guide to the Gene Buckle Papers, 1981-2000 | finding-aid | high | Institutional finding aid listing Renderware 3 PS2 Gold release notes | https://www.museumofplay.org/app/uploads/2025/01/Guide-to-the-Gene-Buckle-papers.pdf |

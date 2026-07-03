@@ -2,13 +2,11 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from engine_revival.records import load_records
+from engine_revival.records import RECORD_DIRS, load_records
 
 
 def _records_if_present(root: Path, kind: str) -> list[dict[str, object]]:
-    directory = root / f"{kind}s"
-    if kind == "accession":
-        directory = root / "accessions"
+    directory = root / RECORD_DIRS[kind]
     if not directory.exists():
         return []
     return [record.payload for record in load_records(root, kind)]
@@ -271,6 +269,7 @@ def corpus_database(root: Path) -> dict[str, object]:
     milestones = _records_if_present(root, "milestone")
     reproductions = reproduction_records(root)
     snapshots = snapshot_records(root)
+    readiness = _records_if_present(root, "readiness")
     return {
         "schema": "engine-revival-corpus-v1",
         "counts": {
@@ -282,6 +281,7 @@ def corpus_database(root: Path) -> dict[str, object]:
             "milestones": len(milestones),
             "reproductions": len(reproductions),
             "snapshots": len(snapshots),
+            "readiness": len(readiness),
         },
         "targets": targets,
         "sources": sources,
@@ -291,6 +291,7 @@ def corpus_database(root: Path) -> dict[str, object]:
         "milestones": milestones,
         "reproductions": reproductions,
         "snapshots": snapshots,
+        "readiness": readiness,
         "targets_by_id": _records_by_id(targets),
         "sources_by_id": _records_by_id(sources),
         "artifacts_by_target": _records_by_target(artifacts),
@@ -299,4 +300,5 @@ def corpus_database(root: Path) -> dict[str, object]:
         "milestones_by_target": _records_by_target(milestones),
         "reproductions_by_target": _records_by_target(reproductions),
         "snapshots_by_artifact": _records_by_artifact(snapshots),
+        "readiness_by_target": _records_by_target(readiness),
     }

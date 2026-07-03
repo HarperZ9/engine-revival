@@ -25,6 +25,7 @@ from engine_revival.report_corpus import (
     snapshot_page,
     snapshot_records,
 )
+from engine_revival.report_readiness import readiness_index
 from engine_revival.report_targets import target_dossier
 
 
@@ -51,9 +52,25 @@ def _rights_summary(targets: list[TargetSummary]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def _record_directory(root: Path, kind: str) -> Path:
+    if kind == "accession":
+        return root / "accessions"
+    if kind == "readiness":
+        return root / "readiness"
+    return root / f"{kind}s"
+
+
 def _source_usage_counts(root: Path) -> dict[str, int]:
     counts: dict[str, int] = {}
-    for kind in ("artifact", "accession", "task", "milestone", "reproduction", "snapshot"):
+    for kind in (
+        "artifact",
+        "accession",
+        "task",
+        "milestone",
+        "reproduction",
+        "snapshot",
+        "readiness",
+    ):
         for payload in _records_if_present(root, kind):
             value = payload.get("source_ids", [])
             if isinstance(value, list):
@@ -127,9 +144,7 @@ def _milestone_summary(root: Path) -> str:
 
 
 def _records_if_present(root: Path, kind: str) -> list[dict[str, object]]:
-    directory = root / f"{kind}s"
-    if kind == "accession":
-        directory = root / "accessions"
+    directory = _record_directory(root, kind)
     if not directory.exists():
         return []
     return [record.payload for record in load_records(root, kind)]
@@ -181,6 +196,7 @@ def _coverage_summary(root: Path) -> str:
         "milestone",
         "reproduction",
         "snapshot",
+        "readiness",
     ):
         lines.append(f"| {kind} | {len(_records_if_present(root, kind))} |")
     lines.extend(["", "## Missing Artifact Accessions", ""])
@@ -227,6 +243,7 @@ def write_reports(root: Path) -> list[Path]:
         _write(generated / "packets.md", packet_index(root)),
         _write(generated / "reproductions.md", reproduction_index(root)),
         _write(generated / "snapshots.md", snapshot_index(root)),
+        _write(generated / "production-readiness.md", readiness_index(root)),
         _write(generated / "milestones.md", _milestone_summary(root)),
         _write(generated / "coverage.md", _coverage_summary(root)),
         _write_json(generated / "database.json", corpus_database(root)),
