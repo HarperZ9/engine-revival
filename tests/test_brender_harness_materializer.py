@@ -38,7 +38,11 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     cmake = (output / "CMakeLists.txt").read_text(encoding="utf-8")
     assert "project(brender_v132_portable_core C)" in cmake
     assert "add_library(brender_core_float STATIC" in cmake
-    assert "target_compile_definitions(brender_core_float PRIVATE BASED_FLOAT=1 __386__=1)" in cmake
+    assert (
+        "target_compile_definitions(brender_core_float PRIVATE "
+        "BASED_FLOAT=1 BASED_FIXED=0 INLINE_FIXED=0 __386__=1 "
+        "DEBUG=0 PARANOID=0 EVAL=0 STATIC=static ADD_RCS_ID=0)"
+    ) in cmake
     assert "BRENDER_SOURCE_DIR" in cmake
     readme = (output / "README.md").read_text(encoding="utf-8")
     assert "does not vendor BRender source" in readme
@@ -46,6 +50,17 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     manifest = json.loads((output / "harness-manifest.json").read_text(encoding="utf-8"))
     assert manifest["target_id"] == "brender"
     assert manifest["core_float_dirs"] == list(CORE_DIRS)
+    assert manifest["compile_definitions"] == [
+        "BASED_FLOAT=1",
+        "BASED_FIXED=0",
+        "INLINE_FIXED=0",
+        "__386__=1",
+        "DEBUG=0",
+        "PARANOID=0",
+        "EVAL=0",
+        "STATIC=static",
+        "ADD_RCS_ID=0",
+    ]
 
 
 def test_materializer_refuses_output_inside_source_checkout(tmp_path):

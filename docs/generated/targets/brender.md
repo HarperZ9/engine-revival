@@ -36,7 +36,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Readiness | Stage | Build | Score | Next Actions |
 |---|---|---|---:|---|
-| brender-production-readiness | configure-complete-first-build-blocker | configure-complete-build-failing | 24 | triage the inc/mscifix.h inline assembly compatibility strategy; port or emulate remaining period make rules without proprietary inputs; rerun the public core-library build after the first compiler blocker is isolated |
+| brender-production-readiness | period-defines-complete-source-selection-blocked | period-defines-complete-source-selection-blocked | 26 | replace CMake source globs with explicit period makefile OBJS_C source lists; model generated-token inputs such as core/fw/pretok before direct compilation; rerun the public core-library build after source selection matches the makefiles |
 
 ## Tasks
 
@@ -61,13 +61,13 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Build | Status | Host | Reproduction |
 |---|---|---|---|
-| brender-v132-build-environment | configure-complete-build-failing | Windows local probe | brender-critical-edition-source-build |
+| brender-v132-build-environment | period-defines-complete-source-selection-blocked | Windows local probe | brender-critical-edition-source-build |
 
 ## Harnesses
 
 | Harness | Status | Type | Build |
 |---|---|---|---|
-| brender-v132-portable-core-plan | configure-complete-build-failing | portable-build-plan | brender-v132-build-environment |
+| brender-v132-portable-core-plan | period-defines-complete-source-selection-blocked | portable-build-plan | brender-v132-build-environment |
 
 ## Attempts
 
@@ -76,6 +76,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 | brender-v132-cmake-configure | cmake-configure | completed | CMake configured with Visual Studio 18 2026, detected MSVC 19.50.35721.0, and generated build files in the external configure workspace. |
 | brender-v132-core-build-attempt | cmake-build | failed | The brender_core_float target reached the compiler and failed in inc/mscifix.h because x64 MSVC does not support the legacy __asm blocks used by the inspected source path. |
 | brender-v132-harness-materializer-smoke | harness-materialization | completed | Materializer wrote CMakeLists.txt, README.md, cmake/brender-core-sources.cmake, and harness-manifest.json into the external harness workspace. |
+| brender-v132-period-defines-build-attempt | cmake-build | failed | The updated harness configured and began compiling with MSVC after adding FLOAT, fixed-inline-disabled, and period release build definitions. The build then failed because the harness source glob included files that the period makefiles did not compile as normal C translation units. |
 
 ## Snapshots
 

@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | configure-complete-build-failing |
+| Status | period-defines-complete-source-selection-blocked |
 | Type | portable-build-plan |
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
@@ -19,7 +19,7 @@ Use only the public BRender v1.3.2 checkout at the recorded snapshot commit. Do 
 
 ## Public Notes
 
-This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary, has produced an out-of-tree configure pass, and does not claim a compiled output.
+This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary, has produced out-of-tree configure passes, and now carries the FLOAT, fixed-inline-disabled, and period release build definitions. It does not claim a compiled output.
 
 ## Implementation Units
 
@@ -48,14 +48,14 @@ This is the first public harness design record for the BRender pilot. It convert
 
 ## Blockers
 
-- first compiler transcript fails on legacy inline x86 assembly in inc/mscifix.h
-- period make macros still need translation into modern build targets
-- modern compiler compatibility strategy has not been selected
+- source selection still uses module-wide C file globs instead of period makefile object lists
+- core/fw pretok token-generation boundary has not been modeled
+- driver and deferred fixed-point variants are not translated yet
 
 ## Next Actions
 
-- triage the inc/mscifix.h inline assembly compatibility strategy
-- map period include and library output directories to explicit modern targets
+- replace CMake file globs with explicit sources from the period OBJS_C rules
+- model generated-token inputs such as core/fw/pretok before direct compilation
 - rerun the core build without storing generated binaries in git
 
 ## Evidence Sources

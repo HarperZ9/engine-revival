@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | configure-complete-build-failing |
+| Status | period-defines-complete-source-selection-blocked |
 | Reproduction | brender-critical-edition-source-build |
 | Host Platform | Windows local probe |
 | Source Checkout | out-of-tree public checkout at recorded snapshot commit d88d0ed41122664b9781015b517db64353e16f19 |
@@ -14,7 +14,7 @@
 
 ## Public Notes
 
-BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake, but no compiled output or runtime execution is claimed.
+BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake and compiles past the first inline-assembly and STATIC macro blockers, but no compiled output or runtime execution is claimed.
 
 ## Required Variables
 
@@ -57,13 +57,13 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 - period BRender make environment needs reconstruction
 - direct PATH probe found cmake only; make, nmake, cl, and gcc were not available through PATH
 - root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR
-- first x64 MSVC build attempt fails on legacy inline x86 assembly in inc/mscifix.h
+- portable harness source selection still uses module-wide C file globs instead of period makefile object lists
 
 ## Next Actions
 
-- triage the inc/mscifix.h inline assembly compatibility strategy
-- port or emulate the subdir make helper without proprietary inputs
-- rerun the public core-library build after the first compiler blocker is isolated
+- replace CMake source globs with explicit source lists derived from period OBJS_C rules
+- model the fw pretok token-generation boundary before direct compilation
+- rerun the public core-library build after source selection matches the makefiles
 
 ## Evidence Sources
 
