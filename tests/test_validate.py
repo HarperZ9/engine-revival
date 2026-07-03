@@ -62,6 +62,14 @@ def _write_accession_workspace(root):
         "status": "planned",
         "public_notes": "Triage the BRender record.",
     })
+    _write_json(root / "milestones" / "brender-baseline.json", {
+        "id": "brender-baseline",
+        "target_id": "brender",
+        "milestone_type": "baseline-public-record",
+        "status": "planned",
+        "evidence": "Initial public record fixture.",
+        "source_ids": ["brender-source"],
+    })
 
 
 def test_valid_fixture_has_no_validation_errors():
@@ -235,3 +243,37 @@ def test_targets_must_have_task_records(tmp_path):
     (tmp_path / "tasks" / "brender-triage.json").unlink()
     messages = validate_workspace(tmp_path)
     assert any("missing task for target_id: brender" in message for message in messages)
+
+
+def test_milestone_source_ids_must_reference_sources(tmp_path):
+    _write_accession_workspace(tmp_path)
+    _write_json(tmp_path / "milestones" / "bad-source.json", {
+        "id": "bad-source",
+        "target_id": "brender",
+        "milestone_type": "baseline-public-record",
+        "status": "planned",
+        "evidence": "Milestone with bad source link.",
+        "source_ids": ["missing-source"],
+    })
+    messages = validate_workspace(tmp_path)
+    assert any("unknown source_id: missing-source" in message for message in messages)
+
+
+def test_milestone_must_include_source_ids(tmp_path):
+    _write_accession_workspace(tmp_path)
+    _write_json(tmp_path / "milestones" / "brender-baseline.json", {
+        "id": "brender-baseline",
+        "target_id": "brender",
+        "milestone_type": "baseline-public-record",
+        "status": "planned",
+        "evidence": "Initial public record fixture.",
+    })
+    messages = validate_workspace(tmp_path)
+    assert any("milestone must include source_ids" in message for message in messages)
+
+
+def test_targets_must_have_milestone_records(tmp_path):
+    _write_accession_workspace(tmp_path)
+    (tmp_path / "milestones" / "brender-baseline.json").unlink()
+    messages = validate_workspace(tmp_path)
+    assert any("missing milestone for target_id: brender" in message for message in messages)

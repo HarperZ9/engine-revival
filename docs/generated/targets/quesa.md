@@ -36,6 +36,12 @@ Public records now track Quesa's QuickDraw 3D API reimplementation source and ea
 |---|---|---|---|
 | quesa-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Quesa. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| quesa-baseline | public-dossier-established | curated | Public dossier has curated Quesa source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

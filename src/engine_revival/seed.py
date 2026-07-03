@@ -63,6 +63,18 @@ def _task_payload(target: dict[str, object]) -> dict[str, object]:
     }
 
 
+def _milestone_payload(target: dict[str, object]) -> dict[str, object]:
+    target_id = str(target["id"])
+    return {
+        "id": f"{target_id}-baseline",
+        "target_id": target_id,
+        "milestone_type": "baseline-public-record",
+        "status": "seeded",
+        "evidence": f"Initial public-safe revival record created for {target['name']}.",
+        "source_ids": ["initial-research-reports"],
+    }
+
+
 def seed_workspace(root: Path) -> list[Path]:
     written: list[Path] = []
     source = {
@@ -78,8 +90,11 @@ def seed_workspace(root: Path) -> list[Path]:
     for target in INITIAL_TARGETS:
         target_path = root / "targets" / f"{target['id']}.json"
         task_path = root / "tasks" / f"{target['id']}-triage.json"
+        milestone_path = root / "milestones" / f"{target['id']}-baseline.json"
         if _write_json(target_path, _target_payload(target)):
             written.append(target_path)
         if _write_json(task_path, _task_payload(target)):
             written.append(task_path)
+        if _write_json(milestone_path, _milestone_payload(target)):
+            written.append(milestone_path)
     return written

@@ -40,6 +40,12 @@ Public DCC pipeline lineage for Softimage and Alias through Microsoft, Avid, Aut
 |---|---|---|---|
 | softimage-alias-bridge-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Softimage / Alias bridge. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| softimage-alias-bridge-baseline | public-dossier-established | curated | Public dossier has curated Softimage and Alias bridge source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

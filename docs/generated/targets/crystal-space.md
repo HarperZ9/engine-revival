@@ -36,6 +36,12 @@ Public records now track Crystal Space's SourceForge project registry, GitHub so
 |---|---|---|---|
 | crystal-space-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Crystal Space. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| crystal-space-baseline | public-dossier-established | curated | Public dossier has curated Crystal Space source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

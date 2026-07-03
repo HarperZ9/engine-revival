@@ -38,6 +38,12 @@ Restricted-rights Team Ico and Japan Studio public metadata slice using official
 |---|---|---|---|
 | japan-studio-team-ico-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Japan Studio / Team Ico. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| japan-studio-team-ico-baseline | public-dossier-established | curated | Public dossier has curated Japan Studio and Team Ico source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

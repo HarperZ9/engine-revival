@@ -36,6 +36,12 @@ Public records now track the Aqsis RenderMan-compatible renderer source reposito
 |---|---|---|---|
 | aqsis-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Aqsis. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| aqsis-baseline | public-dossier-established | curated | Public dossier has curated Aqsis source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

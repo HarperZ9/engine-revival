@@ -40,6 +40,12 @@ Public records now track SDevTC, Net Yaroze documentation, Redump disc metadata,
 |---|---|---|---|
 | ps1-programmer-tool-triage | triage-public-record | seeded | Create public-safe sources and artifact records for PS1 Programmer's Tool / SDevTC / Net Yaroze. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| ps1-programmer-tool-baseline | public-dossier-established | curated | Public dossier has curated PS1 Programmer's Tool source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

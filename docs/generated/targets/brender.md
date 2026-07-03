@@ -38,6 +38,12 @@ Open BRender source releases and historical SDK references are now tracked as th
 |---|---|---|---|
 | brender-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Argonaut BRender. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| brender-baseline | public-dossier-established | curated | Public dossier has curated BRender source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

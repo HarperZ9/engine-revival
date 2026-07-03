@@ -36,6 +36,12 @@ Public records now track Pixie's SourceForge project registry, feature metadata,
 |---|---|---|---|
 | pixie-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Pixie. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| pixie-baseline | public-dossier-established | curated | Public dossier has curated Pixie source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

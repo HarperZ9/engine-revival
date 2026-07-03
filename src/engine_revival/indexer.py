@@ -16,6 +16,7 @@ class TargetSummary:
     artifact_count: int
     accession_count: int
     task_count: int
+    milestone_count: int
 
 
 def _load_if_present(root: Path, kind: str) -> list[RecordFile]:
@@ -41,6 +42,10 @@ def build_target_index(root: Path) -> list[TargetSummary]:
     for record in _load_if_present(root, "task"):
         target_id = str(record.payload["target_id"])
         task_counts[target_id] = task_counts.get(target_id, 0) + 1
+    milestone_counts: dict[str, int] = {}
+    for record in _load_if_present(root, "milestone"):
+        target_id = str(record.payload["target_id"])
+        milestone_counts[target_id] = milestone_counts.get(target_id, 0) + 1
     summaries = [
         TargetSummary(
             id=str(record.payload["id"]),
@@ -51,6 +56,7 @@ def build_target_index(root: Path) -> list[TargetSummary]:
             artifact_count=artifact_counts.get(str(record.payload["id"]), 0),
             accession_count=accession_counts.get(str(record.payload["id"]), 0),
             task_count=task_counts.get(str(record.payload["id"]), 0),
+            milestone_count=milestone_counts.get(str(record.payload["id"]), 0),
         )
         for record in _load_if_present(root, "target")
     ]
@@ -59,14 +65,14 @@ def build_target_index(root: Path) -> list[TargetSummary]:
 
 def render_target_table(targets: list[TargetSummary]) -> str:
     lines = [
-        "| Priority | Target | Rights | Revival lane | Artifacts | Accessions | Tasks |",
-        "|---:|---|---|---|---:|---:|---:|",
+        "| Priority | Target | Rights | Revival lane | Artifacts | Accessions | Tasks | Milestones |",
+        "|---:|---|---|---|---:|---:|---:|---:|",
     ]
     for target in targets:
         target_link = f"[{target.name}](targets/{target.id}.md)"
         lines.append(
             f"| {target.priority} | {target_link} | {target.rights_posture} | "
             f"{target.revival_lane} | {target.artifact_count} | "
-            f"{target.accession_count} | {target.task_count} |"
+            f"{target.accession_count} | {target.task_count} | {target.milestone_count} |"
         )
     return "\n".join(lines) + "\n"

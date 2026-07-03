@@ -36,6 +36,12 @@ Public records now track OGRE's source repository, rendering-backend role, platf
 |---|---|---|---|
 | ogre-triage | triage-public-record | seeded | Create public-safe sources and artifact records for OGRE. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| ogre-baseline | public-dossier-established | curated | Public dossier has curated OGRE source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

@@ -36,6 +36,12 @@ Public records now track Mesa's official API summary, upstream freedesktop.org r
 |---|---|---|---|
 | mesa-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Mesa. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| mesa-baseline | public-dossier-established | curated | Public dossier has curated Mesa source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

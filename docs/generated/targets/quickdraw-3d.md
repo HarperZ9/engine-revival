@@ -36,6 +36,12 @@ Public records now track QuickDraw 3D 1.5.4 documentation, 3DMF/RAVE references,
 |---|---|---|---|
 | quickdraw-3d-triage | triage-public-record | seeded | Create public-safe sources and artifact records for QuickDraw 3D. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| quickdraw-3d-baseline | public-dossier-established | curated | Public dossier has curated QuickDraw 3D source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

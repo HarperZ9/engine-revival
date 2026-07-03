@@ -36,6 +36,12 @@ Public records now track PS2 Gold release-note evidence and SDK archive metadata
 |---|---|---|---|
 | renderware-ps2-triage | triage-public-record | seeded | Create public-safe sources and artifact records for RenderWare PS2. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| renderware-ps2-baseline | public-dossier-established | curated | Public dossier has curated RenderWare PS2 source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |
