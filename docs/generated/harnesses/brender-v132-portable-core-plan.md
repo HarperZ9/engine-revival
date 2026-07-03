@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | portable-core-vector-smoke-passing |
+| Status | portable-core-framework-startup-smoke-passing |
 | Type | portable-build-plan |
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
@@ -19,7 +19,7 @@ Use only the public BRender v1.3.2 checkout at the recorded snapshot commit. Do 
 
 ## Public Notes
 
-This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary, carries the FLOAT, fixed-inline-disabled, and period release build definitions, and now builds the FLOAT core library with explicit OBJS_C source lists in an external CMake/MSVC tree. The harness also builds and runs a narrow vector math smoke target through CTest. It does not claim BrBegin framework startup, warning cleanup, packaging, drivers, or FIXED variants.
+This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary, carries the FLOAT, fixed-inline-disabled, and period release build definitions, and now builds the FLOAT core library with explicit OBJS_C source lists in an external CMake/MSVC Win32 tree. The harness builds and runs vector math plus BrBegin/BrEnd framework startup smoke targets through CTest. It does not claim x64 portability, full V1DB startup, scene rendering, warning cleanup, packaging, drivers, or FIXED variants.
 
 ## Implementation Units
 
@@ -27,6 +27,9 @@ This is the first public harness design record for the BRender pilot. It convert
 - core order: inc, fw, host, std, pixelmap, dosio, v1db FLOAT, math FLOAT, fmt FLOAT
 - core source selection: explicit period makefile OBJS_C lists
 - core smoke target: brender_core_smoke links against brender_core_float and exercises vector math
+- core startup smoke target: brender_core_startup_smoke links against brender_core_float and exercises BrBegin and BrEnd
+- portable compatibility sources: compat/brender-portable-core-stubs.c and compat/brender-portable-host-stubs.c
+- CMake platform guard: require a 32-bit C target such as Visual Studio -A Win32
 - core deferred variants: v1db FIXED, math FIXED, fmt FIXED
 - driver order: vesa, mcga, softrend FLOAT/FIXED, pentprim FLOAT/FIXED
 - driver deferred target: ddraw
@@ -38,7 +41,8 @@ This is the first public harness design record for the BRender pilot. It convert
 - run the engine-revival materializer to create build files outside the source tree
 - verify the materialized scaffold references BRENDER_SOURCE_DIR instead of copying source
 - translate the active core FLOAT path before deferred FIXED variants
-- build brender_core_smoke and run CTest with the selected multi-config build configuration
+- configure the harness with a 32-bit C target such as Visual Studio -A Win32
+- build brender_core_smoke and brender_core_startup_smoke and run CTest with the selected multi-config build configuration
 - translate driver targets after the core library path is captured
 - record compiler output as transcript evidence before advancing readiness
 
@@ -48,19 +52,21 @@ This is the first public harness design record for the BRender pilot. It convert
 - first public compiler transcript
 - core library build artifact
 - vector smoke executable and CTest transcript
+- framework startup smoke executable and CTest transcript
 - driver variant build matrix
 
 ## Blockers
 
 - core/fw pretok token-generation boundary has not been modeled for source regeneration
-- MSVC x64 build emits pointer-truncation, enum-conversion, const-qualifier, and duplicate-symbol warnings that need portability audit
-- BrBegin framework startup smoke still needs period ASM or portable fallback modeling for magicsym, memloops, and font symbols plus host-image platform definitions
+- the current framework startup smoke requires a 32-bit C target; x64 pointer-width portability is not claimed
+- portable core and host fallback stubs are startup/link coverage scaffolding, not full semantic replacements for DOS, driver, or rendering behavior
+- MSVC warning output still needs portability audit
 - driver and deferred fixed-point variants are not translated yet
 
 ## Next Actions
 
-- audit the x64 MSVC warning set before declaring the core library portable
-- expand the runtime smoke from vector math to framework startup after ASM, portable fallback, and host-image platform boundary modeling
+- audit the MSVC warning set before declaring the core library portable
+- add semantic tests for the portable host and memory fallback functions before using them for rendering behavior
 - model generated-token inputs such as core/fw/pretok for reproducible source regeneration
 - translate deferred FIXED variants and driver targets after the core library path is stable
 

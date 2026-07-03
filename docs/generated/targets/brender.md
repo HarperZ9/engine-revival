@@ -36,7 +36,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Readiness | Stage | Build | Score | Next Actions |
 |---|---|---|---:|---|
-| brender-production-readiness | portable-core-vector-smoke-passing | portable-core-library-built | 36 | audit and classify the x64 MSVC warning transcript; expand the runtime smoke from vector math to BrBegin framework startup after ASM, portable fallback, and host-image platform boundary modeling; model generated-token inputs such as core/fw/pretok for reproducible source regeneration; translate deferred FIXED variants and driver targets after the core library path is stable |
+| brender-production-readiness | portable-core-framework-startup-smoke-passing | portable-core-library-and-startup-smoke-built | 40 | audit and classify the MSVC warning transcript; add semantic tests for portable core and host fallback behavior; model generated-token inputs such as core/fw/pretok for reproducible source regeneration; translate deferred FIXED variants and driver targets after the core library path is stable |
 
 ## Tasks
 
@@ -61,13 +61,13 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Build | Status | Host | Reproduction |
 |---|---|---|---|
-| brender-v132-build-environment | portable-core-vector-smoke-passing | Windows local probe | brender-critical-edition-source-build |
+| brender-v132-build-environment | portable-core-framework-startup-smoke-passing | Windows local probe | brender-critical-edition-source-build |
 
 ## Harnesses
 
 | Harness | Status | Type | Build |
 |---|---|---|---|
-| brender-v132-portable-core-plan | portable-core-vector-smoke-passing | portable-build-plan | brender-v132-build-environment |
+| brender-v132-portable-core-plan | portable-core-framework-startup-smoke-passing | portable-build-plan | brender-v132-build-environment |
 
 ## Attempts
 
@@ -76,6 +76,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 | brender-v132-cmake-configure | cmake-configure | completed | CMake configured with Visual Studio 18 2026, detected MSVC 19.50.35721.0, and generated build files in the external configure workspace. |
 | brender-v132-core-build-attempt | cmake-build | failed | The brender_core_float target reached the compiler and failed in inc/mscifix.h because x64 MSVC does not support the legacy __asm blocks used by the inspected source path. |
 | brender-v132-explicit-sources-core-build | cmake-build | completed | The explicit-source harness configured with Visual Studio 18 2026 and built brender_core_float.lib with MSVC 19.50.35721.0 in an external build tree. |
+| brender-v132-framework-startup-smoke-win32 | cmake-runtime-smoke | completed | The guarded harness configured with -A Win32, built both smoke executables, direct-ran brender_core_smoke.exe and brender_core_startup_smoke.exe with exit 0, and passed 2/2 CTest cases with -C Debug. |
 | brender-v132-harness-materializer-smoke | harness-materialization | completed | Materializer wrote CMakeLists.txt, README.md, cmake/brender-core-sources.cmake, and harness-manifest.json into the external harness workspace. |
 | brender-v132-period-defines-build-attempt | cmake-build | failed | The updated harness configured and began compiling with MSVC after adding FLOAT, fixed-inline-disabled, and period release build definitions. The build then failed because the harness source glob included files that the period makefiles did not compile as normal C translation units. |
 | brender-v132-vector-smoke-runtime | cmake-runtime-smoke | completed | The smoke harness configured with Visual Studio 18 2026, built brender_core_float.lib and brender_core_smoke.exe with MSVC 19.50.35721.0, and passed 1/1 CTest case with -C Debug. |
