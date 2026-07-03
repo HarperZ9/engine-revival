@@ -153,3 +153,12 @@ def test_build_must_include_source_ids(tmp_path):
     messages = validate_workspace(tmp_path)
 
     assert any("build must include source_ids" in message for message in messages)
+
+
+def test_build_make_rule_map_must_be_object_when_present(tmp_path):
+    _write_base_workspace(tmp_path)
+    _write_build(tmp_path, make_rule_map=["core", "drivers"])
+
+    messages = validate_workspace(tmp_path)
+
+    assert any("make_rule_map must be object" in message for message in messages)

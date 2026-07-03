@@ -26,6 +26,13 @@ def _write_build(root):
     "headers": 350,
     "makefiles": 68
   },
+  "make_rule_map": {
+    "root_imports": ["BR_SOURCE_DIR", "BR_MAKEFILE", "BR_TARGET_DIR", "BR_MAKE_DIR"],
+    "root_active_subdirs": ["core", "drivers"],
+    "root_disabled_subdirs": ["tools", "samples"],
+    "core_variants": ["BR_BASE_TYPE=FLOAT", "BR_BASE_TYPE=FIXED"],
+    "drivers_target_types": ["DRIVER"]
+  },
   "blockers": ["period make environment needs reconstruction"],
   "next_actions": ["port or emulate the period make rules"],
   "public_notes": "BRender source checkout inspected, but no build output claimed.",
@@ -60,6 +67,11 @@ def test_build_report_creates_index_detail_page_and_database_entries(tmp_path):
     assert "| available | cmake |" in page_text
     assert "| missing | make; nmake; cl; gcc |" in page_text
     assert "| c_files | 332 |" in page_text
+    assert "## Make Rule Map" in page_text
+    assert "| root_active_subdirs | core; drivers |" in page_text
+    assert "| root_disabled_subdirs | tools; samples |" in page_text
+    assert "| core_variants | BR_BASE_TYPE=FLOAT; BR_BASE_TYPE=FIXED |" in page_text
+    assert "| drivers_target_types | DRIVER |" in page_text
     payload = json.loads(database.read_text(encoding="utf-8"))
     assert payload["counts"]["builds"] == 1
     assert payload["builds_by_target"]["brender"][0]["id"] == "brender-v132-build-environment"

@@ -38,6 +38,20 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 | headers | 350 |
 | makefiles | 68 |
 
+## Make Rule Map
+
+| Probe | Result |
+|---|---|
+| core_active_subdirs | inc; fw; host; std; pixelmap; dosio; v1db; math; fmt |
+| core_variants_active | BR_BASE_TYPE=FLOAT |
+| core_variants_disabled | BR_BASE_TYPE=FIXED |
+| drivers_active_subdirs | vesa; mcga; softrend; pentprim |
+| drivers_disabled_subdirs | ddraw |
+| drivers_target_types | DRIVER |
+| root_active_subdirs | core; drivers |
+| root_disabled_subdirs | tools; samples |
+| root_imports | BR_SOURCE_DIR; BR_MAKEFILE; BR_TARGET_DIR; BR_MAKE_DIR |
+
 ## Blockers
 
 - period BRender make environment needs reconstruction
