@@ -1,20 +1,38 @@
 {
   "blockers": [
-    "production rebuild path not yet verified"
+    "period BRender make environment needs reconstruction",
+    "local PATH probe found cmake only; make, nmake, cl, and gcc were not available",
+    "root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR"
   ],
-  "build_status": "not-started",
-  "flagship_score": 0,
+  "build_status": "source-inspected",
+  "evidence": [
+    "2026-07-03 local public checkout: git rev-parse HEAD returned d88d0ed41122664b9781015b517db64353e16f19",
+    "2026-07-03 source tree probe counted 332 C files, 350 headers, and 68 make/mak/mk files",
+    "2026-07-03 toolchain probe found cmake.exe but not make, nmake, cl, or gcc in PATH"
+  ],
+  "flagship_score": 12,
   "id": "brender-production-readiness",
-  "modernization_status": "not-started",
+  "modernization_status": "toolchain-reconstruction-needed",
   "next_actions": [
-    "create repeatable build harness"
+    "create out-of-tree build environment manifest",
+    "port or emulate the period make rules without proprietary inputs",
+    "capture compiler transcript for first public core-library build"
   ],
   "packaging_status": "not-started",
-  "public_notes": "Baseline production-readiness record for Argonaut BRender. No flagship-quality claim is made until build, runtime, tests, packaging, and modernization evidence are recorded.",
-  "readiness_stage": "baseline-assessment",
+  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit and exposed period make/project metadata. No compiled output or runtime execution is claimed yet.",
+  "readiness_stage": "build-harness-candidate",
+  "reproduction_ids": [
+    "brender-critical-edition-source-build"
+  ],
   "runtime_status": "not-started",
+  "snapshot_ids": [
+    "brender-v132-main-head",
+    "brender-3dmm-main-head"
+  ],
   "source_ids": [
-    "initial-research-reports"
+    "foone-brender-v132",
+    "foone-brender-3dmm",
+    "blazingrender-index"
   ],
   "target_id": "brender",
   "test_status": "not-started"

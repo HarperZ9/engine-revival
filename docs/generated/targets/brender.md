@@ -36,7 +36,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Readiness | Stage | Build | Score | Next Actions |
 |---|---|---|---:|---|
-| brender-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+| brender-production-readiness | build-harness-candidate | source-inspected | 12 | create out-of-tree build environment manifest; port or emulate the period make rules without proprietary inputs; capture compiler transcript for first public core-library build |
 
 ## Tasks
 
@@ -71,4 +71,3 @@ Open BRender source releases and historical SDK references are now tracked as th
 | BRender preservation index | curated-index | high | BRender source-release and binary-SDK index | https://blazingrender.net/ |
 | BRender-3DMM source repository | repository | high | BRender 3D Movie Maker variant source availability, provenance, and MIT license posture | https://github.com/foone/BRender-3DMM |
 | Argonaut Blazing Render (BRender) v1.3.2 source repository | repository | high | BRender 1.3.2 source availability, provenance, and MIT license posture | https://github.com/foone/BRender-v1.3.2 |
-| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |

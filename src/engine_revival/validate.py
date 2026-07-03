@@ -96,6 +96,10 @@ def validate_workspace(root: Path) -> list[str]:
     target_ids = {str(record.payload.get("id")) for record in records_by_kind["target"]}
     source_ids = {str(record.payload.get("id")) for record in records_by_kind["source"]}
     artifact_ids = {str(record.payload.get("id")) for record in records_by_kind["artifact"]}
+    reproduction_ids = {
+        str(record.payload.get("id")) for record in records_by_kind["reproduction"]
+    }
+    snapshot_ids = {str(record.payload.get("id")) for record in records_by_kind["snapshot"]}
     task_ids = {str(record.payload.get("id")) for record in records_by_kind["task"]}
     task_target_ids = {
         str(record.payload.get("target_id")) for record in records_by_kind["task"]
@@ -157,6 +161,14 @@ def validate_workspace(root: Path) -> list[str]:
         for source_id in record.payload.get("source_ids", []):
             if str(source_id) not in source_ids:
                 messages.append(f"{record.path}: unknown source_id: {source_id}")
+        for reproduction_id in record.payload.get("reproduction_ids", []):
+            if str(reproduction_id) not in reproduction_ids:
+                messages.append(
+                    f"{record.path}: unknown reproduction_id: {reproduction_id}"
+                )
+        for snapshot_id in record.payload.get("snapshot_ids", []):
+            if str(snapshot_id) not in snapshot_ids:
+                messages.append(f"{record.path}: unknown snapshot_id: {snapshot_id}")
     accession_artifact_ids = {
         str(record.payload.get("artifact_id")) for record in records_by_kind["accession"]
     }
