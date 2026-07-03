@@ -44,6 +44,12 @@ Public standards and validation-history record for PHIGS, with OpenPHIGS reimple
 |---|---|---|---|
 | phigs-baseline | public-dossier-established | curated | Public dossier has curated PHIGS source, accession, and task records. |
 
+## Snapshots
+
+| Snapshot | Artifact | Ref | Commit |
+|---|---|---|---|
+| openphigs-main-head | openphigs-source-reimplementation | refs/heads/main | 9435bbcc6c7370aed220ff5392850f2b7d183b8e |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

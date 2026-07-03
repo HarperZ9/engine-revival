@@ -39,6 +39,15 @@ def _target_accessions(root: Path, artifacts: list[dict[str, object]]) -> list[d
     ]
 
 
+def _target_snapshots(root: Path, artifacts: list[dict[str, object]]) -> list[dict[str, object]]:
+    artifact_ids = {str(payload["id"]) for payload in artifacts}
+    return [
+        payload
+        for payload in _records_if_present(root, "snapshot")
+        if str(payload["artifact_id"]) in artifact_ids
+    ]
+
+
 def _target_records(root: Path, kind: str, target_id: str) -> list[dict[str, object]]:
     return [
         payload for payload in _records_if_present(root, kind)
@@ -126,6 +135,42 @@ def _target_milestone_section(milestones: list[dict[str, object]]) -> list[str]:
     return lines
 
 
+def _target_reproduction_section(reproductions: list[dict[str, object]]) -> list[str]:
+    if not reproductions:
+        return []
+    lines = [
+        "",
+        "## Reproductions",
+        "",
+        "| Reproduction | Type | Status | Notes |",
+        "|---|---|---|---|",
+    ]
+    for payload in sorted(reproductions, key=lambda item: str(item["id"])):
+        lines.append(
+            f"| {payload['id']} | {payload['reproduction_type']} | "
+            f"{payload['status']} | {payload['public_notes']} |"
+        )
+    return lines
+
+
+def _target_snapshot_section(snapshots: list[dict[str, object]]) -> list[str]:
+    if not snapshots:
+        return []
+    lines = [
+        "",
+        "## Snapshots",
+        "",
+        "| Snapshot | Artifact | Ref | Commit |",
+        "|---|---|---|---|",
+    ]
+    for payload in sorted(snapshots, key=lambda item: str(item["id"])):
+        lines.append(
+            f"| {payload['id']} | {payload['artifact_id']} | "
+            f"{payload['ref']} | {payload['commit']} |"
+        )
+    return lines
+
+
 def _target_source_section(sources: list[dict[str, object]]) -> list[str]:
     lines = ["", "## Evidence Sources", ""]
     if not sources:
@@ -145,11 +190,18 @@ def target_dossier(root: Path, target: dict[str, object]) -> str:
     accessions = _target_accessions(root, artifacts)
     tasks = _target_records(root, "task", target_id)
     milestones = _target_records(root, "milestone", target_id)
-    sources = _target_sources(root, artifacts + accessions + tasks + milestones)
+    reproductions = _target_records(root, "reproduction", target_id)
+    snapshots = _target_snapshots(root, artifacts)
+    sources = _target_sources(
+        root,
+        artifacts + accessions + tasks + milestones + reproductions + snapshots,
+    )
     lines = _target_header(target, target_id)
     lines.extend(_target_artifact_section(artifacts))
     lines.extend(_target_accession_section(accessions))
     lines.extend(_target_task_section(tasks))
     lines.extend(_target_milestone_section(milestones))
+    lines.extend(_target_reproduction_section(reproductions))
+    lines.extend(_target_snapshot_section(snapshots))
     lines.extend(_target_source_section(sources))
     return "\n".join(lines) + "\n"

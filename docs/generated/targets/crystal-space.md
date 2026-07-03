@@ -42,6 +42,12 @@ Public records now track Crystal Space's SourceForge project registry, GitHub so
 |---|---|---|---|
 | crystal-space-baseline | public-dossier-established | curated | Public dossier has curated Crystal Space source, accession, and task records. |
 
+## Snapshots
+
+| Snapshot | Artifact | Ref | Commit |
+|---|---|---|---|
+| crystal-space-master-head | crystal-space-github-source-repository | refs/heads/master | 3029384a26f1f16d0fa7b05142c2d8aaf5102726 |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

@@ -47,6 +47,12 @@ Public records now track SN Systems/ProDG lineage, Linux for PlayStation 2, and 
 |---|---|---|---|
 | ps2-prodg-eb-linux-baseline | public-dossier-established | curated | Public dossier has curated PS2 ProDG, EB, and Linux stack source, accession, and task records. |
 
+## Snapshots
+
+| Snapshot | Artifact | Ref | Commit |
+|---|---|---|---|
+| ps2sdk-master-head | ps2-ps2sdk-open-source-sdk | refs/heads/master | 986ff320cd910c9cd538b151736ddc640fdf51d5 |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

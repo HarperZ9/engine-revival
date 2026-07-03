@@ -45,6 +45,12 @@ Public records now track Andy Gavin's GOOL article and OpenGOAL's GOAL compiler/
 |---|---|---|---|
 | gool-goal-baseline | public-dossier-established | curated | Public dossier has curated GOOL and GOAL source, accession, and task records. |
 
+## Snapshots
+
+| Snapshot | Artifact | Ref | Commit |
+|---|---|---|---|
+| opengoal-jak-project-master-head | opengoal-jak-project-source | refs/heads/master | 2490c94e97f8cd7a15b9a9803f80bbf748a5553b |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

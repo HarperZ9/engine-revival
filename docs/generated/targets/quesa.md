@@ -42,6 +42,12 @@ Public records now track Quesa's QuickDraw 3D API reimplementation source and ea
 |---|---|---|---|
 | quesa-baseline | public-dossier-established | curated | Public dossier has curated Quesa source, accession, and task records. |
 
+## Snapshots
+
+| Snapshot | Artifact | Ref | Commit |
+|---|---|---|---|
+| quesa-master-head | quesa-source-reimplementation | refs/heads/master | a7dccbffb150a7590b5dea035f256d07c3c201de |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |
