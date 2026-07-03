@@ -6,5 +6,6 @@
 |---|---|---|---|---|
 | brender | [brender-v132-cmake-configure](attempts/brender-v132-cmake-configure.md) | cmake-configure | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-core-build-attempt](attempts/brender-v132-core-build-attempt.md) | cmake-build | failed | brender-v132-portable-core-plan |
+| brender | [brender-v132-explicit-sources-core-build](attempts/brender-v132-explicit-sources-core-build.md) | cmake-build | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-harness-materializer-smoke](attempts/brender-v132-harness-materializer-smoke.md) | harness-materialization | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-period-defines-build-attempt](attempts/brender-v132-period-defines-build-attempt.md) | cmake-build | failed | brender-v132-portable-core-plan |
