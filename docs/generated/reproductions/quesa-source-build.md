@@ -49,7 +49,9 @@ Planned reproduction recipe for rebuilding Quesa as a public QuickDraw 3D API co
 
 ## Evidence Sources
 
-- quesa-github
-- gamedeveloper-quesa-16d13
-- apple-quickdraw3d-documentation-qa
-- apple-quickdraw3d-manual-154-pdf
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Quesa source repository | repository | high | Quesa source repository, QuickDraw 3D API reimplementation, platforms, and BSD license metadata | https://github.com/jwwalker/Quesa |
+| Open Source Implementation of Quick Draw 3D Updated | trade-press-archive | moderate | Quesa 1.6d13 release report, cross-platform QuickDraw 3D compatibility, and LGPL-era metadata | https://www.gamedeveloper.com/game-platforms/open-source-implementation-of-quick-draw-3d-updated |
+| QuickDraw 3D Documentation | technical-qa | moderate | QuickDraw 3D documentation set and developer CD references | https://leopard-adc.pepas.com/qa/qd3d/qd3d28.html |
+| 3D Graphics Programming with QuickDraw 3D 1.5.4 | manual-pdf | high | QuickDraw 3D 1.5.4 API manual, service list, 3DMF, RAVE, and rendering modes | https://worldcolleges.info/sites/default/files/3D_Graphics_With_QuickDraw_3D.pdf |

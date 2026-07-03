@@ -48,6 +48,8 @@ Planned reproduction recipe for rebuilding the public Open Inventor source relea
 
 ## Evidence Sources
 
-- open-inventor-github
-- open-inventor-readme-first
-- coin3d-api-compatibility
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Open Inventor source repository | repository | high | Open Inventor public source repository, SGI origin, OpenGL scene graph role, and LGPL metadata | https://github.com/aumuell/open-inventor |
+| Open Inventor README.FIRST | release-notes | high | Open Inventor August 2000 source release notes, source tree structure, and build platforms | https://github.com/aumuell/open-inventor/blob/master/README.FIRST |
+| Coin3D API compatibility statement | project-site | high | Coin3D independent Open Inventor API compatibility and clean-room distinction | https://www.coin3d.org/ |

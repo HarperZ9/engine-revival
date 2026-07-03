@@ -48,7 +48,9 @@ Planned clean-room reproduction recipe for building the public OpenGOAL toolchai
 
 ## Evidence Sources
 
-- opengoal-jak-project-github
-- opengoal-project-overview
-- opengoal-license
-- andy-gavin-gool-article
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| OpenGOAL jak-project source repository | repository | high | OpenGOAL public source project, decompiler/compiler methodology, and platform support | https://github.com/open-goal/jak-project |
+| OpenGOAL project overview | project-documentation | high | OpenGOAL compiler, decompiler, source tree, and runtime architecture | https://github.com/open-goal/jak-project/blob/master/docs/project-overview.md |
+| OpenGOAL repository license | license | high | OpenGOAL repository license metadata | https://raw.githubusercontent.com/open-goal/jak-project/master/LICENSE |
+| Making Crash Bandicoot - GOOL - part 9 | developer-article | high | GOOL authorship, purpose, and relationship to Crash Bandicoot and GOAL | https://all-things-andy-gavin.com/tag/gool/ |

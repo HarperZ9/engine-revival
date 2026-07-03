@@ -47,6 +47,8 @@ Planned reproduction recipe for rebuilding OGRE from the public source snapshot 
 
 ## Evidence Sources
 
-- ogre-github
-- ogre-licensing
-- ogre-site
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| OGRE source repository | repository | high | OGRE public source repository, renderer role, APIs, languages, and license metadata | https://github.com/OGRECave/ogre |
+| OGRE licensing | license-documentation | high | OGRE MIT license terms and legacy LGPL note | https://www.ogre3d.org/licensing |
+| OGRE project site | project-site | high | OGRE project overview, platform support, documentation, and MIT license statement | https://www.ogre3d.org/ |

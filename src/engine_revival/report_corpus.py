@@ -27,6 +27,29 @@ def _as_bullets(value: object) -> list[str]:
     return [f"- {item}" for item in value]
 
 
+def _source_table(
+    source_ids: object,
+    sources_by_id: dict[str, dict[str, object]],
+) -> list[str]:
+    if not isinstance(source_ids, list) or not source_ids:
+        return ["- none recorded"]
+    lines = [
+        "| Source | Type | Confidence | Scope | URL |",
+        "|---|---|---|---|---|",
+    ]
+    for source_id in source_ids:
+        source = sources_by_id.get(str(source_id))
+        if source:
+            lines.append(
+                f"| {source['title']} | {source['source_type']} | "
+                f"{source['confidence']} | {source['claim_scope']} | "
+                f"{source.get('url', '')} |"
+            )
+        else:
+            lines.append(f"| {source_id} | unknown | unknown | source record missing |  |")
+    return lines
+
+
 def packet_index(root: Path) -> str:
     packets = sorted(packet_tasks(root), key=lambda item: str(item["id"]))
     lines = [
@@ -102,7 +125,11 @@ def reproduction_index(root: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
-def reproduction_page(record: dict[str, object]) -> str:
+def reproduction_page(
+    record: dict[str, object],
+    sources_by_id: dict[str, dict[str, object]] | None = None,
+) -> str:
+    sources = sources_by_id or {}
     lines = [
         f"# {record['id']}",
         "",
@@ -134,7 +161,7 @@ def reproduction_page(record: dict[str, object]) -> str:
         "",
         "## Evidence Sources",
         "",
-        *_as_bullets(record.get("source_ids")),
+        *_source_table(record.get("source_ids"), sources),
     ]
     return "\n".join(lines) + "\n"
 
