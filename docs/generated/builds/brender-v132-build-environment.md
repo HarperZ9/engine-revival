@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | source-inspected |
+| Status | configure-complete-build-failing |
 | Reproduction | brender-critical-edition-source-build |
 | Host Platform | Windows local probe |
 | Source Checkout | out-of-tree public checkout at recorded snapshot commit d88d0ed41122664b9781015b517db64353e16f19 |
@@ -14,7 +14,7 @@
 
 ## Public Notes
 
-BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata, but no build success is claimed.
+BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake, but no compiled output or runtime execution is claimed.
 
 ## Required Variables
 
@@ -27,8 +27,8 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 
 | Probe | Result |
 |---|---|
-| available | cmake |
-| missing | make; nmake; cl; gcc |
+| available | cmake; Visual Studio 18 2026 CMake generator; MSVC 19.50.35721.0 via CMake generator |
+| missing | make; nmake; gcc |
 
 ## Observed Layout
 
@@ -55,15 +55,15 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 ## Blockers
 
 - period BRender make environment needs reconstruction
-- local PATH probe found cmake only; make, nmake, cl, and gcc were not available
+- direct PATH probe found cmake only; make, nmake, cl, and gcc were not available through PATH
 - root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR
-- no compiled output or runtime execution has been produced yet
+- first x64 MSVC build attempt fails on legacy inline x86 assembly in inc/mscifix.h
 
 ## Next Actions
 
-- emit a portable harness from the recorded make-rule map
+- triage the inc/mscifix.h inline assembly compatibility strategy
 - port or emulate the subdir make helper without proprietary inputs
-- capture a compiler transcript for the first public core-library build attempt
+- rerun the public core-library build after the first compiler blocker is isolated
 
 ## Evidence Sources
 

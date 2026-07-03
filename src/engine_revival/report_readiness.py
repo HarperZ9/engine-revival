@@ -71,7 +71,13 @@ def readiness_section(records: list[dict[str, object]]) -> list[str]:
 
 def _evidence_cell(record: dict[str, object]) -> str:
     evidence: list[str] = []
-    for key in ("reproduction_ids", "snapshot_ids", "build_ids", "harness_ids"):
+    for key in (
+        "reproduction_ids",
+        "snapshot_ids",
+        "build_ids",
+        "harness_ids",
+        "attempt_ids",
+    ):
         value = record.get(key)
         if isinstance(value, list):
             evidence.extend(str(item) for item in value)

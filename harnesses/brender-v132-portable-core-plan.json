@@ -1,8 +1,8 @@
 {
   "blockers": [
-    "first compiler transcript has not been captured",
+    "first compiler transcript fails on legacy inline x86 assembly in inc/mscifix.h",
     "period make macros still need translation into modern build targets",
-    "modern compiler compatibility findings have not been triaged"
+    "modern compiler compatibility strategy has not been selected"
   ],
   "build_id": "brender-v132-build-environment",
   "entrypoint": "docs/generated/harnesses/brender-v132-portable-core-plan.md",
@@ -24,19 +24,19 @@
   ],
   "materializer_command": "engine-revival materialize-brender-harness --source-root <public-brender-checkout> --output-root <out-of-tree-harness-dir>",
   "next_actions": [
-    "run CMake configure against the generated out-of-tree scaffold",
+    "triage the inc/mscifix.h inline assembly compatibility strategy",
     "map period include and library output directories to explicit modern targets",
-    "capture the first compiler transcript without storing generated binaries in git"
+    "rerun the core build without storing generated binaries in git"
   ],
   "output_policy": "Write generated harness files outside the BRender source checkout and outside this metadata repo unless they are intentionally reviewed as public-safe scaffolding.",
-  "public_notes": "This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary and does not claim a compiled output.",
+  "public_notes": "This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary, has produced an out-of-tree configure pass, and does not claim a compiled output.",
   "reproduction_id": "brender-critical-edition-source-build",
   "source_ids": [
     "foone-brender-v132",
     "blazingrender-index"
   ],
   "source_policy": "Use only the public BRender v1.3.2 checkout at the recorded snapshot commit. Do not vendor source, generated binaries, private assets, or restricted SDK material in this repository.",
-  "status": "materializer-available",
+  "status": "configure-complete-build-failing",
   "steps": [
     "start from the recorded BRender v1.3.2 public source snapshot",
     "run the engine-revival materializer to create build files outside the source tree",

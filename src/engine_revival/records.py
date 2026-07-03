@@ -24,6 +24,7 @@ RECORD_DIRS = {
     "readiness": "readiness",
     "build": "builds",
     "harness": "harnesses",
+    "attempt": "attempts",
 }
 
 

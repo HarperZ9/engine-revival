@@ -1,10 +1,11 @@
 {
   "blockers": [
     "period BRender make environment needs reconstruction",
-    "local PATH probe found cmake only; make, nmake, cl, and gcc were not available",
-    "root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR"
+    "direct PATH probe found cmake only; make, nmake, cl, and gcc were not available through PATH",
+    "root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR",
+    "first x64 MSVC build attempt fails on legacy inline x86 assembly in inc/mscifix.h"
   ],
-  "build_status": "harness-materializer-available",
+  "build_status": "configure-complete-build-failing",
   "build_ids": [
     "brender-v132-build-environment"
   ],
@@ -14,22 +15,29 @@
     "2026-07-03 toolchain probe found cmake.exe but not make, nmake, cl, or gcc in PATH",
     "2026-07-03 portable core harness plan recorded root, core, and drivers make topology",
     "2026-07-03 materializer command added for out-of-tree BRender core CMake scaffold",
-    "2026-07-03 materializer smoke run wrote CMakeLists.txt, README.md, cmake/brender-core-sources.cmake, and harness-manifest.json outside the source checkout"
+    "2026-07-03 materializer smoke run wrote CMakeLists.txt, README.md, cmake/brender-core-sources.cmake, and harness-manifest.json outside the source checkout",
+    "2026-07-03 CMake configure succeeded with Visual Studio 18 2026 and MSVC 19.50.35721.0 in an external build tree",
+    "2026-07-03 brender_core_float build reached compilation and failed on legacy inline x86 assembly in inc/mscifix.h under x64 MSVC"
   ],
-  "flagship_score": 20,
+  "flagship_score": 24,
   "harness_ids": [
     "brender-v132-portable-core-plan"
   ],
+  "attempt_ids": [
+    "brender-v132-harness-materializer-smoke",
+    "brender-v132-cmake-configure",
+    "brender-v132-core-build-attempt"
+  ],
   "id": "brender-production-readiness",
-  "modernization_status": "portable-harness-materializer-available",
+  "modernization_status": "first-compiler-blocker-captured",
   "next_actions": [
-    "run CMake configure against the generated out-of-tree harness and preserve transcript",
+    "triage the inc/mscifix.h inline assembly compatibility strategy",
     "port or emulate remaining period make rules without proprietary inputs",
-    "capture compiler transcript for first public core-library build"
+    "rerun the public core-library build after the first compiler blocker is isolated"
   ],
   "packaging_status": "not-started",
-  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer for an out-of-tree portable-core harness. No compiled output or runtime execution is claimed yet.",
-  "readiness_stage": "build-harness-materializer",
+  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure pass for a portable-core harness. The first compiler blocker is recorded; no compiled output or runtime execution is claimed yet.",
+  "readiness_stage": "configure-complete-first-build-blocker",
   "reproduction_ids": [
     "brender-critical-edition-source-build"
   ],

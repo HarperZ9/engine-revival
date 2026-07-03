@@ -50,6 +50,7 @@ is captured.
 - [Generated production readiness](docs/generated/production-readiness.md)
 - [Generated build environments](docs/generated/builds.md)
 - [Generated harnesses](docs/generated/harnesses.md)
+- [Generated attempts](docs/generated/attempts.md)
 - [Generated coverage](docs/generated/coverage.md)
 - [Generated rights summary](docs/generated/rights-summary.md)
 - [Contributing](CONTRIBUTING.md)

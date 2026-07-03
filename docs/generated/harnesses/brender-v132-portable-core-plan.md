@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | materializer-available |
+| Status | configure-complete-build-failing |
 | Type | portable-build-plan |
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
@@ -19,7 +19,7 @@ Use only the public BRender v1.3.2 checkout at the recorded snapshot commit. Do 
 
 ## Public Notes
 
-This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary and does not claim a compiled output.
+This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary, has produced an out-of-tree configure pass, and does not claim a compiled output.
 
 ## Implementation Units
 
@@ -48,15 +48,15 @@ This is the first public harness design record for the BRender pilot. It convert
 
 ## Blockers
 
-- first compiler transcript has not been captured
+- first compiler transcript fails on legacy inline x86 assembly in inc/mscifix.h
 - period make macros still need translation into modern build targets
-- modern compiler compatibility findings have not been triaged
+- modern compiler compatibility strategy has not been selected
 
 ## Next Actions
 
-- run CMake configure against the generated out-of-tree scaffold
+- triage the inc/mscifix.h inline assembly compatibility strategy
 - map period include and library output directories to explicit modern targets
-- capture the first compiler transcript without storing generated binaries in git
+- rerun the core build without storing generated binaries in git
 
 ## Evidence Sources
 

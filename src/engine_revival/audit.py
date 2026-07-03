@@ -39,7 +39,15 @@ def audit_public_workspace(root: Path) -> list[str]:
             if rights_review in ACCESSION_RESTRICTED_REVIEWS and storage_class == "local-public":
                 messages.append(f"{record.path}: restricted accession cannot use public storage")
             messages.extend(_unsafe_wording_messages(record.path, text))
-    for kind in ("build", "harness", "readiness", "reproduction", "task", "milestone"):
+    for kind in (
+        "build",
+        "harness",
+        "attempt",
+        "readiness",
+        "reproduction",
+        "task",
+        "milestone",
+    ):
         if (root / RECORD_DIRS[kind]).exists():
             for record in load_records(root, kind):
                 messages.extend(_unsafe_wording_messages(record.path, _record_text(record.payload)))
