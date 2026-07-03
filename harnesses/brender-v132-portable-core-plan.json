@@ -1,0 +1,46 @@
+{
+  "blockers": [
+    "portable harness files have not been emitted yet",
+    "first compiler transcript has not been captured",
+    "period make macros still need translation into modern build targets"
+  ],
+  "build_id": "brender-v132-build-environment",
+  "entrypoint": "docs/generated/harnesses/brender-v132-portable-core-plan.md",
+  "expected_outputs": [
+    "out-of-tree portable build files",
+    "first public compiler transcript",
+    "core library build artifact",
+    "driver variant build matrix"
+  ],
+  "harness_type": "portable-build-plan",
+  "id": "brender-v132-portable-core-plan",
+  "implementation_units": [
+    "root dispatch: core and drivers active, tools and samples deferred",
+    "core order: inc, fw, host, std, pixelmap, dosio, v1db FLOAT, math FLOAT, fmt FLOAT",
+    "core deferred variants: v1db FIXED, math FIXED, fmt FIXED",
+    "driver order: vesa, mcga, softrend FLOAT/FIXED, pentprim FLOAT/FIXED",
+    "driver deferred target: ddraw",
+    "required public source variables: BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, BR_MAKE_DIR"
+  ],
+  "next_actions": [
+    "emit a portable CMake or make-compatible harness outside the source checkout",
+    "map period include and library output directories to explicit modern targets",
+    "capture the first compiler transcript without storing generated binaries in git"
+  ],
+  "public_notes": "This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary and does not claim a compiled output.",
+  "reproduction_id": "brender-critical-edition-source-build",
+  "source_ids": [
+    "foone-brender-v132",
+    "blazingrender-index"
+  ],
+  "source_policy": "Use only the public BRender v1.3.2 checkout at the recorded snapshot commit. Do not vendor source, generated binaries, private assets, or restricted SDK material in this repository.",
+  "status": "designed",
+  "steps": [
+    "start from the recorded BRender v1.3.2 public source snapshot",
+    "materialize build files outside the source tree",
+    "translate the active core FLOAT path before deferred FIXED variants",
+    "translate driver targets after the core library path is captured",
+    "record compiler output as transcript evidence before advancing readiness"
+  ],
+  "target_id": "brender"
+}

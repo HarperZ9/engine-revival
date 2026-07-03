@@ -70,6 +70,7 @@ build path, environment assumptions, source lineage, and public-safe outputs.
 A revived engine is not flagship-quality because a source package exists. It
 becomes a flagship candidate only when the public record can show build status,
 runtime status, tests, packaging, modernization work, blockers, and next actions.
-`builds/*.json` records capture concrete build-environment probes, and
+`builds/*.json` records capture concrete build-environment probes,
+`harnesses/*.json` records capture portable scaffolding plans or wrappers, and
 `readiness/*.json` records track the target's overall state without overstating
 progress.

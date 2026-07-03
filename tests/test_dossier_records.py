@@ -184,6 +184,8 @@ def test_live_sources_are_cited_by_archive_records():
         "reproductions",
         "snapshots",
         "readiness",
+        "builds",
+        "harnesses",
     ):
         for record in _json_records(directory):
             used_source_ids.update(str(source_id) for source_id in record.get("source_ids", []))
@@ -217,6 +219,14 @@ def test_first_brender_source_snapshots_are_recorded():
     expected = {
         "snapshots/brender-3dmm-main-head.json",
         "snapshots/brender-v132-main-head.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
+
+
+def test_first_harness_plan_is_recorded():
+    expected = {
+        "harnesses/brender-v132-portable-core-plan.json",
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []

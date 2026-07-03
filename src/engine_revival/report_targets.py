@@ -4,6 +4,7 @@ from pathlib import Path
 
 from engine_revival.records import RECORD_DIRS, load_records
 from engine_revival.report_builds import build_section
+from engine_revival.report_harnesses import harness_section
 from engine_revival.report_readiness import readiness_section
 
 
@@ -193,10 +194,12 @@ def target_dossier(root: Path, target: dict[str, object]) -> str:
     reproductions = _target_records(root, "reproduction", target_id)
     readiness = _target_records(root, "readiness", target_id)
     builds = _target_records(root, "build", target_id)
+    harnesses = _target_records(root, "harness", target_id)
     snapshots = _target_snapshots(root, artifacts)
     sources = _target_sources(
         root,
-        artifacts + accessions + tasks + milestones + reproductions + readiness + builds + snapshots,
+        artifacts + accessions + tasks + milestones
+        + reproductions + readiness + builds + harnesses + snapshots,
     )
     lines = _target_header(target, target_id)
     lines.extend(_target_artifact_section(artifacts))
@@ -206,6 +209,7 @@ def target_dossier(root: Path, target: dict[str, object]) -> str:
     lines.extend(_target_milestone_section(milestones))
     lines.extend(_target_reproduction_section(reproductions))
     lines.extend(build_section(builds))
+    lines.extend(harness_section(harnesses))
     lines.extend(_target_snapshot_section(snapshots))
     lines.extend(_target_source_section(sources))
     return "\n".join(lines) + "\n"

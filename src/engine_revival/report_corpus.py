@@ -271,6 +271,7 @@ def corpus_database(root: Path) -> dict[str, object]:
     snapshots = snapshot_records(root)
     readiness = _records_if_present(root, "readiness")
     builds = _records_if_present(root, "build")
+    harnesses = _records_if_present(root, "harness")
     return {
         "schema": "engine-revival-corpus-v1",
         "counts": {
@@ -284,6 +285,7 @@ def corpus_database(root: Path) -> dict[str, object]:
             "snapshots": len(snapshots),
             "readiness": len(readiness),
             "builds": len(builds),
+            "harnesses": len(harnesses),
         },
         "targets": targets,
         "sources": sources,
@@ -295,6 +297,7 @@ def corpus_database(root: Path) -> dict[str, object]:
         "snapshots": snapshots,
         "readiness": readiness,
         "builds": builds,
+        "harnesses": harnesses,
         "targets_by_id": _records_by_id(targets),
         "sources_by_id": _records_by_id(sources),
         "artifacts_by_target": _records_by_target(artifacts),
@@ -305,4 +308,5 @@ def corpus_database(root: Path) -> dict[str, object]:
         "snapshots_by_artifact": _records_by_artifact(snapshots),
         "readiness_by_target": _records_by_target(readiness),
         "builds_by_target": _records_by_target(builds),
+        "harnesses_by_target": _records_by_target(harnesses),
     }

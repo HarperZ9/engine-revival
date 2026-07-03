@@ -4,26 +4,30 @@
     "local PATH probe found cmake only; make, nmake, cl, and gcc were not available",
     "root makefile imports BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, and BR_MAKE_DIR"
   ],
-  "build_status": "source-inspected",
+  "build_status": "harness-plan-recorded",
   "build_ids": [
     "brender-v132-build-environment"
   ],
   "evidence": [
     "2026-07-03 local public checkout: git rev-parse HEAD returned d88d0ed41122664b9781015b517db64353e16f19",
     "2026-07-03 source tree probe counted 332 C files, 350 headers, and 68 make/mak/mk files",
-    "2026-07-03 toolchain probe found cmake.exe but not make, nmake, cl, or gcc in PATH"
+    "2026-07-03 toolchain probe found cmake.exe but not make, nmake, cl, or gcc in PATH",
+    "2026-07-03 portable core harness plan recorded root, core, and drivers make topology"
   ],
-  "flagship_score": 12,
+  "flagship_score": 16,
+  "harness_ids": [
+    "brender-v132-portable-core-plan"
+  ],
   "id": "brender-production-readiness",
-  "modernization_status": "toolchain-reconstruction-needed",
+  "modernization_status": "portable-harness-design-started",
   "next_actions": [
-    "create out-of-tree build environment manifest",
+    "emit portable CMake or make-compatible harness files from the recorded topology",
     "port or emulate the period make rules without proprietary inputs",
     "capture compiler transcript for first public core-library build"
   ],
   "packaging_status": "not-started",
-  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit and exposed period make/project metadata. No compiled output or runtime execution is claimed yet.",
-  "readiness_stage": "build-harness-candidate",
+  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a public portable-core harness plan. No compiled output or runtime execution is claimed yet.",
+  "readiness_stage": "build-harness-designed",
   "reproduction_ids": [
     "brender-critical-edition-source-build"
   ],

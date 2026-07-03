@@ -61,7 +61,7 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 
 ## Next Actions
 
-- create an out-of-tree build environment manifest from the period make variables
+- emit a portable harness from the recorded make-rule map
 - port or emulate the subdir make helper without proprietary inputs
 - capture a compiler transcript for the first public core-library build attempt
 
