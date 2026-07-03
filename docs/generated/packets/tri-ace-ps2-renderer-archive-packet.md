@@ -30,5 +30,7 @@ Build the tri-Ace PS2 renderer packet around public course notes, research-publi
 
 ## Evidence Sources
 
-- tri-ace-pbr-course-notes-2010
-- tri-ace-rd-publications-index
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Practical Implementation at tri-Ace course notes | course-notes | high | tri-Ace physically based shading implementation notes and rendering lineage | https://research.tri-ace.com/Data/course_note_practical_implementation_at_triace.pdf |
+| tri-Ace Research and Development publications index | official-publication-index | high | tri-Ace rendering research publication index and PS2 SH/HDR presentation metadata | https://research.tri-ace.com/ |

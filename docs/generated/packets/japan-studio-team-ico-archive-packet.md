@@ -30,9 +30,11 @@ Build the Japan Studio / Team Ico packet around public studio-history sources, o
 
 ## Evidence Sources
 
-- playstation-blog-team-ico-ueda-interview
-- playstation-blog-team-ico-collection-2010
-- playstation-blog-team-asobi-2021
-- playstation-store-the-last-guardian
-- playstation-store-shadow-of-the-colossus
-- siliconera-japan-studio-reorganization
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Team Ico Talks: Fumito Ueda on The Last Guardian, Shadow of The Colossus | official-interview | high | Official interview with Fumito Ueda on The Last Guardian mechanics and Team Ico lineage | https://blog.playstation.com/2010/09/24/team-ico-talks-fumito-ueda-on-the-last-guardian-shadow-of-the-colossus/ |
+| Ico and Shadow of the Colossus Collection hits PS3 Spring 2011 with 3D | official-blog-post | high | Official PlayStation Blog announcement for the Ico and Shadow of the Colossus Collection on PS3 | https://blog.playstation.com/2010/09/15/ico-and-shadow-of-the-colossus-collection-hits-ps3-spring-2011-with-3d/ |
+| Introducing Team Asobi, creators of the Astro Bot series | official-blog-post | high | Official Team Asobi introduction, Tokyo studio status, Team Asobi origin, and PlayStation Studios placement | https://blog.playstation.com/2021/06/02/introducing-team-asobi-creators-of-the-astro-bot-series/ |
+| The Last Guardian | official-product-page | high | Official listing for The Last Guardian including publisher, platform, release date, and public description | https://www.playstation.com/en-us/games/the-last-guardian/ |
+| Shadow of the Colossus | official-product-page | high | Official listing for Shadow of the Colossus PS4 including publisher, platform, release date, and Bluepoint/Japan Studio credit | https://www.playstation.com/en-us/games/shadow-of-the-colossus/ |
+| Japan Studio Reorganization Announced | trade-report | moderate | Public report quoting SIE statement that Japan Studio would be re-centered to Team ASOBI on April 1, 2021 | https://www.siliconera.com/japan-studio-reorganization-announced/ |
