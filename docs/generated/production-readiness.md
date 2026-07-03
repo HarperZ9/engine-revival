@@ -4,7 +4,7 @@
 
 | Target | Stage | Build | Runtime | Tests | Package | Modernization | Score | Evidence | Next Actions |
 |---|---|---|---|---|---|---|---:|---|---|
-| brender | build-harness-designed | harness-plan-recorded | not-started | not-started | not-started | portable-harness-design-started | 16 | brender-critical-edition-source-build; brender-v132-main-head; brender-3dmm-main-head; brender-v132-build-environment; brender-v132-portable-core-plan | emit portable CMake or make-compatible harness files from the recorded topology; port or emulate the period make rules without proprietary inputs; capture compiler transcript for first public core-library build |
+| brender | build-harness-materializer | harness-materializer-available | not-started | not-started | not-started | portable-harness-materializer-available | 20 | brender-critical-edition-source-build; brender-v132-main-head; brender-3dmm-main-head; brender-v132-build-environment; brender-v132-portable-core-plan | run CMake configure against the generated out-of-tree harness and preserve transcript; port or emulate remaining period make rules without proprietary inputs; capture compiler transcript for first public core-library build |
 | aqsis | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
 | crystal-space | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
 | gool-goal | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |

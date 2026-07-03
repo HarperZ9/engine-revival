@@ -38,6 +38,7 @@ def _write_harness(root):
         "status": "designed",
         "harness_type": "portable-build-plan",
         "entrypoint": "docs/generated/harnesses/brender-v132-portable-core-plan.md",
+        "materializer_command": "engine-revival materialize-brender-harness --source-root <checkout> --output-root <out>",
         "source_policy": "Use only the public BRender checkout; do not vendor source.",
         "implementation_units": ["core FLOAT library path", "driver variant matrix"],
         "steps": ["materialize portable project files"],
@@ -67,6 +68,7 @@ def test_harness_report_creates_index_detail_page_and_database_entries(tmp_path)
     ) in index.read_text(encoding="utf-8")
     page_text = page.read_text(encoding="utf-8")
     assert "# brender-v132-portable-core-plan" in page_text
+    assert "| Materializer | engine-revival materialize-brender-harness" in page_text
     assert "## Source Policy" in page_text
     assert "Use only the public BRender checkout" in page_text
     assert "- core FLOAT library path" in page_text

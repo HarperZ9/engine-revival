@@ -4,4 +4,4 @@
 
 | Target | Harness | Status | Type | Build |
 |---|---|---|---|---|
-| brender | [brender-v132-portable-core-plan](harnesses/brender-v132-portable-core-plan.md) | designed | portable-build-plan | brender-v132-build-environment |
+| brender | [brender-v132-portable-core-plan](harnesses/brender-v132-portable-core-plan.md) | materializer-available | portable-build-plan | brender-v132-build-environment |

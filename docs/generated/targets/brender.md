@@ -36,7 +36,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Readiness | Stage | Build | Score | Next Actions |
 |---|---|---|---:|---|
-| brender-production-readiness | build-harness-designed | harness-plan-recorded | 16 | emit portable CMake or make-compatible harness files from the recorded topology; port or emulate the period make rules without proprietary inputs; capture compiler transcript for first public core-library build |
+| brender-production-readiness | build-harness-materializer | harness-materializer-available | 20 | run CMake configure against the generated out-of-tree harness and preserve transcript; port or emulate remaining period make rules without proprietary inputs; capture compiler transcript for first public core-library build |
 
 ## Tasks
 
@@ -67,7 +67,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Harness | Status | Type | Build |
 |---|---|---|---|
-| brender-v132-portable-core-plan | designed | portable-build-plan | brender-v132-build-environment |
+| brender-v132-portable-core-plan | materializer-available | portable-build-plan | brender-v132-build-environment |
 
 ## Snapshots
 
