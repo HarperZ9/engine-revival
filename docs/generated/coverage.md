@@ -15,7 +15,7 @@
 | source | 74 |
 | artifact | 58 |
 | accession | 58 |
-| task | 22 |
+| task | 30 |
 | milestone | 22 |
 
 ## Missing Artifact Accessions

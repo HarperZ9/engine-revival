@@ -5,10 +5,13 @@
 | Target | Task | Type | Status | Notes |
 |---|---|---|---|---|
 | aqsis | aqsis-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Aqsis. |
+| brender | brender-critical-edition-packet | build-archive-packet | planned | Build the BRender critical-edition packet: released branches, version graph, build notes, API references, and provenance commentary. |
 | brender | brender-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Argonaut BRender. |
 | crystal-space | crystal-space-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Crystal Space. |
+| gool-goal | gool-goal-archive-packet | build-archive-packet | planned | Build the GOOL/GOAL packet around public OpenGOAL materials, creator testimony, legal-copy asset boundaries, and clean-room tooling notes. |
 | gool-goal | gool-goal-triage | triage-public-record | seeded | Create public-safe sources and artifact records for GOOL and GOAL. |
 | iris-gl-opengl-bridge | iris-gl-opengl-bridge-triage | triage-public-record | seeded | Create public-safe sources and artifact records for IRIS GL / OpenGL bridge. |
+| japan-studio-team-ico | japan-studio-team-ico-archive-packet | build-archive-packet | planned | Build the Japan Studio / Team Ico packet around public studio-history sources, official title pages, interviews, and preservation-safe lineage notes. |
 | japan-studio-team-ico | japan-studio-team-ico-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Japan Studio / Team Ico. |
 | mesa | mesa-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Mesa. |
 | ogre | ogre-triage | triage-public-record | seeded | Create public-safe sources and artifact records for OGRE. |
@@ -16,13 +19,18 @@
 | opengl-performer | opengl-performer-triage | triage-public-record | seeded | Create public-safe sources and artifact records for OpenGL Performer. |
 | phigs | phigs-triage | triage-public-record | seeded | Create public-safe sources and artifact records for PHIGS. |
 | pixie | pixie-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Pixie. |
+| ps1-programmer-tool | ps1-programmer-tool-archive-packet | build-archive-packet | planned | Build the PS1 Programmer's Tool packet around SDevTC, Net Yaroze documentation, runtime-library references, and PSn00bSDK clean-room compatibility. |
 | ps1-programmer-tool | ps1-programmer-tool-triage | triage-public-record | seeded | Create public-safe sources and artifact records for PS1 Programmer's Tool / SDevTC / Net Yaroze. |
+| ps2-prodg-eb-linux | ps2-prodg-eb-linux-archive-packet | build-archive-packet | planned | Build the PS2 ProDG / EB / Linux packet around public Linux material, PS2SDK clean-room records, SN Systems lineage, and toolchain-dependency notes. |
 | ps2-prodg-eb-linux | ps2-prodg-eb-linux-triage | triage-public-record | seeded | Create public-safe sources and artifact records for PS2 ProDG / EB / Linux stack. |
+| psygnosis-studio-liverpool | psygnosis-studio-liverpool-archive-packet | build-archive-packet | planned | Build the Psygnosis / Studio Liverpool packet around public studio history, closure reporting, title-family leads, and preservation-safe asset-pipeline notes. |
 | psygnosis-studio-liverpool | psygnosis-studio-liverpool-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Psygnosis / Studio Liverpool. |
 | quesa | quesa-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Quesa. |
 | quickdraw-3d | quickdraw-3d-triage | triage-public-record | seeded | Create public-safe sources and artifact records for QuickDraw 3D. |
 | reality-lab | reality-lab-triage | triage-public-record | seeded | Create public-safe sources and artifact records for RenderMorphics Reality Lab. |
 | renderman-interface | renderman-interface-triage | triage-public-record | seeded | Create public-safe sources and artifact records for RenderMan Interface. |
+| renderware-ps2 | renderware-ps2-archive-packet | build-archive-packet | planned | Build the RenderWare PS2 packet around public release-note metadata, SDK package records, version numbers, plugin names, and clean-room compatibility leads. |
 | renderware-ps2 | renderware-ps2-triage | triage-public-record | seeded | Create public-safe sources and artifact records for RenderWare PS2. |
 | softimage-alias-bridge | softimage-alias-bridge-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Softimage / Alias bridge. |
+| tri-ace-ps2-renderer | tri-ace-ps2-renderer-archive-packet | build-archive-packet | planned | Build the tri-Ace PS2 renderer packet around public course notes, research-publication records, and documentation-based reconstruction steps. |
 | tri-ace-ps2-renderer | tri-ace-ps2-renderer-triage | triage-public-record | seeded | Create public-safe sources and artifact records for tri-Ace PS2 renderer. |

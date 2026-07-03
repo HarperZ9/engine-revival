@@ -38,6 +38,7 @@ Public records now track SN Systems/ProDG lineage, Linux for PlayStation 2, and 
 
 | Task | Type | Status | Notes |
 |---|---|---|---|
+| ps2-prodg-eb-linux-archive-packet | build-archive-packet | planned | Build the PS2 ProDG / EB / Linux packet around public Linux material, PS2SDK clean-room records, SN Systems lineage, and toolchain-dependency notes. |
 | ps2-prodg-eb-linux-triage | triage-public-record | seeded | Create public-safe sources and artifact records for PS2 ProDG / EB / Linux stack. |
 
 ## Milestones
