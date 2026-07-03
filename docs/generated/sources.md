@@ -22,6 +22,7 @@
 | Sony closes Wipeout's Studio Liverpool | trade-report | high | 4 | Studio Liverpool closure confirmation, Psygnosis lineage, Sony statement excerpts, and Liverpool facility clarification | https://www.gamedeveloper.com/business/sony-closes-i-wipeout-i-s-studio-liverpool |
 | CERN/OpenPHIGS | source-repository | high | 5 | OpenPHIGS repository with OpenGL backend and data-preservation extensions | https://github.com/CERN/OpenPHIGS |
 | fbradasc/OpenPHIGS LICENSE | license-file | high | 5 | License notices for the public OpenPHIGS source tree based on X Consortium and Sun Microsystems permissions | https://raw.githubusercontent.com/fbradasc/OpenPHIGS/main/LICENSE |
+| Initial engine revival research reports | local-research-summary | moderate | 22 | initial target selection |  |
 | Jupiter Development Guide full text | document-ocr | moderate | 5 | OCR and PDF reference for the Jupiter Development Guide version 2002.03.19, including toolchain requirements, component layout, build paths, and legal notices. | https://archive.org/stream/lithengine/JupiterDevGuide_djvu.txt |
 | LithTech Jupiter archive item | archive-item | moderate | 7 | Internet Archive metadata for the LithTech Jupiter build 51 item, including identifier, publication date, package description, collection placement, and original file fixity. | https://archive.org/details/lithengine |
 | Net Yaroze documentation archive item | documentation-archive | high | 5 | Net Yaroze documentation set contents and public metadata | https://archive.org/details/NetYarozeDocumentation |

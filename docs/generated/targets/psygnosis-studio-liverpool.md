@@ -30,6 +30,12 @@ Public-reference-only lineage record for Psygnosis and Studio Liverpool, focused
 | psygnosis-studio-liverpool-closure-report-public-reference | psygnosis-studio-liverpool-closure-report | metadata-only | external-url | public-reference-only |
 | psygnosis-studio-liverpool-public-history-public-reference | psygnosis-studio-liverpool-public-history | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| psygnosis-studio-liverpool-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -48,5 +54,6 @@ Public-reference-only lineage record for Psygnosis and Studio Liverpool, focused
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
 | Sony closes Wipeout's Studio Liverpool | trade-report | high | Studio Liverpool closure confirmation, Psygnosis lineage, Sony statement excerpts, and Liverpool facility clarification | https://www.gamedeveloper.com/business/sony-closes-i-wipeout-i-s-studio-liverpool |
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | Psygnosis: how did a Liverpool company transform the gaming world? | museum-heritage-article | high | Psygnosis public heritage history, Liverpool origin, PlayStation-era influence, and Wipeout/Colony Wars context | https://www.liverpoolmuseums.org.uk/stories/psygnosis-how-did-liverpool-company-transform-gaming-world-big-question |
 | Sony Shuts Down Wipeout Developer Studio Liverpool | trade-report | high | Studio Liverpool closure report and public lineage from Psygnosis through Wipeout, Formula One, and PlayStation-era development | https://www.wired.com/2012/08/wireduk-studio-liverpool-closed/ |

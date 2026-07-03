@@ -30,6 +30,12 @@ Public records now track Crystal Space's SourceForge project registry, GitHub so
 | crystal-space-github-source-repository-planned | crystal-space-github-source-repository | planned | external-url | open-license |
 | crystal-space-sourceforge-project-record-public-reference | crystal-space-sourceforge-project-record | metadata-only | external-url | open-license |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| crystal-space-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -60,3 +66,4 @@ Public records now track Crystal Space's SourceForge project registry, GitHub so
 |---|---|---|---|---|
 | Crystal Space source repository | repository | high | Crystal Space public source repository, LGPL license metadata, and documentation pointers | https://github.com/crystalspace/CS |
 | Crystal Space SourceForge project record | project-registry | high | Crystal Space project registry, platform support, OpenGL renderer, and feature summary | https://sourceforge.net/projects/crystal/ |
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |

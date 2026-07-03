@@ -30,6 +30,12 @@ Public records now track OGRE's source repository, rendering-backend role, platf
 | ogre-licensing-record-public-reference | ogre-licensing-record | metadata-only | external-url | open-license |
 | ogre-source-repository-planned | ogre-source-repository | planned | external-url | open-license |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| ogre-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -58,6 +64,7 @@ Public records now track OGRE's source repository, rendering-backend role, platf
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | OGRE source repository | repository | high | OGRE public source repository, renderer role, APIs, languages, and license metadata | https://github.com/OGRECave/ogre |
 | OGRE licensing | license-documentation | high | OGRE MIT license terms and legacy LGPL note | https://www.ogre3d.org/licensing |
 | OGRE project site | project-site | high | OGRE project overview, platform support, documentation, and MIT license statement | https://www.ogre3d.org/ |

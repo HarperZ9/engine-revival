@@ -34,6 +34,12 @@ Public records now track SN Systems/ProDG lineage, Linux for PlayStation 2, and 
 | ps2-ps2sdk-open-source-sdk-planned | ps2-ps2sdk-open-source-sdk | planned | external-url | open-license |
 | ps2-sn-systems-prodg-lineage-public-reference | ps2-sn-systems-prodg-lineage | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| ps2-prodg-eb-linux-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -63,6 +69,7 @@ Public records now track SN Systems/ProDG lineage, Linux for PlayStation 2, and 
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | PS2 Linux PAL installation discs archive item | archive-item | moderate | PS2 Linux PAL installation disc archive item metadata | https://archive.org/details/disc-1_20220424 |
 | PS2SDK source repository | repository | high | Open-source PS2SDK libraries and homebrew development environment | https://github.com/ps2dev/ps2sdk |
 | ps2dev project site | project-site | high | Open-source PS2 development environment overview | https://ps2dev.github.io/ |

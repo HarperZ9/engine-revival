@@ -34,6 +34,12 @@ Public records now track SDevTC, Net Yaroze documentation, Redump disc metadata,
 | ps1-runtime-library-33-redump-entry-metadata-only | ps1-runtime-library-33-redump-entry | metadata-only | not-held | do-not-redistribute |
 | ps1-sdevtc-development-environment-manual-public-reference | ps1-sdevtc-development-environment-manual | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| ps1-programmer-tool-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -63,6 +69,7 @@ Public records now track SDevTC, Net Yaroze documentation, Redump disc metadata,
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | Net Yaroze documentation archive item | documentation-archive | high | Net Yaroze documentation set contents and public metadata | https://archive.org/details/NetYarozeDocumentation |
 | SDevTC Development Environment manual archive item | manual-archive | high | SDevTC development environment manual metadata and tool list | https://archive.org/details/SCE-SDevTC-Aug1998 |
 | PSn00bSDK source repository | repository | high | Open-source PS1 SDK and compatibility development lane | https://github.com/Lameguy64/PSn00bSDK/ |

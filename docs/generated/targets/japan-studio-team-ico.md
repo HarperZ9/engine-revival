@@ -32,6 +32,12 @@ Restricted-rights Team Ico and Japan Studio public metadata slice using official
 | team-ico-playstation-official-pages-public-reference | team-ico-playstation-official-pages | metadata-only | external-url | public-reference-only |
 | team-ico-ueda-playstation-blog-interview-public-reference | team-ico-ueda-playstation-blog-interview | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| japan-studio-team-ico-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -49,6 +55,7 @@ Restricted-rights Team Ico and Japan Studio public metadata slice using official
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | Introducing Team Asobi, creators of the Astro Bot series | official-blog-post | high | Official Team Asobi introduction, Tokyo studio status, Team Asobi origin, and PlayStation Studios placement | https://blog.playstation.com/2021/06/02/introducing-team-asobi-creators-of-the-astro-bot-series/ |
 | Ico and Shadow of the Colossus Collection hits PS3 Spring 2011 with 3D | official-blog-post | high | Official PlayStation Blog announcement for the Ico and Shadow of the Colossus Collection on PS3 | https://blog.playstation.com/2010/09/15/ico-and-shadow-of-the-colossus-collection-hits-ps3-spring-2011-with-3d/ |
 | Team Ico Talks: Fumito Ueda on The Last Guardian, Shadow of The Colossus | official-interview | high | Official interview with Fumito Ueda on The Last Guardian mechanics and Team Ico lineage | https://blog.playstation.com/2010/09/24/team-ico-talks-fumito-ueda-on-the-last-guardian-shadow-of-the-colossus/ |

@@ -32,6 +32,12 @@ Public records now track Andy Gavin's GOOL article and OpenGOAL's GOAL compiler/
 | opengoal-jak-project-source-planned | opengoal-jak-project-source | planned | external-url | open-license |
 | opengoal-project-overview-docs-public-reference | opengoal-project-overview-docs | metadata-only | external-url | public-reference-only |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| gool-goal-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -62,6 +68,7 @@ Public records now track Andy Gavin's GOOL article and OpenGOAL's GOAL compiler/
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
 | Making Crash Bandicoot - GOOL - part 9 | developer-article | high | GOOL authorship, purpose, and relationship to Crash Bandicoot and GOAL | https://all-things-andy-gavin.com/tag/gool/ |
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | OpenGOAL decompiling getting started | project-documentation | high | OpenGOAL decompiler inputs and legal-copy workflow boundaries | https://opengoal.dev/docs/developing/decompiling/getting_started/ |
 | OpenGOAL jak-project source repository | repository | high | OpenGOAL public source project, decompiler/compiler methodology, and platform support | https://github.com/open-goal/jak-project |
 | OpenGOAL repository license | license | high | OpenGOAL repository license metadata | https://raw.githubusercontent.com/open-goal/jak-project/master/LICENSE |

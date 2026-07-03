@@ -30,6 +30,12 @@ Public records now track Mesa's official API summary, upstream freedesktop.org r
 | mesa-license-and-api-summary-public-reference | mesa-license-and-api-summary | metadata-only | external-url | open-license |
 | mesa-source-repository-planned | mesa-source-repository | planned | external-url | open-license |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| mesa-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -58,6 +64,7 @@ Public records now track Mesa's official API summary, upstream freedesktop.org r
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | Mesa compiling and installing documentation | build-documentation | high | Mesa build prerequisites, Meson/Ninja setup commands, install flow, and local-run instructions | https://docs.mesa3d.org/install.html |
 | The Mesa 3D Graphics Library | project-site | high | Mesa project identity and supported graphics API implementations | https://www.mesa3d.org/ |
 | Mesa license and copyright documentation | license-documentation | high | Mesa license posture for core library and component-level licenses | https://docs.mesa3d.org/license.html |

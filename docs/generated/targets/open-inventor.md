@@ -32,6 +32,12 @@ Public records now track the SGI-origin Open Inventor source release, build note
 | open-inventor-readme-first-build-notes-public-reference | open-inventor-readme-first-build-notes | metadata-only | external-url | open-license |
 | open-inventor-source-release-planned | open-inventor-source-release | planned | external-url | open-license |
 
+## Production Readiness
+
+| Readiness | Stage | Build | Score | Next Actions |
+|---|---|---|---:|---|
+| open-inventor-production-readiness | baseline-assessment | not-started | 0 | create repeatable build harness |
+
 ## Tasks
 
 | Task | Type | Status | Notes |
@@ -61,5 +67,6 @@ Public records now track the SGI-origin Open Inventor source release, build note
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
 | Coin3D API compatibility statement | project-site | high | Coin3D independent Open Inventor API compatibility and clean-room distinction | https://www.coin3d.org/ |
+| Initial engine revival research reports | local-research-summary | moderate | initial target selection |  |
 | Open Inventor source repository | repository | high | Open Inventor public source repository, SGI origin, OpenGL scene graph role, and LGPL metadata | https://github.com/aumuell/open-inventor |
 | Open Inventor README.FIRST | release-notes | high | Open Inventor August 2000 source release notes, source tree structure, and build platforms | https://github.com/aumuell/open-inventor/blob/master/README.FIRST |

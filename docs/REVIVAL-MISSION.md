@@ -23,6 +23,9 @@ concrete layers:
 5. Curate project packets: one focused packet per engine or lineage, with
    reproduction steps where possible and public-safe restricted-material notes
    where direct restoration is not publishable.
+6. Productionize viable engines: move open or clean-room-compatible work toward
+   repeatable builds, runnable demos, regression tests, release packaging,
+   modern platform support, and developer-grade documentation.
 
 ## Revival Lanes
 
@@ -61,3 +64,10 @@ This repo should prefer structured records over scattered prose. New findings
 belong in JSON records first, then generated indexes and packets should expose
 them. When a target becomes reproducible, the archive should record the exact
 build path, environment assumptions, source lineage, and public-safe outputs.
+
+## Flagship Engine Standard
+
+A revived engine is not flagship-quality because a source package exists. It
+becomes a flagship candidate only when the public record can show build status,
+runtime status, tests, packaging, modernization work, blockers, and next actions.
+`readiness/*.json` records track that state without overstating progress.
