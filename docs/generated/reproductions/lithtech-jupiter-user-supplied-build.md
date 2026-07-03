@@ -48,5 +48,7 @@ Rights-safe reproduction recipe for users who already have a lawful local copy. 
 
 ## Evidence Sources
 
-- internet-archive-lithtech-jupiter
-- internet-archive-lithtech-jupiter-dev-guide
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| LithTech Jupiter archive item | archive-item | moderate | Internet Archive metadata for the LithTech Jupiter build 51 item, including identifier, publication date, package description, collection placement, and original file fixity. | https://archive.org/details/lithengine |
+| Jupiter Development Guide full text | document-ocr | moderate | OCR and PDF reference for the Jupiter Development Guide version 2002.03.19, including toolchain requirements, component layout, build paths, and legal notices. | https://archive.org/stream/lithengine/JupiterDevGuide_djvu.txt |

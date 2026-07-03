@@ -48,8 +48,10 @@ Planned reproduction recipe for building OpenPHIGS as a public PHIGS/OpenGL reim
 
 ## Evidence Sources
 
-- sourceforge-open-phigs
-- github-cern-openphigs
-- github-fbradasc-openphigs-license
-- iso-phigs-9592-3
-- nist-phigs-validation-guide
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Open PHIGS | project-registry | moderate | Open PHIGS project metadata, C library scope, PHIGS/OpenGL relationship, and ISO 9592/9593 references | https://sourceforge.net/projects/phigs/ |
+| CERN/OpenPHIGS | source-repository | high | OpenPHIGS repository with OpenGL backend and data-preservation extensions | https://github.com/CERN/OpenPHIGS |
+| fbradasc/OpenPHIGS LICENSE | license-file | high | License notices for the public OpenPHIGS source tree based on X Consortium and Sun Microsystems permissions | https://raw.githubusercontent.com/fbradasc/OpenPHIGS/main/LICENSE |
+| ISO/IEC 9592-3:1989 | standards-catalog | high | ISO public metadata for ISO/IEC 9592-3:1989 PHIGS clear-text archive encoding and its withdrawn status | https://www.iso.org/standard/17363.html |
+| User's Guide for the PHIGS Validation Tests (Version 2.1) | government-publication | high | NIST publication metadata for the User's Guide for the PHIGS Validation Tests Version 2.1 | https://www.nist.gov/publications/users-guide-phigs-validation-tests-version-21 |

@@ -46,6 +46,8 @@ Planned reproduction recipe for rebuilding the public Pixie renderer source mirr
 
 ## Evidence Sources
 
-- pixie-github-mirror
-- pixie-sourceforge
-- renderpixie-summary
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Pixie source mirror | source-mirror | moderate | Pixie public source mirror and LGPL license metadata | https://github.com/daliborgaric/pixie |
+| Pixie SourceForge project page | project-registry | high | Pixie project metadata, feature summary, activity, operating systems, and LGPL license metadata | https://sourceforge.net/projects/pixie/ |
+| Pixie Renderer summary | project-summary | moderate | Pixie feature and historical summary | https://www.renderpixie.com/pixie_renderer.html |

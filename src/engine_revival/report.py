@@ -243,6 +243,10 @@ def _coverage_summary(root: Path) -> str:
 def write_reports(root: Path) -> list[Path]:
     targets = build_target_index(root)
     generated = root / "docs" / "generated"
+    sources_by_id = {
+        str(payload["id"]): payload
+        for payload in _records_if_present(root, "source")
+    }
     written = [
         _write(generated / "index.md", "# Engine Revival Public Index\n\n" + render_target_table(targets)),
         _write(generated / "targets.md", "# Targets\n\n" + render_target_table(targets)),
@@ -269,7 +273,7 @@ def write_reports(root: Path) -> list[Path]:
         written.append(
             _write(
                 generated / "reproductions" / f"{reproduction['id']}.md",
-                reproduction_page(reproduction),
+                reproduction_page(reproduction, sources_by_id),
             )
         )
     for snapshot in snapshot_records(root):

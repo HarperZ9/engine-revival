@@ -49,7 +49,9 @@ Planned clean-room reproduction recipe for building PSn00bSDK as a public PS1 co
 
 ## Evidence Sources
 
-- psnoobsdk-github
-- internet-archive-net-yaroze-documentation
-- internet-archive-sdevtc-aug1998
-- redump-ps1-runtime-library-33
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| PSn00bSDK source repository | repository | high | Open-source PS1 SDK and compatibility development lane | https://github.com/Lameguy64/PSn00bSDK/ |
+| Net Yaroze documentation archive item | documentation-archive | high | Net Yaroze documentation set contents and public metadata | https://archive.org/details/NetYarozeDocumentation |
+| SDevTC Development Environment manual archive item | manual-archive | high | SDevTC development environment manual metadata and tool list | https://archive.org/details/SCE-SDevTC-Aug1998 |
+| PlayStation Programmer Tool Runtime Library Version 3.3 Redump entry | disc-database | high | PlayStation Programmer Tool Runtime Library Version 3.3 disc metadata | https://redump.org/disc/50387/ |

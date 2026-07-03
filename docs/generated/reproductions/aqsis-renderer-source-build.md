@@ -46,4 +46,6 @@ Planned reproduction recipe for turning the public Aqsis source snapshot into a 
 
 ## Evidence Sources
 
-- aqsis-github
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Aqsis source repository | repository | high | Aqsis public source repository, RenderMan compatibility claim, tool list, and license metadata | https://github.com/aqsis/aqsis |

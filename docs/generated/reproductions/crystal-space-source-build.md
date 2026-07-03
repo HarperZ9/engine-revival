@@ -46,5 +46,7 @@ Planned reproduction recipe for rebuilding Crystal Space from its public source 
 
 ## Evidence Sources
 
-- crystal-space-github
-- crystal-space-sourceforge
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Crystal Space source repository | repository | high | Crystal Space public source repository, LGPL license metadata, and documentation pointers | https://github.com/crystalspace/CS |
+| Crystal Space SourceForge project record | project-registry | high | Crystal Space project registry, platform support, OpenGL renderer, and feature summary | https://sourceforge.net/projects/crystal/ |

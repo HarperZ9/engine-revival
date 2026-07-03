@@ -53,6 +53,8 @@ First Mesa reproduction recipe for turning the public source repository and offi
 
 ## Evidence Sources
 
-- mesa-source-repository-docs
-- mesa-build-docs
-- mesa-license-docs
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Mesa source code repository documentation | repository-documentation | high | Mesa upstream repository location and anonymous Git access | https://docs.mesa3d.org/repository.html |
+| Mesa compiling and installing documentation | build-documentation | high | Mesa build prerequisites, Meson/Ninja setup commands, install flow, and local-run instructions | https://docs.mesa3d.org/install.html |
+| Mesa license and copyright documentation | license-documentation | high | Mesa license posture for core library and component-level licenses | https://docs.mesa3d.org/license.html |
