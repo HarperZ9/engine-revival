@@ -1,11 +1,12 @@
 {
   "blockers": [
-    "MSVC x64 build emits pointer-truncation, enum-conversion, const-qualifier, and duplicate-symbol warnings that need portability audit",
-    "runtime coverage is limited to a vector math smoke; BrBegin framework startup still needs period ASM or portable fallback modeling plus host-image platform definitions",
+    "x64 startup is not claimed; pointer-width portability still needs audit and modernization",
+    "runtime coverage is limited to vector math plus BrBegin and BrEnd framework startup; no scene rendering, drivers, or full V1DB behavior is covered",
+    "portable core and host fallback stubs need semantic tests before they can be treated as production replacements",
     "release packaging has not been implemented",
     "drivers and deferred FIXED variants have not been translated"
   ],
-  "build_status": "portable-core-library-built",
+  "build_status": "portable-core-library-and-startup-smoke-built",
   "build_ids": [
     "brender-v132-build-environment"
   ],
@@ -23,9 +24,12 @@
     "2026-07-03 explicit-source harness configured with Visual Studio 18 2026 and built brender_core_float.lib with MSVC 19.50.35721.0 in an external build tree",
     "2026-07-03 brender_core_smoke target added to the out-of-tree harness; smoke source exercises BrVector3SetFloat and BrScalarToFloat without framework startup",
     "2026-07-03 cmake --build completed target brender_core_smoke with exit 0 and produced Debug\\brender_core_smoke.exe",
-    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 1/1 brender_core_smoke test"
+    "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 1/1 brender_core_smoke test",
+    "2026-07-03 framework startup target added with portable core and host compatibility stubs for the period ASM boundary",
+    "2026-07-03 unguarded x64 startup executable linked but crashed with 0xC0000005, so the materialized harness now requires a 32-bit C target",
+    "2026-07-03 guarded Visual Studio Win32 configure succeeded, brender_core_smoke.exe and brender_core_startup_smoke.exe direct-ran with exit 0, and CTest passed 2/2 cases"
   ],
-  "flagship_score": 36,
+  "flagship_score": 40,
   "harness_ids": [
     "brender-v132-portable-core-plan"
   ],
@@ -35,23 +39,24 @@
     "brender-v132-core-build-attempt",
     "brender-v132-period-defines-build-attempt",
     "brender-v132-explicit-sources-core-build",
-    "brender-v132-vector-smoke-runtime"
+    "brender-v132-vector-smoke-runtime",
+    "brender-v132-framework-startup-smoke-win32"
   ],
   "id": "brender-production-readiness",
   "modernization_status": "core-portability-audit-needed",
   "next_actions": [
-    "audit and classify the x64 MSVC warning transcript",
-    "expand the runtime smoke from vector math to BrBegin framework startup after ASM, portable fallback, and host-image platform boundary modeling",
+    "audit and classify the MSVC warning transcript",
+    "add semantic tests for portable core and host fallback behavior",
     "model generated-token inputs such as core/fw/pretok for reproducible source regeneration",
     "translate deferred FIXED variants and driver targets after the core library path is stable"
   ],
   "packaging_status": "not-started",
-  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, and vector math runtime smoke through CTest. The produced brender_core_float.lib and brender_core_smoke.exe remain outside this metadata repo. BrBegin framework startup, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
-  "readiness_stage": "portable-core-vector-smoke-passing",
+  "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, vector math runtime smoke, and BrBegin/BrEnd framework startup smoke through CTest under a Visual Studio Win32 target. The produced brender_core_float.lib and smoke executables remain outside this metadata repo. x64 portability, full V1DB startup, scene rendering, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
+  "readiness_stage": "portable-core-framework-startup-smoke-passing",
   "reproduction_ids": [
     "brender-critical-edition-source-build"
   ],
-  "runtime_status": "vector-smoke-passing",
+  "runtime_status": "framework-startup-smoke-passing",
   "snapshot_ids": [
     "brender-v132-main-head",
     "brender-3dmm-main-head"
@@ -62,5 +67,5 @@
     "blazingrender-index"
   ],
   "target_id": "brender",
-  "test_status": "vector-smoke-passing"
+  "test_status": "framework-startup-smoke-passing"
 }

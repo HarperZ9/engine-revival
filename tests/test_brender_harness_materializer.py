@@ -46,15 +46,27 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "CMakeLists.txt",
         output / "README.md",
         output / "cmake" / "brender-core-sources.cmake",
+        output / "compat" / "brender-portable-core-stubs.c",
+        output / "compat" / "brender-portable-host-stubs.c",
         output / "smoke" / "brender-core-smoke.c",
+        output / "smoke" / "brender-core-startup-smoke.c",
         output / "harness-manifest.json",
     ]
     cmake = (output / "CMakeLists.txt").read_text(encoding="utf-8")
     assert "project(brender_v132_portable_core C)" in cmake
     assert "add_library(brender_core_float STATIC" in cmake
     assert "add_executable(brender_core_smoke" in cmake
+    assert "add_executable(brender_core_startup_smoke" in cmake
     assert "target_link_libraries(brender_core_smoke PRIVATE brender_core_float)" in cmake
+    assert "target_link_libraries(brender_core_startup_smoke PRIVATE brender_core_float)" in cmake
     assert "add_test(NAME brender_core_smoke COMMAND brender_core_smoke)" in cmake
+    assert "add_test(NAME brender_core_startup_smoke COMMAND brender_core_startup_smoke)" in cmake
+    assert "compat/brender-portable-core-stubs.c" in cmake
+    assert "compat/brender-portable-host-stubs.c" in cmake
+    assert "CMAKE_SIZEOF_VOID_P" in cmake
+    assert "use -A Win32 with Visual Studio" in cmake
+    assert "__BR_V1DB__=0" in cmake
+    assert "__WIN_32__=1" in cmake
     assert "target_compile_definitions(brender_core_float PRIVATE" in cmake
     for definition in [
         "BASED_FLOAT=1",
@@ -82,14 +94,46 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "BrVector3SetFloat(&vector, 1.0f, 2.0f, 3.0f)" in smoke
     assert "BrScalarToFloat(vector.v[2])" in smoke
     assert "BrBegin()" not in smoke
+    startup_smoke = (output / "smoke" / "brender-core-startup-smoke.c").read_text(
+        encoding="utf-8"
+    )
+    assert "#define __BR_V1DB__ 0" in startup_smoke
+    assert "BrBegin()" in startup_smoke
+    assert "BrEnd()" in startup_smoke
+    compat = (output / "compat" / "brender-portable-core-stubs.c").read_text(
+        encoding="utf-8"
+    )
+    assert "void BR_RESIDENT_ENTRY _PRO(void)" in compat
+    assert "br_uint_16 BR_ASM_CALL _GetSysQual(void)" in compat
+    assert "struct br_font BR_ASM_DATA _FontFixed3x5" in compat
+    assert "static void copy_source_colour_key0(" in compat
+    host_compat = (output / "compat" / "brender-portable-host-stubs.c").read_text(
+        encoding="utf-8"
+    )
+    assert "br_uint_16 _RealSelector = 0;" in host_compat
+    assert "br_error BR_RESIDENT_ENTRY HostRealAllocate(" in host_compat
+    assert "void BR_ASM_CALL CPUInfo(" in host_compat
+    assert "br_error BR_RESIDENT_ENTRY HostInterruptGet(" in host_compat
+    assert "void BR_RESIDENT_ENTRY HostFarBlockWrite(" in host_compat
     readme = (output / "README.md").read_text(encoding="utf-8")
     assert "does not vendor BRender source" in readme
+    assert "cmake -S . -B build -A Win32" in readme
     assert '"-DBRENDER_SOURCE_DIR=<path-to-public-brender-checkout>"' in readme
     assert "ctest --test-dir build -C Debug --output-on-failure" in readme
     manifest = json.loads((output / "harness-manifest.json").read_text(encoding="utf-8"))
     assert manifest["target_id"] == "brender"
+    assert manifest["cmake_platform"] == "Win32"
     assert manifest["core_float_dirs"] == list(CORE_DIRS)
     assert manifest["smoke_target"] == "brender_core_smoke"
+    assert manifest["smoke_targets"] == [
+        "brender_core_smoke",
+        "brender_core_startup_smoke",
+    ]
+    assert manifest["portable_compat_source"] == "compat/brender-portable-core-stubs.c"
+    assert manifest["portable_compat_sources"] == [
+        "compat/brender-portable-core-stubs.c",
+        "compat/brender-portable-host-stubs.c",
+    ]
     assert manifest["source_lists"]["fw"] == ["fw_listed.c"]
     assert manifest["compile_definitions"] == [
         "BASED_FLOAT=1",
@@ -130,3 +174,4 @@ def test_cli_materializes_brender_harness(tmp_path, capsys):
     assert str(output / "CMakeLists.txt") in captured.out
     assert (output / "cmake" / "brender-core-sources.cmake").exists()
     assert (output / "smoke" / "brender-core-smoke.c").exists()
+    assert (output / "smoke" / "brender-core-startup-smoke.c").exists()

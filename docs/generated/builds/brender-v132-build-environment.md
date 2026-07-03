@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | portable-core-vector-smoke-passing |
+| Status | portable-core-framework-startup-smoke-passing |
 | Reproduction | brender-critical-edition-source-build |
 | Host Platform | Windows local probe |
 | Source Checkout | out-of-tree public checkout at recorded snapshot commit d88d0ed41122664b9781015b517db64353e16f19 |
@@ -14,7 +14,7 @@
 
 ## Public Notes
 
-BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake, builds brender_core_float.lib with explicit period OBJS_C source lists in an external MSVC tree, and passes a narrow vector math smoke executable through CTest. No generated binary or packaged release is committed.
+BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake, builds brender_core_float.lib with explicit period OBJS_C source lists in an external Visual Studio Win32 tree, and passes vector math plus BrBegin/BrEnd framework startup smoke executables through CTest. No generated binary or packaged release is committed.
 
 ## Required Variables
 
@@ -27,7 +27,7 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 
 | Probe | Result |
 |---|---|
-| available | cmake; Visual Studio 18 2026 CMake generator; MSVC 19.50.35721.0 via CMake generator |
+| available | cmake; Visual Studio 18 2026 CMake generator; MSVC 19.50.35721.0 via CMake generator; Visual Studio Win32 target platform |
 | missing | make; nmake; gcc |
 
 ## Observed Layout
@@ -55,14 +55,15 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 ## Blockers
 
 - portable core build currently targets only the FLOAT core library; FIXED variants and drivers are deferred
-- MSVC x64 build emits pointer-truncation, enum-conversion, const-qualifier, and duplicate-symbol warnings that need portability audit
-- runtime coverage is limited to a vector math smoke; BrBegin framework startup still needs period ASM or portable fallback modeling plus host-image platform definitions
+- x64 startup is not claimed; the guarded harness requires a 32-bit C target while pointer-width portability is audited
+- MSVC builds still emit enum-conversion and const-qualifier warnings that need portability audit
+- runtime coverage is limited to vector math plus BrBegin and BrEnd framework startup; scene rendering, drivers, and full V1DB behavior are not covered
 - no packaged release artifact is claimed
 
 ## Next Actions
 
 - audit the completed core-library warning transcript
-- expand the runtime smoke from vector math to framework startup after ASM, portable fallback, and host-image platform boundary modeling
+- add semantic tests for the portable host and memory fallback functions before using them for rendering behavior
 - translate deferred FIXED variants and driver targets
 - model the fw pretok token-generation boundary for reproducible source regeneration
 

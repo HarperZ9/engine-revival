@@ -3,8 +3,17 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from engine_revival.brender_compat_sources import (
+    portable_core_stubs_source,
+    startup_smoke_source,
+    vector_smoke_source,
+)
+from engine_revival.brender_host_sources import portable_host_stubs_source
+from engine_revival.brender_harness_templates import cmake_project_source, readme_source
+
 
 CORE_FLOAT_DIRS = ("fw", "host", "std", "pixelmap", "dosio", "v1db", "math", "fmt")
+CORE_V1DB_DISABLED_DIRS = ("fw", "host", "std", "pixelmap", "dosio", "math")
 CORE_FLOAT_DEFINES = (
     "BASED_FLOAT=1",
     "BASED_FIXED=0",
@@ -20,7 +29,10 @@ OUTPUT_FILES = (
     "CMakeLists.txt",
     "README.md",
     "cmake/brender-core-sources.cmake",
+    "compat/brender-portable-core-stubs.c",
+    "compat/brender-portable-host-stubs.c",
     "smoke/brender-core-smoke.c",
+    "smoke/brender-core-startup-smoke.c",
     "harness-manifest.json",
 )
 
@@ -36,10 +48,13 @@ def materialize_brender_core_harness(source_root: Path, output_root: Path) -> li
     _validate_output_location(source, output)
     source_lists = _load_core_float_source_lists(source)
     files = {
-        "CMakeLists.txt": _cmake_project(),
-        "README.md": _readme(),
+        "CMakeLists.txt": cmake_project_source(CORE_FLOAT_DEFINES),
+        "README.md": readme_source(),
         "cmake/brender-core-sources.cmake": _source_manifest_cmake(source_lists),
-        "smoke/brender-core-smoke.c": _smoke_source(),
+        "compat/brender-portable-core-stubs.c": portable_core_stubs_source(),
+        "compat/brender-portable-host-stubs.c": portable_host_stubs_source(),
+        "smoke/brender-core-smoke.c": vector_smoke_source(),
+        "smoke/brender-core-startup-smoke.c": startup_smoke_source(),
         "harness-manifest.json": _manifest_json(source_lists),
     }
     written: list[Path] = []
@@ -67,49 +82,6 @@ def _validate_output_location(source: Path, output: Path) -> None:
         raise HarnessMaterializationError(
             "BRender harness output must be outside the source checkout"
         )
-
-
-def _cmake_project() -> str:
-    compile_definitions = "\n".join(f"  {definition}" for definition in CORE_FLOAT_DEFINES)
-    return f"""cmake_minimum_required(VERSION 3.20)
-project(brender_v132_portable_core C)
-enable_testing()
-
-set(BRENDER_SOURCE_DIR "" CACHE PATH "Path to the public BRender v1.3.2 checkout")
-if(NOT BRENDER_SOURCE_DIR)
-  message(FATAL_ERROR "Set -DBRENDER_SOURCE_DIR=<public BRender checkout>")
-endif()
-get_filename_component(BRENDER_SOURCE_DIR "${{BRENDER_SOURCE_DIR}}" ABSOLUTE)
-
-include(${{CMAKE_CURRENT_LIST_DIR}}/cmake/brender-core-sources.cmake)
-
-set(BRENDER_CORE_INCLUDE_DIRS
-  "${{BRENDER_SOURCE_DIR}}/inc"
-  "${{BRENDER_SOURCE_DIR}}/core/inc"
-  "${{BRENDER_SOURCE_DIR}}/core/fw"
-  "${{BRENDER_SOURCE_DIR}}/core/host"
-  "${{BRENDER_SOURCE_DIR}}/core/std"
-  "${{BRENDER_SOURCE_DIR}}/core/pixelmap"
-  "${{BRENDER_SOURCE_DIR}}/core/dosio"
-  "${{BRENDER_SOURCE_DIR}}/core/v1db"
-  "${{BRENDER_SOURCE_DIR}}/core/math"
-  "${{BRENDER_SOURCE_DIR}}/core/fmt"
-)
-
-add_library(brender_core_float STATIC ${{BRENDER_CORE_FLOAT_SOURCES}})
-target_include_directories(brender_core_float PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
-target_compile_definitions(brender_core_float PRIVATE
-{compile_definitions}
-)
-
-add_executable(brender_core_smoke smoke/brender-core-smoke.c)
-target_include_directories(brender_core_smoke PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
-target_compile_definitions(brender_core_smoke PRIVATE
-{compile_definitions}
-)
-target_link_libraries(brender_core_smoke PRIVATE brender_core_float)
-add_test(NAME brender_core_smoke COMMAND brender_core_smoke)
-"""
 
 
 def _load_core_float_source_lists(source: Path) -> dict[str, list[str]]:
@@ -198,62 +170,29 @@ def _source_manifest_cmake(source_lists: dict[str, list[str]]) -> str:
     return "\n".join(lines)
 
 
-def _readme() -> str:
-    return """# BRender v1.3.2 Portable Core Harness
-
-This harness materializes an out-of-tree CMake scaffold for the public BRender
-v1.3.2 source checkout. It does not vendor BRender source, generated binaries,
-private assets, or restricted SDK material.
-
-```powershell
-cmake -S . -B build "-DBRENDER_SOURCE_DIR=<path-to-public-brender-checkout>"
-cmake --build build --config Debug --target brender_core_float
-cmake --build build --config Debug --target brender_core_smoke
-ctest --test-dir build -C Debug --output-on-failure
-```
-
-The first compiler run is expected to produce portability findings. Record the
-transcript before advancing production-readiness status.
-"""
-
-
 def _manifest_json(source_lists: dict[str, list[str]]) -> str:
     payload = {
         "id": "brender-v132-portable-core-plan",
         "target_id": "brender",
         "harness_type": "portable-cmake-core-scaffold",
+        "cmake_platform": "Win32",
         "core_float_dirs": list(CORE_FLOAT_DIRS),
+        "core_v1db_disabled_dirs": list(CORE_V1DB_DISABLED_DIRS),
         "compile_definitions": list(CORE_FLOAT_DEFINES),
+        "portable_compat_source": "compat/brender-portable-core-stubs.c",
+        "portable_compat_sources": [
+            "compat/brender-portable-core-stubs.c",
+            "compat/brender-portable-host-stubs.c",
+        ],
         "smoke_target": "brender_core_smoke",
+        "smoke_targets": [
+            "brender_core_smoke",
+            "brender_core_startup_smoke",
+        ],
         "source_lists": source_lists,
-        "source_policy": (
-            "out-of-tree; explicit period OBJS_C source lists; "
-            "no vendored source or generated binaries"
-        ),
+        "source_policy": "out-of-tree; explicit period OBJS_C lists; no vendored BRender source",
     }
     return json.dumps(payload, indent=2, sort_keys=True) + "\n"
-
-
-def _smoke_source() -> str:
-    return """#define _NO_VECTOR_MACROS 1
-#include "brender.h"
-
-int main(void)
-{
-    br_vector3 vector;
-
-    BrVector3SetFloat(&vector, 1.0f, 2.0f, 3.0f);
-    if (BrScalarToFloat(vector.v[2]) != 3.0f) {
-        return 1;
-    }
-
-    if (BrScalarToFloat(vector.v[0]) != 1.0f) {
-        return 2;
-    }
-
-    return 0;
-}
-"""
 
 
 def _module_source_var(directory: str) -> str:
