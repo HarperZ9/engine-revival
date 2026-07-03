@@ -116,6 +116,15 @@ target_compile_definitions(brender_core_depth_smoke PRIVATE
 target_link_libraries(brender_core_depth_smoke PRIVATE brender_core_float)
 add_test(NAME brender_core_depth_smoke
   COMMAND brender_core_depth_smoke brender-core-depth-smoke.ppm)
+
+add_executable(brender_core_texture_smoke smoke/brender-core-texture-smoke.c)
+target_include_directories(brender_core_texture_smoke PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_texture_smoke PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_texture_smoke PRIVATE brender_core_float)
+add_test(NAME brender_core_texture_smoke
+  COMMAND brender_core_texture_smoke brender-core-texture-smoke.ppm)
 """
 
 
@@ -135,6 +144,7 @@ cmake --build build --config Debug --target brender_core_render_smoke
 cmake --build build --config Debug --target brender_core_scene_smoke
 cmake --build build --config Debug --target brender_core_fill_smoke
 cmake --build build --config Debug --target brender_core_depth_smoke
+cmake --build build --config Debug --target brender_core_texture_smoke
 ctest --test-dir build -C Debug --output-on-failure
 ```
 
