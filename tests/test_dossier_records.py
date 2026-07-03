@@ -229,3 +229,20 @@ def test_lithtech_jupiter_packet_is_recorded():
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
+
+
+def test_open_source_remote_head_snapshots_are_recorded():
+    expected = {
+        "snapshots/aqsis-master-head.json",
+        "snapshots/crystal-space-master-head.json",
+        "snapshots/ogre-master-head.json",
+        "snapshots/open-inventor-master-head.json",
+        "snapshots/quesa-master-head.json",
+        "snapshots/pixie-master-head.json",
+        "snapshots/openphigs-main-head.json",
+        "snapshots/opengoal-jak-project-master-head.json",
+        "snapshots/psnoobsdk-master-head.json",
+        "snapshots/ps2sdk-master-head.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
