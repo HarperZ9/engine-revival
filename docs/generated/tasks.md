@@ -13,6 +13,7 @@
 | iris-gl-opengl-bridge | iris-gl-opengl-bridge-triage | triage-public-record | seeded | Create public-safe sources and artifact records for IRIS GL / OpenGL bridge. |
 | japan-studio-team-ico | japan-studio-team-ico-archive-packet | build-archive-packet | planned | Build the Japan Studio / Team Ico packet around public studio-history sources, official title pages, interviews, and preservation-safe lineage notes. |
 | japan-studio-team-ico | japan-studio-team-ico-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Japan Studio / Team Ico. |
+| lithtech-jupiter | lithtech-jupiter-archive-packet | build-archive-packet | planned | Build the LithTech Jupiter packet around IA metadata, development-guide systems, toolchain requirements, file manifests, and user-supplied build reproduction notes. |
 | mesa | mesa-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Mesa. |
 | ogre | ogre-triage | triage-public-record | seeded | Create public-safe sources and artifact records for OGRE. |
 | open-inventor | open-inventor-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Open Inventor. |

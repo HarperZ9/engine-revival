@@ -18,6 +18,8 @@
 | gool-goal | Andy Gavin GOOL developer article | developer-article | public-reference-only | public |
 | iris-gl-opengl-bridge | IRIS GL to OpenGL public history record | api-lineage-record | public-reference-only | public |
 | japan-studio-team-ico | Japan Studio reorganization public report | studio-reorganization-record | public-reference-only | public |
+| lithtech-jupiter | LithTech Jupiter build 51 archive item | engine-sdk-archive-metadata | do-not-redistribute | metadata-only |
+| lithtech-jupiter | Jupiter Development Guide | development-guide | do-not-redistribute | public-reference |
 | mesa | Mesa API and license summary | license-and-api-summary | open | public |
 | mesa | Mesa upstream source repository | source-repository-record | open | public |
 | ps1-programmer-tool | Net Yaroze documentation set | documentation-set | public-reference-only | public |

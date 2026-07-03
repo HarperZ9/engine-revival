@@ -8,6 +8,7 @@
 | 84 | [PS1 Programmer's Tool / SDevTC / Net Yaroze](targets/ps1-programmer-tool.md) | clean-room-only | clean-room-api-compatible | 4 | 4 | 2 | 1 |
 | 82 | [RenderWare PS2](targets/renderware-ps2.md) | restricted | compatibility-reimplementation | 2 | 2 | 2 | 1 |
 | 80 | [GOOL and GOAL](targets/gool-goal.md) | clean-room-only | tooling-only-legal-copy-assets | 3 | 3 | 2 | 1 |
+| 79 | [LithTech Jupiter](targets/lithtech-jupiter.md) | rights-holder-needed | user-supplied-reproduction | 2 | 2 | 1 | 1 |
 | 78 | [PS2 ProDG / EB / Linux stack](targets/ps2-prodg-eb-linux.md) | rights-holder-needed | clean-room-and-corporate-outreach | 4 | 4 | 2 | 1 |
 | 77 | [RenderMorphics Reality Lab](targets/reality-lab.md) | rights-holder-needed | private-lead-public-metadata | 4 | 4 | 1 | 1 |
 | 76 | [OpenGL Performer](targets/opengl-performer.md) | public-reference-only | partial-public-archive | 3 | 3 | 1 | 1 |

@@ -4,20 +4,20 @@
 
 | Metric | Covered | Total |
 |---|---:|---:|
-| Artifact accession coverage | 58 | 58 |
-| Target task coverage | 22 | 22 |
-| Target milestone coverage | 22 | 22 |
-| Source usage coverage | 74 | 74 |
+| Artifact accession coverage | 60 | 60 |
+| Target task coverage | 23 | 23 |
+| Target milestone coverage | 23 | 23 |
+| Source usage coverage | 76 | 76 |
 
 | Record kind | Count |
 |---|---:|
-| target | 22 |
-| source | 74 |
-| artifact | 58 |
-| accession | 58 |
-| task | 30 |
-| milestone | 22 |
-| reproduction | 1 |
+| target | 23 |
+| source | 76 |
+| artifact | 60 |
+| accession | 60 |
+| task | 31 |
+| milestone | 23 |
+| reproduction | 2 |
 | snapshot | 2 |
 
 ## Missing Artifact Accessions

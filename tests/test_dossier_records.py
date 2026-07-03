@@ -212,3 +212,20 @@ def test_first_brender_source_snapshots_are_recorded():
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
+
+
+def test_lithtech_jupiter_packet_is_recorded():
+    expected = {
+        "targets/lithtech-jupiter.json",
+        "sources/internet-archive-lithtech-jupiter.json",
+        "sources/internet-archive-lithtech-jupiter-dev-guide.json",
+        "artifacts/lithtech-jupiter-build51-archive-item.json",
+        "artifacts/lithtech-jupiter-development-guide.json",
+        "accessions/lithtech-jupiter-build51-archive-item-metadata-only.json",
+        "accessions/lithtech-jupiter-development-guide-public-reference.json",
+        "tasks/lithtech-jupiter-archive-packet.json",
+        "milestones/lithtech-jupiter-baseline.json",
+        "reproductions/lithtech-jupiter-user-supplied-build.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []
