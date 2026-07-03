@@ -4,7 +4,7 @@
 
 | Target | Stage | Build | Runtime | Tests | Package | Modernization | Score | Evidence | Next Actions |
 |---|---|---|---|---|---|---|---:|---|---|
-| brender | build-harness-candidate | source-inspected | not-started | not-started | not-started | toolchain-reconstruction-needed | 12 | brender-critical-edition-source-build; brender-v132-main-head; brender-3dmm-main-head | create out-of-tree build environment manifest; port or emulate the period make rules without proprietary inputs; capture compiler transcript for first public core-library build |
+| brender | build-harness-candidate | source-inspected | not-started | not-started | not-started | toolchain-reconstruction-needed | 12 | brender-critical-edition-source-build; brender-v132-main-head; brender-3dmm-main-head; brender-v132-build-environment | create out-of-tree build environment manifest; port or emulate the period make rules without proprietary inputs; capture compiler transcript for first public core-library build |
 | aqsis | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
 | crystal-space | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |
 | gool-goal | baseline-assessment | not-started | not-started | not-started | not-started | not-started | 0 | none recorded | create repeatable build harness |

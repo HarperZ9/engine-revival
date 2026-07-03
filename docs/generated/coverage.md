@@ -20,6 +20,7 @@
 | reproduction | 13 |
 | snapshot | 13 |
 | readiness | 22 |
+| build | 1 |
 
 ## Missing Artifact Accessions
 

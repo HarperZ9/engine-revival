@@ -22,6 +22,7 @@ RECORD_DIRS = {
     "reproduction": "reproductions",
     "snapshot": "snapshots",
     "readiness": "readiness",
+    "build": "builds",
 }
 
 

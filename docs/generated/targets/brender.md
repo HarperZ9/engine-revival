@@ -57,6 +57,12 @@ Open BRender source releases and historical SDK references are now tracked as th
 |---|---|---|---|
 | brender-critical-edition-source-build | source-build | planned | First public reproduction recipe for turning BRender from archived source records into a repeatable critical-edition build track. |
 
+## Build Environments
+
+| Build | Status | Host | Reproduction |
+|---|---|---|---|
+| brender-v132-build-environment | source-inspected | Windows local probe | brender-critical-edition-source-build |
+
 ## Snapshots
 
 | Snapshot | Artifact | Ref | Commit |

@@ -13,6 +13,7 @@ from engine_revival.report_artifacts import (
     artifact_records,
     artifact_relations,
 )
+from engine_revival.report_builds import build_index, build_page, build_records
 from engine_revival.report_corpus import (
     corpus_database,
     packet_index,
@@ -70,6 +71,7 @@ def _source_usage_counts(root: Path) -> dict[str, int]:
         "reproduction",
         "snapshot",
         "readiness",
+        "build",
     ):
         for payload in _records_if_present(root, kind):
             value = payload.get("source_ids", [])
@@ -197,6 +199,7 @@ def _coverage_summary(root: Path) -> str:
         "reproduction",
         "snapshot",
         "readiness",
+        "build",
     ):
         lines.append(f"| {kind} | {len(_records_if_present(root, kind))} |")
     lines.extend(["", "## Missing Artifact Accessions", ""])
@@ -244,6 +247,7 @@ def write_reports(root: Path) -> list[Path]:
         _write(generated / "reproductions.md", reproduction_index(root)),
         _write(generated / "snapshots.md", snapshot_index(root)),
         _write(generated / "production-readiness.md", readiness_index(root)),
+        _write(generated / "builds.md", build_index(root)),
         _write(generated / "milestones.md", _milestone_summary(root)),
         _write(generated / "coverage.md", _coverage_summary(root)),
         _write_json(generated / "database.json", corpus_database(root)),
@@ -288,6 +292,13 @@ def write_reports(root: Path) -> list[Path]:
             _write(
                 generated / "snapshots" / f"{snapshot['id']}.md",
                 snapshot_page(snapshot, sources_by_id),
+            )
+        )
+    for build in build_records(root):
+        written.append(
+            _write(
+                generated / "builds" / f"{build['id']}.md",
+                build_page(build, sources_by_id),
             )
         )
     if (root / "targets").exists():
