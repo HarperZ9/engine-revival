@@ -195,3 +195,11 @@ def test_first_archival_packet_tasks_are_recorded():
     }
     missing = [path for path in expected if not (ROOT / path).exists()]
     assert missing == []
+
+
+def test_first_reproduction_recipe_is_recorded():
+    expected = {
+        "reproductions/brender-critical-edition-source-build.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []

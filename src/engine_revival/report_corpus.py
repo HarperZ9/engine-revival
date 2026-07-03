@@ -79,6 +79,66 @@ def packet_page(packet: dict[str, object]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def reproduction_records(root: Path) -> list[dict[str, object]]:
+    return _records_if_present(root, "reproduction")
+
+
+def reproduction_index(root: Path) -> str:
+    records = sorted(reproduction_records(root), key=lambda item: str(item["id"]))
+    lines = [
+        "# Reproductions",
+        "",
+        "| Target | Reproduction | Type | Status | Notes |",
+        "|---|---|---|---|---|",
+    ]
+    for record in records:
+        record_id = str(record["id"])
+        lines.append(
+            f"| {record['target_id']} | [{record_id}](reproductions/{record_id}.md) | "
+            f"{record['reproduction_type']} | {record['status']} | {record['public_notes']} |"
+        )
+    if not records:
+        lines.append("| none | none | none | none | No reproduction records yet. |")
+    return "\n".join(lines) + "\n"
+
+
+def reproduction_page(record: dict[str, object]) -> str:
+    lines = [
+        f"# {record['id']}",
+        "",
+        "| Field | Value |",
+        "|---|---|",
+        f"| Target | {record['target_id']} |",
+        f"| Type | {record['reproduction_type']} |",
+        f"| Status | {record['status']} |",
+        "",
+        "## Public Notes",
+        "",
+        str(record["public_notes"]),
+        "",
+        "## Environment",
+        "",
+        *_as_bullets(record.get("environment")),
+        "",
+        "## Steps",
+        "",
+        *_as_bullets(record.get("steps")),
+        "",
+        "## Expected Outputs",
+        "",
+        *_as_bullets(record.get("expected_outputs")),
+        "",
+        "## Artifacts",
+        "",
+        *_as_bullets(record.get("artifact_ids")),
+        "",
+        "## Evidence Sources",
+        "",
+        *_as_bullets(record.get("source_ids")),
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def _records_by_id(records: list[dict[str, object]]) -> dict[str, dict[str, object]]:
     return {str(record["id"]): record for record in records}
 
@@ -113,6 +173,7 @@ def corpus_database(root: Path) -> dict[str, object]:
     accessions = _records_if_present(root, "accession")
     tasks = _records_if_present(root, "task")
     milestones = _records_if_present(root, "milestone")
+    reproductions = reproduction_records(root)
     return {
         "schema": "engine-revival-corpus-v1",
         "counts": {
@@ -122,6 +183,7 @@ def corpus_database(root: Path) -> dict[str, object]:
             "accessions": len(accessions),
             "tasks": len(tasks),
             "milestones": len(milestones),
+            "reproductions": len(reproductions),
         },
         "targets": targets,
         "sources": sources,
@@ -129,10 +191,12 @@ def corpus_database(root: Path) -> dict[str, object]:
         "accessions": accessions,
         "tasks": tasks,
         "milestones": milestones,
+        "reproductions": reproductions,
         "targets_by_id": _records_by_id(targets),
         "sources_by_id": _records_by_id(sources),
         "artifacts_by_target": _records_by_target(artifacts),
         "accessions_by_target": _accessions_by_target(accessions, artifacts),
         "tasks_by_target": _records_by_target(tasks),
         "milestones_by_target": _records_by_target(milestones),
+        "reproductions_by_target": _records_by_target(reproductions),
     }
