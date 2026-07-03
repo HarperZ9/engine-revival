@@ -46,11 +46,15 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "CMakeLists.txt",
         output / "README.md",
         output / "cmake" / "brender-core-sources.cmake",
+        output / "smoke" / "brender-core-smoke.c",
         output / "harness-manifest.json",
     ]
     cmake = (output / "CMakeLists.txt").read_text(encoding="utf-8")
     assert "project(brender_v132_portable_core C)" in cmake
     assert "add_library(brender_core_float STATIC" in cmake
+    assert "add_executable(brender_core_smoke" in cmake
+    assert "target_link_libraries(brender_core_smoke PRIVATE brender_core_float)" in cmake
+    assert "add_test(NAME brender_core_smoke COMMAND brender_core_smoke)" in cmake
     assert "target_compile_definitions(brender_core_float PRIVATE" in cmake
     for definition in [
         "BASED_FLOAT=1",
@@ -72,12 +76,20 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert '"${BRENDER_SOURCE_DIR}/core/fw/fw_listed.c"' in source_manifest
     assert "fw_unlisted.c" not in source_manifest
     assert "fw_commented.c" not in source_manifest
+    smoke = (output / "smoke" / "brender-core-smoke.c").read_text(encoding="utf-8")
+    assert '#include "brender.h"' in smoke
+    assert "#define _NO_VECTOR_MACROS 1" in smoke
+    assert "BrVector3SetFloat(&vector, 1.0f, 2.0f, 3.0f)" in smoke
+    assert "BrScalarToFloat(vector.v[2])" in smoke
+    assert "BrBegin()" not in smoke
     readme = (output / "README.md").read_text(encoding="utf-8")
     assert "does not vendor BRender source" in readme
     assert '"-DBRENDER_SOURCE_DIR=<path-to-public-brender-checkout>"' in readme
+    assert "ctest --test-dir build -C Debug --output-on-failure" in readme
     manifest = json.loads((output / "harness-manifest.json").read_text(encoding="utf-8"))
     assert manifest["target_id"] == "brender"
     assert manifest["core_float_dirs"] == list(CORE_DIRS)
+    assert manifest["smoke_target"] == "brender_core_smoke"
     assert manifest["source_lists"]["fw"] == ["fw_listed.c"]
     assert manifest["compile_definitions"] == [
         "BASED_FLOAT=1",
@@ -117,3 +129,4 @@ def test_cli_materializes_brender_harness(tmp_path, capsys):
     assert exit_code == 0
     assert str(output / "CMakeLists.txt") in captured.out
     assert (output / "cmake" / "brender-core-sources.cmake").exists()
+    assert (output / "smoke" / "brender-core-smoke.c").exists()

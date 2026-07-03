@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | portable-core-library-built |
+| Status | portable-core-vector-smoke-passing |
 | Reproduction | brender-critical-edition-source-build |
 | Host Platform | Windows local probe |
 | Source Checkout | out-of-tree public checkout at recorded snapshot commit d88d0ed41122664b9781015b517db64353e16f19 |
@@ -14,7 +14,7 @@
 
 ## Public Notes
 
-BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake and builds brender_core_float.lib with explicit period OBJS_C source lists in an external MSVC tree. No generated binary, runtime execution, or packaged release is committed or claimed.
+BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake, builds brender_core_float.lib with explicit period OBJS_C source lists in an external MSVC tree, and passes a narrow vector math smoke executable through CTest. No generated binary or packaged release is committed.
 
 ## Required Variables
 
@@ -56,12 +56,13 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 
 - portable core build currently targets only the FLOAT core library; FIXED variants and drivers are deferred
 - MSVC x64 build emits pointer-truncation, enum-conversion, const-qualifier, and duplicate-symbol warnings that need portability audit
-- no runtime smoke test or packaged release artifact is claimed
+- runtime coverage is limited to a vector math smoke; BrBegin framework startup still needs period ASM or portable fallback modeling plus host-image platform definitions
+- no packaged release artifact is claimed
 
 ## Next Actions
 
 - audit the completed core-library warning transcript
-- add a link or runtime smoke test around the produced core library
+- expand the runtime smoke from vector math to framework startup after ASM, portable fallback, and host-image platform boundary modeling
 - translate deferred FIXED variants and driver targets
 - model the fw pretok token-generation boundary for reproducible source regeneration
 
