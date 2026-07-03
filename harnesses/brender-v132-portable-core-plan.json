@@ -18,6 +18,7 @@
     "v1db scene-graph render smoke executable, PPM image, and CTest transcript",
     "solid flat-shaded render smoke executable, PPM image, and CTest transcript",
     "depth-buffered render smoke executable, PPM image, and CTest transcript",
+    "perspective-correct textured render smoke executable, PPM image, and CTest transcript",
     "driver variant build matrix"
   ],
   "harness_type": "portable-build-plan",
@@ -32,6 +33,7 @@
     "core scene smoke target: brender_core_scene_smoke builds a v1db world/camera/model actor tree, prepares a br_model with BrModelUpdate, and projects it with the engine BrActorToScreenMatrix4 before drawing faces with BrPixelmapLine",
     "core fill smoke target: brender_core_fill_smoke reuses the scene projection and rasterizes each triangle with a portable C scanline fill, flat-shaded from world-space normals and composited back-to-front for a solid image",
     "core depth smoke target: brender_core_depth_smoke adds a per-pixel float depth buffer and z-test so two overlapping cubes at different depths composite with correct per-pixel occlusion",
+    "core texture smoke target: brender_core_texture_smoke adds perspective-correct texture mapping (u/w,v/w,1/w interpolation) sampling a checkerboard pixelmap per pixel, depth-tested and shade-modulated",
     "portable compatibility sources: compat/brender-portable-core-stubs.c and compat/brender-portable-host-stubs.c",
     "CMake platform guard: require a 32-bit C target such as Visual Studio -A Win32",
     "core deferred variants: v1db FIXED, math FIXED, fmt FIXED",
@@ -54,7 +56,7 @@
     "blazingrender-index"
   ],
   "source_policy": "Use only the public BRender v1.3.2 checkout at the recorded snapshot commit. Do not vendor source, generated binaries, private assets, or restricted SDK material in this repository.",
-  "status": "portable-core-depth-buffered-render-smoke-passing",
+  "status": "portable-core-textured-render-smoke-passing",
   "steps": [
     "start from the recorded BRender v1.3.2 public source snapshot",
     "run the engine-revival materializer to create build files outside the source tree",

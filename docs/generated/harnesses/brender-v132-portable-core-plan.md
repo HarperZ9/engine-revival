@@ -5,7 +5,7 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | portable-core-depth-buffered-render-smoke-passing |
+| Status | portable-core-textured-render-smoke-passing |
 | Type | portable-build-plan |
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
@@ -32,6 +32,7 @@ This is the first public harness design record for the BRender pilot. It convert
 - core scene smoke target: brender_core_scene_smoke builds a v1db world/camera/model actor tree, prepares a br_model with BrModelUpdate, and projects it with the engine BrActorToScreenMatrix4 before drawing faces with BrPixelmapLine
 - core fill smoke target: brender_core_fill_smoke reuses the scene projection and rasterizes each triangle with a portable C scanline fill, flat-shaded from world-space normals and composited back-to-front for a solid image
 - core depth smoke target: brender_core_depth_smoke adds a per-pixel float depth buffer and z-test so two overlapping cubes at different depths composite with correct per-pixel occlusion
+- core texture smoke target: brender_core_texture_smoke adds perspective-correct texture mapping (u/w,v/w,1/w interpolation) sampling a checkerboard pixelmap per pixel, depth-tested and shade-modulated
 - portable compatibility sources: compat/brender-portable-core-stubs.c and compat/brender-portable-host-stubs.c
 - CMake platform guard: require a 32-bit C target such as Visual Studio -A Win32
 - core deferred variants: v1db FIXED, math FIXED, fmt FIXED
@@ -61,6 +62,7 @@ This is the first public harness design record for the BRender pilot. It convert
 - v1db scene-graph render smoke executable, PPM image, and CTest transcript
 - solid flat-shaded render smoke executable, PPM image, and CTest transcript
 - depth-buffered render smoke executable, PPM image, and CTest transcript
+- perspective-correct textured render smoke executable, PPM image, and CTest transcript
 - driver variant build matrix
 
 ## Blockers

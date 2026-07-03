@@ -14,4 +14,5 @@
 | brender | [brender-v132-portable-core-fill-smoke](attempts/brender-v132-portable-core-fill-smoke.md) | cmake-solid-shaded-smoke | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-portable-core-render-smoke](attempts/brender-v132-portable-core-render-smoke.md) | cmake-render-smoke | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-portable-core-scene-smoke](attempts/brender-v132-portable-core-scene-smoke.md) | cmake-scene-graph-smoke | completed | brender-v132-portable-core-plan |
+| brender | [brender-v132-portable-core-texture-smoke](attempts/brender-v132-portable-core-texture-smoke.md) | cmake-texture-mapping-smoke | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-vector-smoke-runtime](attempts/brender-v132-vector-smoke-runtime.md) | cmake-runtime-smoke | completed | brender-v132-portable-core-plan |
