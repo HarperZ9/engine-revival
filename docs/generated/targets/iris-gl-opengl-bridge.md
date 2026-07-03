@@ -36,6 +36,12 @@ Public lineage and standards-registry record for OpenGL's transition from SGI IR
 |---|---|---|---|
 | iris-gl-opengl-bridge-triage | triage-public-record | seeded | Create public-safe sources and artifact records for IRIS GL / OpenGL bridge. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| iris-gl-opengl-bridge-baseline | public-dossier-established | curated | Public dossier has curated IRIS GL and OpenGL bridge source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

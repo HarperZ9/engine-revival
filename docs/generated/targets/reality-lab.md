@@ -40,6 +40,12 @@ Public records now track Reality Lab's RenderMorphics lineage, Microsoft's acqui
 |---|---|---|---|
 | reality-lab-triage | triage-public-record | seeded | Create public-safe sources and artifact records for RenderMorphics Reality Lab. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| reality-lab-baseline | public-dossier-established | curated | Public dossier has curated Reality Lab source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

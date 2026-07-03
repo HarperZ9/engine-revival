@@ -36,6 +36,12 @@ Public records now track tri-Ace's official PS2 SH/HDR presentation metadata and
 |---|---|---|---|
 | tri-ace-ps2-renderer-triage | triage-public-record | seeded | Create public-safe sources and artifact records for tri-Ace PS2 renderer. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| tri-ace-ps2-renderer-baseline | public-dossier-established | curated | Public dossier has curated tri-Ace PS2 renderer source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

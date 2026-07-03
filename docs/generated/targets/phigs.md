@@ -38,6 +38,12 @@ Public standards and validation-history record for PHIGS, with OpenPHIGS reimple
 |---|---|---|---|
 | phigs-triage | triage-public-record | seeded | Create public-safe sources and artifact records for PHIGS. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| phigs-baseline | public-dossier-established | curated | Public dossier has curated PHIGS source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

@@ -38,6 +38,12 @@ Public records now track OpenGL Performer manuals and SGI feature/interoperabili
 |---|---|---|---|
 | opengl-performer-triage | triage-public-record | seeded | Create public-safe sources and artifact records for OpenGL Performer. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| opengl-performer-baseline | public-dossier-established | curated | Public dossier has curated OpenGL Performer source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

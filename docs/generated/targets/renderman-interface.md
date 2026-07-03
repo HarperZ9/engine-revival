@@ -36,6 +36,12 @@ Public records now anchor the RenderMan Interface to a public v3.1 specification
 |---|---|---|---|
 | renderman-interface-triage | triage-public-record | seeded | Create public-safe sources and artifact records for RenderMan Interface. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| renderman-interface-baseline | public-dossier-established | curated | Public dossier has curated RenderMan Interface source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

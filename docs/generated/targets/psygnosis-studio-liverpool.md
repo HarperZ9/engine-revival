@@ -36,6 +36,12 @@ Public-reference-only lineage record for Psygnosis and Studio Liverpool, focused
 |---|---|---|---|
 | psygnosis-studio-liverpool-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Psygnosis / Studio Liverpool. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| psygnosis-studio-liverpool-baseline | public-dossier-established | curated | Public dossier has curated Psygnosis and Studio Liverpool source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

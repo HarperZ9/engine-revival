@@ -38,6 +38,12 @@ Public records now track the SGI-origin Open Inventor source release, build note
 |---|---|---|---|
 | open-inventor-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Open Inventor. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| open-inventor-baseline | public-dossier-established | curated | Public dossier has curated Open Inventor source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |

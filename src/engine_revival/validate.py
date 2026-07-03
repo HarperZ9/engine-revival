@@ -100,7 +100,11 @@ def validate_workspace(root: Path) -> list[str]:
     task_target_ids = {
         str(record.payload.get("target_id")) for record in records_by_kind["task"]
     }
+    milestone_target_ids = {
+        str(record.payload.get("target_id")) for record in records_by_kind["milestone"]
+    }
     messages.extend(_validate_source_ids_present(records_by_kind["artifact"], "artifact"))
+    messages.extend(_validate_source_ids_present(records_by_kind["milestone"], "milestone"))
     for kind in ("artifact", "task", "milestone"):
         for record in records_by_kind[kind]:
             target_id = str(record.payload.get("target_id"))
@@ -130,4 +134,6 @@ def validate_workspace(root: Path) -> list[str]:
         messages.append(f"missing accession for artifact_id: {artifact_id}")
     for target_id in sorted(target_ids - task_target_ids):
         messages.append(f"missing task for target_id: {target_id}")
+    for target_id in sorted(target_ids - milestone_target_ids):
+        messages.append(f"missing milestone for target_id: {target_id}")
     return messages

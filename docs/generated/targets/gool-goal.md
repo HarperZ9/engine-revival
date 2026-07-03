@@ -38,6 +38,12 @@ Public records now track Andy Gavin's GOOL article and OpenGOAL's GOAL compiler/
 |---|---|---|---|
 | gool-goal-triage | triage-public-record | seeded | Create public-safe sources and artifact records for GOOL and GOAL. |
 
+## Milestones
+
+| Milestone | Type | Status | Evidence |
+|---|---|---|---|
+| gool-goal-baseline | public-dossier-established | curated | Public dossier has curated GOOL and GOAL source, accession, and task records. |
+
 ## Evidence Sources
 
 | Source | Type | Confidence | Scope | URL |
