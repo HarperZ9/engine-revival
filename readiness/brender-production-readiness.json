@@ -52,9 +52,10 @@
     "2026-07-03 brender_core_material_smoke target added; textures a loaded model (sph32.dat, 525v/960f) through its own br_vertex.map UV coordinates, perspective-correct and depth-buffered (20816 lit pixels, 11 colours)",
     "2026-07-03 recorded a period .pix decode follow-up: indexed .pix carry no embedded palette (need external .pal) and 15-bit .pix load partially through BrPixelmapLoad",
     "2026-07-03 ctest --test-dir external build tree -C Debug --output-on-failure passed 9/9 cases including brender_core_material_smoke",
-    "2026-07-03 brender_core_multimodel_smoke target added; BrModelLoadMany loaded 12 parts of coupe.dat and depth-composited them (658 faces, 5562 lit); CTest 10/10"
+    "2026-07-03 brender_core_multimodel_smoke target added; BrModelLoadMany loaded 12 parts of coupe.dat and depth-composited them (658 faces, 5562 lit); CTest 10/10",
+    "2026-07-03 brender_core_gouraud_smoke target added; per-vertex-normal smooth shading of sph32.dat renders 194 grey levels vs ~3 flat; CTest 11/11"
   ],
-  "flagship_score": 82,
+  "flagship_score": 84,
   "harness_ids": [
     "brender-v132-portable-core-plan"
   ],
@@ -73,7 +74,8 @@
     "brender-v132-portable-core-texture-smoke",
     "brender-v132-portable-core-model-smoke",
     "brender-v132-portable-core-material-smoke",
-    "brender-v132-portable-core-multimodel-smoke"
+    "brender-v132-portable-core-multimodel-smoke",
+    "brender-v132-portable-core-gouraud-smoke"
   ],
   "id": "brender-production-readiness",
   "modernization_status": "core-portability-audit-needed",
@@ -86,11 +88,11 @@
   ],
   "packaging_status": "not-started",
   "public_notes": "BRender is the first production-readiness pilot. A public source checkout matched the recorded v1.3.2 snapshot commit, exposed period make/project metadata, and now has a materializer plus successful out-of-tree CMake configure, FLOAT core-library build, vector math runtime smoke, BrBegin/BrEnd framework startup smoke, a wireframe render smoke, and a v1db scene-graph render smoke through CTest under a Visual Studio Win32 target. The render smoke projects a hand-built cube through the engine matrix pipeline; the scene smoke renders a model out of BRender's own scene database, building a world/camera/model actor tree, preparing a br_model with BrModelUpdate, and projecting it with the engine's BrActorToScreenMatrix4 before drawing the faces with BrPixelmapLine; the fill smoke turns that scene into a solid, flat-shaded image with a portable C scanline rasterizer, per-face world-space normals for lighting, and back-to-front compositing. All three draw entirely through the pure-C memory pixelmap dispatch with no assembly software driver, self-verify, and dump a 320x240 PPM. The produced brender_core_float.lib, smoke executables, and PPM output remain outside this metadata repo. x64 portability, shaded and textured scene rendering (which needs the softrend renderer device), datafile model loading, warning cleanup, packaging, drivers, and FIXED variants are not claimed yet.",
-  "readiness_stage": "portable-core-multipart-model-render-passing",
+  "readiness_stage": "portable-core-gouraud-shaded-render-passing",
   "reproduction_ids": [
     "brender-critical-edition-source-build"
   ],
-  "runtime_status": "multipart-model-render-passing",
+  "runtime_status": "gouraud-shaded-render-passing",
   "snapshot_ids": [
     "brender-v132-main-head",
     "brender-3dmm-main-head"
@@ -101,5 +103,5 @@
     "blazingrender-index"
   ],
   "target_id": "brender",
-  "test_status": "multipart-model-render-passing"
+  "test_status": "gouraud-shaded-render-passing"
 }
