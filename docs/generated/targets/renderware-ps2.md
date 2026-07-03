@@ -34,6 +34,7 @@ Public records now track PS2 Gold release-note evidence and SDK archive metadata
 
 | Task | Type | Status | Notes |
 |---|---|---|---|
+| renderware-ps2-archive-packet | build-archive-packet | planned | Build the RenderWare PS2 packet around public release-note metadata, SDK package records, version numbers, plugin names, and clean-room compatibility leads. |
 | renderware-ps2-triage | triage-public-record | seeded | Create public-safe sources and artifact records for RenderWare PS2. |
 
 ## Milestones

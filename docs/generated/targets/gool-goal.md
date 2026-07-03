@@ -36,6 +36,7 @@ Public records now track Andy Gavin's GOOL article and OpenGOAL's GOAL compiler/
 
 | Task | Type | Status | Notes |
 |---|---|---|---|
+| gool-goal-archive-packet | build-archive-packet | planned | Build the GOOL/GOAL packet around public OpenGOAL materials, creator testimony, legal-copy asset boundaries, and clean-room tooling notes. |
 | gool-goal-triage | triage-public-record | seeded | Create public-safe sources and artifact records for GOOL and GOAL. |
 
 ## Milestones

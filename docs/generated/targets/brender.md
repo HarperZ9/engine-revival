@@ -36,6 +36,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Task | Type | Status | Notes |
 |---|---|---|---|
+| brender-critical-edition-packet | build-archive-packet | planned | Build the BRender critical-edition packet: released branches, version graph, build notes, API references, and provenance commentary. |
 | brender-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Argonaut BRender. |
 
 ## Milestones

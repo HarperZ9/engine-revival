@@ -1,0 +1,11 @@
+{
+  "id": "brender-critical-edition-packet",
+  "target_id": "brender",
+  "task_type": "build-archive-packet",
+  "status": "planned",
+  "public_notes": "Build the BRender critical-edition packet: released branches, version graph, build notes, API references, and provenance commentary.",
+  "inputs": ["public source branches", "community preservation index", "BRender accessions"],
+  "outputs": ["standalone archival packet", "version graph", "reproducible build checklist"],
+  "blocked_by": ["brender-triage"],
+  "source_ids": ["foone-brender-v132", "foone-brender-3dmm", "blazingrender-index"]
+}

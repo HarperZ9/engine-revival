@@ -38,6 +38,7 @@ Public records now track SDevTC, Net Yaroze documentation, Redump disc metadata,
 
 | Task | Type | Status | Notes |
 |---|---|---|---|
+| ps1-programmer-tool-archive-packet | build-archive-packet | planned | Build the PS1 Programmer's Tool packet around SDevTC, Net Yaroze documentation, runtime-library references, and PSn00bSDK clean-room compatibility. |
 | ps1-programmer-tool-triage | triage-public-record | seeded | Create public-safe sources and artifact records for PS1 Programmer's Tool / SDevTC / Net Yaroze. |
 
 ## Milestones

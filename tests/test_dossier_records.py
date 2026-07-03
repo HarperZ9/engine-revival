@@ -180,3 +180,18 @@ def test_live_sources_are_cited_by_archive_records():
         for record in _json_records(directory):
             used_source_ids.update(str(source_id) for source_id in record.get("source_ids", []))
     assert sorted(source_ids - used_source_ids) == []
+
+
+def test_first_archival_packet_tasks_are_recorded():
+    expected = {
+        "tasks/brender-critical-edition-packet.json",
+        "tasks/gool-goal-archive-packet.json",
+        "tasks/japan-studio-team-ico-archive-packet.json",
+        "tasks/ps1-programmer-tool-archive-packet.json",
+        "tasks/ps2-prodg-eb-linux-archive-packet.json",
+        "tasks/psygnosis-studio-liverpool-archive-packet.json",
+        "tasks/renderware-ps2-archive-packet.json",
+        "tasks/tri-ace-ps2-renderer-archive-packet.json",
+    }
+    missing = [path for path in expected if not (ROOT / path).exists()]
+    assert missing == []

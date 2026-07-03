@@ -34,6 +34,7 @@ Public-reference-only lineage record for Psygnosis and Studio Liverpool, focused
 
 | Task | Type | Status | Notes |
 |---|---|---|---|
+| psygnosis-studio-liverpool-archive-packet | build-archive-packet | planned | Build the Psygnosis / Studio Liverpool packet around public studio history, closure reporting, title-family leads, and preservation-safe asset-pipeline notes. |
 | psygnosis-studio-liverpool-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Psygnosis / Studio Liverpool. |
 
 ## Milestones

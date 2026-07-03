@@ -36,6 +36,7 @@ Restricted-rights Team Ico and Japan Studio public metadata slice using official
 
 | Task | Type | Status | Notes |
 |---|---|---|---|
+| japan-studio-team-ico-archive-packet | build-archive-packet | planned | Build the Japan Studio / Team Ico packet around public studio-history sources, official title pages, interviews, and preservation-safe lineage notes. |
 | japan-studio-team-ico-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Japan Studio / Team Ico. |
 
 ## Milestones
