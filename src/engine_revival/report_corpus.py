@@ -193,7 +193,11 @@ def snapshot_index(root: Path) -> str:
     return "\n".join(lines) + "\n"
 
 
-def snapshot_page(record: dict[str, object]) -> str:
+def snapshot_page(
+    record: dict[str, object],
+    sources_by_id: dict[str, dict[str, object]] | None = None,
+) -> str:
+    sources = sources_by_id or {}
     lines = [
         f"# {record['id']}",
         "",
@@ -218,7 +222,7 @@ def snapshot_page(record: dict[str, object]) -> str:
         "",
         "## Evidence Sources",
         "",
-        *_as_bullets(record.get("source_ids")),
+        *_source_table(record.get("source_ids"), sources),
     ]
     return "\n".join(lines) + "\n"
 

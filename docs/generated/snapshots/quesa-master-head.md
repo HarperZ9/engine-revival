@@ -23,4 +23,6 @@ Verified public upstream master branch head for the Quesa QuickDraw 3D compatibi
 
 ## Evidence Sources
 
-- quesa-github
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Quesa source repository | repository | high | Quesa source repository, QuickDraw 3D API reimplementation, platforms, and BSD license metadata | https://github.com/jwwalker/Quesa |

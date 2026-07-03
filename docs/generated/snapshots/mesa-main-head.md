@@ -23,4 +23,6 @@ Verified public upstream main branch head for the Mesa freedesktop.org source re
 
 ## Evidence Sources
 
-- mesa-source-repository-docs
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Mesa source code repository documentation | repository-documentation | high | Mesa upstream repository location and anonymous Git access | https://docs.mesa3d.org/repository.html |

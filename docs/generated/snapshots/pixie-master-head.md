@@ -23,5 +23,7 @@ Verified public upstream master branch head for the Pixie renderer source mirror
 
 ## Evidence Sources
 
-- pixie-github-mirror
-- pixie-sourceforge
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Pixie source mirror | source-mirror | moderate | Pixie public source mirror and LGPL license metadata | https://github.com/daliborgaric/pixie |
+| Pixie SourceForge project page | project-registry | high | Pixie project metadata, feature summary, activity, operating systems, and LGPL license metadata | https://sourceforge.net/projects/pixie/ |

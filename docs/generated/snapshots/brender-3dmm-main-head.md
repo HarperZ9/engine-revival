@@ -23,5 +23,7 @@ Verified public upstream main branch head for the BRender 3D Movie Maker source 
 
 ## Evidence Sources
 
-- foone-brender-3dmm
-- blazingrender-index
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| BRender-3DMM source repository | repository | high | BRender 3D Movie Maker variant source availability, provenance, and MIT license posture | https://github.com/foone/BRender-3DMM |
+| BRender preservation index | curated-index | high | BRender source-release and binary-SDK index | https://blazingrender.net/ |

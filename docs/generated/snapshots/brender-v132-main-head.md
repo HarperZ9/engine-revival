@@ -23,5 +23,7 @@ Verified public upstream main branch head for the BRender v1.3.2 source reposito
 
 ## Evidence Sources
 
-- foone-brender-v132
-- blazingrender-index
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Argonaut Blazing Render (BRender) v1.3.2 source repository | repository | high | BRender 1.3.2 source availability, provenance, and MIT license posture | https://github.com/foone/BRender-v1.3.2 |
+| BRender preservation index | curated-index | high | BRender source-release and binary-SDK index | https://blazingrender.net/ |

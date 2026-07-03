@@ -23,4 +23,6 @@ Verified public upstream master branch head for the PSn00bSDK clean-room PS1 SDK
 
 ## Evidence Sources
 
-- psnoobsdk-github
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| PSn00bSDK source repository | repository | high | Open-source PS1 SDK and compatibility development lane | https://github.com/Lameguy64/PSn00bSDK/ |

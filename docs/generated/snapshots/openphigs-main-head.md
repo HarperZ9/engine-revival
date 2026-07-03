@@ -23,6 +23,8 @@ Verified public upstream main branch head for the OpenPHIGS source reimplementat
 
 ## Evidence Sources
 
-- sourceforge-open-phigs
-- github-cern-openphigs
-- github-fbradasc-openphigs-license
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| Open PHIGS | project-registry | moderate | Open PHIGS project metadata, C library scope, PHIGS/OpenGL relationship, and ISO 9592/9593 references | https://sourceforge.net/projects/phigs/ |
+| CERN/OpenPHIGS | source-repository | high | OpenPHIGS repository with OpenGL backend and data-preservation extensions | https://github.com/CERN/OpenPHIGS |
+| fbradasc/OpenPHIGS LICENSE | license-file | high | License notices for the public OpenPHIGS source tree based on X Consortium and Sun Microsystems permissions | https://raw.githubusercontent.com/fbradasc/OpenPHIGS/main/LICENSE |

@@ -23,5 +23,7 @@ Verified public upstream master branch head for the PS2SDK open-source PS2 SDK r
 
 ## Evidence Sources
 
-- ps2dev-ps2sdk-github
-- ps2dev-site
+| Source | Type | Confidence | Scope | URL |
+|---|---|---|---|---|
+| PS2SDK source repository | repository | high | Open-source PS2SDK libraries and homebrew development environment | https://github.com/ps2dev/ps2sdk |
+| ps2dev project site | project-site | high | Open-source PS2 development environment overview | https://ps2dev.github.io/ |
