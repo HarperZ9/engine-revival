@@ -29,6 +29,7 @@
     "build_system": "string",
     "required_variables": "array",
     "observed_layout": "object",
+    "make_rule_map": "object",
     "blockers": "array",
     "next_actions": "array",
     "public_notes": "string",
