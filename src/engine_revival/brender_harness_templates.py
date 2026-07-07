@@ -165,6 +165,17 @@ target_link_libraries(brender_core_gouraud_smoke PRIVATE brender_core_float)
 add_test(NAME brender_core_gouraud_smoke
   COMMAND brender_core_gouraud_smoke
     "${{BRENDER_SOURCE_DIR}}/dat/sph32.dat" brender-core-gouraud-smoke.ppm)
+
+add_executable(brender_core_plotter_smoke smoke/brender-core-plotter-smoke.c)
+target_include_directories(brender_core_plotter_smoke PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_plotter_smoke PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_plotter_smoke PRIVATE brender_core_float)
+add_test(NAME brender_core_plotter_smoke
+  COMMAND brender_core_plotter_smoke
+    "${{BRENDER_SOURCE_DIR}}/dat/teapot.dat"
+    brender-core-plotter-smoke.svg brender-core-plotter-smoke.ppm)
 """
 
 
