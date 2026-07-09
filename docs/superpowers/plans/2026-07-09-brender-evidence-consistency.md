@@ -11,6 +11,7 @@
 ## Global Constraints
 
 - Canonical implementation repo: `C:\dev\worktrees\engine-revival-brender-evidence` on `fix/brender-evidence-consistency`.
+- Activate an isolated environment for the active worktree, ensure that worktree is installed editable as documented in its `README.md`, use the canonical `engine-revival` console entry point, and verify the executable and imported module paths resolve to that worktree before running commands.
 - Do not modify `C:\dev\local-model`, `E:\local-model-run`, `public/index`, `forum`, `gather`, `crucible`, `telos`, `mneme`, `relay`, `plexus`, `telos-v2`, `portfolio-site`, or `profile`.
 - Never print live Claude child-process command lines or the exposed Hugging Face credential.
 - Preserve historical `attempts/brender-v132-*.json` and external transcripts byte-for-byte.
@@ -457,7 +458,7 @@ Run:
 
 ```powershell
 python -m pytest tests/test_brender_state_consistency.py tests/test_evidence_checkpoint_validate.py tests/test_validate.py -q
-python -m engine_revival.cli validate
+engine-revival validate
 ```
 
 Expected: all selected tests pass and validation prints no messages.
@@ -467,7 +468,7 @@ Expected: all selected tests pass and validation prints no messages.
 Run:
 
 ```powershell
-python -m engine_revival.cli report
+engine-revival report
 ```
 
 Review `git diff --name-only`. Generated changes must be explainable by the five
@@ -479,7 +480,7 @@ Capture hashes, regenerate a second time, and compare:
 $before = Get-ChildItem docs\generated -Recurse -File | ForEach-Object {
   [pscustomobject]@{ Path = $_.FullName; Hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash }
 }
-python -m engine_revival.cli report | Out-Null
+engine-revival report | Out-Null
 $after = Get-ChildItem docs\generated -Recurse -File | ForEach-Object {
   [pscustomobject]@{ Path = $_.FullName; Hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash }
 }
@@ -492,7 +493,7 @@ Expected: `Compare-Object` emits no rows.
 
 ```powershell
 python -m pytest tests/test_packet_report.py tests/test_reproduction_report.py tests/test_build_report.py tests/test_harness_report.py tests/test_readiness_report.py tests/test_target_dossier_report.py tests/test_audit_public.py -q
-python -m engine_revival.cli audit-public
+engine-revival audit-public
 ```
 
 Expected: all tests pass and the audit prints no messages.
@@ -518,9 +519,9 @@ task that owns the affected file and adding a reproducing test first.
 
 ```powershell
 python -m pytest -q
-python -m engine_revival.cli validate
-python -m engine_revival.cli audit-public
-python -m engine_revival.cli report | Out-Null
+engine-revival validate
+engine-revival audit-public
+engine-revival report | Out-Null
 git diff --exit-code
 git diff --check
 git status --short --branch
@@ -573,8 +574,8 @@ Then run:
 
 ```powershell
 python -m pytest -q
-python -m engine_revival.cli validate
-python -m engine_revival.cli audit-public
+engine-revival validate
+engine-revival audit-public
 ```
 
 Expected baseline: all commands return 0 before copying.
@@ -624,13 +625,13 @@ Expected: no protected file changes.
 ```powershell
 git status --short
 python -m pytest -q
-python -m engine_revival.cli validate
-python -m engine_revival.cli audit-public
-python -m engine_revival.cli report | Out-Null
+engine-revival validate
+engine-revival audit-public
+engine-revival report | Out-Null
 git diff --check
 ```
 
-Run `python -m engine_revival.cli report` a second time and verify it adds no
+Run `engine-revival report` a second time and verify it adds no
 new diff. Confirm `git diff -- README.md LICENSE pyproject.toml gallery` emits no
 output.
 
@@ -649,8 +650,8 @@ git commit -m "sync: reconcile BRender evidence from engine-revival $canonicalHe
 
 ```powershell
 python -m pytest -q
-python -m engine_revival.cli validate
-python -m engine_revival.cli audit-public
+engine-revival validate
+engine-revival audit-public
 git diff --exit-code
 git status --short --branch
 ```
