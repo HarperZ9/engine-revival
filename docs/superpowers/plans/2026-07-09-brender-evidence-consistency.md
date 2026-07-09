@@ -120,10 +120,10 @@ def test_matching_evidence_checkpoints_validate(tmp_path):
 
 
 def test_mismatched_evidence_checkpoint_field_fails(tmp_path):
-    mismatched = {**CHECKPOINT, "total": 11}
+    mismatched = {**CHECKPOINT, "passed": 11, "total": 12}
     _write_workspace(tmp_path, CHECKPOINT, mismatched)
     messages = _checkpoint_messages(tmp_path)
-    assert any("field total differs" in message for message in messages)
+    assert any("field passed differs" in message for message in messages)
     assert any(CHECKPOINT["id"] in message for message in messages)
 
 
@@ -219,18 +219,24 @@ def _validate_evidence_checkpoints(
 
             passed = int(checkpoint["passed"])
             total = int(checkpoint["total"])
+            bounds_valid = True
             if total <= 0:
                 messages.append(
                     f"{record.path}: evidence_checkpoint total must be > 0"
                 )
+                bounds_valid = False
             if passed < 0:
                 messages.append(
                     f"{record.path}: evidence_checkpoint passed must be >= 0"
                 )
+                bounds_valid = False
             if passed > total:
                 messages.append(
                     f"{record.path}: evidence_checkpoint passed must be <= total"
                 )
+                bounds_valid = False
+            if not bounds_valid:
+                continue
 
             checkpoint_id = str(checkpoint["id"])
             first = first_by_id.get(checkpoint_id)

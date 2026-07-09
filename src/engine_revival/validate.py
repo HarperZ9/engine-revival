@@ -131,18 +131,24 @@ def _validate_evidence_checkpoints(
 
             passed = int(checkpoint["passed"])
             total = int(checkpoint["total"])
+            bounds_valid = True
             if total <= 0:
                 messages.append(
                     f"{record.path}: evidence_checkpoint total must be > 0"
                 )
+                bounds_valid = False
             if passed < 0:
                 messages.append(
                     f"{record.path}: evidence_checkpoint passed must be >= 0"
                 )
+                bounds_valid = False
             if passed > total:
                 messages.append(
                     f"{record.path}: evidence_checkpoint passed must be <= total"
                 )
+                bounds_valid = False
+            if not bounds_valid:
+                continue
 
             checkpoint_id = str(checkpoint["id"])
             first = first_by_id.get(checkpoint_id)
