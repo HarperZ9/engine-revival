@@ -6,6 +6,11 @@ Workspace: `C:\dev\worktrees\engine-revival-brender-evidence`
 Canonical repository: `C:\dev\public\engine-revival`
 Downstream mirror: `C:\dev\public\brender-archival`
 
+CLI commands assume an isolated environment in which this worktree is
+installed editable as documented in `README.md`, and use the canonical
+`engine-revival` console entry point. Before running commands, verify the
+executable and imported module paths resolve to this worktree.
+
 ## Purpose
 
 Restore agreement between BRender's structured evidence records and the
@@ -147,9 +152,9 @@ TDD order:
 
 ```powershell
 python -m pytest -q
-python -m engine_revival.cli validate
-python -m engine_revival.cli audit-public
-python -m engine_revival.cli report
+engine-revival validate
+engine-revival audit-public
+engine-revival report
 git diff --check
 ```
 
