@@ -72,6 +72,11 @@ def test_brender_archival_next_steps_do_not_defer_delivered_gouraud_shading():
 
 
 def test_brender_plan_uses_canonical_cli_from_isolated_editable_install():
+    expected_commands = (
+        "engine-revival validate",
+        "engine-revival audit-public",
+        "engine-revival report",
+    )
     expected_preconditions = {
         "docs/superpowers/specs/2026-07-09-brender-evidence-consistency-design.md": (
             "CLI commands assume an isolated environment"
@@ -86,4 +91,6 @@ def test_brender_plan_uses_canonical_cli_from_isolated_editable_install():
         assert expected in normalized, relative
         assert "installed editable" in normalized, relative
         assert "verify the executable and imported module paths" in normalized, relative
+        for command in expected_commands:
+            assert command in document, (relative, command)
         assert "python -m engine_revival.cli" not in document, relative
