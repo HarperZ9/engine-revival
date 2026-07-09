@@ -116,7 +116,8 @@ Extend `tests/test_brender_harness_materializer.py` to require:
 - the new output path in exact order;
 - the executable, linkage, and CTest declarations;
 - the target as the final manifest smoke target; and
-- source tokens proving that each of the four approved contracts is emitted.
+- source tokens proving that each of the four approved contracts and the
+  copy-bits public-dispatch check are emitted.
 
 The actual Win32 executable remains the semantic authority. Python string
 assertions protect materializer wiring, not runtime correctness.
@@ -180,6 +181,17 @@ The current C fallback is expected to write positions 0 and 2. If the targeted
 CTest demonstrates exactly that failure, replace `bit - start_bit` with `bit`
 in the destination index. If the test fails differently or passes, stop and
 investigate; do not apply the predicted fix by inspection alone.
+
+The same contract must also pass through BRender's public dispatch boundary.
+After direct primitive checks, start the framework, allocate a ten-by-one
+`BR_PMT_INDEX_8` memory pixelmap, fill it with the sentinel, and call
+`BrPixelmapCopyBits` at destination `x = 3` with the same source, bit range, and
+colour. Logical destination pixels 3 and 5 must become `0xE7`; every other
+pixel must retain the sentinel. This verifies that `pmdsptch.c` and `pmmem.c`
+apply the raw routine's retained bit offset correctly. Choosing `x = 3` keeps
+the current predicted erroneous `x - 2` write inside the allocation, so the
+RED result is deterministic rather than an out-of-bounds crash. Free the
+pixelmap and end the framework on every exit path.
 
 ## TDD and Execution Flow
 
@@ -340,7 +352,8 @@ push, merge, release, or cleanup without separate authorization.
 - The materializer deterministically emits the thirteenth source and target.
 - Python materializer tests demonstrate RED then GREEN.
 - The generated C program implements exactly the four approved contracts with
-  canaries and deterministic failure codes.
+  canaries and deterministic failure codes, including the copy-bits contract
+  through both the raw primitive and public pixelmap dispatch.
 - A fresh Win32 build compiles and links the new executable.
 - The predicted copy-bits defect is either reproduced before its narrow fix or
   explicitly disproved with captured evidence.
