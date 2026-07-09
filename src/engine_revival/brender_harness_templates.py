@@ -176,6 +176,17 @@ add_test(NAME brender_core_plotter_smoke
   COMMAND brender_core_plotter_smoke
     "${{BRENDER_SOURCE_DIR}}/dat/teapot.dat"
     brender-core-plotter-smoke.svg brender-core-plotter-smoke.ppm)
+
+add_executable(brender_core_memory_compat_smoke
+  smoke/brender-core-memory-compat-smoke.c)
+target_include_directories(brender_core_memory_compat_smoke PRIVATE
+  ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_memory_compat_smoke PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_memory_compat_smoke PRIVATE brender_core_float)
+add_test(NAME brender_core_memory_compat_smoke
+  COMMAND brender_core_memory_compat_smoke)
 """
 
 
@@ -197,6 +208,7 @@ cmake --build build --config Debug --target brender_core_fill_smoke
 cmake --build build --config Debug --target brender_core_depth_smoke
 cmake --build build --config Debug --target brender_core_texture_smoke
 cmake --build build --config Debug --target brender_core_model_smoke
+cmake --build build --config Debug --target brender_core_memory_compat_smoke
 ctest --test-dir build -C Debug --output-on-failure
 ```
 
@@ -216,6 +228,11 @@ produces a solid, flat-shaded image: it reuses the scene projection, then
 rasterizes each triangle face with a C scanline fill, shaded from the world-space
 face normal and composited back-to-front. Keep the generated images out of git
 unless they are intentionally reviewed as public release artifacts.
+
+The `brender_core_memory_compat_smoke` target directly verifies 1-4-byte pixel
+set/get, RGB888 fill, positive-stride rectangular fill, and nonzero-start
+copy-bits through both the raw compatibility routine and public pixelmap
+dispatch. Host/DOS compatibility is not claimed by this target.
 
 The first compiler run is expected to produce portability findings. Record the
 transcript before advancing production-readiness status.

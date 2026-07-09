@@ -60,6 +60,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "smoke" / "brender-core-multimodel-smoke.c",
         output / "smoke" / "brender-core-gouraud-smoke.c",
         output / "smoke" / "brender-core-plotter-smoke.c",
+        output / "smoke" / "brender-core-memory-compat-smoke.c",
         output / "harness-manifest.json",
     ]
     cmake = (output / "CMakeLists.txt").read_text(encoding="utf-8")
@@ -98,6 +99,12 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "add_executable(brender_core_gouraud_smoke" in cmake
     assert "add_executable(brender_core_plotter_smoke" in cmake
     assert "${BRENDER_SOURCE_DIR}/dat/teapot.dat" in cmake
+    assert "add_executable(brender_core_memory_compat_smoke" in cmake
+    assert (
+        "target_link_libraries(brender_core_memory_compat_smoke "
+        "PRIVATE brender_core_float)"
+    ) in cmake
+    assert "add_test(NAME brender_core_memory_compat_smoke" in cmake
     assert "compat/brender-portable-core-stubs.c" in cmake
     assert "compat/brender-portable-host-stubs.c" in cmake
     assert "CMAKE_SIZEOF_VOID_P" in cmake
@@ -191,6 +198,28 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     plotter_smoke = (output / "smoke" / "brender-core-plotter-smoke.c").read_text(encoding="utf-8")
     assert "raster_depth(" in plotter_smoke
     assert "<svg xmlns=" in plotter_smoke
+    memory_compat_smoke = (
+        output / "smoke" / "brender-core-memory-compat-smoke.c"
+    ).read_text(encoding="utf-8")
+    for token in (
+        "_MemPixelSet",
+        "_MemPixelGet",
+        "_MemFill_A",
+        "_MemRectFill_A",
+        "_MemCopyBits_A",
+        "BrPixelmapCopyBits",
+        "0xA1B2C3D4u",
+        "0x00112233u",
+        "0x2A",
+        "COPY_START_BIT 2",
+        "COPY_END_BIT 6",
+        "pixel-prefix-canary",
+        "rgb888-fill-canary",
+        "rect-fill-padding",
+        "copy-bits-raw-offset",
+        "copy-bits-public-offset",
+    ):
+        assert token in memory_compat_smoke
     compat = (output / "compat" / "brender-portable-core-stubs.c").read_text(
         encoding="utf-8"
     )
@@ -211,6 +240,10 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "cmake -S . -B build -A Win32" in readme
     assert '"-DBRENDER_SOURCE_DIR=<path-to-public-brender-checkout>"' in readme
     assert "ctest --test-dir build -C Debug --output-on-failure" in readme
+    assert (
+        "--target brender_core_memory_compat_smoke" in readme
+    )
+    assert "Host/DOS compatibility is not claimed" in readme
     manifest = json.loads((output / "harness-manifest.json").read_text(encoding="utf-8"))
     assert manifest["target_id"] == "brender"
     assert manifest["cmake_platform"] == "Win32"
@@ -229,6 +262,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         "brender_core_multimodel_smoke",
         "brender_core_gouraud_smoke",
         "brender_core_plotter_smoke",
+        "brender_core_memory_compat_smoke",
     ]
     assert manifest["portable_compat_source"] == "compat/brender-portable-core-stubs.c"
     assert manifest["portable_compat_sources"] == [
