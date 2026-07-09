@@ -2,7 +2,7 @@
 
 Date: 2026-07-09
 
-Status: Approved design direction; written specification awaiting operator review
+Status: Approved for implementation by the operator on 2026-07-09
 
 ## Objective
 
