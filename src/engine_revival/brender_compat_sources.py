@@ -129,7 +129,7 @@ void BR_ASM_CALL _MemCopyBits_A(
         for (bit = start_bit; bit < end_bit; bit++) {
             br_uint_8 mask = (br_uint_8)(0x80 >> (bit & 7));
             if (src[bit >> 3] & mask) {
-                write_pixel(dest + pixel_bytes(bit - start_bit, bpp), bpp, colour);
+                write_pixel(dest + pixel_bytes(bit, bpp), bpp, colour);
             }
         }
         dest += d_stride;
