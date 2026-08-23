@@ -5,12 +5,12 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | seeded |
+| Status | material-resolution-rendering |
 | Task type | build-archive-packet |
 
 ## Public Notes
 
-Next rung of the BRender remaster lane (R2 toward R4). Shipped: brender-archival materializes a thirteenth rung, brender_core_asset_audit, which loads .dat models via BrModelLoad without rendering, validates vertex finiteness, face index ranges, and degenerate faces, and emits one JSON summary per model; the CTest run audits duck, sph32, coupe, and teapot. Next: native .mat/.pal/.pix resolution, face-material mapping audit, per-group validation, then redump-legal or recreated asset ingestion with digest receipts.
+Asset pipeline rungs shipped in brender-archival (seventeen CTest targets): model geometry audit with face-material attachment counts, pixelmap decode probe over .pix and .pal (palettes are pixelmap datafiles; no palette chunk exists in v1.3.2), material-file audit over std.mat and winstd.mat, native BrPixelmapSave round trip with temp-file cleanup, and material resolution rendering: a loaded material attached to every non-degenerate face of sph32.dat and pushed through the portable rasterizer with a JSON receipt. All loaders, struct fields, and the 68-file dat/ inventory verified against the pinned d88d0ed4 tree. Remaining to close R4 fully: colour-map sampling from loaded period pixelmaps through the rasterizer; then the 15-bit partial-decode fix.
 
 ## Inputs
 

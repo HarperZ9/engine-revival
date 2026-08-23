@@ -49,6 +49,10 @@ renderer, and stands up a sixteen-target ladder of self-verifying rungs:
     identifier, flags, index_base, and colour-map attachment.
 16. Pixelmap round trip: the native datafile write path proven end to end
     (`BrPixelmapSave` then reload, type and geometry compared).
+17. Material resolution: a `BrMaterialLoad`-loaded material attached to every
+    non-degenerate face of a loaded model and rendered through the portable
+    rasterizer, proving material-to-face association on the render path. Full
+    colour-map sampling from period `.pix` files remains the next rung.
 
 Every stage passes under CTest on a Visual Studio Win32 target. The render
 captures are generated as a public-safe release artifact.
