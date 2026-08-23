@@ -24,7 +24,7 @@
 
 | Priority | Target | Rights | Revival lane | Artifacts | Accessions | Tasks | Milestones |
 |---:|---|---|---|---:|---:|---:|---:|
-| 89 | [Argonaut BRender](targets/brender.md) | open | critical-edition | 3 | 3 | 2 | 1 |
+| 89 | [Argonaut BRender](targets/brender.md) | open | critical-edition | 3 | 3 | 3 | 1 |
 | 84 | [PS1 Programmer's Tool / SDevTC / Net Yaroze](targets/ps1-programmer-tool.md) | clean-room-only | clean-room-api-compatible | 4 | 4 | 2 | 1 |
 | 82 | [RenderWare PS2](targets/renderware-ps2.md) | restricted | compatibility-reimplementation | 2 | 2 | 2 | 1 |
 | 80 | [GOOL and GOAL](targets/gool-goal.md) | clean-room-only | tooling-only-legal-copy-assets | 3 | 3 | 2 | 1 |

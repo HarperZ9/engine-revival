@@ -6,7 +6,7 @@
 |---|---|---|---|---|---|---|
 | aqsis | [aqsis-renderer-source](artifacts/aqsis-renderer-source.md) | Aqsis renderer source repository | renderer-source | open | public | public-source |
 | aqsis | [aqsis-renderer-tooling-metadata](artifacts/aqsis-renderer-tooling-metadata.md) | Aqsis renderer tooling metadata | tooling-metadata | open | public | public-readme-metadata |
-| bmrt-lineage | [bmrt-entropy-gelato-lineage](artifacts/bmrt-entropy-gelato-lineage.md) | BMRT / Entropy / Gelato lineage record | renderer-lineage | not-applicable | public | public-reference |
+| bmrt-lineage | [bmrt-entropy-gelato-lineage](artifacts/bmrt-entropy-gelato-lineage.md) | BMRT / Entropy / Gelato lineage record | renderer-lineage | not-applicable | public | verified-public-reference |
 | brender | [brender-3dmm-source](artifacts/brender-3dmm-source.md) | BRender 3D Movie Maker variant source release | source-release | open | public | public-source |
 | brender | [brender-preservation-index](artifacts/brender-preservation-index.md) | BRender preservation index | curation-index | public-reference-only | public | curated-public-index |
 | brender | [brender-v132-source](artifacts/brender-v132-source.md) | BRender v1.3.2 public source release | source-release | open | public | public-source |
@@ -69,4 +69,4 @@
 | softimage-alias-bridge | [softimage-microsoft-acquisition-record](artifacts/softimage-microsoft-acquisition-record.md) | Softimage Microsoft acquisition record | acquisition-lineage-record | public-reference-only | public | official-corporate-history |
 | tri-ace-ps2-renderer | [tri-ace-pbr-implementation-course-notes](artifacts/tri-ace-pbr-implementation-course-notes.md) | Practical Implementation at tri-Ace course notes | course-notes | public-reference-only | public | public-course-notes |
 | tri-ace-ps2-renderer | [tri-ace-ps2-sh-lighting-hdr-gdc2005](artifacts/tri-ace-ps2-sh-lighting-hdr-gdc2005.md) | Practical Implementation of SH Lighting and HDR Rendering on PlayStation 2 | presentation-metadata | public-reference-only | public | official-publication-index |
-| truespace-caligari | [truespace-caligari-renderer](artifacts/truespace-caligari-renderer.md) | trueSpace / Caligari renderer lead | renderer-lineage | not-applicable | public | public-reference |
+| truespace-caligari | [truespace-caligari-renderer](artifacts/truespace-caligari-renderer.md) | trueSpace / Caligari renderer lead | renderer-lineage | not-applicable | public | verified-public-reference |

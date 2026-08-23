@@ -15,7 +15,7 @@
 | source | 84 |
 | artifact | 66 |
 | accession | 66 |
-| task | 37 |
+| task | 38 |
 | milestone | 29 |
 | reproduction | 13 |
 | snapshot | 13 |

@@ -10,12 +10,12 @@
 | Origin | lead dossier |
 | Redistribution | not-applicable |
 | Access | public |
-| Evidence Quality | public-reference |
+| Evidence Quality | verified-public-reference |
 | Location | not-held |
 
 ## Notes
 
-Lead record for Caligari trueSpace and its renderer. Freeware binary era recorded in public history; sources never released.
+Verified history: Octree Software founded 1986 by Roman Ormandy; Caligari Corporation formed 1993; trueSpace shipped on Windows from 1994. Microsoft acquired Caligari in February 2008 and released trueSpace 7.6 as freeware in July 2008; officially discontinued May 2009. License is proprietary-freeware. A leaked ts4 source circulates in piracy channels and is do-not-redistribute for this archive.
 
 ## Accessions
 
@@ -35,4 +35,4 @@ No reproduction records.
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
-| trueSpace / Caligari lead record | lead | low | Existence of Caligari trueSpace, its renderer, and the freeware binary era; primary source not yet verified |  |
+| trueSpace / Caligari history | reference | high | Caligari trueSpace existence, Octree Software origins, Microsoft acquisition (February 2008), trueSpace 7.6 freeware release (July 2008), official discontinuation (May 2009), proprietary-freeware license | https://en.wikipedia.org/wiki/TrueSpace |

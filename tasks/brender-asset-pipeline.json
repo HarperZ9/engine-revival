@@ -1,0 +1,23 @@
+{
+    "id":  "brender-asset-pipeline",
+    "target_id":  "brender",
+    "task_type":  "build-archive-packet",
+    "status":  "seeded",
+    "public_notes":  "Next rung of the BRender remaster lane (R2 toward R4). Shipped: brender-archival materializes a thirteenth rung, brender_core_asset_audit, which loads .dat models via BrModelLoad without rendering, validates vertex finiteness, face index ranges, and degenerate faces, and emits one JSON summary per model; the CTest run audits duck, sph32, coupe, and teapot. Next: native .mat/.pal/.pix resolution, face-material mapping audit, per-group validation, then redump-legal or recreated asset ingestion with digest receipts.",
+    "inputs":  [
+                   "brender-archival harness generator",
+                   "pinned v1.3.2 snapshot",
+                   "public .dat sample models"
+               ],
+    "outputs":  [
+                    "asset-audit CTest rung",
+                    "per-model JSON summaries",
+                    "material/pixelmap resolution plan"
+                ],
+    "blocked_by":  [
+
+                   ],
+    "source_ids":  [
+                       "foone-brender-v132"
+                   ]
+}

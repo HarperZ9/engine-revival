@@ -1,9 +1,11 @@
 {
-    "claim_scope":  "Existence of Caligari trueSpace, its renderer, and the freeware binary era; primary source not yet verified",
-    "confidence":  "low",
+    "claim_scope":  "Caligari trueSpace existence, Octree Software origins, Microsoft acquisition (February 2008), trueSpace 7.6 freeware release (July 2008), official discontinuation (May 2009), proprietary-freeware license",
+    "confidence":  "high",
     "id":  "truespace-caligari-lead",
-    "notes":  "Unverified lead captured for roster completeness. Replace with a primary source once located.",
-    "publisher":  "unverified",
-    "source_type":  "lead",
-    "title":  "trueSpace / Caligari lead record"
+    "notes":  "Verified against Wikipedia trueSpace article, contemporaneous press (ghacks 2008-07-25, Ars Technica 2008-07-24) covering the freeware release, and the archived caligari.com founder letter. Note: a leaked trueSpace 4.0 source exists in piracy channels; the archive treats it as do-not-redistribute and bases revival work only on the authorized freeware binary era.",
+    "publisher":  "Wikipedia / Ars Technica / ghacks / Caligari (archived)",
+    "retrieved_at":  "2026-08-22",
+    "source_type":  "reference",
+    "title":  "trueSpace / Caligari history",
+    "url":  "https://en.wikipedia.org/wiki/TrueSpace"
 }

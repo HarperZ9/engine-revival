@@ -1,9 +1,11 @@
 {
-    "claim_scope":  "Existence of the BMRT RenderMan-compliant lineage and its freeware-binary distribution history; primary source not yet verified",
-    "confidence":  "low",
+    "claim_scope":  "BMRT existence, authorship (Larry Gritz), RenderMan compliance, shareware/freeware binary-only distribution, final release 2.6 (November 2000), Exluna Entropy successor (2001), NVIDIA acquisition (2002), discontinuation after the Pixar settlement",
+    "confidence":  "high",
     "id":  "bmrt-lineage-lead",
-    "notes":  "Unverified lead captured for roster completeness. Replace with a primary source once located.",
-    "publisher":  "unverified",
-    "source_type":  "lead",
-    "title":  "BMRT / Entropy / Gelato lineage lead record"
+    "notes":  "Verified against multiple independent references: Georgia Tech scivis BMRT software guide (rendrib/rgl tool list, site-license era), Wikipedia BMRT article with dated release and acquisition history, and the archived exluna.com product page. Binaries were distributed as shareware/freeware; source code was never released.",
+    "publisher":  "Georgia Tech / Wikipedia / Internet Archive (Exluna)",
+    "retrieved_at":  "2026-08-22",
+    "source_type":  "reference",
+    "title":  "BMRT / Entropy / Gelato lineage history",
+    "url":  "https://en.wikipedia.org/wiki/Blue_Moon_Rendering_Tools"
 }

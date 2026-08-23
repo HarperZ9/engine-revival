@@ -10,12 +10,12 @@
 | Origin | lead dossier |
 | Redistribution | not-applicable |
 | Access | public |
-| Evidence Quality | public-reference |
+| Evidence Quality | verified-public-reference |
 | Location | not-held |
 
 ## Notes
 
-Lead record for the BMRT, Entropy, and Gelato RenderMan-compliant lineage. Freeware binaries only; sources unreleased.
+Verified lineage: Larry Gritz developed BMRT at GWU/Cornell, first published 1994; final BMRT release 2.6 in November 2000; Exluna Entropy followed in July 2001; NVIDIA acquired Exluna in July 2002 and the Pixar lawsuit settlement ended BMRT/Entropy distribution. Distributed only as shareware/freeware binaries; sources never released.
 
 ## Accessions
 
@@ -35,4 +35,4 @@ No reproduction records.
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
-| BMRT / Entropy / Gelato lineage lead record | lead | low | Existence of the BMRT RenderMan-compliant lineage and its freeware-binary distribution history; primary source not yet verified |  |
+| BMRT / Entropy / Gelato lineage history | reference | high | BMRT existence, authorship (Larry Gritz), RenderMan compliance, shareware/freeware binary-only distribution, final release 2.6 (November 2000), Exluna Entropy successor (2001), NVIDIA acquisition (2002), discontinuation after the Pixar settlement | https://en.wikipedia.org/wiki/Blue_Moon_Rendering_Tools |

@@ -1,10 +1,10 @@
 {
     "access_level":  "public",
     "artifact_type":  "renderer-lineage",
-    "evidence_quality":  "public-reference",
+    "evidence_quality":  "verified-public-reference",
     "id":  "truespace-caligari-renderer",
     "location":  "not-held",
-    "notes":  "Lead record for Caligari trueSpace and its renderer. Freeware binary era recorded in public history; sources never released.",
+    "notes":  "Verified history: Octree Software founded 1986 by Roman Ormandy; Caligari Corporation formed 1993; trueSpace shipped on Windows from 1994. Microsoft acquired Caligari in February 2008 and released trueSpace 7.6 as freeware in July 2008; officially discontinued May 2009. License is proprietary-freeware. A leaked ts4 source circulates in piracy channels and is do-not-redistribute for this archive.",
     "origin":  "lead dossier",
     "redistribution_status":  "not-applicable",
     "source_ids":  [

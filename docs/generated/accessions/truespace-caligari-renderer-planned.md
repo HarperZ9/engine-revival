@@ -31,4 +31,4 @@ none recorded
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
-| trueSpace / Caligari lead record | lead | low | Existence of Caligari trueSpace, its renderer, and the freeware binary era; primary source not yet verified |  |
+| trueSpace / Caligari history | reference | high | Caligari trueSpace existence, Octree Software origins, Microsoft acquisition (February 2008), trueSpace 7.6 freeware release (July 2008), official discontinuation (May 2009), proprietary-freeware license | https://en.wikipedia.org/wiki/TrueSpace |
