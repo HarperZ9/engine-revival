@@ -1,0 +1,15 @@
+{
+    "access_level":  "public",
+    "artifact_type":  "microcode-lineage",
+    "evidence_quality":  "public-reference",
+    "id":  "n64-gbi-fast3d-microcode",
+    "location":  "not-held",
+    "notes":  "Lead record for the N64 RSP/RDP microcode family. Official microcode proprietary; community clean-room implementations indexed as lineage only.",
+    "origin":  "lead dossier",
+    "redistribution_status":  "not-applicable",
+    "source_ids":  [
+                       "n64-microcode-lead"
+                   ],
+    "target_id":  "n64-gbi-fast3d",
+    "title":  "N64 GBI / Fast3D microcode lineage record"
+}

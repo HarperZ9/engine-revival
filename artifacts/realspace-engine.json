@@ -1,0 +1,15 @@
+{
+    "access_level":  "public",
+    "artifact_type":  "engine-dossier",
+    "evidence_quality":  "public-reference",
+    "id":  "realspace-engine",
+    "location":  "not-held",
+    "notes":  "Dossier-only record for Origin Systems RealSpace in-house technology. Held by rightsholders; no public source.",
+    "origin":  "lead dossier",
+    "redistribution_status":  "not-applicable",
+    "source_ids":  [
+                       "realspace-engine-lead"
+                   ],
+    "target_id":  "realspace-engine",
+    "title":  "Origin RealSpace engine dossier"
+}

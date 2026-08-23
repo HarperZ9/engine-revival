@@ -20,10 +20,16 @@
 | 72 | [OGRE](targets/ogre.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
 | 72 | [Open Inventor](targets/open-inventor.md) | open | public-source-preservation | 3 | 3 | 1 | 1 |
 | 71 | [Softimage / Alias bridge](targets/softimage-alias-bridge.md) | public-reference-only | pipeline-history | 4 | 4 | 1 | 1 |
+| 70 | [N64 GBI / Fast3D Microcode Family](targets/n64-gbi-fast3d.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
 | 70 | [Quesa](targets/quesa.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
 | 69 | [Japan Studio / Team Ico](targets/japan-studio-team-ico.md) | restricted | oral-history-and-binary-archaeology | 3 | 3 | 2 | 1 |
 | 68 | [Crystal Space](targets/crystal-space.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
 | 68 | [IRIS GL / OpenGL bridge](targets/iris-gl-opengl-bridge.md) | public-reference-only | upstream-dependency-atlas | 2 | 2 | 1 | 1 |
+| 68 | [Sega Saturn SGL / SBL](targets/sega-saturn-sgl-sbl.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
 | 66 | [Aqsis](targets/aqsis.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
 | 65 | [Pixie](targets/pixie.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
+| 64 | [Origin RealSpace Engine](targets/realspace-engine.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
 | 62 | [PHIGS](targets/phigs.md) | public-reference-only | upstream-dependency-atlas | 3 | 3 | 1 | 1 |
+| 60 | [trueSpace / Caligari](targets/truespace-caligari.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
+| 58 | [BMRT / Entropy / Gelato Lineage](targets/bmrt-lineage.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
+| 55 | [SGI Cosmo3D / OpenGL++](targets/cosmo3d.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |

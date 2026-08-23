@@ -1,0 +1,15 @@
+{
+    "access_level":  "public",
+    "artifact_type":  "renderer-lineage",
+    "evidence_quality":  "public-reference",
+    "id":  "truespace-caligari-renderer",
+    "location":  "not-held",
+    "notes":  "Lead record for Caligari trueSpace and its renderer. Freeware binary era recorded in public history; sources never released.",
+    "origin":  "lead dossier",
+    "redistribution_status":  "not-applicable",
+    "source_ids":  [
+                       "truespace-caligari-lead"
+                   ],
+    "target_id":  "truespace-caligari",
+    "title":  "trueSpace / Caligari renderer lead"
+}

@@ -51,13 +51,19 @@ not claims.
 
 ### Missing from the roster, worth adding
 
-- Cosmo3D (SGI).
-- N64 GBI / Fast3D microcode family.
-- Sega Saturn SGL / SBL.
-- Sony PS1 LIBGPU / LIBGTE / LIBGS (Psy-Q / Programmer's Tool).
-- trueSpace / Caligari (Octree Software renderer).
-- BMRT (Blue Moon Rendering Tools) and its Entropy / Gelato lineage.
-- RealSpace Engine (Origin Systems, Wing / Strike Commander).
+Tracked as lead-dossier targets with planned accessions (2026-08-22):
+
+| Lead | Target record | Posture |
+|---|---|---|
+| Cosmo3D (SGI) | `targets/cosmo3d.json` | rights unresolved; primary source availability unverified |
+| N64 GBI / Fast3D microcode family | `targets/n64-gbi-fast3d.json` | official microcode proprietary; community clean-room lineage indexed |
+| Sega Saturn SGL / SBL | `targets/sega-saturn-sgl-sbl.json` | documentation-only lead |
+| trueSpace / Caligari (Octree Software renderer) | `targets/truespace-caligari.json` | freeware binary era; sources never released |
+| BMRT and its Entropy / Gelato lineage | `targets/bmrt-lineage.json` | freeware binaries only; sources unreleased |
+| RealSpace Engine (Origin Systems, Wing / Strike Commander) | `targets/realspace-engine.json` | rightsholder-held in-house technology; dossier only |
+
+The PS1 LIBGPU / LIBGTE / LIBGS entry is already tracked under
+`targets/ps1-programmer-tool.json` rather than duplicated here.
 - Blade Runner Engine (Westwood Studios).
 - Mercenary / Damocles (Novagen, Paul Woakes).
 - MathEngine Karma.

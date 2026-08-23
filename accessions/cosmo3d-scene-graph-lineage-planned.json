@@ -1,0 +1,13 @@
+{
+    "artifact_id":  "cosmo3d-lineage",
+    "capture_status":  "planned",
+    "fixity_status":  "not-started",
+    "id":  "cosmo3d-scene-graph-lineage-planned",
+    "package_type":  "project-registry-metadata",
+    "public_notes":  "Planned lead dossier for the SGI Cosmo3D / OpenGL++ scene-graph lineage; no primary source captured, availability unverified.",
+    "rights_review":  "public-reference-only",
+    "source_ids":  [
+                       "cosmo3d-lead"
+                   ],
+    "storage_class":  "not-held"
+}

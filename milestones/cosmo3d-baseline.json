@@ -1,0 +1,10 @@
+{
+    "id":  "cosmo3d-baseline",
+    "target_id":  "cosmo3d",
+    "milestone_type":  "public-dossier-established",
+    "status":  "curated",
+    "evidence":  "Lead dossier established with curated target and accession records; no source captured yet.",
+    "source_ids":  [
+                       "cosmo3d-lead"
+                   ]
+}

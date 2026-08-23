@@ -1,0 +1,13 @@
+{
+    "artifact_id":  "bmrt-entropy-gelato-lineage",
+    "capture_status":  "planned",
+    "fixity_status":  "not-started",
+    "id":  "bmrt-entropy-gelato-lineage-planned",
+    "package_type":  "project-registry-metadata",
+    "public_notes":  "Planned lead dossier for the BMRT/Entropy/Gelato RenderMan-compliant lineage; freeware binaries only, sources unreleased.",
+    "rights_review":  "public-reference-only",
+    "source_ids":  [
+                       "bmrt-lineage-lead"
+                   ],
+    "storage_class":  "not-held"
+}

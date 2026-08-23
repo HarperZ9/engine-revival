@@ -1,0 +1,13 @@
+{
+    "artifact_id":  "saturn-sgl-sbl-sdk",
+    "capture_status":  "planned",
+    "fixity_status":  "not-started",
+    "id":  "saturn-sgl-sbl-sdk-planned",
+    "package_type":  "project-registry-metadata",
+    "public_notes":  "Planned documentation-only lead for Sega Saturn SGL/SBL; no authorized source release known.",
+    "rights_review":  "public-reference-only",
+    "source_ids":  [
+                       "saturn-sgl-sbl-lead"
+                   ],
+    "storage_class":  "not-held"
+}

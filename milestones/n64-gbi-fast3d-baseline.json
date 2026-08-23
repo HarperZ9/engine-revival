@@ -1,0 +1,10 @@
+{
+    "id":  "n64-gbi-fast3d-baseline",
+    "target_id":  "n64-gbi-fast3d",
+    "milestone_type":  "public-dossier-established",
+    "status":  "curated",
+    "evidence":  "Lead dossier established with curated target and accession records; no source captured yet.",
+    "source_ids":  [
+                       "n64-microcode-lead"
+                   ]
+}

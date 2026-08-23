@@ -1,0 +1,20 @@
+{
+    "category":  "microcode",
+    "era":  "1990s",
+    "id":  "n64-gbi-fast3d",
+    "name":  "N64 GBI / Fast3D Microcode Family",
+    "platforms":  [
+                      "Nintendo 64",
+                      "RSP",
+                      "RDP"
+                  ],
+    "priority":  70,
+    "public_status":  "curated-public-sources",
+    "related_targets":  [
+
+                        ],
+    "restricted_status":  "none-known",
+    "revival_lane":  "lead-dossier",
+    "rights_posture":  "unresolved",
+    "summary":  "The RSP/RDP microcode family that defined a console generation; official microcode is proprietary, community clean-room paths exist and are indexed as lineage."
+}

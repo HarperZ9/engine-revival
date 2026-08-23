@@ -1,0 +1,7 @@
+{
+    "id":  "sega-saturn-sgl-sbl-triage",
+    "public_notes":  "Create public-safe source and artifact records for the sega-saturn-sgl-sbl lead dossier.",
+    "status":  "seeded",
+    "target_id":  "sega-saturn-sgl-sbl",
+    "task_type":  "triage-public-record"
+}

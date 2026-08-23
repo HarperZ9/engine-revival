@@ -1,0 +1,13 @@
+{
+    "artifact_id":  "realspace-engine",
+    "capture_status":  "planned",
+    "fixity_status":  "not-started",
+    "id":  "realspace-engine-origin-planned",
+    "package_type":  "project-registry-metadata",
+    "public_notes":  "Planned dossier-only record for Origin Systems RealSpace technology; unpublished in-house work held by rightsholders.",
+    "rights_review":  "public-reference-only",
+    "source_ids":  [
+                       "realspace-engine-lead"
+                   ],
+    "storage_class":  "not-held"
+}

@@ -1,0 +1,18 @@
+{
+    "category":  "engine",
+    "era":  "1990s",
+    "id":  "realspace-engine",
+    "name":  "Origin RealSpace Engine",
+    "platforms":  [
+                      "DOS"
+                  ],
+    "priority":  64,
+    "public_status":  "curated-public-sources",
+    "related_targets":  [
+
+                        ],
+    "restricted_status":  "none-known",
+    "revival_lane":  "lead-dossier",
+    "rights_posture":  "unresolved",
+    "summary":  "Origin Systems in-house engine behind Wing Commander III-era titles; unpublished in-house technology held by rightsholders, dossier only."
+}

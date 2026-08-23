@@ -1,0 +1,13 @@
+{
+    "artifact_id":  "truespace-caligari-renderer",
+    "capture_status":  "planned",
+    "fixity_status":  "not-started",
+    "id":  "truespace-caligari-renderer-planned",
+    "package_type":  "project-registry-metadata",
+    "public_notes":  "Planned lead dossier for Caligari trueSpace and its renderer; freeware binary era recorded in public history, sources never released.",
+    "rights_review":  "public-reference-only",
+    "source_ids":  [
+                       "truespace-caligari-lead"
+                   ],
+    "storage_class":  "not-held"
+}

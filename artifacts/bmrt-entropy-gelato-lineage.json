@@ -1,0 +1,15 @@
+{
+    "access_level":  "public",
+    "artifact_type":  "renderer-lineage",
+    "evidence_quality":  "public-reference",
+    "id":  "bmrt-entropy-gelato-lineage",
+    "location":  "not-held",
+    "notes":  "Lead record for the BMRT, Entropy, and Gelato RenderMan-compliant lineage. Freeware binaries only; sources unreleased.",
+    "origin":  "lead dossier",
+    "redistribution_status":  "not-applicable",
+    "source_ids":  [
+                       "bmrt-lineage-lead"
+                   ],
+    "target_id":  "bmrt-lineage",
+    "title":  "BMRT / Entropy / Gelato lineage record"
+}
