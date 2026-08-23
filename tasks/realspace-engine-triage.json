@@ -1,0 +1,7 @@
+{
+    "id":  "realspace-engine-triage",
+    "public_notes":  "Create public-safe source and artifact records for the realspace-engine lead dossier.",
+    "status":  "seeded",
+    "target_id":  "realspace-engine",
+    "task_type":  "triage-public-record"
+}

@@ -1,0 +1,7 @@
+{
+    "id":  "truespace-caligari-triage",
+    "public_notes":  "Create public-safe source and artifact records for the truespace-caligari lead dossier.",
+    "status":  "seeded",
+    "target_id":  "truespace-caligari",
+    "task_type":  "triage-public-record"
+}

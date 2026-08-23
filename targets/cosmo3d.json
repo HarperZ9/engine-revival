@@ -1,0 +1,23 @@
+{
+    "category":  "scene-graph-library",
+    "era":  "1990s-2000s",
+    "id":  "cosmo3d",
+    "name":  "SGI Cosmo3D / OpenGL++",
+    "platforms":  [
+                      "IRIX",
+                      "Windows",
+                      "Linux",
+                      "OpenGL",
+                      "C++"
+                  ],
+    "priority":  55,
+    "public_status":  "curated-public-sources",
+    "related_targets":  [
+                            "opengl-performer",
+                            "iris-gl-opengl-bridge"
+                        ],
+    "restricted_status":  "none-known",
+    "revival_lane":  "lead-dossier",
+    "rights_posture":  "unresolved",
+    "summary":  "Lost SGI scene-graph lineage behind OpenGL++ and the Fahrenheit program; lead status, primary source availability unverified."
+}

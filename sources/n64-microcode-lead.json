@@ -1,0 +1,9 @@
+{
+    "claim_scope":  "Existence of the N64 RSP/RDP microcode family and its proprietary status; primary source not yet verified",
+    "confidence":  "low",
+    "id":  "n64-microcode-lead",
+    "notes":  "Unverified lead captured for roster completeness. Replace with a primary source once located.",
+    "publisher":  "unverified",
+    "source_type":  "lead",
+    "title":  "N64 GBI/Fast3D microcode family lead record"
+}

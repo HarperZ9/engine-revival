@@ -1,0 +1,15 @@
+{
+    "access_level":  "public",
+    "artifact_type":  "api-lineage",
+    "evidence_quality":  "public-reference",
+    "id":  "cosmo3d-lineage",
+    "location":  "not-held",
+    "notes":  "Lead record for the SGI Cosmo3D scene-graph lineage behind OpenGL++ and Fahrenheit. No primary source located yet.",
+    "origin":  "lead dossier",
+    "redistribution_status":  "not-applicable",
+    "source_ids":  [
+                       "cosmo3d-lead"
+                   ],
+    "target_id":  "cosmo3d",
+    "title":  "SGI Cosmo3D / OpenGL++ lineage record"
+}

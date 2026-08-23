@@ -1,0 +1,7 @@
+{
+    "id":  "n64-gbi-fast3d-triage",
+    "public_notes":  "Create public-safe source and artifact records for the n64-gbi-fast3d lead dossier.",
+    "status":  "seeded",
+    "target_id":  "n64-gbi-fast3d",
+    "task_type":  "triage-public-record"
+}

@@ -1,0 +1,15 @@
+{
+    "access_level":  "public",
+    "artifact_type":  "sdk-archive",
+    "evidence_quality":  "public-reference",
+    "id":  "saturn-sgl-sbl-sdk",
+    "location":  "not-held",
+    "notes":  "Documentation-only lead for Sega Saturn SGL and SBL. No authorized source release known.",
+    "origin":  "lead dossier",
+    "redistribution_status":  "not-applicable",
+    "source_ids":  [
+                       "saturn-sgl-sbl-lead"
+                   ],
+    "target_id":  "sega-saturn-sgl-sbl",
+    "title":  "Sega Saturn SGL/SBL documentation lead"
+}

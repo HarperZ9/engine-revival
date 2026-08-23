@@ -1,0 +1,22 @@
+{
+    "category":  "console-sdk",
+    "era":  "1990s",
+    "id":  "sega-saturn-sgl-sbl",
+    "name":  "Sega Saturn SGL / SBL",
+    "platforms":  [
+                      "Sega Saturn",
+                      "SH-2",
+                      "VDP1",
+                      "VDP2",
+                      "SCU"
+                  ],
+    "priority":  68,
+    "public_status":  "curated-public-sources",
+    "related_targets":  [
+
+                        ],
+    "restricted_status":  "none-known",
+    "revival_lane":  "lead-dossier",
+    "rights_posture":  "unresolved",
+    "summary":  "Sega graphics/system libraries for dual-SH2 Saturn development; documentation-only lead, no known authorized source release."
+}

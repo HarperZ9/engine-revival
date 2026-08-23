@@ -1,0 +1,10 @@
+{
+    "id":  "realspace-engine-baseline",
+    "target_id":  "realspace-engine",
+    "milestone_type":  "public-dossier-established",
+    "status":  "curated",
+    "evidence":  "Lead dossier established with curated target and accession records; no source captured yet.",
+    "source_ids":  [
+                       "realspace-engine-lead"
+                   ]
+}

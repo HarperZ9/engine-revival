@@ -1,0 +1,18 @@
+{
+    "category":  "renderer-dcc",
+    "era":  "1990s-2000s",
+    "id":  "truespace-caligari",
+    "name":  "trueSpace / Caligari",
+    "platforms":  [
+                      "Windows"
+                  ],
+    "priority":  60,
+    "public_status":  "curated-public-sources",
+    "related_targets":  [
+
+                        ],
+    "restricted_status":  "none-known",
+    "revival_lane":  "lead-dossier",
+    "rights_posture":  "unresolved",
+    "summary":  "Caligari trueSpace DCC and its renderer; freeware binaries circulated after acquisition but no authorized source release is known."
+}

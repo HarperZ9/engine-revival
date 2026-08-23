@@ -1,0 +1,25 @@
+{
+    "category":  "renderer",
+    "era":  "1990s-2000s",
+    "id":  "bmrt-lineage",
+    "name":  "BMRT / Entropy / Gelato Lineage",
+    "platforms":  [
+                      "Windows",
+                      "Linux",
+                      "IRIX",
+                      "RenderMan Interface",
+                      "RIB",
+                      "SL"
+                  ],
+    "priority":  58,
+    "public_status":  "curated-public-sources",
+    "related_targets":  [
+                            "renderman-interface",
+                            "pixie",
+                            "aqsis"
+                        ],
+    "restricted_status":  "none-known",
+    "revival_lane":  "lead-dossier",
+    "rights_posture":  "unresolved",
+    "summary":  "Blue Moon Rendering Tools and its Entropy/Gelato successors: historically pivotal RenderMan-compliant renderers distributed as freeware binaries, sources never released."
+}

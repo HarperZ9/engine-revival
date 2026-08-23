@@ -1,0 +1,13 @@
+{
+    "artifact_id":  "n64-gbi-fast3d-microcode",
+    "capture_status":  "planned",
+    "fixity_status":  "not-started",
+    "id":  "n64-microcode-family-planned",
+    "package_type":  "project-registry-metadata",
+    "public_notes":  "Planned lead dossier for the N64 GBI/Fast3D microcode family; official microcode is proprietary, community clean-room lineage indexed separately.",
+    "rights_review":  "public-reference-only",
+    "source_ids":  [
+                       "n64-microcode-lead"
+                   ],
+    "storage_class":  "not-held"
+}

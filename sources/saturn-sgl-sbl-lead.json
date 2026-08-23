@@ -1,0 +1,9 @@
+{
+    "claim_scope":  "Existence of Sega Saturn graphics/system libraries for dual-SH2 development; primary source not yet verified",
+    "confidence":  "low",
+    "id":  "saturn-sgl-sbl-lead",
+    "notes":  "Unverified lead captured for roster completeness. Replace with a primary source once located.",
+    "publisher":  "unverified",
+    "source_type":  "lead",
+    "title":  "Sega Saturn SGL/SBL lead record"
+}

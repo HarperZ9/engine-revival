@@ -1,0 +1,7 @@
+{
+    "id":  "cosmo3d-triage",
+    "public_notes":  "Create public-safe source and artifact records for the cosmo3d lead dossier.",
+    "status":  "seeded",
+    "target_id":  "cosmo3d",
+    "task_type":  "triage-public-record"
+}

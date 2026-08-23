@@ -12,7 +12,9 @@
 | Autodesk Completes Acquisition of Softimage | press-release | high | 3 | Autodesk completion of Softimage acquisition, Softimage product portfolio, and planned product integration | https://investors.autodesk.com/news-releases/news-release-details/autodesk-completes-acquisition-softimage |
 | Autodesk Softimage Last Release Announcement - Update May 20th, 2014 | vendor-faq-pdf | high | 3 | Softimage 2015 last-release notice, migration options, and support/hot-fix period through April 30, 2016 | https://damassets.autodesk.net/content/dam/autodesk/www/products/autodesk-softimage/docs/pdf/Softimage%20Last%20Release%20Announcement_FAQ_UPDATE_MAY_20.pdf |
 | BRender preservation index | curated-index | high | 29 | BRender source-release and binary-SDK index | https://blazingrender.net/ |
+| BMRT / Entropy / Gelato lineage lead record | lead | low | 3 | Existence of the BMRT RenderMan-compliant lineage and its freeware-binary distribution history; primary source not yet verified |  |
 | Coin3D API compatibility statement | project-site | high | 4 | Coin3D independent Open Inventor API compatibility and clean-room distinction | https://www.coin3d.org/ |
+| SGI Cosmo3D / OpenGL++ lead record | lead | low | 3 | Existence and lineage of the SGI Cosmo3D scene graph behind OpenGL++ and Fahrenheit; primary source not yet verified |  |
 | Crystal Space source repository | repository | high | 5 | Crystal Space public source repository, LGPL license metadata, and documentation pointers | https://github.com/crystalspace/CS |
 | Crystal Space SourceForge project record | project-registry | high | 6 | Crystal Space project registry, platform support, OpenGL renderer, and feature summary | https://sourceforge.net/projects/crystal/ |
 | JUL95: Of Interest - Reality Lab Windows plan | trade-press-archive | moderate | 2 | Reality Lab planned inclusion in Windows and hardware acceleration context | https://jacobfilipp.com/DrDobbs/articles/DDJ/1995/9507/9507q/9507q.htm |
@@ -44,6 +46,7 @@
 | The History of Microsoft - 1994 | corporate-history | high | 2 | Microsoft 1994 timeline entry for the definitive agreement to acquire Softimage of Montreal | https://learn.microsoft.com/en-us/shows/history/history-of-microsoft-1994 |
 | Microsoft Delivers High-End 3-D Animation Software for Microsoft Windows NT | press-release | high | 2 | Softimage 3D for Windows NT release context, production uses, and Microsoft's statement that Softimage merged with Microsoft in 1994 | https://news.microsoft.com/source/1996/01/16/microsoft-delivers-high-end-3-d-animation-software-for-microsoft-windows-nt/ |
 | The RenderMan Interface Specification v3.1 | specification-pdf | high | 3 | RenderMan Interface Specification v3.1 public reference copy and RIB conventions | https://groups.csail.mit.edu/graphics/classes/6.838/S97/rispec31_4.pdf |
+| N64 GBI/Fast3D microcode family lead record | lead | low | 3 | Existence of the N64 RSP/RDP microcode family and its proprietary status; primary source not yet verified |  |
 | Psygnosis: how did a Liverpool company transform the gaming world? | museum-heritage-article | high | 4 | Psygnosis public heritage history, Liverpool origin, PlayStation-era influence, and Wipeout/Colony Wars context | https://www.liverpoolmuseums.org.uk/stories/psygnosis-how-did-liverpool-company-transform-gaming-world-big-question |
 | User's Guide for the PHIGS Validation Tests (Version 2.1) | government-publication | high | 3 | NIST publication metadata for the User's Guide for the PHIGS Validation Tests Version 2.1 | https://www.nist.gov/publications/users-guide-phigs-validation-tests-version-21 |
 | OGRE source repository | repository | high | 7 | OGRE public source repository, renderer role, APIs, languages, and license metadata | https://github.com/OGRECave/ogre |
@@ -68,8 +71,10 @@
 | ps2dev project site | project-site | high | 5 | Open-source PS2 development environment overview | https://ps2dev.github.io/ |
 | PSn00bSDK source repository | repository | high | 6 | Open-source PS1 SDK and compatibility development lane | https://github.com/Lameguy64/PSn00bSDK/ |
 | Quesa source repository | repository | high | 7 | Quesa source repository, QuickDraw 3D API reimplementation, platforms, and BSD license metadata | https://github.com/jwwalker/Quesa |
+| Origin RealSpace engine lead record | lead | low | 3 | Existence of Origin Systems RealSpace in-house engine technology; primary source not yet verified |  |
 | PlayStation Programmer Tool Runtime Library Version 3.3 Redump entry | disc-database | high | 5 | PlayStation Programmer Tool Runtime Library Version 3.3 disc metadata | https://redump.org/disc/50387/ |
 | Pixie Renderer summary | project-summary | moderate | 4 | Pixie feature and historical summary | https://www.renderpixie.com/pixie_renderer.html |
+| Sega Saturn SGL/SBL lead record | lead | low | 3 | Existence of Sega Saturn graphics/system libraries for dual-SH2 development; primary source not yet verified |  |
 | OpenGL Performer product brochure | product-brochure-pdf | moderate | 3 | OpenGL Performer feature and interoperability brochure metadata | https://ftp.jurassic.nl/pub/irix/press/3381.pdf |
 | OpenGL Performer Getting Started Guide 3.0 | manual-pdf | high | 3 | OpenGL Performer 3.0 Getting Started Guide public reference metadata and sample-code locations | https://www.infania.net/misc1/sgi_techpubs/techpubs/007-3560-004.pdf |
 | OpenGL Performer Programmer's Guide 3.2 | manual-pdf | high | 3 | OpenGL Performer 3.2 Programmer's Guide public reference metadata and restriction notice | https://irix7.com/techpubs/007-1680-100.pdf |
@@ -81,4 +86,5 @@
 | RenderMorphics to release new Reality Lab | trade-press-archive | moderate | 2 | Reality Lab platform support, API description, and release-two feature reporting | https://www.techmonitor.ai/technology/rendermorphics_to_release_new_reality_lab |
 | Practical Implementation at tri-Ace course notes | course-notes | high | 4 | tri-Ace physically based shading implementation notes and rendering lineage | https://research.tri-ace.com/Data/course_note_practical_implementation_at_triace.pdf |
 | tri-Ace Research and Development publications index | official-publication-index | high | 4 | tri-Ace rendering research publication index and PS2 SH/HDR presentation metadata | https://research.tri-ace.com/ |
+| trueSpace / Caligari lead record | lead | low | 3 | Existence of Caligari trueSpace, its renderer, and the freeware binary era; primary source not yet verified |  |
 | Sony Shuts Down Wipeout Developer Studio Liverpool | trade-report | high | 6 | Studio Liverpool closure report and public lineage from Psygnosis through Wipeout, Formula One, and PlayStation-era development | https://www.wired.com/2012/08/wireduk-studio-liverpool-closed/ |

@@ -1,0 +1,10 @@
+{
+    "id":  "truespace-caligari-baseline",
+    "target_id":  "truespace-caligari",
+    "milestone_type":  "public-dossier-established",
+    "status":  "curated",
+    "evidence":  "Lead dossier established with curated target and accession records; no source captured yet.",
+    "source_ids":  [
+                       "truespace-caligari-lead"
+                   ]
+}

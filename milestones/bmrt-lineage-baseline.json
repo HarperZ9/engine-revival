@@ -1,0 +1,10 @@
+{
+    "id":  "bmrt-lineage-baseline",
+    "target_id":  "bmrt-lineage",
+    "milestone_type":  "public-dossier-established",
+    "status":  "curated",
+    "evidence":  "Lead dossier established with curated target and accession records; no source captured yet.",
+    "source_ids":  [
+                       "bmrt-lineage-lead"
+                   ]
+}
