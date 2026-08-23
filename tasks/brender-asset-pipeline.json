@@ -2,8 +2,8 @@
     "id":  "brender-asset-pipeline",
     "target_id":  "brender",
     "task_type":  "build-archive-packet",
-    "status":  "seeded",
-    "public_notes":  "Next rung of the BRender remaster lane (R2 toward R4). Shipped: brender-archival materializes a thirteenth rung, brender_core_asset_audit, which loads .dat models via BrModelLoad without rendering, validates vertex finiteness, face index ranges, and degenerate faces, and emits one JSON summary per model; the CTest run audits duck, sph32, coupe, and teapot. Next: native .mat/.pal/.pix resolution, face-material mapping audit, per-group validation, then redump-legal or recreated asset ingestion with digest receipts.",
+    "status":  "asset-audit-rungs-passing",
+    "public_notes":  "Asset-pipeline rungs shipped in brender-archival (four CTest rungs total, fifteen targets): brender_core_asset_audit loads .dat models via BrModelLoad and validates vertex finiteness, face index ranges, degenerate faces, and per-face material attachment (br_face.material verified against the pinned inc/model.h); brender_core_material_audit probes period .pix files via BrPixelmapLoad with honest decode reporting; brender_core_material_file_audit loads std.mat and winstd.mat via BrMaterialLoad reporting identifier, flags, index_base, and colour_map attachment. Loader availability and struct fields were verified against the pinned v1.3.2 tree at d88d0ed4: BrModelLoad/BrMaterialLoad in core/v1db/v1dbfile.c, BrPixelmapLoad in core/pixelmap/pmfile.c; the dat/ inventory was enumerated from that tree (68 assets including earth.pix, gold8.pix, std.mat, std.pal). Deferred honestly: .pal chunk decoding (no BrPaletteLoad exists in this API), 15-bit partial decode fix, per-group validation.",
     "inputs":  [
                    "brender-archival harness generator",
                    "pinned v1.3.2 snapshot",
