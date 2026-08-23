@@ -55,12 +55,12 @@ Tracked as lead-dossier targets with planned accessions (2026-08-22):
 
 | Lead | Target record | Posture |
 |---|---|---|
-| Cosmo3D (SGI) | `targets/cosmo3d.json` | rights unresolved; primary source availability unverified |
-| N64 GBI / Fast3D microcode family | `targets/n64-gbi-fast3d.json` | official microcode proprietary; community clean-room lineage indexed |
-| Sega Saturn SGL / SBL | `targets/sega-saturn-sgl-sbl.json` | documentation-only lead |
-| trueSpace / Caligari (Octree Software renderer) | `targets/truespace-caligari.json` | freeware binary era; sources never released |
-| BMRT and its Entropy / Gelato lineage | `targets/bmrt-lineage.json` | freeware binaries only; sources unreleased |
-| RealSpace Engine (Origin Systems, Wing / Strike Commander) | `targets/realspace-engine.json` | rightsholder-held in-house technology; dossier only |
+| Cosmo3D (SGI) | `targets/cosmo3d.json` | history verified (beta-era halt, Optimizer substrate, Fahrenheit lineage); no standalone source exists |
+| N64 GBI / Fast3D microcode family | `targets/n64-gbi-fast3d.json` | official microcode proprietary; libdragon clean-room path verified complete |
+| Sega Saturn SGL / SBL | `targets/sega-saturn-sgl-sbl.json` | documentation-only lead, research pending |
+| trueSpace / Caligari (Octree Software renderer) | `targets/truespace-caligari.json` | freeware binary era verified; leaked ts4 source is do-not-redistribute |
+| BMRT and its Entropy / Gelato lineage | `targets/bmrt-lineage.json` | shareware binaries-only lineage verified; ended by the 2002 Pixar settlement |
+| RealSpace Engine (Origin Systems) | `targets/realspace-engine.json` | source likely lost; libRealSpace reverse-engineered reconstruction verified as revival path |
 
 The PS1 LIBGPU / LIBGTE / LIBGS entry is already tracked under
 `targets/ps1-programmer-tool.json` rather than duplicated here.

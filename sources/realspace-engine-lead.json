@@ -1,9 +1,11 @@
 {
-    "claim_scope":  "Existence of Origin Systems RealSpace in-house engine technology; primary source not yet verified",
-    "confidence":  "low",
+    "claim_scope":  "RealSpace debuted in Strike Commander (1993) and powered Wing Commander Armada/III/IV, Pacific Strike, and Wings of Glory; original source likely lost when Origin closed; Fabien Sanglard published a reverse-engineered reconstruction (libRealSpace) on GitHub in 2013",
+    "confidence":  "high",
     "id":  "realspace-engine-lead",
-    "notes":  "Unverified lead captured for roster completeness. Replace with a primary source once located.",
-    "publisher":  "unverified",
-    "source_type":  "lead",
-    "title":  "Origin RealSpace engine lead record"
+    "notes":  "Verified against Wing Commander Encyclopedia (wcpedia RealSpace), IGDB game-engine record linking libRealSpace, Wikipedia Strike Commander article citing Sanglard\u0027s 2014 reverse-engineering write-up, and the wcrespace fan project loading original RealSpace assets into a new engine.",
+    "publisher":  "WCpedia / IGDB / Wikipedia / fabiensanglard.net",
+    "retrieved_at":  "2026-08-22",
+    "source_type":  "reference",
+    "title":  "Origin RealSpace engine lineage and reconstruction",
+    "url":  "https://github.com/fabiensanglard/libRealSpace"
 }

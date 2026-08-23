@@ -1,10 +1,10 @@
 {
     "access_level":  "public",
     "artifact_type":  "engine-dossier",
-    "evidence_quality":  "public-reference",
+    "evidence_quality":  "verified-public-reference",
     "id":  "realspace-engine",
-    "location":  "not-held",
-    "notes":  "Dossier-only record for Origin Systems RealSpace in-house technology. Held by rightsholders; no public source.",
+    "location":  "https://github.com/fabiensanglard/libRealSpace",
+    "notes":  "Verified: RealSpace was Origin\u0027s first 3D engine (Strike Commander, 1993), reused across Wing Commander Armada/III/IV, Pacific Strike, and Wings of Glory. Original source likely lost with Origin\u0027s closure; Fabien Sanglard\u0027s libRealSpace (GitHub, 2013) reconstructs asset formats by reverse engineering, making an authorized asset-pipeline revival plausible. Game content remains EA rightsholder material.",
     "origin":  "lead dossier",
     "redistribution_status":  "not-applicable",
     "source_ids":  [

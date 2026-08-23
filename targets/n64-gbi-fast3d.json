@@ -14,7 +14,7 @@
 
                         ],
     "restricted_status":  "none-known",
-    "revival_lane":  "lead-dossier",
+    "revival_lane":  "clean-room-lineage",
     "rights_posture":  "unresolved",
-    "summary":  "The RSP/RDP microcode family that defined a console generation; official microcode is proprietary, community clean-room paths exist and are indexed as lineage."
+    "summary":  "The RSP/RDP microcode family behind a console generation. Official microcode is proprietary; libdragon demonstrates a complete open-source replacement path (own ucodes, rspq, open IPL3), making capability revival practical without Nintendo material."
 }

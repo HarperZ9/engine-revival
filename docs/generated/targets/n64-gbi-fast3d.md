@@ -8,13 +8,13 @@
 | Category | microcode |
 | Priority | 70 |
 | Rights | unresolved |
-| Revival lane | lead-dossier |
+| Revival lane | clean-room-lineage |
 | Public status | curated-public-sources |
 | Restricted status | none-known |
 
 ## Summary
 
-The RSP/RDP microcode family that defined a console generation; official microcode is proprietary, community clean-room paths exist and are indexed as lineage.
+The RSP/RDP microcode family behind a console generation. Official microcode is proprietary; libdragon demonstrates a complete open-source replacement path (own ucodes, rspq, open IPL3), making capability revival practical without Nintendo material.
 
 ## Artifacts
 
@@ -48,4 +48,4 @@ No production-readiness record yet.
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
-| N64 GBI/Fast3D microcode family lead record | lead | low | Existence of the N64 RSP/RDP microcode family and its proprietary status; primary source not yet verified |  |
+| N64 microcode family and clean-room lineage | reference | high | N64 GBI/Fast3D official microcode is proprietary; libdragon provides an open-source SDK replacement (Unlicense) with its own RSP ucodes, rspq command queue, and open-source IPL3 bootcode | https://libdragon.dev/ |

@@ -10,12 +10,12 @@
 | Origin | lead dossier |
 | Redistribution | not-applicable |
 | Access | public |
-| Evidence Quality | public-reference |
-| Location | not-held |
+| Evidence Quality | verified-public-reference |
+| Location | https://github.com/DragonMinded/libdragon |
 
 ## Notes
 
-Lead record for the N64 RSP/RDP microcode family. Official microcode proprietary; community clean-room implementations indexed as lineage only.
+Verified: official Nintendo microcode and libultra are proprietary. libdragon (Unlicense) supplies a complete open replacement path: own RSP ucodes on an rspq command queue, open-source IPL3, GCC-based toolchain, OpenGL 1.1 port. Clean-room revival of the microcode family's capabilities is demonstrated in practice.
 
 ## Accessions
 
@@ -35,4 +35,4 @@ No reproduction records.
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
-| N64 GBI/Fast3D microcode family lead record | lead | low | Existence of the N64 RSP/RDP microcode family and its proprietary status; primary source not yet verified |  |
+| N64 microcode family and clean-room lineage | reference | high | N64 GBI/Fast3D official microcode is proprietary; libdragon provides an open-source SDK replacement (Unlicense) with its own RSP ucodes, rspq command queue, and open-source IPL3 bootcode | https://libdragon.dev/ |

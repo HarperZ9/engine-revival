@@ -1,9 +1,11 @@
 {
-    "claim_scope":  "Existence of the N64 RSP/RDP microcode family and its proprietary status; primary source not yet verified",
-    "confidence":  "low",
+    "claim_scope":  "N64 GBI/Fast3D official microcode is proprietary; libdragon provides an open-source SDK replacement (Unlicense) with its own RSP ucodes, rspq command queue, and open-source IPL3 bootcode",
+    "confidence":  "high",
     "id":  "n64-microcode-lead",
-    "notes":  "Unverified lead captured for roster completeness. Replace with a primary source once located.",
-    "publisher":  "unverified",
-    "source_type":  "lead",
-    "title":  "N64 GBI/Fast3D microcode family lead record"
+    "notes":  "Verified against libdragon.dev, the N64brew wiki, and the DragonMinded/libdragon repository. Community consensus and vendor posture both treat the original microcode/libultra as proprietary; clean-room paths are complete enough to ship commercial-quality homebrew.",
+    "publisher":  "libdragon / N64brew Wiki",
+    "retrieved_at":  "2026-08-22",
+    "source_type":  "reference",
+    "title":  "N64 microcode family and clean-room lineage",
+    "url":  "https://libdragon.dev/"
 }

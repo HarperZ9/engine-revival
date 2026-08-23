@@ -10,12 +10,12 @@
 | Origin | lead dossier |
 | Redistribution | not-applicable |
 | Access | public |
-| Evidence Quality | public-reference |
-| Location | not-held |
+| Evidence Quality | verified-public-reference |
+| Location | https://en.wikipedia.org/wiki/Fahrenheit_(graphics_API) |
 
 ## Notes
 
-Lead record for the SGI Cosmo3D scene-graph lineage behind OpenGL++ and Fahrenheit. No primary source located yet.
+Verified: Cosmo3D reached beta before SGI halted it for OpenGL++; it shipped only as the substrate under OpenGL Optimizer. The Fahrenheit program (SGI+Microsoft, announced December 1997) absorbed the lineage and died by 2000; only the XSG scene-graph slice ever shipped, unsupported and quickly discontinued. No standalone source release exists.
 
 ## Accessions
 
@@ -35,4 +35,4 @@ No reproduction records.
 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
-| SGI Cosmo3D / OpenGL++ lead record | lead | low | Existence and lineage of the SGI Cosmo3D scene graph behind OpenGL++ and Fahrenheit; primary source not yet verified |  |
+| Cosmo3D / OpenGL++ / Fahrenheit lineage | reference | high | Cosmo3D existence and lineage: SGI scene graph halted near beta when SGI pivoted to OpenGL++, shipped only as the substrate beneath OpenGL Optimizer, absorbed into the Fahrenheit program (announced 1997-12-17, dead by 2000); only the XSG scene-graph slice ever shipped, briefly | https://en.wikipedia.org/wiki/Fahrenheit_(graphics_API) |
