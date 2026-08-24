@@ -20,7 +20,11 @@ renders, reproduced from public material with nothing proprietary vendored in.
 A materializer turns the period makefile topology into an out-of-tree CMake
 harness. It builds the FLOAT core library through BRender's own pure-C
 memory-pixelmap path, with no dependence on the period 386-assembly software
-renderer, and stands up a sixteen-target ladder of self-verifying rungs:
+renderer. The BRender work now has an eighteen-rung implementation map with two
+evidence tiers.
+
+The verified boundary is 12 verified CTest rungs, all backed by structured
+attempt records and readiness evidence in this repository:
 
 1. Vector math smoke (`BrVector3`, `BrScalar`).
 2. Framework startup smoke (`BrBegin` / `BrEnd`).
@@ -38,6 +42,11 @@ renderer, and stands up a sixteen-target ladder of self-verifying rungs:
 10. Multi-part assembly: `BrModelLoadMany` composites the 12-part coupe.
 11. Gouraud shading with per-vertex normals.
 12. Plotter lane: hidden-line-removed SVG polylines, pen-plotter ready.
+
+The six implemented asset-pipeline rungs below are reported in the
+brender-archival surface, but this repository still needs structured attempt
+records and command transcripts before they can close R4:
+
 13. Asset audit: `BrModelLoad` geometry validation (finite vertices, face index
     ranges, degenerate faces, face-material attachment) with one JSON summary
     per model.
@@ -47,24 +56,21 @@ renderer, and stands up a sixteen-target ladder of self-verifying rungs:
     whether pixels decoded.
 15. Material audit: `BrMaterialLoad` over `std.mat`/`winstd.mat` reporting
     identifier, flags, index_base, and colour-map attachment.
-16. Pixelmap round trip: the native datafile write path proven end to end
-    (`BrPixelmapSave` then reload, type and geometry compared).
+16. Pixelmap round trip: the native datafile write path using `BrPixelmapSave`
+    then reload, with type and geometry compared.
 17. Material resolution: a `BrMaterialLoad`-loaded material attached to every
     non-degenerate face of a loaded model and rendered through the portable
-    rasterizer, proving material-to-face association on the render path.
+    rasterizer.
 18. File-texture sampling: perspective-correct UV sampling of a loaded period
     `.pix` through `BrPixelmapPixelGet`, with an externally loaded palette
-    attached for indexed variants, and a distinct-colour proof that real
-    texture data drove the frame. This closes R4's substance: original
-    material/texture files now load, describe themselves, attach, write back,
-    and render.
+    attached for indexed variants, and a distinct-colour proof that real texture
+    data drove the frame.
 
-Every stage passes under CTest on a Visual Studio Win32 target. The render
-captures are generated as a public-safe release artifact.
-
-The four audit and round-trip rungs were grounded in the pinned upstream tree:
-loader locations, struct fields, and the 68-file `dat/` inventory were verified
-from the `d88d0ed4` snapshot before the code was written.
+The verified CTest ladder passes 12/12 on a Visual Studio Win32 target. R4 is not closed
+until the six implemented asset-pipeline rungs have structured
+attempt records and command transcripts in this repository, plus any needed
+artifact digests and tolerance statements. The render captures are generated as
+public-safe release artifacts.
 
 ## Reproduce it
 
@@ -85,10 +91,9 @@ a PPM, so it doubles as a minimal model viewer for the period asset library.
 
 - Build BRender's core from a public checkout on a modern MSVC toolchain.
 - Load and render BRender's own period models straight from their datafiles.
-- Audit any period asset before use: models for geometry defects, pixelmaps and
-  palettes for decode status, materials for map attachment.
-- Write BRender-native datafile pixelmaps via `BrPixelmapSave` (verified round
-  trip), the first step of a re-created-asset pipeline.
+- Continue the asset-pipeline evidence work: model, pixelmap, palette, material,
+  native-write, material-resolution, and file-texture rungs are implemented but
+  still need structured attempt records here before R4 can be claimed.
 - Extend the portable rasterizer (Gouraud shading, materials, a wider viewer).
 - Plot period models on a pen plotter: `brender_core_plotter_smoke` emits
   hidden-line-removed SVG polylines from any `.dat` model.
@@ -100,6 +105,9 @@ These are documented, not claimed, so the revival is not oversold:
 
 - BRender's period 386-assembly `softrend` renderer (the hard portability item).
 - x64 pointer-width portability (the unreworked period code is 32-bit bound).
+- R4 asset-pipeline closure: structured attempt records, command transcripts,
+  artifact digests, and tolerance statements for rungs 13 through 18 are still
+  missing from this repository.
 - Full material/texture *resolution* for rendering loaded models: the audit
   rungs now load and describe `.mat`, `.pix`, and `.pal` files, but attaching
   them to rendered models end to end is still open.

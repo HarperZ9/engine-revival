@@ -37,7 +37,7 @@ honestly claimable at each rung.
 
 | Engine | Rung | Evidence |
 |---|---|---|
-| Argonaut BRender v1.3.2 | R2 green; R4 closed in substance (models, materials, pixelmaps, palettes audited; native write path proven; loaded file textures sampled through UVs). Known defect remaining: partial decode of 15-bit pixelmap variants | brender-archival eighteen-target ladder; audit rungs with JSON receipts |
+| Argonaut BRender v1.3.2 | R2 green; R4 evidence pending. The verified boundary is 12 CTest rungs. Six implemented asset-pipeline rungs need structured attempt records and command transcripts before R4 can be claimed. | brender-critical-edition packet CTest 12/12 plus readiness score 86; R4 is not closed until the six asset-pipeline receipts exist |
 | All other targets | R0 | target + accession records |
 
 ## Next candidates
