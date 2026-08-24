@@ -37,7 +37,7 @@ honestly claimable at each rung.
 
 | Engine | Rung | Evidence |
 |---|---|---|
-| Argonaut BRender v1.3.2 | R2 green; R4 nearly closed (models, materials, pixelmaps, palettes audited; native write path proven; material-to-face resolution rendering) | brender-archival seventeen-target ladder; audit rungs with JSON receipts |
+| Argonaut BRender v1.3.2 | R2 green; R4 closed in substance (models, materials, pixelmaps, palettes audited; native write path proven; loaded file textures sampled through UVs). Known defect remaining: partial decode of 15-bit pixelmap variants | brender-archival eighteen-target ladder; audit rungs with JSON receipts |
 | All other targets | R0 | target + accession records |
 
 ## Next candidates

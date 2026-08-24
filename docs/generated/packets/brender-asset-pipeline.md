@@ -5,12 +5,12 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | material-resolution-rendering |
+| Status | r4-file-texture-sampling |
 | Task type | build-archive-packet |
 
 ## Public Notes
 
-Asset pipeline rungs shipped in brender-archival (seventeen CTest targets): model geometry audit with face-material attachment counts, pixelmap decode probe over .pix and .pal (palettes are pixelmap datafiles; no palette chunk exists in v1.3.2), material-file audit over std.mat and winstd.mat, native BrPixelmapSave round trip with temp-file cleanup, and material resolution rendering: a loaded material attached to every non-degenerate face of sph32.dat and pushed through the portable rasterizer with a JSON receipt. All loaders, struct fields, and the 68-file dat/ inventory verified against the pinned d88d0ed4 tree. Remaining to close R4 fully: colour-map sampling from loaded period pixelmaps through the rasterizer; then the 15-bit partial-decode fix.
+R4 closed in substance (eighteen CTest targets in brender-archival): model geometry audit, pixelmap/palette decode probe, material-file audit, native BrPixelmapSave round trip, material-to-face resolution rendering, and perspective-correct UV sampling of loaded period .pix files through BrPixelmapPixelGet with palette attach via pm->map and a distinct-colour proof. All grounded in the pinned d88d0ed4 tree (loaders, struct fields, dat/ inventory). Known remaining defect: partial decode of 15-bit pixelmap variants (earth15.pix class). Next lane items: R5 game shell on the restored engine; deeper items per readiness: x64 pointer-width port, softrend translation, packaging, viewer.
 
 ## Inputs
 

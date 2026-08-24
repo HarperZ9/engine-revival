@@ -51,8 +51,13 @@ renderer, and stands up a sixteen-target ladder of self-verifying rungs:
     (`BrPixelmapSave` then reload, type and geometry compared).
 17. Material resolution: a `BrMaterialLoad`-loaded material attached to every
     non-degenerate face of a loaded model and rendered through the portable
-    rasterizer, proving material-to-face association on the render path. Full
-    colour-map sampling from period `.pix` files remains the next rung.
+    rasterizer, proving material-to-face association on the render path.
+18. File-texture sampling: perspective-correct UV sampling of a loaded period
+    `.pix` through `BrPixelmapPixelGet`, with an externally loaded palette
+    attached for indexed variants, and a distinct-colour proof that real
+    texture data drove the frame. This closes R4's substance: original
+    material/texture files now load, describe themselves, attach, write back,
+    and render.
 
 Every stage passes under CTest on a Visual Studio Win32 target. The render
 captures are generated as a public-safe release artifact.
