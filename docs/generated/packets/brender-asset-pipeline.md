@@ -5,12 +5,12 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | r5-game-shell-opened |
+| Status | twenty-target-ladder-executed-green |
 | Task type | build-archive-packet |
 
 ## Public Notes
 
-R4 closed in substance and R5 opened; the ENTIRE nineteen-target ladder is now verified by EXECUTION, not just generation: pinned checkout cloned at d88d0ed4, harness materialized, full FLOAT core + 19 CTest targets built clean under VS 2022 Win32, ctest 19/19 passed in 1.59s (transcript captured in brender-archival builds/brender-v132-ctest-nineteen-rungs.log). Defects found and fixed by execution: BrPixelmapSave returns a count (1), not an error; MSVC debug-CRT report dialogs hang headless runs (now suppressed under _DEBUG); m2s declared br_matrix34 where BrActorToScreenMatrix4 writes br_matrix4 in two rungs; game-shell path separator logic. Stale claim corrected: 15-bit .pix variants load completely (earth15.pix type 4 verified). Remaining: driver binding onto shell lifecycle, x64 port, softrend translation, packaging/viewer.
+Twenty-target ladder verified by execution: ctest 20/20 passed (1.59s) under VS 2022 Win32 against the pinned d88d0ed4 checkout; transcript in brender-archival builds/brender-v132-ctest-twenty-rungs.log. Rung twenty (host_semantic) closes the semantic-tests blocker: BrMemAllocate/Free pattern retention, BrMemInquire behavior (0 pre-allocation is legitimate), and a 256-byte BrFileOpenWrite/Write/Close/OpenRead/Read round trip all pass. Findings recorded: BrMemAllocateAlign declared in fw_p.h but unimplemented in the v1.3.2 FLOAT core. Remaining deep items: driver binding onto shell lifecycle, x64 pointer-width port, softrend translation, packaging/viewer.
 
 ## Inputs
 
