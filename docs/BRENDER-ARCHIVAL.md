@@ -20,11 +20,13 @@ renders, reproduced from public material with nothing proprietary vendored in.
 A materializer turns the period makefile topology into an out-of-tree CMake
 harness. It builds the FLOAT core library through BRender's own pure-C
 memory-pixelmap path, with no dependence on the period 386-assembly software
-renderer. The BRender work now has an eighteen-rung implementation map with two
-evidence tiers.
+renderer. The BRender work is an executed twenty-rung ladder, verified end to
+end against the pinned v1.3.2 checkout at commit `d88d0ed4`.
 
-The verified boundary is 12 verified CTest rungs, all backed by structured
-attempt records and readiness evidence in this repository:
+The verified boundary is 20 executed CTest rungs under Visual Studio Win32,
+backed by structured attempt records in this repository and a committed CTest
+transcript at `attempts/transcripts/brender-v132-ctest-twenty-rungs-2026-08-22.log`
+(attempt `brender-v132-twenty-rung-execution-win32`).
 
 1. Vector math smoke (`BrVector3`, `BrScalar`).
 2. Framework startup smoke (`BrBegin` / `BrEnd`).
@@ -36,42 +38,30 @@ attempt records and readiness evidence in this repository:
    lighting.
 6. Per-pixel depth buffer: correct occlusion for arbitrary multi-object scenes.
 7. Perspective-correct texture mapping.
-8. Real datafile models: `BrModelLoad` reads native binary `.dat` models
-   (duck, teapot, skull, torus) and renders them solid and depth-buffered.
+8. Real datafile models: `BrModelLoad` reads native binary `.dat` models and
+   renders them solid and depth-buffered.
 9. UV-textured render through a model's own vertex UV coordinates.
 10. Multi-part assembly: `BrModelLoadMany` composites the 12-part coupe.
 11. Gouraud shading with per-vertex normals.
 12. Plotter lane: hidden-line-removed SVG polylines, pen-plotter ready.
-
-The six implemented asset-pipeline rungs below are reported in the
-brender-archival surface, but this repository still needs structured attempt
-records and command transcripts before they can close R4:
-
-13. Asset audit: `BrModelLoad` geometry validation (finite vertices, face index
-    ranges, degenerate faces, face-material attachment) with one JSON summary
-    per model.
-14. Pixelmap audit: `BrPixelmapLoad` decode probe over period `.pix` files and
-    palette datafiles (`.pal` is a pixelmap datafile; there is no separate
-    palette chunk in this BRender version), reporting type, geometry, and
-    whether pixels decoded.
-15. Material audit: `BrMaterialLoad` over `std.mat`/`winstd.mat` reporting
-    identifier, flags, index_base, and colour-map attachment.
-16. Pixelmap round trip: the native datafile write path using `BrPixelmapSave`
-    then reload, with type and geometry compared.
-17. Material resolution: a `BrMaterialLoad`-loaded material attached to every
-    non-degenerate face of a loaded model and rendered through the portable
-    rasterizer.
+13. Asset audit: model geometry validation with JSON receipts.
+14. Pixelmap audit: `.pix` and palette-datafile decode probing.
+15. Material-file audit: binary material save/load round trip plus honest
+    text-script probes of period `.mat` files.
+16. Pixelmap round trip: native datafile write path via `BrPixelmapSave`
+    (count-returning semantics), reload, type and geometry compared.
+17. Material resolution: a material attached to every non-degenerate face of a
+    loaded model and rendered through the rasterizer.
 18. File-texture sampling: perspective-correct UV sampling of a loaded period
-    `.pix` through `BrPixelmapPixelGet`, with an externally loaded palette
-    attached for indexed variants, and a distinct-colour proof that real texture
-    data drove the frame.
+    `.pix`, palette attached, distinct-colour proof.
+19. Game shell: INIT/LOAD/RUN/TEARDOWN state machine over loaded assets with a
+    deterministic frame loop and manifest.
+20. Host/memory semantics: allocator pattern retention, inquire behavior, and
+    an exact file round trip through BRender's fw layer.
 
-The verified CTest ladder passes 12/12 on a Visual Studio Win32 target. R4 is not closed
-until the six implemented asset-pipeline rungs have structured
-attempt records and command transcripts in this repository, plus any needed
-artifact digests and tolerance statements. The render captures are generated as
-public-safe release artifacts.
-
+Every stage passes under CTest on a Visual Studio Win32 target: 20/20 passed.
+Execution also surfaced defects that generation alone had missed; they are
+recorded in the attempt record.
 ## Reproduce it
 
 ```powershell
