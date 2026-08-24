@@ -5,12 +5,12 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | r4-file-texture-sampling |
+| Status | r4-evidence-pending |
 | Task type | build-archive-packet |
 
 ## Public Notes
 
-R4 closed in substance (eighteen CTest targets in brender-archival): model geometry audit, pixelmap/palette decode probe, material-file audit, native BrPixelmapSave round trip, material-to-face resolution rendering, and perspective-correct UV sampling of loaded period .pix files through BrPixelmapPixelGet with palette attach via pm->map and a distinct-colour proof. All grounded in the pinned d88d0ed4 tree (loaders, struct fields, dat/ inventory). Known remaining defect: partial decode of 15-bit pixelmap variants (earth15.pix class). Next lane items: R5 game shell on the restored engine; deeper items per readiness: x64 pointer-width port, softrend translation, packaging, viewer.
+Verified boundary: 12 verified CTest rungs in brender-archival, ending at hidden-line SVG plotter output, with readiness score 86. The six implemented asset-pipeline rungs remain pending evidence in this repository: model geometry audit, pixelmap/palette decode probe, material-file audit, native BrPixelmapSave round trip, material-to-face resolution rendering, and perspective-correct sampling of a loaded period .pix file with palette attachment. R4 is not closed until those six rungs have structured attempt records and command transcripts here, plus any needed artifact digests and tolerance statements. The readiness record still carries original material/texture resolution and semantic compatibility-stub coverage as next actions.
 
 ## Inputs
 
@@ -20,9 +20,9 @@ R4 closed in substance (eighteen CTest targets in brender-archival): model geome
 
 ## Outputs
 
-- asset-audit CTest rung
-- per-model JSON summaries
-- material/pixelmap resolution plan
+- 12-rung verified CTest boundary
+- six implemented asset-pipeline rungs tracked as pending evidence
+- structured attempt record and transcript checklist for R4 closure
 
 ## Blocked By
 
