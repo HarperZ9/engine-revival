@@ -10,7 +10,7 @@
 
 ## Public Notes
 
-R4 closed in substance and R5 opened (nineteen CTest targets in brender-archival). R4 delivered: model geometry audit, pixelmap/palette decode probe, material-file audit, native BrPixelmapSave round trip, material-to-face resolution rendering, and perspective-correct UV sampling of loaded period .pix with palette attach. R5 rung one: brender_core_game_shell, an INIT/LOAD/RUN/TEARDOWN state machine driving a deterministic orbit frame loop over loaded assets, one numbered PPM per frame plus a JSON manifest; display/input drivers bind onto this lifecycle later. All grounded in the pinned d88d0ed4 tree. Remaining: 15-bit partial decode fix; R5 continuation (driver binding, longer game flows); deep items per readiness (x64 port, softrend translation, packaging).
+R4 closed in substance and R5 opened; the ENTIRE nineteen-target ladder is now verified by EXECUTION, not just generation: pinned checkout cloned at d88d0ed4, harness materialized, full FLOAT core + 19 CTest targets built clean under VS 2022 Win32, ctest 19/19 passed in 1.59s (transcript captured in brender-archival builds/brender-v132-ctest-nineteen-rungs.log). Defects found and fixed by execution: BrPixelmapSave returns a count (1), not an error; MSVC debug-CRT report dialogs hang headless runs (now suppressed under _DEBUG); m2s declared br_matrix34 where BrActorToScreenMatrix4 writes br_matrix4 in two rungs; game-shell path separator logic. Stale claim corrected: 15-bit .pix variants load completely (earth15.pix type 4 verified). Remaining: driver binding onto shell lifecycle, x64 port, softrend translation, packaging/viewer.
 
 ## Inputs
 

@@ -107,7 +107,7 @@ These are documented, not claimed, so the revival is not oversold:
 - Full material/texture *resolution* for rendering loaded models: the audit
   rungs now load and describe `.mat`, `.pix`, and `.pal` files, but attaching
   them to rendered models end to end is still open.
-- Fixing the partial decode of 15-bit pixelmap variants.
+- Note: an earlier session recorded 15-bit pixelmap variants as partially decoding; execution against the pinned tree shows `earth15.pix` (type 4) loading completely, so that item is resolved rather than deferred.
 - Release packaging and a full interactive viewer.
 
 ## Records
