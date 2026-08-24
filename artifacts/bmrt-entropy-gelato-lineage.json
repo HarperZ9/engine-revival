@@ -1,0 +1,15 @@
+{
+    "access_level":  "public",
+    "artifact_type":  "renderer-lineage",
+    "evidence_quality":  "verified-public-reference",
+    "id":  "bmrt-entropy-gelato-lineage",
+    "location":  "not-held",
+    "notes":  "Verified lineage: Larry Gritz developed BMRT at GWU/Cornell, first published 1994; final BMRT release 2.6 in November 2000; Exluna Entropy followed in July 2001; NVIDIA acquired Exluna in July 2002 and the Pixar lawsuit settlement ended BMRT/Entropy distribution. Distributed only as shareware/freeware binaries; sources never released.",
+    "origin":  "lead dossier",
+    "redistribution_status":  "not-applicable",
+    "source_ids":  [
+                       "bmrt-lineage-lead"
+                   ],
+    "target_id":  "bmrt-lineage",
+    "title":  "BMRT / Entropy / Gelato lineage record"
+}

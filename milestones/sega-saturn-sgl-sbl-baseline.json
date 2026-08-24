@@ -1,0 +1,10 @@
+{
+    "id":  "sega-saturn-sgl-sbl-baseline",
+    "target_id":  "sega-saturn-sgl-sbl",
+    "milestone_type":  "public-dossier-established",
+    "status":  "curated",
+    "evidence":  "Lead dossier established with curated target and accession records; no source captured yet.",
+    "source_ids":  [
+                       "saturn-sgl-sbl-lead"
+                   ]
+}

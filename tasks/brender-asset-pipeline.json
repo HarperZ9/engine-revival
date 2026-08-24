@@ -1,0 +1,23 @@
+{
+    "id":  "brender-asset-pipeline",
+    "target_id":  "brender",
+    "task_type":  "build-archive-packet",
+    "status":  "r4-file-texture-sampling",
+    "public_notes":  "R4 closed in substance (eighteen CTest targets in brender-archival): model geometry audit, pixelmap/palette decode probe, material-file audit, native BrPixelmapSave round trip, material-to-face resolution rendering, and perspective-correct UV sampling of loaded period .pix files through BrPixelmapPixelGet with palette attach via pm-\u003emap and a distinct-colour proof. All grounded in the pinned d88d0ed4 tree (loaders, struct fields, dat/ inventory). Known remaining defect: partial decode of 15-bit pixelmap variants (earth15.pix class). Next lane items: R5 game shell on the restored engine; deeper items per readiness: x64 pointer-width port, softrend translation, packaging, viewer.",
+    "inputs":  [
+                   "brender-archival harness generator",
+                   "pinned v1.3.2 snapshot",
+                   "public .dat sample models"
+               ],
+    "outputs":  [
+                    "asset-audit CTest rung",
+                    "per-model JSON summaries",
+                    "material/pixelmap resolution plan"
+                ],
+    "blocked_by":  [
+
+                   ],
+    "source_ids":  [
+                       "foone-brender-v132"
+                   ]
+}

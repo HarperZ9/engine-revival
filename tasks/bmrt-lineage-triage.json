@@ -1,0 +1,7 @@
+{
+    "id":  "bmrt-lineage-triage",
+    "public_notes":  "Create public-safe source and artifact records for the bmrt-lineage lead dossier.",
+    "status":  "seeded",
+    "target_id":  "bmrt-lineage",
+    "task_type":  "triage-public-record"
+}

@@ -4,7 +4,7 @@
 
 | Priority | Target | Rights | Revival lane | Artifacts | Accessions | Tasks | Milestones |
 |---:|---|---|---|---:|---:|---:|---:|
-| 89 | [Argonaut BRender](targets/brender.md) | open | critical-edition | 3 | 3 | 2 | 1 |
+| 89 | [Argonaut BRender](targets/brender.md) | open | critical-edition | 3 | 3 | 3 | 1 |
 | 84 | [PS1 Programmer's Tool / SDevTC / Net Yaroze](targets/ps1-programmer-tool.md) | clean-room-only | clean-room-api-compatible | 4 | 4 | 2 | 1 |
 | 82 | [RenderWare PS2](targets/renderware-ps2.md) | restricted | compatibility-reimplementation | 2 | 2 | 2 | 1 |
 | 80 | [GOOL and GOAL](targets/gool-goal.md) | clean-room-only | tooling-only-legal-copy-assets | 3 | 3 | 2 | 1 |
@@ -20,10 +20,16 @@
 | 72 | [OGRE](targets/ogre.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
 | 72 | [Open Inventor](targets/open-inventor.md) | open | public-source-preservation | 3 | 3 | 1 | 1 |
 | 71 | [Softimage / Alias bridge](targets/softimage-alias-bridge.md) | public-reference-only | pipeline-history | 4 | 4 | 1 | 1 |
+| 70 | [N64 GBI / Fast3D Microcode Family](targets/n64-gbi-fast3d.md) | unresolved | clean-room-lineage | 1 | 1 | 1 | 1 |
 | 70 | [Quesa](targets/quesa.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
 | 69 | [Japan Studio / Team Ico](targets/japan-studio-team-ico.md) | restricted | oral-history-and-binary-archaeology | 3 | 3 | 2 | 1 |
 | 68 | [Crystal Space](targets/crystal-space.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
 | 68 | [IRIS GL / OpenGL bridge](targets/iris-gl-opengl-bridge.md) | public-reference-only | upstream-dependency-atlas | 2 | 2 | 1 | 1 |
+| 68 | [Sega Saturn SGL / SBL](targets/sega-saturn-sgl-sbl.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
 | 66 | [Aqsis](targets/aqsis.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
 | 65 | [Pixie](targets/pixie.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
+| 64 | [Origin RealSpace Engine](targets/realspace-engine.md) | unresolved | reverse-engineering-reconstruction | 1 | 1 | 1 | 1 |
 | 62 | [PHIGS](targets/phigs.md) | public-reference-only | upstream-dependency-atlas | 3 | 3 | 1 | 1 |
+| 60 | [trueSpace / Caligari](targets/truespace-caligari.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
+| 58 | [BMRT / Entropy / Gelato Lineage](targets/bmrt-lineage.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
+| 55 | [SGI Cosmo3D / OpenGL++](targets/cosmo3d.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |

@@ -1,0 +1,11 @@
+{
+    "claim_scope":  "Cosmo3D existence and lineage: SGI scene graph halted near beta when SGI pivoted to OpenGL++, shipped only as the substrate beneath OpenGL Optimizer, absorbed into the Fahrenheit program (announced 1997-12-17, dead by 2000); only the XSG scene-graph slice ever shipped, briefly",
+    "confidence":  "high",
+    "id":  "cosmo3d-lead",
+    "notes":  "Verified against Wikipedia (Fahrenheit graphics API, OpenGL++), the TU Wien 3D APIs summary (Cosmo3D released only as part of Optimizer, dropped in favor of OpenGL++), and Game Developer coverage of the Fahrenheit announcement. No standalone Cosmo3D source release is known.",
+    "publisher":  "Wikipedia / TU Wien / Game Developer",
+    "retrieved_at":  "2026-08-22",
+    "source_type":  "reference",
+    "title":  "Cosmo3D / OpenGL++ / Fahrenheit lineage",
+    "url":  "https://en.wikipedia.org/wiki/Fahrenheit_(graphics_API)"
+}

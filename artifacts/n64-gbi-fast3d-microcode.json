@@ -1,0 +1,15 @@
+{
+    "access_level":  "public",
+    "artifact_type":  "microcode-lineage",
+    "evidence_quality":  "verified-public-reference",
+    "id":  "n64-gbi-fast3d-microcode",
+    "location":  "https://github.com/DragonMinded/libdragon",
+    "notes":  "Verified: official Nintendo microcode and libultra are proprietary. libdragon (Unlicense) supplies a complete open replacement path: own RSP ucodes on an rspq command queue, open-source IPL3, GCC-based toolchain, OpenGL 1.1 port. Clean-room revival of the microcode family\u0027s capabilities is demonstrated in practice.",
+    "origin":  "lead dossier",
+    "redistribution_status":  "not-applicable",
+    "source_ids":  [
+                       "n64-microcode-lead"
+                   ],
+    "target_id":  "n64-gbi-fast3d",
+    "title":  "N64 GBI / Fast3D microcode lineage record"
+}

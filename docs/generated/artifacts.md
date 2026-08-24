@@ -6,9 +6,11 @@
 |---|---|---|---|---|---|---|
 | aqsis | [aqsis-renderer-source](artifacts/aqsis-renderer-source.md) | Aqsis renderer source repository | renderer-source | open | public | public-source |
 | aqsis | [aqsis-renderer-tooling-metadata](artifacts/aqsis-renderer-tooling-metadata.md) | Aqsis renderer tooling metadata | tooling-metadata | open | public | public-readme-metadata |
+| bmrt-lineage | [bmrt-entropy-gelato-lineage](artifacts/bmrt-entropy-gelato-lineage.md) | BMRT / Entropy / Gelato lineage record | renderer-lineage | not-applicable | public | verified-public-reference |
 | brender | [brender-3dmm-source](artifacts/brender-3dmm-source.md) | BRender 3D Movie Maker variant source release | source-release | open | public | public-source |
 | brender | [brender-preservation-index](artifacts/brender-preservation-index.md) | BRender preservation index | curation-index | public-reference-only | public | curated-public-index |
 | brender | [brender-v132-source](artifacts/brender-v132-source.md) | BRender v1.3.2 public source release | source-release | open | public | public-source |
+| cosmo3d | [cosmo3d-lineage](artifacts/cosmo3d-lineage.md) | SGI Cosmo3D / OpenGL++ lineage record | api-lineage | not-applicable | public | verified-public-reference |
 | crystal-space | [crystal-space-github-source-repository](artifacts/crystal-space-github-source-repository.md) | Crystal Space source repository | source-repository | open | public | public-source |
 | crystal-space | [crystal-space-sourceforge-project-record](artifacts/crystal-space-sourceforge-project-record.md) | Crystal Space SourceForge project record | project-registry-record | open | public | public-project-registry |
 | gool-goal | [gool-andy-gavin-developer-article](artifacts/gool-andy-gavin-developer-article.md) | Andy Gavin GOOL developer article | developer-article | public-reference-only | public | developer-primary-source |
@@ -23,6 +25,7 @@
 | lithtech-jupiter | [lithtech-jupiter-development-guide](artifacts/lithtech-jupiter-development-guide.md) | Jupiter Development Guide | development-guide | do-not-redistribute | public-reference | public-pdf-and-ocr |
 | mesa | [mesa-license-and-api-summary](artifacts/mesa-license-and-api-summary.md) | Mesa API and license summary | license-and-api-summary | open | public | official-project-documentation |
 | mesa | [mesa-source-repository](artifacts/mesa-source-repository.md) | Mesa upstream source repository | source-repository-record | open | public | official-repository-documentation |
+| n64-gbi-fast3d | [n64-gbi-fast3d-microcode](artifacts/n64-gbi-fast3d-microcode.md) | N64 GBI / Fast3D microcode lineage record | microcode-lineage | not-applicable | public | verified-public-reference |
 | ogre | [ogre-licensing-record](artifacts/ogre-licensing-record.md) | OGRE MIT licensing record | license-record | open | public | official-license-documentation |
 | ogre | [ogre-source-repository](artifacts/ogre-source-repository.md) | OGRE source repository | source-repository | open | public | public-source |
 | open-inventor | [coin3d-open-inventor-api-compatibility](artifacts/coin3d-open-inventor-api-compatibility.md) | Coin3D Open Inventor API compatibility record | compatibility-lineage | public-reference-only | public | project-site |
@@ -54,13 +57,16 @@
 | reality-lab | [directx-sdk-legacy-samples-archive](artifacts/directx-sdk-legacy-samples-archive.md) | DirectX SDK legacy samples archive | successor-sample-archive | open | public | official-public-source |
 | reality-lab | [reality-lab-release-2-public-report](artifacts/reality-lab-release-2-public-report.md) | RenderMorphics Reality Lab release-two public report | trade-press-product-record | public-reference-only | public | trade-press-archive |
 | reality-lab | [reality-lab-rendermorphics-acquisition-record](artifacts/reality-lab-rendermorphics-acquisition-record.md) | RenderMorphics acquisition and Reality Lab Windows plan | acquisition-lineage-record | public-reference-only | public | corporate-record-plus-trade-press |
+| realspace-engine | [realspace-engine](artifacts/realspace-engine.md) | Origin RealSpace engine dossier | engine-dossier | not-applicable | public | verified-public-reference |
 | renderman-interface | [renderman-interface-ri-official-docs](artifacts/renderman-interface-ri-official-docs.md) | RenderMan Interface (Ri) official documentation | official-documentation-reference | public-reference-only | public | official-documentation |
 | renderman-interface | [renderman-interface-spec-31-public-pdf](artifacts/renderman-interface-spec-31-public-pdf.md) | RenderMan Interface Specification v3.1 public PDF | specification-reference | public-reference-only | public | public-specification-copy |
 | renderware-ps2 | [renderware-ps2-gold-release-notes](artifacts/renderware-ps2-gold-release-notes.md) | RenderWare3 PS2 Gold 1.3 update release notes | release-notes | public-reference-only | public | public-ocr-and-institutional-finding-aid |
 | renderware-ps2 | [renderware-sdk-310-ps2-archive-item](artifacts/renderware-sdk-310-ps2-archive-item.md) | RenderWare SDK 3.10 PS2 archive item | sdk-archive-metadata | do-not-redistribute | metadata-only | archive-metadata |
+| sega-saturn-sgl-sbl | [saturn-sgl-sbl-sdk](artifacts/saturn-sgl-sbl-sdk.md) | Sega Saturn SGL/SBL documentation lead | sdk-archive | not-applicable | public | public-reference |
 | softimage-alias-bridge | [alias-autodesk-acquisition-record](artifacts/alias-autodesk-acquisition-record.md) | Alias Autodesk acquisition record | acquisition-lineage-record | public-reference-only | public | official-press-release |
 | softimage-alias-bridge | [softimage-autodesk-acquisition-record](artifacts/softimage-autodesk-acquisition-record.md) | Softimage Autodesk acquisition record | acquisition-lineage-record | public-reference-only | public | official-press-release |
 | softimage-alias-bridge | [softimage-last-release-transition-faq](artifacts/softimage-last-release-transition-faq.md) | Softimage last release transition FAQ | product-transition-record | public-reference-only | public | official-vendor-faq |
 | softimage-alias-bridge | [softimage-microsoft-acquisition-record](artifacts/softimage-microsoft-acquisition-record.md) | Softimage Microsoft acquisition record | acquisition-lineage-record | public-reference-only | public | official-corporate-history |
 | tri-ace-ps2-renderer | [tri-ace-pbr-implementation-course-notes](artifacts/tri-ace-pbr-implementation-course-notes.md) | Practical Implementation at tri-Ace course notes | course-notes | public-reference-only | public | public-course-notes |
 | tri-ace-ps2-renderer | [tri-ace-ps2-sh-lighting-hdr-gdc2005](artifacts/tri-ace-ps2-sh-lighting-hdr-gdc2005.md) | Practical Implementation of SH Lighting and HDR Rendering on PlayStation 2 | presentation-metadata | public-reference-only | public | official-publication-index |
+| truespace-caligari | [truespace-caligari-renderer](artifacts/truespace-caligari-renderer.md) | trueSpace / Caligari renderer lead | renderer-lineage | not-applicable | public | verified-public-reference |

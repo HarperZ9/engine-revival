@@ -5,13 +5,16 @@
 | Target | Milestone | Type | Status | Evidence |
 |---|---|---|---|---|
 | aqsis | aqsis-baseline | public-dossier-established | curated | Public dossier has curated Aqsis source, accession, and task records. |
+| bmrt-lineage | bmrt-lineage-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
 | brender | brender-baseline | public-dossier-established | curated | Public dossier has curated BRender source, accession, and task records. |
+| cosmo3d | cosmo3d-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
 | crystal-space | crystal-space-baseline | public-dossier-established | curated | Public dossier has curated Crystal Space source, accession, and task records. |
 | gool-goal | gool-goal-baseline | public-dossier-established | curated | Public dossier has curated GOOL and GOAL source, accession, and task records. |
 | iris-gl-opengl-bridge | iris-gl-opengl-bridge-baseline | public-dossier-established | curated | Public dossier has curated IRIS GL and OpenGL bridge source, accession, and task records. |
 | japan-studio-team-ico | japan-studio-team-ico-baseline | public-dossier-established | curated | Public dossier has curated Japan Studio and Team Ico source, accession, and task records. |
 | lithtech-jupiter | lithtech-jupiter-baseline | public-dossier-established | curated | Public dossier has curated LithTech Jupiter target, source, artifact, accession, task, and reproduction records without holding restricted package contents. |
 | mesa | mesa-baseline | public-dossier-established | curated | Public dossier has curated Mesa source, accession, and task records. |
+| n64-gbi-fast3d | n64-gbi-fast3d-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
 | ogre | ogre-baseline | public-dossier-established | curated | Public dossier has curated OGRE source, accession, and task records. |
 | open-inventor | open-inventor-baseline | public-dossier-established | curated | Public dossier has curated Open Inventor source, accession, and task records. |
 | opengl-performer | opengl-performer-baseline | public-dossier-established | curated | Public dossier has curated OpenGL Performer source, accession, and task records. |
@@ -23,7 +26,10 @@
 | quesa | quesa-baseline | public-dossier-established | curated | Public dossier has curated Quesa source, accession, and task records. |
 | quickdraw-3d | quickdraw-3d-baseline | public-dossier-established | curated | Public dossier has curated QuickDraw 3D source, accession, and task records. |
 | reality-lab | reality-lab-baseline | public-dossier-established | curated | Public dossier has curated Reality Lab source, accession, and task records. |
+| realspace-engine | realspace-engine-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
 | renderman-interface | renderman-interface-baseline | public-dossier-established | curated | Public dossier has curated RenderMan Interface source, accession, and task records. |
 | renderware-ps2 | renderware-ps2-baseline | public-dossier-established | curated | Public dossier has curated RenderWare PS2 source, accession, and task records. |
+| sega-saturn-sgl-sbl | sega-saturn-sgl-sbl-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
 | softimage-alias-bridge | softimage-alias-bridge-baseline | public-dossier-established | curated | Public dossier has curated Softimage and Alias bridge source, accession, and task records. |
 | tri-ace-ps2-renderer | tri-ace-ps2-renderer-baseline | public-dossier-established | curated | Public dossier has curated tri-Ace PS2 renderer source, accession, and task records. |
+| truespace-caligari | truespace-caligari-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |

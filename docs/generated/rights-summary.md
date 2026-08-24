@@ -9,3 +9,4 @@
 | public-reference-only | 8 |
 | restricted | 2 |
 | rights-holder-needed | 3 |
+| unresolved | 6 |

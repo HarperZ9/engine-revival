@@ -20,7 +20,7 @@ renders, reproduced from public material with nothing proprietary vendored in.
 A materializer turns the period makefile topology into an out-of-tree CMake
 harness. It builds the FLOAT core library through BRender's own pure-C
 memory-pixelmap path, with no dependence on the period 386-assembly software
-renderer, and stands up a ladder of eight self-verifying render smokes:
+renderer, and stands up a sixteen-target ladder of self-verifying rungs:
 
 1. Vector math smoke (`BrVector3`, `BrScalar`).
 2. Framework startup smoke (`BrBegin` / `BrEnd`).
@@ -34,9 +34,37 @@ renderer, and stands up a ladder of eight self-verifying render smokes:
 7. Perspective-correct texture mapping.
 8. Real datafile models: `BrModelLoad` reads native binary `.dat` models
    (duck, teapot, skull, torus) and renders them solid and depth-buffered.
+9. UV-textured render through a model's own vertex UV coordinates.
+10. Multi-part assembly: `BrModelLoadMany` composites the 12-part coupe.
+11. Gouraud shading with per-vertex normals.
+12. Plotter lane: hidden-line-removed SVG polylines, pen-plotter ready.
+13. Asset audit: `BrModelLoad` geometry validation (finite vertices, face index
+    ranges, degenerate faces, face-material attachment) with one JSON summary
+    per model.
+14. Pixelmap audit: `BrPixelmapLoad` decode probe over period `.pix` files and
+    palette datafiles (`.pal` is a pixelmap datafile; there is no separate
+    palette chunk in this BRender version), reporting type, geometry, and
+    whether pixels decoded.
+15. Material audit: `BrMaterialLoad` over `std.mat`/`winstd.mat` reporting
+    identifier, flags, index_base, and colour-map attachment.
+16. Pixelmap round trip: the native datafile write path proven end to end
+    (`BrPixelmapSave` then reload, type and geometry compared).
+17. Material resolution: a `BrMaterialLoad`-loaded material attached to every
+    non-degenerate face of a loaded model and rendered through the portable
+    rasterizer, proving material-to-face association on the render path.
+18. File-texture sampling: perspective-correct UV sampling of a loaded period
+    `.pix` through `BrPixelmapPixelGet`, with an externally loaded palette
+    attached for indexed variants, and a distinct-colour proof that real
+    texture data drove the frame. This closes R4's substance: original
+    material/texture files now load, describe themselves, attach, write back,
+    and render.
 
 Every stage passes under CTest on a Visual Studio Win32 target. The render
 captures are generated as a public-safe release artifact.
+
+The four audit and round-trip rungs were grounded in the pinned upstream tree:
+loader locations, struct fields, and the 68-file `dat/` inventory were verified
+from the `d88d0ed4` snapshot before the code was written.
 
 ## Reproduce it
 
@@ -57,6 +85,10 @@ a PPM, so it doubles as a minimal model viewer for the period asset library.
 
 - Build BRender's core from a public checkout on a modern MSVC toolchain.
 - Load and render BRender's own period models straight from their datafiles.
+- Audit any period asset before use: models for geometry defects, pixelmaps and
+  palettes for decode status, materials for map attachment.
+- Write BRender-native datafile pixelmaps via `BrPixelmapSave` (verified round
+  trip), the first step of a re-created-asset pipeline.
 - Extend the portable rasterizer (Gouraud shading, materials, a wider viewer).
 - Plot period models on a pen plotter: `brender_core_plotter_smoke` emits
   hidden-line-removed SVG polylines from any `.dat` model.
@@ -68,8 +100,10 @@ These are documented, not claimed, so the revival is not oversold:
 
 - BRender's period 386-assembly `softrend` renderer (the hard portability item).
 - x64 pointer-width portability (the unreworked period code is 32-bit bound).
-- Original material and texture resolution for loaded models.
-- Multi-part datafile assembly (`BrModelLoadMany`).
+- Full material/texture *resolution* for rendering loaded models: the audit
+  rungs now load and describe `.mat`, `.pix`, and `.pal` files, but attaching
+  them to rendered models end to end is still open.
+- Fixing the partial decode of 15-bit pixelmap variants.
 - Release packaging and a full interactive viewer.
 
 ## Records
