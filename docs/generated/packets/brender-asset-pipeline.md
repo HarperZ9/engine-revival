@@ -5,12 +5,12 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | r4-file-texture-sampling |
+| Status | r5-game-shell-opened |
 | Task type | build-archive-packet |
 
 ## Public Notes
 
-R4 closed in substance (eighteen CTest targets in brender-archival): model geometry audit, pixelmap/palette decode probe, material-file audit, native BrPixelmapSave round trip, material-to-face resolution rendering, and perspective-correct UV sampling of loaded period .pix files through BrPixelmapPixelGet with palette attach via pm->map and a distinct-colour proof. All grounded in the pinned d88d0ed4 tree (loaders, struct fields, dat/ inventory). Known remaining defect: partial decode of 15-bit pixelmap variants (earth15.pix class). Next lane items: R5 game shell on the restored engine; deeper items per readiness: x64 pointer-width port, softrend translation, packaging, viewer.
+R4 closed in substance and R5 opened (nineteen CTest targets in brender-archival). R4 delivered: model geometry audit, pixelmap/palette decode probe, material-file audit, native BrPixelmapSave round trip, material-to-face resolution rendering, and perspective-correct UV sampling of loaded period .pix with palette attach. R5 rung one: brender_core_game_shell, an INIT/LOAD/RUN/TEARDOWN state machine driving a deterministic orbit frame loop over loaded assets, one numbered PPM per frame plus a JSON manifest; display/input drivers bind onto this lifecycle later. All grounded in the pinned d88d0ed4 tree. Remaining: 15-bit partial decode fix; R5 continuation (driver binding, longer game flows); deep items per readiness (x64 port, softrend translation, packaging).
 
 ## Inputs
 

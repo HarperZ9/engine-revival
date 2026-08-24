@@ -58,6 +58,10 @@ renderer, and stands up a sixteen-target ladder of self-verifying rungs:
     texture data drove the frame. This closes R4's substance: original
     material/texture files now load, describe themselves, attach, write back,
     and render.
+19. Game shell (R5 opened): an explicit INIT/LOAD/RUN/TEARDOWN state machine
+    driving a fixed-length deterministic orbit frame loop over loaded assets.
+    One numbered PPM per frame plus a JSON manifest. Real display and input
+    drivers bind onto this lifecycle later; the loop itself is proven.
 
 Every stage passes under CTest on a Visual Studio Win32 target. The render
 captures are generated as a public-safe release artifact.
