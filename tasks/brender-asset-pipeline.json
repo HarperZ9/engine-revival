@@ -2,8 +2,8 @@
     "id":  "brender-asset-pipeline",
     "target_id":  "brender",
     "task_type":  "build-archive-packet",
-    "status":  "executed-green-twenty-rungs",
-    "public_notes":  "All twenty CTest rungs executed green (20/20, 1.59s, VS 2022 Win32) against the pinned d88d0ed4 checkout; structured attempt record brender-v132-twenty-rung-execution-win32 and in-repo transcript attempts/transcripts/brender-v132-ctest-twenty-rungs-2026-08-22.log close the evidence boundary for R4 in this repository. Remaining: softrend assembly kernel port, x64 pointer-width port, driver/viewer binding onto the shell lifecycle. Softrend lane: brender_softrend_float.lib builds clean from pinned OBJS_C under MSVC Win32 (assembly overlays excluded by period design); device registers via BrDevAddStatic; final detail is BrZbBegin facility discovery for memory pixelmaps (transcript in brender-archival builds/). Float subdivision kernels existed only in subdiv.asm and are unreachable (no block sets BR_PRIMF_SUBDIVIDE), so harness stubs are behaviorally exact. Root cause for headless ZB: softrend rendererNew needs a primitive library; pentprim inventoried OBJS_C=8 vs OBJS_ASM=60 (assembly rasterizer pipelines). Paths: minimal C float subset as Default-Primitives-Float, or pipeline porting. See brender-archival readiness. Pentprim port surface enumerated by link: 232 unique symbols (169 TriangleRender_* variants across Z/ZI/ZIF, ZPT* textured, I8-palette and RGB555/565/888 targets; 63 line/support symbols). Full inventory committed at brender-archival builds/pentprim-c-port-surface.txt. XOBJS_C generic path covers perspective-math support only; all rasterizers are asm-only, confirming the port scope. MILESTONE: full-stack linkage achieved. PARTS=0x03FF activated in-tree generic-C primitives (surface 232 to 206); 206 validated linkage stubs + 4 real helpers (sar16/BrFixedDiv/SafeFixedMac2Div/RasteriseBufferDisable) let core+softrend+pentprim link and execute as one process; ctest 21/21 accounting expected-fail. The primitive-library chain is proven end to end (registration, BrPrimitiveLibraryFind, rendererNew, facility discovery). Remaining work is exactly 206 pixel-emitting kernel bodies per builds/pentprim-c-port-surface.txt. HONEST METRIC MILESTONE: count_lit rewritten to read raw pixel buffer (PixelGet unreliable for unfilled RGB_888); ground truth established: frames are empty (0 lit pixels) pending auto-framing of sph32 (raw coordinate scale unknown, camera at 2.5 inside/outside geometry). Full stack executes cleanly end-to-end with honest invalid receipt. Next: implement vertex-bounds auto-frame, then first real pixels through BRender ZB pipeline.",
+    "status":  "executed-green-softrend-pentprim-live",
+    "public_notes":  "2026-08-24: period softrend + pentprim build from the pinned tree and render pixels through BRender\u0027s own ZB face-dispatch path. ctest 21/21; brender_core_softrend_render emits final_frame_lit=22884 valid=true over sph32.dat. Load-bearing snapshot facts (measured): one-shot BrZbSceneRender skips camera setup, so the rung drives Begin/Continue/Add/End; renderer needs an explicitly bound primitive library (BrPrimitiveLibraryFind + BrRendererBegin); cameras face -Z so the camera sits at +z; BrMaterialUpdate(BR_MATU_ALL) is required before renderFaces will dispatch. C port of TriangleRenderPIZ2I_RGB_888 lives in compat/brender-pentprim-c-port.c. Honest seams: textured TIA family still flat-fill placeholder (colour map does not reach prim.colour_map.buffer), depth compare disabled in the C kernel pending SZ convention pinning, ~200 asm-only kernels remain stubs.",
     "inputs":  [
                    "brender-archival harness generator",
                    "pinned v1.3.2 snapshot",
@@ -12,7 +12,9 @@
     "outputs":  [
                     "12-rung verified CTest boundary",
                     "six implemented asset-pipeline rungs tracked as pending evidence",
-                    "structured attempt record and transcript checklist for R4 closure"
+                    "structured attempt record and transcript checklist for R4 closure",
+                    "builds/brender-v132-zb-render-green.log",
+                    "builds/brender-v132-sphere-frame4.ppm"
                 ],
     "blocked_by":  [
 
