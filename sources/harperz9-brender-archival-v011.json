@@ -1,0 +1,11 @@
+{
+  "claim_scope": "BRender Archival v0.1.1 public release boundary, PR #9 merge commit, 21-target CTest transcript, and release-media provenance",
+  "confidence": "high",
+  "id": "harperz9-brender-archival-v011",
+  "notes": "Verified by git remote on 2026-08-27: origin/main and tag v0.1.1 both resolve to 11b5a8d539e911a9c07991b751402a7d51bf1bde. The candidate contents commit is bbf3ba2f26ee9ae265759e282dc1454b2234b6be; PR #9 merged the public release branch.",
+  "publisher": "GitHub / HarperZ9",
+  "retrieved_at": "2026-08-27",
+  "source_type": "release",
+  "title": "BRender Archival v0.1.1 public release",
+  "url": "https://github.com/HarperZ9/brender-archival/releases/tag/v0.1.1"
+}

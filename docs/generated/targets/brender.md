@@ -9,12 +9,12 @@
 | Priority | 89 |
 | Rights | open |
 | Revival lane | critical-edition |
-| Public status | curated-public-sources |
+| Public status | public-release-evidence-imported |
 | Restricted status | none-known |
 
 ## Summary
 
-Open BRender source releases and historical SDK references are now tracked as the first critical-edition revival lane.
+Open BRender source releases and the public BRender Archival v0.1.1 restoration evidence are tracked as the first critical-edition revival lane.
 
 ## Artifacts
 
@@ -36,39 +36,39 @@ Open BRender source releases and historical SDK references are now tracked as th
 
 | Readiness | Stage | Build | Score | Next Actions |
 |---|---|---|---:|---|
-| brender-production-readiness | twenty-target-ladder-executed-passing | portable-core-library-and-solid-shaded-smoke-built | 86 | complete the x64 pointer-width port (resource.c + loader.c fixes done out-of-tree; remaining 32-bit-pointer-field sites need a debugger to pinpoint); translate the softrend 386-assembly renderer for period-accurate rasterization (portable C rasterizer is the current functional replacement); resolve original materials/textures from period .mat/.pal/.pix files and add semantic tests for the portable stubs; apply per-part hierarchy transforms for multi-part assets |
+| brender-production-readiness | stage-5-public-release-evidence-imported | verified-public-release-boundary | 88 | Resolve the measured TIA vertex-layout/state mismatch before making any completed textured-period-render claim.; Audit and reduce the remaining MSVC warning set before any zero-warning portability claim.; Continue measured C ports for reached assembly-only kernels only where a test reaches the exact kernel.; Preserve the Win32 evidence boundary before attempting x64 pointer-width work. |
 
 ## Tasks
 
 | Task | Type | Status | Notes |
 |---|---|---|---|
-| brender-asset-pipeline | build-archive-packet | executed-green-twenty-rungs | All twenty CTest rungs executed green (20/20, 1.59s, VS 2022 Win32) against the pinned d88d0ed4 checkout; structured attempt record brender-v132-twenty-rung-execution-win32 and in-repo transcript attempts/transcripts/brender-v132-ctest-twenty-rungs-2026-08-22.log close the evidence boundary for R4 in this repository. Remaining: softrend assembly kernel port, x64 pointer-width port, driver/viewer binding onto the shell lifecycle. |
-| brender-critical-edition-packet | build-archive-packet | portable-render-lane-published | The BRender critical-edition portable pure-C render lane is published as the standalone brender-archival repository. From the pinned public v1.3.2 snapshot at d88d0ed41122664b9781015b517db64353e16f19, the engine-revival materializer builds the FLOAT core library and twelve verifying CTest rungs: vector math, framework startup, wireframe, v1db scene graph, flat fill, depth buffering, perspective-correct texturing, native datafile model loading, UV material rendering, multi-part loading, Gouraud shading, and hidden-line SVG plotter output. CTest 12/12 passed and readiness score 86 is recorded. Deferred work remains explicit: x64 pointer-width portability, period softrend translation, native .mat/.pal/.pix resolution, semantic compatibility-stub coverage, FIXED variants, drivers, packaged release binaries, and a full viewer. |
+| brender-asset-pipeline | build-archive-packet | public-release-evidence-imported | The BRender asset-pipeline evidence is now represented by the imported BRender Archival v0.1.1 public release boundary. The sanitized transcript records 21/21 native CTest targets, including asset/material/pixelmap audits, material resolution, file texture sampling, deterministic game shell, host semantic checks, and the period softrend plus pentprim pipeline. Release media is pinned by gallery/release-20260827/provenance-manifest.json and reports final_frame_lit=19284 valid=true. Completed textured TIA output, x64 readiness, production readiness, adoption, endorsement, and generic Retro output as BRender proof are not claimed. |
+| brender-critical-edition-packet | build-archive-packet | public-release-evidence-imported | The BRender critical-edition packet is publishable as an Engine Revival evidence packet once the operator approves publication. The current imported boundary is 2026-08-27: BRender Archival v0.1.1 builds from the public MIT BRender v1.3.2 snapshot pinned at d88d0ed41122664b9781015b517db64353e16f19, runs a Visual Studio Win32 harness, and passes native CTest 21/21. The period-pipeline media source run renders sph32.dat as an eight-frame nonblack orbit and reports final_frame_lit=19284 valid=true. The packet does not vendor upstream source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. Engine Revival equals preservation, research, and evidence; BRender Archival equals the verified specific restoration; Retro Engine equals play; generic Retro output is never BRender proof. |
 | brender-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Argonaut BRender. |
 
 ## Milestones
 
 | Milestone | Type | Status | Evidence |
 |---|---|---|---|
-| brender-baseline | public-dossier-established | curated | Public dossier has curated BRender source, accession, and task records. |
+| brender-baseline | public-release-evidence-imported | verified-public-boundary | Public dossier has curated BRender source, accession, task, 21-target CTest, release-media, and provenance records. |
 
 ## Reproductions
 
 | Reproduction | Type | Status | Notes |
 |---|---|---|---|
-| brender-critical-edition-source-build | source-build | planned | First public reproduction recipe for turning BRender from archived source records into a repeatable critical-edition build track. |
+| brender-critical-edition-source-build | source-build | verified-public-release-boundary-imported | The BRender source-build reproduction is verified at the public BRender Archival v0.1.1 boundary and imported into Engine Revival as evidence. The specific restoration materializes a harness from the pinned MIT BRender v1.3.2 snapshot, builds under Visual Studio Win32, passes native CTest 21/21, and produces public media from nonblack period-pipeline output with final_frame_lit=19284 valid=true. Engine Revival does not vendor source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. |
 
 ## Build Environments
 
 | Build | Status | Host | Reproduction |
 |---|---|---|---|
-| brender-v132-build-environment | portable-core-framework-startup-smoke-passing | Windows local probe | brender-critical-edition-source-build |
+| brender-v132-build-environment | public-release-21-target-receipt-imported | Windows local probe; Visual Studio Win32 Debug; CMake -A Win32 | brender-critical-edition-source-build |
 
 ## Harnesses
 
 | Harness | Status | Type | Build |
 |---|---|---|---|
-| brender-v132-portable-core-plan | portable-core-plotter-lane-passing | portable-build-plan | brender-v132-build-environment |
+| brender-v132-portable-core-plan | public-release-21-target-receipt-imported | public-release-evidence-plan | brender-v132-build-environment |
 
 ## Attempts
 
@@ -79,6 +79,7 @@ Open BRender source releases and historical SDK references are now tracked as th
 | brender-v132-explicit-sources-core-build | cmake-build | completed | The explicit-source harness configured with Visual Studio 18 2026 and built brender_core_float.lib with MSVC 19.50.35721.0 in an external build tree. |
 | brender-v132-framework-startup-smoke-win32 | cmake-runtime-smoke | completed | The guarded harness configured with -A Win32, built both smoke executables, direct-ran brender_core_smoke.exe and brender_core_startup_smoke.exe with exit 0, and passed 2/2 CTest cases with -C Debug. |
 | brender-v132-harness-materializer-smoke | harness-materialization | completed | Materializer wrote CMakeLists.txt, README.md, cmake/brender-core-sources.cmake, and harness-manifest.json into the external harness workspace. |
+| brender-v132-native-ctest-twentyone-targets-win32 | native-ctest-release-boundary | completed | ctest: passed 21/21 CTest targets, 0 failed out of 21; transcript sanitized with `Test project <build>` and committed at attempts/transcripts/brender-v132-ctest-twentyone-targets-2026-08-27.log. Release media provenance is committed at gallery/release-20260827/provenance-manifest.json. |
 | brender-v132-period-defines-build-attempt | cmake-build | failed | The updated harness configured and began compiling with MSVC after adding FLOAT, fixed-inline-disabled, and period release build definitions. The build then failed because the harness source glob included files that the period makefiles did not compile as normal C translation units. |
 | brender-v132-portable-core-depth-smoke | cmake-depth-buffer-smoke | completed | Built and ran brender_core_depth_smoke.exe with exit 0 (near cube 6697 px, far cube 1809 px, 4391 far-cube depth rejections proving per-pixel occlusion) and passed 6/6 CTest cases with -C Debug. |
 | brender-v132-portable-core-fill-smoke | cmake-solid-shaded-smoke | completed | The guarded harness configured with -A Win32, built brender_core_float.lib plus all five smoke executables, direct-ran brender_core_fill_smoke.exe with exit 0 (solid flat-shaded cube, 8509 lit pixels, three grey levels), and passed 5/5 CTest cases with -C Debug. |
@@ -107,3 +108,4 @@ Open BRender source releases and historical SDK references are now tracked as th
 | BRender preservation index | curated-index | high | BRender source-release and binary-SDK index | https://blazingrender.net/ |
 | BRender-3DMM source repository | repository | high | BRender 3D Movie Maker variant source availability, provenance, and MIT license posture | https://github.com/foone/BRender-3DMM |
 | Argonaut Blazing Render (BRender) v1.3.2 source repository | repository | high | BRender 1.3.2 source availability, provenance, and MIT license posture | https://github.com/foone/BRender-v1.3.2 |
+| BRender Archival v0.1.1 public release | release | high | BRender Archival v0.1.1 public release boundary, PR #9 merge commit, 21-target CTest transcript, and release-media provenance | https://github.com/HarperZ9/brender-archival/releases/tag/v0.1.1 |

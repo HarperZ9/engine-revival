@@ -12,12 +12,12 @@
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
 | Exit Code | 0 |
-| Transcript | external-workspace:C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-configure-render-smoke-2026-07-03.txt; external-workspace:C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-build-render-smoke-2026-07-03.txt; external-workspace:C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-build-vector-render-smoke-2026-07-03.txt; external-workspace:C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-ctest-render-smoke-2026-07-03.txt |
+| Transcript | external-workspace:<external-workspace>\brender-v132-portable-core-configure-render-smoke-2026-07-03.txt; external-workspace:<external-workspace>\brender-v132-portable-core-build-render-smoke-2026-07-03.txt; external-workspace:<external-workspace>\brender-v132-portable-core-build-vector-render-smoke-2026-07-03.txt; external-workspace:<external-workspace>\brender-v132-portable-core-ctest-render-smoke-2026-07-03.txt |
 
 ## Command
 
 ```powershell
-engine-revival materialize-brender-harness --source-root C:\dev\public\engine-revival-workspaces\brender-v132 --output-root C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-harness-render-smoke-2026-07-03; cmake -S C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-harness-render-smoke-2026-07-03 -B C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-build-render-smoke-2026-07-03 -A Win32 -DBRENDER_SOURCE_DIR=C:\dev\public\engine-revival-workspaces\brender-v132; cmake --build C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-build-render-smoke-2026-07-03 --config Debug --target brender_core_smoke; cmake --build ... --target brender_core_startup_smoke; cmake --build ... --target brender_core_render_smoke; ctest --test-dir C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-build-render-smoke-2026-07-03 -C Debug --output-on-failure
+engine-revival materialize-brender-harness --source-root <external-workspace>\brender-v132 --output-root <external-workspace>\brender-v132-portable-core-harness-render-smoke-2026-07-03; cmake -S <external-workspace>\brender-v132-portable-core-harness-render-smoke-2026-07-03 -B <external-workspace>\brender-v132-portable-core-build-render-smoke-2026-07-03 -A Win32 -DBRENDER_SOURCE_DIR=<external-workspace>\brender-v132; cmake --build <external-workspace>\brender-v132-portable-core-build-render-smoke-2026-07-03 --config Debug --target brender_core_smoke; cmake --build ... --target brender_core_startup_smoke; cmake --build ... --target brender_core_render_smoke; ctest --test-dir <external-workspace>\brender-v132-portable-core-build-render-smoke-2026-07-03 -C Debug --output-on-failure
 ```
 
 ## Result Summary

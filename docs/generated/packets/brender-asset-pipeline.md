@@ -5,24 +5,28 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | executed-green-twenty-rungs |
+| Status | public-release-evidence-imported |
 | Task type | build-archive-packet |
 
 ## Public Notes
 
-All twenty CTest rungs executed green (20/20, 1.59s, VS 2022 Win32) against the pinned d88d0ed4 checkout; structured attempt record brender-v132-twenty-rung-execution-win32 and in-repo transcript attempts/transcripts/brender-v132-ctest-twenty-rungs-2026-08-22.log close the evidence boundary for R4 in this repository. Remaining: softrend assembly kernel port, x64 pointer-width port, driver/viewer binding onto the shell lifecycle.
+The BRender asset-pipeline evidence is now represented by the imported BRender Archival v0.1.1 public release boundary. The sanitized transcript records 21/21 native CTest targets, including asset/material/pixelmap audits, material resolution, file texture sampling, deterministic game shell, host semantic checks, and the period softrend plus pentprim pipeline. Release media is pinned by gallery/release-20260827/provenance-manifest.json and reports final_frame_lit=19284 valid=true. Completed textured TIA output, x64 readiness, production readiness, adoption, endorsement, and generic Retro output as BRender proof are not claimed.
 
 ## Inputs
 
-- brender-archival harness generator
-- pinned v1.3.2 snapshot
-- public .dat sample models
+- public BRender v1.3.2 source snapshot
+- BRender Archival v0.1.1 release evidence
+- sanitized 21-target CTest transcript
+- release-media provenance manifest
 
 ## Outputs
 
-- 12-rung verified CTest boundary
-- six implemented asset-pipeline rungs tracked as pending evidence
-- structured attempt record and transcript checklist for R4 closure
+- asset/material/pixelmap audit evidence
+- file-texture sampling evidence
+- material-resolution evidence
+- game-shell lifecycle evidence
+- host semantic evidence
+- period-pipeline nonblack media evidence
 
 ## Blocked By
 
@@ -33,3 +37,4 @@ All twenty CTest rungs executed green (20/20, 1.59s, VS 2022 Win32) against the 
 | Source | Type | Confidence | Scope | URL |
 |---|---|---|---|---|
 | Argonaut Blazing Render (BRender) v1.3.2 source repository | repository | high | BRender 1.3.2 source availability, provenance, and MIT license posture | https://github.com/foone/BRender-v1.3.2 |
+| BRender Archival v0.1.1 public release | release | high | BRender Archival v0.1.1 public release boundary, PR #9 merge commit, 21-target CTest transcript, and release-media provenance | https://github.com/HarperZ9/brender-archival/releases/tag/v0.1.1 |

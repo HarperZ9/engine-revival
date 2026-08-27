@@ -32,12 +32,15 @@ honestly claimable at each rung.
   public-safe captures only.
 - "Better quality where possible" means where the source material and rights
   allow; some engines will honestly stop at R3.
+- Retro Engine equals play. Engine Revival equals preservation, research,
+  metadata, and evidence. BRender Archival equals the verified specific
+  BRender restoration. Generic Retro output is never BRender proof.
 
 ## Current lane state
 
 | Engine | Rung | Evidence |
 |---|---|---|
-| Argonaut BRender v1.3.2 | R2 green; R4 evidence pending. The verified boundary is 12 CTest rungs. Six implemented asset-pipeline rungs need structured attempt records and command transcripts before R4 can be claimed. | brender-critical-edition packet CTest 12/12 plus readiness score 86; R4 is not closed until the six asset-pipeline receipts exist |
+| Argonaut BRender v1.3.2 | R2/R4 evidence imported; release boundary is preservation evidence, not a remaster-play claim. | BRender Archival v0.1.1 release commit `11b5a8d539e911a9c07991b751402a7d51bf1bde`, sanitized 21-target CTest transcript, readiness score 88, and `gallery/release-20260827/provenance-manifest.json` |
 | All other targets | R0 | target + accession records |
 
 ## Next candidates

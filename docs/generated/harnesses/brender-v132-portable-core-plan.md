@@ -5,86 +5,78 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | portable-core-plotter-lane-passing |
-| Type | portable-build-plan |
+| Status | public-release-21-target-receipt-imported |
+| Type | public-release-evidence-plan |
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
 | Entrypoint | docs/generated/harnesses/brender-v132-portable-core-plan.md |
 | Materializer | engine-revival materialize-brender-harness --source-root <public-brender-checkout> --output-root <out-of-tree-harness-dir> |
-| Output Policy | Write generated harness files outside the BRender source checkout and outside this metadata repo unless they are intentionally reviewed as public-safe scaffolding. |
+| Output Policy | Write generated harness files outside the BRender source checkout and outside this metadata repo unless they are intentionally reviewed as public-safe scaffolding. Commit only sanitized transcripts, metadata, public-safe media, and hashes. |
 
 ## Source Policy
 
-Use only the public BRender v1.3.2 checkout at the recorded snapshot commit. Do not vendor source, generated binaries, private assets, or restricted SDK material in this repository.
+Use only the public BRender v1.3.2 checkout at the recorded snapshot commit and public BRender Archival v0.1.1 release evidence. Do not vendor source, generated binaries, private assets, game assets, or restricted SDK material in this repository.
 
 ## Public Notes
 
-This is the first public harness design record for the BRender pilot. It converts the inspected period make topology into a portable build-plan boundary, carries the FLOAT, fixed-inline-disabled, and period release build definitions, and now builds the FLOAT core library with explicit OBJS_C source lists in an external CMake/MSVC Win32 tree. The harness builds and runs vector math plus BrBegin/BrEnd framework startup smoke targets through CTest. It does not claim x64 portability, full V1DB startup, scene rendering, warning cleanup, packaging, drivers, or FIXED variants.
+This record describes the BRender Archival v0.1.1 public release harness boundary imported into Engine Revival. The verified boundary is a Visual Studio Win32, out-of-tree CMake materialization from the public BRender v1.3.2 snapshot pinned at d88d0ed41122664b9781015b517db64353e16f19. The public release passes 21 native targets under CTest and includes a period-pipeline rung that renders nonblack softrend-float plus pentprim-float output. Engine Revival preserves the receipt and media provenance; BRender Archival owns the specific restoration; Retro Engine play output is not BRender proof.
 
 ## Implementation Units
 
-- root dispatch: core and drivers active, tools and samples deferred
-- core order: inc, fw, host, std, pixelmap, dosio, v1db FLOAT, math FLOAT, fmt FLOAT
-- core source selection: explicit period makefile OBJS_C lists
-- core smoke target: brender_core_smoke links against brender_core_float and exercises vector math
-- core startup smoke target: brender_core_startup_smoke links against brender_core_float and exercises BrBegin and BrEnd
-- core render smoke target: brender_core_render_smoke links against brender_core_float, allocates an RGB_888 memory pixelmap, projects a unit cube through BrMatrix4Perspective/Mul/ApplyP, draws edges with BrPixelmapLine, verifies by read-back, and dumps a PPM
-- core scene smoke target: brender_core_scene_smoke builds a v1db world/camera/model actor tree, prepares a br_model with BrModelUpdate, and projects it with the engine BrActorToScreenMatrix4 before drawing faces with BrPixelmapLine
-- core fill smoke target: brender_core_fill_smoke reuses the scene projection and rasterizes each triangle with a portable C scanline fill, flat-shaded from world-space normals and composited back-to-front for a solid image
-- core depth smoke target: brender_core_depth_smoke adds a per-pixel float depth buffer and z-test so two overlapping cubes at different depths composite with correct per-pixel occlusion
-- core texture smoke target: brender_core_texture_smoke adds perspective-correct texture mapping (u/w,v/w,1/w interpolation) sampling a checkerboard pixelmap per pixel, depth-tested and shade-modulated
-- core model smoke target: brender_core_model_smoke loads a real period model from a native .dat datafile with BrModelLoad, auto-frames it, and renders every face solid, flat-shaded and depth-buffered
-- core material smoke target: brender_core_material_smoke textures a loaded model through its own br_vertex.map UV coordinates, perspective-correct and depth-buffered
-- portable compatibility sources: compat/brender-portable-core-stubs.c and compat/brender-portable-host-stubs.c
-- CMake platform guard: require a 32-bit C target such as Visual Studio -A Win32
-- core deferred variants: v1db FIXED, math FIXED, fmt FIXED
-- driver order: vesa, mcga, softrend FLOAT/FIXED, pentprim FLOAT/FIXED
-- driver deferred target: ddraw
-- required public source variables: BR_SOURCE_DIR, BR_MAKEFILE, BR_TARGET_DIR, BR_MAKE_DIR
-- core multimodel smoke target: brender_core_multimodel_smoke loads all model chunks of a datafile with BrModelLoadMany and depth-composites them (the full coupe car)
-- core gouraud smoke target: brender_core_gouraud_smoke computes per-vertex normals and interpolates shade across triangles for smooth Gouraud shading
-- core plotter smoke target: brender_core_plotter_smoke emits hidden-line-removed, crease-filtered SVG polylines (plus a raster preview) from a loaded period model, the first Telos Engine plotter-lane capability
+- vector math target: brender_core_smoke
+- framework startup target: brender_core_startup_smoke
+- wireframe render target: brender_core_render_smoke
+- scene graph target: brender_core_scene_smoke
+- solid fill target: brender_core_fill_smoke
+- depth target: brender_core_depth_smoke
+- texture target: brender_core_texture_smoke
+- model target: brender_core_model_smoke
+- material target: brender_core_material_smoke
+- multimodel target: brender_core_multimodel_smoke
+- Gouraud target: brender_core_gouraud_smoke
+- plotter target: brender_core_plotter_smoke
+- asset audit target: brender_core_asset_audit
+- material audit target: brender_core_material_audit
+- material file audit target: brender_core_material_file_audit
+- pixelmap roundtrip target: brender_core_pixelmap_roundtrip
+- material resolve target: brender_core_material_resolve
+- file texture target: brender_core_texture_file_sample
+- game shell target: brender_core_game_shell
+- host semantic target: brender_core_host_semantic
+- period-pipeline target: brender_core_softrend_render builds softrend and pentprim from the pinned upstream tree and emits an eight-frame nonblack sph32.dat orbit
 
 ## Steps
 
-- start from the recorded BRender v1.3.2 public source snapshot
-- run the engine-revival materializer to create build files outside the source tree
+- start from the public BRender v1.3.2 source snapshot
+- use the public BRender Archival v0.1.1 release boundary for the verified restoration
+- materialize build files outside the source tree
 - verify the materialized scaffold references BRENDER_SOURCE_DIR instead of copying source
-- translate the active core FLOAT path before deferred FIXED variants
-- configure the harness with a 32-bit C target such as Visual Studio -A Win32
-- build brender_core_smoke, brender_core_startup_smoke, and brender_core_render_smoke and run CTest with the selected multi-config build configuration
-- translate driver targets after the core library path is captured
-- record compiler output as transcript evidence before advancing readiness
+- configure with Visual Studio -A Win32
+- build the Debug target set
+- run ctest --test-dir <build> -C Debug --output-on-failure
+- capture public-safe transcript/media/provenance artifacts into Engine Revival
 
 ## Expected Outputs
 
-- out-of-tree portable build files
-- first public compiler transcript
-- core library build artifact
-- vector smoke executable and CTest transcript
-- framework startup smoke executable and CTest transcript
-- wireframe render smoke executable, PPM image, and CTest transcript
-- v1db scene-graph render smoke executable, PPM image, and CTest transcript
-- solid flat-shaded render smoke executable, PPM image, and CTest transcript
-- depth-buffered render smoke executable, PPM image, and CTest transcript
-- perspective-correct textured render smoke executable, PPM image, and CTest transcript
-- datafile model render smoke executable loading real period models, PPM image, and CTest transcript
-- driver variant build matrix
+- out-of-tree CMake harness files
+- core FLOAT static library build artifact outside this repo
+- 21 CTest targets covering portable, audit, semantic, shell, and period-pipeline rungs
+- sanitized 21-target CTest transcript committed in Engine Revival
+- provenance-pinned eight-frame period-pipeline media under gallery/release-20260827
+- release-media provenance manifest with source, command, input, and output hashes
 
 ## Blockers
 
-- core/fw pretok token-generation boundary has not been modeled for source regeneration
-- the current framework startup smoke requires a 32-bit C target; x64 pointer-width portability is not claimed
-- portable core and host fallback stubs are startup/link coverage scaffolding, not full semantic replacements for DOS, driver, or rendering behavior
-- MSVC warning output still needs portability audit
-- driver and deferred fixed-point variants are not translated yet
+- x64 pointer-width portability is not claimed; configure requires a 32-bit C target such as Visual Studio -A Win32.
+- Completed textured TIA output is not claimed; the public release records a measured vertex-layout/state mismatch.
+- MSVC warning output remains to be audited before any zero-warning portability claim.
+- Engine Revival stores public evidence and metadata; the specific restoration source port is BRender Archival.
 
 ## Next Actions
 
-- audit the MSVC warning set before declaring the core library portable
-- add semantic tests for the portable host and memory fallback functions before using them for rendering behavior
-- model generated-token inputs such as core/fw/pretok for reproducible source regeneration
-- translate deferred FIXED variants and driver targets after the core library path is stable
+- Resolve the measured textured-TIA vertex-layout/state mismatch with a focused native test before documenting textured rendering as complete.
+- Audit remaining MSVC warnings at the compatibility boundary.
+- Preserve Win32 evidence before attempting x64 pointer-width work.
 
 ## Evidence Sources
 
@@ -92,3 +84,4 @@ This is the first public harness design record for the BRender pilot. It convert
 |---|---|---|---|---|
 | Argonaut Blazing Render (BRender) v1.3.2 source repository | repository | high | BRender 1.3.2 source availability, provenance, and MIT license posture | https://github.com/foone/BRender-v1.3.2 |
 | BRender preservation index | curated-index | high | BRender source-release and binary-SDK index | https://blazingrender.net/ |
+| BRender Archival v0.1.1 public release | release | high | BRender Archival v0.1.1 public release boundary, PR #9 merge commit, 21-target CTest transcript, and release-media provenance | https://github.com/HarperZ9/brender-archival/releases/tag/v0.1.1 |

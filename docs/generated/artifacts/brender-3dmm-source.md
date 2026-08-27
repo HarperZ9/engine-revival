@@ -35,7 +35,7 @@ Public source release of the BRender variant used by 3D Movie Maker. Date is app
 
 | Reproduction | Type | Status | Notes |
 |---|---|---|---|
-| [brender-critical-edition-source-build](../reproductions/brender-critical-edition-source-build.md) | source-build | planned | First public reproduction recipe for turning BRender from archived source records into a repeatable critical-edition build track. |
+| [brender-critical-edition-source-build](../reproductions/brender-critical-edition-source-build.md) | source-build | verified-public-release-boundary-imported | The BRender source-build reproduction is verified at the public BRender Archival v0.1.1 boundary and imported into Engine Revival as evidence. The specific restoration materializes a harness from the pinned MIT BRender v1.3.2 snapshot, builds under Visual Studio Win32, passes native CTest 21/21, and produces public media from nonblack period-pipeline output with final_frame_lit=19284 valid=true. Engine Revival does not vendor source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. |
 
 ## Evidence Sources
 

@@ -10,10 +10,10 @@
     "OS/2"
   ],
   "priority": 89,
-  "public_status": "curated-public-sources",
+  "public_status": "public-release-evidence-imported",
   "related_targets": [],
   "restricted_status": "none-known",
   "revival_lane": "critical-edition",
   "rights_posture": "open",
-  "summary": "Open BRender source releases and historical SDK references are now tracked as the first critical-edition revival lane."
+  "summary": "Open BRender source releases and the public BRender Archival v0.1.1 restoration evidence are tracked as the first critical-edition revival lane."
 }

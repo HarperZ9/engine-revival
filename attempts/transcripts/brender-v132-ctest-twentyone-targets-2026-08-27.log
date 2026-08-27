@@ -1,0 +1,47 @@
+Test project <build>
+      Start  1: brender_core_softrend_render
+ 1/21 Test  #1: brender_core_softrend_render .......   Passed    0.05 sec
+      Start  2: brender_core_smoke
+ 2/21 Test  #2: brender_core_smoke .................   Passed    0.03 sec
+      Start  3: brender_core_startup_smoke
+ 3/21 Test  #3: brender_core_startup_smoke .........   Passed    0.03 sec
+      Start  4: brender_core_render_smoke
+ 4/21 Test  #4: brender_core_render_smoke ..........   Passed    0.04 sec
+      Start  5: brender_core_scene_smoke
+ 5/21 Test  #5: brender_core_scene_smoke ...........   Passed    0.04 sec
+      Start  6: brender_core_fill_smoke
+ 6/21 Test  #6: brender_core_fill_smoke ............   Passed    0.04 sec
+      Start  7: brender_core_depth_smoke
+ 7/21 Test  #7: brender_core_depth_smoke ...........   Passed    0.04 sec
+      Start  8: brender_core_texture_smoke
+ 8/21 Test  #8: brender_core_texture_smoke .........   Passed    0.07 sec
+      Start  9: brender_core_model_smoke
+ 9/21 Test  #9: brender_core_model_smoke ...........   Passed    0.05 sec
+      Start 10: brender_core_material_smoke
+10/21 Test #10: brender_core_material_smoke ........   Passed    0.05 sec
+      Start 11: brender_core_multimodel_smoke
+11/21 Test #11: brender_core_multimodel_smoke ......   Passed    0.05 sec
+      Start 12: brender_core_gouraud_smoke
+12/21 Test #12: brender_core_gouraud_smoke .........   Passed    0.05 sec
+      Start 13: brender_core_plotter_smoke
+13/21 Test #13: brender_core_plotter_smoke .........   Passed    0.07 sec
+      Start 14: brender_core_asset_audit
+14/21 Test #14: brender_core_asset_audit ...........   Passed    0.04 sec
+      Start 15: brender_core_material_audit
+15/21 Test #15: brender_core_material_audit ........   Passed    0.07 sec
+      Start 16: brender_core_material_file_audit
+16/21 Test #16: brender_core_material_file_audit ...   Passed    0.05 sec
+      Start 17: brender_core_pixelmap_roundtrip
+17/21 Test #17: brender_core_pixelmap_roundtrip ....   Passed    0.05 sec
+      Start 18: brender_core_material_resolve
+18/21 Test #18: brender_core_material_resolve ......   Passed    0.06 sec
+      Start 19: brender_core_texture_file_sample
+19/21 Test #19: brender_core_texture_file_sample ...   Passed    0.07 sec
+      Start 20: brender_core_game_shell
+20/21 Test #20: brender_core_game_shell ............   Passed    0.11 sec
+      Start 21: brender_core_host_semantic
+21/21 Test #21: brender_core_host_semantic .........   Passed    0.04 sec
+
+100% tests passed, 0 tests failed out of 21
+
+Total Test time (real) =   1.56 sec

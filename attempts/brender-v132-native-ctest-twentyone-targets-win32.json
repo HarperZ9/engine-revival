@@ -1,0 +1,94 @@
+{
+  "artifacts_policy": "The BRender source checkout, generated harness, build tree, executables, PPM source frames, and upstream datafiles stayed outside this metadata repo. Engine Revival commits only the sanitized CTest transcript, public-safe release media, and provenance hashes imported from the public BRender Archival v0.1.1 release.",
+  "attempt_type": "native-ctest-release-boundary",
+  "blockers": [
+    "Completed textured TIA output is not claimed; the public release records a measured vertex-layout/state mismatch and black TIA output.",
+    "x64 pointer-width portability is not claimed; the verified native target is Visual Studio Win32.",
+    "Production renderer readiness, adoption, and endorsement are not claimed.",
+    "Generic Retro Engine or Retro output is never BRender proof; only the BRender Archival release receipts and the imported Engine Revival records support BRender claims."
+  ],
+  "build_id": "brender-v132-build-environment",
+  "command": "engine-revival materialize-brender-harness --source-root <BRender-v1.3.2 checkout at d88d0ed41122664b9781015b517db64353e16f19> --output-root <out-of-tree harness>; cmake -S <harness> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<BRender-v1.3.2 checkout>; cmake --build <build> --config Debug; ctest --test-dir <build> -C Debug --output-on-failure; brender_core_softrend_render.exe <dat/sph32.dat> <dat/earth.pix> <dat/std.pal> brender-core-softrend-render.ppm; python scripts/generate_brender_release_media.py --ppm-dir <verified PPM output directory> --output-dir gallery/release-20260827 --final-frame-lit <receipt metric>",
+  "exit_code": 0,
+  "harness_id": "brender-v132-portable-core-plan",
+  "host_platform": "Windows local probe; Visual Studio Win32 Debug; CMake -A Win32; MSVC build with warnings; public BRender v1.3.2 source snapshot d88d0ed41122664b9781015b517db64353e16f19",
+  "id": "brender-v132-native-ctest-twentyone-targets-win32",
+  "next_actions": [
+    "Resolve the measured TIA vertex-layout/state mismatch before any completed textured-period-render claim.",
+    "Reduce or classify the remaining MSVC warning set before any zero-warning portability claim.",
+    "Preserve the Win32 evidence boundary before attempting x64 pointer-width work."
+  ],
+  "public_notes": "Imported public BRender Archival v0.1.1 release evidence. The release commit 11b5a8d539e911a9c07991b751402a7d51bf1bde merged PR #9 from candidate contents bbf3ba2f26ee9ae265759e282dc1454b2234b6be. The sanitized CTest transcript records 21/21 passing native targets with `Test project <build>`, including asset audit, pixelmap audit, material audit, material-file audit, pixelmap round trip, material resolution, file-texture sampling, game shell, host semantic checks, and the period-pipeline render. The period-pipeline release media derives from verified nonblack softrend-float plus pentprim-float output over the public BRender v1.3.2 source snapshot d88d0ed41122664b9781015b517db64353e16f19 and reports final_frame_lit=19284 valid=true. Engine Revival preserves this evidence boundary; BRender Archival owns the specific restoration; Retro Engine is for play and generic Retro output is never BRender proof.",
+  "release_provenance": {
+    "brender_archival_candidate_contents": "bbf3ba2f26ee9ae265759e282dc1454b2234b6be",
+    "brender_archival_release_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+    "command_hashes": [
+      {
+        "command": "engine-revival materialize-brender-harness --source-root <BRender-v1.3.2 checkout at d88d0ed41122664b9781015b517db64353e16f19> --output-root <out-of-tree harness>",
+        "sha256": "298164d367f2d15d42b4850cb5e6586ddc4e08168061d9a49268bf324d14d22c"
+      },
+      {
+        "command": "cmake -S <harness> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<BRender-v1.3.2 checkout>",
+        "sha256": "aef17197877d14d49633739b00214174185a0e768745767a00c6950da1ad16c5"
+      },
+      {
+        "command": "cmake --build <build> --config Debug",
+        "sha256": "c85e8a1c64750d2dc4ebf30d29eaa942b2f59475ccec8c565ee8faf03c226b10"
+      },
+      {
+        "command": "ctest --test-dir <build> -C Debug --output-on-failure",
+        "sha256": "818ec5e853b5598107180c62471251ae0a9b7b1edf77c2c9cda92d9272d17eb8"
+      },
+      {
+        "command": "brender_core_softrend_render.exe <dat/sph32.dat> <dat/earth.pix> <dat/std.pal> brender-core-softrend-render.ppm",
+        "sha256": "6dbf6c6dc712ffd258bb767d767e6b98540dbbc52e492fc557b288208aa4f752"
+      },
+      {
+        "command": "python scripts/generate_brender_release_media.py --ppm-dir <verified PPM output directory> --output-dir gallery/release-20260827 --final-frame-lit <receipt metric>",
+        "sha256": "d48201e0550d3373356cab6cf0f5c3f47e0ca03d8c7c5de5143e9ae40b4707c1"
+      }
+    ],
+    "media_manifest": "gallery/release-20260827/provenance-manifest.json",
+    "output_hashes": [
+      {
+        "path": "attempts/transcripts/brender-v132-ctest-twentyone-targets-2026-08-27.log",
+        "sha256": "83cef454ebff2ffef2973ce832455dc94918f670417beb2bff9d0e8f6e6842f8"
+      },
+      {
+        "path": "gallery/release-20260827/provenance-manifest.json",
+        "sha256": "ced400f6deb7de822ce4f5f7472caea135ce439906d51b9a7ee8f8a9c146b870"
+      },
+      {
+        "path": "gallery/release-20260827/period-pipeline-still.png",
+        "sha256": "026c8138565485e06d7392d9f87e0631f64c7aae51c5237a3fe77bf17ad249c9"
+      },
+      {
+        "path": "gallery/release-20260827/period-pipeline-orbit-contact-sheet.png",
+        "sha256": "2162bfacf2832a695c5f59e5c93f2271c37235395bfb055b04e779a63822b4db"
+      },
+      {
+        "path": "gallery/release-20260827/social-card-1200x630.png",
+        "sha256": "feb6ed62eb599025943e02d8fec065c07b5198090ff04cf4b5023eadb012de39"
+      }
+    ],
+    "platform_hashes": [
+      {
+        "platform": "Windows local probe; Visual Studio Win32 Debug; CMake -A Win32; MSVC build with warnings; public BRender v1.3.2 source snapshot d88d0ed41122664b9781015b517db64353e16f19",
+        "sha256": "6d4d746bfe5098b3731d2da513249b696c75ac4760b96d37a6200db6c7a3f4cd"
+      }
+    ],
+    "pull_request": "HarperZ9/brender-archival#9",
+    "release_tag": "v0.1.1",
+    "source_sha": "d88d0ed41122664b9781015b517db64353e16f19"
+  },
+  "reproduction_id": "brender-critical-edition-source-build",
+  "result_summary": "ctest: passed 21/21 CTest targets, 0 failed out of 21; transcript sanitized with `Test project <build>` and committed at attempts/transcripts/brender-v132-ctest-twentyone-targets-2026-08-27.log. Release media provenance is committed at gallery/release-20260827/provenance-manifest.json.",
+  "source_ids": [
+    "foone-brender-v132",
+    "blazingrender-index",
+    "harperz9-brender-archival-v011"
+  ],
+  "status": "completed",
+  "target_id": "brender",
+  "transcript_location": "attempts/transcripts/brender-v132-ctest-twentyone-targets-2026-08-27.log"
+}

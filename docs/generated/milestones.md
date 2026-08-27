@@ -6,7 +6,7 @@
 |---|---|---|---|---|
 | aqsis | aqsis-baseline | public-dossier-established | curated | Public dossier has curated Aqsis source, accession, and task records. |
 | bmrt-lineage | bmrt-lineage-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
-| brender | brender-baseline | public-dossier-established | curated | Public dossier has curated BRender source, accession, and task records. |
+| brender | brender-baseline | public-release-evidence-imported | verified-public-boundary | Public dossier has curated BRender source, accession, task, 21-target CTest, release-media, and provenance records. |
 | cosmo3d | cosmo3d-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
 | crystal-space | crystal-space-baseline | public-dossier-established | curated | Public dossier has curated Crystal Space source, accession, and task records. |
 | gool-goal | gool-goal-baseline | public-dossier-established | curated | Public dossier has curated GOOL and GOAL source, accession, and task records. |

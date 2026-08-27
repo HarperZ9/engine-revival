@@ -2,7 +2,7 @@
   "artifacts_policy": "Generated CMake build files and transcript were kept outside this metadata repo. No generated binaries, copied source, private assets, or restricted SDK material are committed.",
   "attempt_type": "cmake-configure",
   "build_id": "brender-v132-build-environment",
-  "command": "cmake -S C:\\dev\\public\\engine-revival-workspaces\\brender-v132-portable-core-harness -B C:\\dev\\public\\engine-revival-workspaces\\brender-v132-portable-core-configure-2026-07-03b \"-DBRENDER_SOURCE_DIR=C:\\dev\\public\\engine-revival-workspaces\\brender-v132\"",
+  "command": "cmake -S <external-workspace>\\brender-v132-portable-core-harness -B <external-workspace>\\brender-v132-portable-core-configure-2026-07-03b \"-DBRENDER_SOURCE_DIR=<external-workspace>\\brender-v132\"",
   "exit_code": 0,
   "harness_id": "brender-v132-portable-core-plan",
   "host_platform": "Windows local probe",
@@ -20,5 +20,5 @@
   ],
   "status": "completed",
   "target_id": "brender",
-  "transcript_location": "external-workspace:C:\\dev\\public\\engine-revival-workspaces\\brender-v132-portable-core-configure-2026-07-03b.txt"
+  "transcript_location": "external-workspace:<external-workspace>\\brender-v132-portable-core-configure-2026-07-03b.txt"
 }

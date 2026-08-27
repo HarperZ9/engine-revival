@@ -5,16 +5,16 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | portable-core-framework-startup-smoke-passing |
+| Status | public-release-21-target-receipt-imported |
 | Reproduction | brender-critical-edition-source-build |
-| Host Platform | Windows local probe |
-| Source Checkout | out-of-tree public checkout at recorded snapshot commit d88d0ed41122664b9781015b517db64353e16f19 |
-| Build System | period makefiles with BR_* environment imports |
+| Host Platform | Windows local probe; Visual Studio Win32 Debug; CMake -A Win32 |
+| Source Checkout | out-of-tree public checkout at recorded source snapshot d88d0ed41122664b9781015b517db64353e16f19 |
+| Build System | period makefiles interpreted by a public BRender Archival CMake materializer |
 | Snapshots | brender-v132-main-head |
 
 ## Public Notes
 
-BRender v1.3.2 public source was cloned outside the metadata repo and matched the recorded snapshot commit. The source tree exposes period makefiles and project metadata. The portable harness now configures with CMake, builds brender_core_float.lib with explicit period OBJS_C source lists in an external Visual Studio Win32 tree, and passes vector math plus BrBegin/BrEnd framework startup smoke executables through CTest. No generated binary or packaged release is committed.
+Engine Revival records the public build environment for the BRender Archival v0.1.1 release boundary. The specific restoration uses a public BRender v1.3.2 checkout pinned at d88d0ed41122664b9781015b517db64353e16f19, generates an out-of-tree CMake harness, builds under Visual Studio Win32 Debug, and passes native CTest 21/21. The committed Engine Revival evidence is metadata, a sanitized transcript, media, and hashes only; no upstream source, assets, build tree, executables, or PPM source frames are vendored.
 
 ## Required Variables
 
@@ -27,8 +27,9 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 
 | Probe | Result |
 |---|---|
-| available | cmake; Visual Studio 18 2026 CMake generator; MSVC 19.50.35721.0 via CMake generator; Visual Studio Win32 target platform |
-| missing | make; nmake; gcc |
+| available | CMake; Visual Studio Win32 target platform; MSVC via Visual Studio generator |
+| boundary | none recorded |
+| missing_or_unclaimed | x64 runtime readiness; zero-warning portability; completed textured TIA output |
 
 ## Observed Layout
 
@@ -45,27 +46,22 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 | core_active_subdirs | inc; fw; host; std; pixelmap; dosio; v1db; math; fmt |
 | core_variants_active | BR_BASE_TYPE=FLOAT |
 | core_variants_disabled | BR_BASE_TYPE=FIXED |
-| drivers_active_subdirs | vesa; mcga; softrend; pentprim |
-| drivers_disabled_subdirs | ddraw |
-| drivers_target_types | DRIVER |
-| root_active_subdirs | core; drivers |
-| root_disabled_subdirs | tools; samples |
+| drivers_active_subdirs | softrend FLOAT; pentprim FLOAT |
+| drivers_disabled_subdirs | display drivers; FIXED variants; unreached assembly-only kernels |
 | root_imports | BR_SOURCE_DIR; BR_MAKEFILE; BR_TARGET_DIR; BR_MAKE_DIR |
 
 ## Blockers
 
-- portable core build currently targets only the FLOAT core library; FIXED variants and drivers are deferred
-- x64 startup is not claimed; the guarded harness requires a 32-bit C target while pointer-width portability is audited
-- MSVC builds still emit enum-conversion and const-qualifier warnings that need portability audit
-- runtime coverage is limited to vector math plus BrBegin and BrEnd framework startup; scene rendering, drivers, and full V1DB behavior are not covered
-- no packaged release artifact is claimed
+- x64 startup is not claimed; the verified BRender Archival release boundary is Visual Studio Win32.
+- Completed textured TIA output is not claimed; the public release records black TIA output from a measured vertex-layout/state mismatch.
+- MSVC builds still emit warnings that need a separate portability audit before any zero-warning claim.
+- Production renderer readiness, adoption, and endorsement are not claimed.
 
 ## Next Actions
 
-- audit the completed core-library warning transcript
-- add semantic tests for the portable host and memory fallback functions before using them for rendering behavior
-- translate deferred FIXED variants and driver targets
-- model the fw pretok token-generation boundary for reproducible source regeneration
+- Keep the imported 21-target Win32 receipt stable before widening architecture support.
+- Audit remaining MSVC warnings at the compatibility boundary.
+- Resolve the TIA vertex-layout/state mismatch before any completed textured-output claim.
 
 ## Evidence Sources
 
@@ -73,3 +69,4 @@ BRender v1.3.2 public source was cloned outside the metadata repo and matched th
 |---|---|---|---|---|
 | Argonaut Blazing Render (BRender) v1.3.2 source repository | repository | high | BRender 1.3.2 source availability, provenance, and MIT license posture | https://github.com/foone/BRender-v1.3.2 |
 | BRender preservation index | curated-index | high | BRender source-release and binary-SDK index | https://blazingrender.net/ |
+| BRender Archival v0.1.1 public release | release | high | BRender Archival v0.1.1 public release boundary, PR #9 merge commit, 21-target CTest transcript, and release-media provenance | https://github.com/HarperZ9/brender-archival/releases/tag/v0.1.1 |

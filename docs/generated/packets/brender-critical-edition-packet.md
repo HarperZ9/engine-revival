@@ -5,29 +5,30 @@
 | Field | Value |
 |---|---|
 | Target | brender |
-| Status | portable-render-lane-published |
+| Status | public-release-evidence-imported |
 | Task type | build-archive-packet |
 
 ## Public Notes
 
-The BRender critical-edition portable pure-C render lane is published as the standalone brender-archival repository. From the pinned public v1.3.2 snapshot at d88d0ed41122664b9781015b517db64353e16f19, the engine-revival materializer builds the FLOAT core library and twelve verifying CTest rungs: vector math, framework startup, wireframe, v1db scene graph, flat fill, depth buffering, perspective-correct texturing, native datafile model loading, UV material rendering, multi-part loading, Gouraud shading, and hidden-line SVG plotter output. CTest 12/12 passed and readiness score 86 is recorded. Deferred work remains explicit: x64 pointer-width portability, period softrend translation, native .mat/.pal/.pix resolution, semantic compatibility-stub coverage, FIXED variants, drivers, packaged release binaries, and a full viewer.
+The BRender critical-edition packet is publishable as an Engine Revival evidence packet once the operator approves publication. The current imported boundary is 2026-08-27: BRender Archival v0.1.1 builds from the public MIT BRender v1.3.2 snapshot pinned at d88d0ed41122664b9781015b517db64353e16f19, runs a Visual Studio Win32 harness, and passes native CTest 21/21. The period-pipeline media source run renders sph32.dat as an eight-frame nonblack orbit and reports final_frame_lit=19284 valid=true. The packet does not vendor upstream source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. Engine Revival equals preservation, research, and evidence; BRender Archival equals the verified specific restoration; Retro Engine equals play; generic Retro output is never BRender proof.
 
 ## Inputs
 
-- public source branches
-- community preservation index
-- BRender accessions
-- generated portable-core harness and render-smoke ladder
+- public BRender v1.3.2 source snapshot pinned at d88d0ed41122664b9781015b517db64353e16f19
+- BRender Archival v0.1.1 release commit 11b5a8d539e911a9c07991b751402a7d51bf1bde
+- BRender Archival PR #9 candidate contents bbf3ba2f26ee9ae265759e282dc1454b2234b6be
 - brender-production-readiness record
+- attempts/brender-v132-native-ctest-twentyone-targets-win32.json
+- gallery/release-20260827/provenance-manifest.json
 
 ## Outputs
 
-- standalone archival packet
-- version graph
+- standalone public evidence packet
 - reproducible build checklist
-- portable pure-C render harness generator
-- twelve verifying render smokes (vector math through hidden-line plotter)
-- public-safe render captures
+- 21-target native CTest receipt
+- sanitized CTest transcript
+- public-safe release media from verified nonblack output
+- release-media provenance manifest with SHA256 hashes
 
 ## Blocked By
 
@@ -40,3 +41,4 @@ The BRender critical-edition portable pure-C render lane is published as the sta
 | Argonaut Blazing Render (BRender) v1.3.2 source repository | repository | high | BRender 1.3.2 source availability, provenance, and MIT license posture | https://github.com/foone/BRender-v1.3.2 |
 | BRender-3DMM source repository | repository | high | BRender 3D Movie Maker variant source availability, provenance, and MIT license posture | https://github.com/foone/BRender-3DMM |
 | BRender preservation index | curated-index | high | BRender source-release and binary-SDK index | https://blazingrender.net/ |
+| BRender Archival v0.1.1 public release | release | high | BRender Archival v0.1.1 public release boundary, PR #9 merge commit, 21-target CTest transcript, and release-media provenance | https://github.com/HarperZ9/brender-archival/releases/tag/v0.1.1 |

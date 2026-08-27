@@ -7,7 +7,7 @@
     "drivers and deferred FIXED variants are not built yet"
   ],
   "build_id": "brender-v132-build-environment",
-  "command": "cmake -S C:\\dev\\public\\engine-revival-workspaces\\brender-v132-portable-core-harness-explicit-sources-2026-07-03 -B C:\\dev\\public\\engine-revival-workspaces\\brender-v132-portable-core-build-explicit-sources-2026-07-03 -DBRENDER_SOURCE_DIR=C:\\dev\\public\\engine-revival-workspaces\\brender-v132; cmake --build C:\\dev\\public\\engine-revival-workspaces\\brender-v132-portable-core-build-explicit-sources-2026-07-03 --target brender_core_float",
+  "command": "cmake -S <external-workspace>\\brender-v132-portable-core-harness-explicit-sources-2026-07-03 -B <external-workspace>\\brender-v132-portable-core-build-explicit-sources-2026-07-03 -DBRENDER_SOURCE_DIR=<external-workspace>\\brender-v132; cmake --build <external-workspace>\\brender-v132-portable-core-build-explicit-sources-2026-07-03 --target brender_core_float",
   "exit_code": 0,
   "harness_id": "brender-v132-portable-core-plan",
   "host_platform": "Windows local probe",
@@ -27,5 +27,5 @@
   ],
   "status": "completed",
   "target_id": "brender",
-  "transcript_location": "external-workspace:C:\\dev\\public\\engine-revival-workspaces\\brender-v132-portable-core-configure-explicit-sources-2026-07-03.txt; external-workspace:C:\\dev\\public\\engine-revival-workspaces\\brender-v132-portable-core-build-explicit-sources-2026-07-03.txt"
+  "transcript_location": "external-workspace:<external-workspace>\\brender-v132-portable-core-configure-explicit-sources-2026-07-03.txt; external-workspace:<external-workspace>\\brender-v132-portable-core-build-explicit-sources-2026-07-03.txt"
 }

@@ -1,68 +1,109 @@
 # BRender Archival
 
 BRender (Blazing Render) was Argonaut Software's real-time 3D engine, shipped
-through the 1990s and used in titles such as Carmageddon and FX Fighter and in
-Microsoft 3D Movie Maker. This packet is the revival of BRender v1.3.2: not a
-mirror of the source, but a demonstration that the engine still builds and
-renders, reproduced from public material with nothing proprietary vendored in.
+through the 1990s and used in titles such as Carmageddon, FX Fighter, and
+Microsoft 3D Movie Maker.
+
+This packet is the Engine Revival evidence view of the public BRender Archival
+v0.1.1 release. It is not a source mirror and not a claim that Engine Revival
+vendors the restoration. Engine Revival preserves public-safe receipts, media,
+and provenance. BRender Archival is the verified specific restoration.
 
 ## Provenance and rights
 
-- Source: the public `foone/BRender-v1.3.2` snapshot, pinned at commit
-  `d88d0ed4`, MIT licensed. Provenance runs through Foone Turing, with the
-  open-source release authorized by Argonaut's former CEO Jez San.
-- This repository vendors none of that source and none of BRender's assets. The
-  materializer generates a build harness that references a public checkout in
-  place. Model datafiles are read from the checkout at run time, never copied.
+- Upstream source: public `foone/BRender-v1.3.2`, pinned at commit
+  `d88d0ed41122664b9781015b517db64353e16f19`, MIT licensed. Provenance runs
+  through Foone Turing, with the open-source release authorized by Argonaut's
+  former CEO Jez San.
+- Specific restoration: public `HarperZ9/brender-archival` release `v0.1.1`,
+  merge commit `11b5a8d539e911a9c07991b751402a7d51bf1bde`, PR #9, candidate
+  contents `bbf3ba2f26ee9ae265759e282dc1454b2234b6be`.
+- This repository vendors none of the BRender source and none of BRender's
+  assets. Model, texture, and palette datafiles are read from the public source
+  checkout at run time by the restoration harness and are never copied here.
 
-## What the revival delivers
+## Verified release boundary
 
-A materializer turns the period makefile topology into an out-of-tree CMake
-harness. It builds the FLOAT core library through BRender's own pure-C
-memory-pixelmap path, with no dependence on the period 386-assembly software
-renderer. The BRender work is an executed twenty-rung ladder, verified end to
-end against the pinned v1.3.2 checkout at commit `d88d0ed4`.
+The imported 2026-08-27 native verification result is 21/21 CTest targets
+passing under a Visual Studio Win32 Debug boundary: 21 verified CTest rungs,
+all passing. The sanitized transcript is committed at
+`attempts/transcripts/brender-v132-ctest-twentyone-targets-2026-08-27.log` and
+starts with `Test project <build>`.
 
-The verified boundary is 20 executed CTest rungs under Visual Studio Win32,
-backed by structured attempt records in this repository and a committed CTest
-transcript at `attempts/transcripts/brender-v132-ctest-twenty-rungs-2026-08-22.log`
-(attempt `brender-v132-twenty-rung-execution-win32`).
+The target set covers:
 
-1. Vector math smoke (`BrVector3`, `BrScalar`).
-2. Framework startup smoke (`BrBegin` / `BrEnd`).
-3. Wireframe render: a projected cube via `BrMatrix4Perspective` into a memory
-   pixelmap.
-4. Scene-graph render: a model out of the v1db scene database, projected by the
-   engine's own `BrActorToScreenMatrix4`.
-5. Solid flat-shaded render: a portable C scanline rasterizer with per-face
-   lighting.
-6. Per-pixel depth buffer: correct occlusion for arbitrary multi-object scenes.
-7. Perspective-correct texture mapping.
-8. Real datafile models: `BrModelLoad` reads native binary `.dat` models and
-   renders them solid and depth-buffered.
-9. UV-textured render through a model's own vertex UV coordinates.
-10. Multi-part assembly: `BrModelLoadMany` composites the 12-part coupe.
-11. Gouraud shading with per-vertex normals.
-12. Plotter lane: hidden-line-removed SVG polylines, pen-plotter ready.
-13. Asset audit: model geometry validation with JSON receipts.
-14. Pixelmap audit: `.pix` and palette-datafile decode probing.
-15. Material-file audit: binary material save/load round trip plus honest
-    text-script probes of period `.mat` files.
-16. Pixelmap round trip: native datafile write path via `BrPixelmapSave`
-    (count-returning semantics), reload, type and geometry compared.
-17. Material resolution: a material attached to every non-degenerate face of a
-    loaded model and rendered through the rasterizer.
-18. File-texture sampling: perspective-correct UV sampling of a loaded period
-    `.pix`, palette attached, distinct-colour proof.
-19. Game shell: INIT/LOAD/RUN/TEARDOWN state machine over loaded assets with a
-    deterministic frame loop and manifest.
-20. Host/memory semantics: allocator pattern retention, inquire behavior, and
-    an exact file round trip through BRender's fw layer.
+| Rung | What it proves |
+|---|---|
+| Vector math | scalar and vector core |
+| Framework startup | `BrBegin` / `BrEnd` |
+| Wireframe | `BrMatrix4Perspective` into a memory pixelmap |
+| Scene graph | model actors projected through BRender's v1db transforms |
+| Solid shaded | portable C scanline rasterizer, per-face lighting |
+| Depth buffer | per-pixel occlusion in the portable rung |
+| Textured | perspective-correct texture mapping in the portable rung |
+| Datafile models | `BrModelLoad` renders real `.dat` models |
+| UV-textured models | loaded model UV coordinates drive texture sampling |
+| Multi-part assembly | `BrModelLoadMany` composites the 12-part coupe |
+| Gouraud shading | per-vertex normals and smooth gradients |
+| Plotter lane | hidden-line-removed SVG polylines |
+| Asset audit | loaded model geometry, face indices, degenerate faces, and material attachment |
+| Pixelmap audit | `BrPixelmapLoad` probes period `.pix` and `.pal` files |
+| Material audit | `BrMaterialLoad` identifiers, flags, index_base, and colour-map attachment |
+| Pixelmap round trip | `BrPixelmapSave` then reload, with caller-owned workfile protection |
+| Material resolve | `BrMaterialLoad` material attached to loaded model faces and rendered |
+| File-texture sampling | loaded period `.pix` sampled with palette-aware INDEX_8 lookup |
+| Game shell | deterministic INIT/LOAD/RUN/TEARDOWN frame loop over loaded assets |
+| Host semantic | host file round trips without deleting caller-owned workfiles |
+| Period pipeline | softrend plus pentprim built from upstream, nonblack ZB sphere output |
 
-Every stage passes under CTest on a Visual Studio Win32 target: 20/20 passed.
-Execution also surfaced defects that generation alone had missed; they are
-recorded in the attempt record.
-## Reproduce it
+The period-pipeline media source run drives
+`brender_core_softrend_render` over `dat/sph32.dat`, `dat/earth.pix`, and
+`dat/std.pal`, emits eight nonblack frames, and records
+`final_frame_lit=19284 valid=true`.
+
+## Release media and provenance
+
+Current public media lives under
+[`gallery/release-20260827/`](../gallery/release-20260827/). It is generated
+from verified nonblack render output or from factual diagrams/cards that cite
+the same boundary. It excludes black diagnostic frames and generative imitation.
+
+- [Provenance manifest](../gallery/release-20260827/provenance-manifest.json)
+  records sanitized commands, release commit, PR, candidate contents, source
+  attribution, source SHA, input/output hashes, dimensions, nonblack metrics,
+  and limitations.
+- [Period pipeline still](../gallery/release-20260827/period-pipeline-still.png)
+  is a lossless PNG from the final verified orbit frame.
+- [Period pipeline orbit contact sheet](../gallery/release-20260827/period-pipeline-orbit-contact-sheet.png)
+  shows the provenance-pinned eight-frame period-pipeline orbit.
+- [Evidence card](../gallery/release-20260827/evidence-card.png),
+  [pipeline diagram](../gallery/release-20260827/pipeline-diagram.png), and
+  [1200x630 social card](../gallery/release-20260827/social-card-1200x630.png)
+  are bounded release assets.
+
+## Relationship boundary
+
+- Retro Engine equals play.
+- Engine Revival equals preservation, research, metadata, and evidence.
+- BRender Archival equals the verified specific BRender restoration.
+- Generic Retro output is never BRender proof.
+
+## Current limitations
+
+These are documented boundaries, not release claims:
+
+- Completed textured TIA output is not claimed. The experimental TIA/PIZ2TIA
+  path executes in BRender Archival, but public release notes record black
+  output from a measured vertex-layout/state mismatch.
+- x64 pointer-width portability is not claimed. The verified native build
+  target is Win32.
+- Production readiness, adoption, and endorsement are not claimed.
+- Assembly-only pentprim kernels outside the exercised RGB_888 ZB and
+  experimental TIA path remain linkage stubs.
+- The MSVC warning set is warning-only in the verified build, but has not been
+  reduced to a zero-warning portability claim.
+
+## Reproduce the release boundary
 
 ```powershell
 python -m pip install -e ".[test]"
@@ -70,45 +111,20 @@ engine-revival materialize-brender-harness `
   --source-root C:\path\to\BRender-v1.3.2 `
   --output-root C:\path\to\brender-portable-core-harness
 cmake -S <harness> -B <build> -A Win32 "-DBRENDER_SOURCE_DIR=C:\path\to\BRender-v1.3.2"
-cmake --build <build> --config Debug --target brender_core_model_smoke
+cmake --build <build> --config Debug
 ctest --test-dir <build> -C Debug --output-on-failure
 ```
 
-The `brender_core_model_smoke` executable takes any `.dat` model path and writes
-a PPM, so it doubles as a minimal model viewer for the period asset library.
-
-## What you can do with it today
-
-- Build BRender's core from a public checkout on a modern MSVC toolchain.
-- Load and render BRender's own period models straight from their datafiles.
-- Continue the asset-pipeline evidence work: model, pixelmap, palette, material,
-  native-write, material-resolution, and file-texture rungs are implemented but
-  still need structured attempt records here before R4 can be claimed.
-- Extend the portable rasterizer (Gouraud shading, materials, a wider viewer).
-- Plot period models on a pen plotter: `brender_core_plotter_smoke` emits
-  hidden-line-removed SVG polylines from any `.dat` model.
-- Use the harness as the pattern for reviving other engines in this archive.
-
-## Honestly deferred
-
-These are documented, not claimed, so the revival is not oversold:
-
-- BRender's period 386-assembly `softrend` renderer (the hard portability item).
-- x64 pointer-width portability (the unreworked period code is 32-bit bound).
-- R4 asset-pipeline closure: structured attempt records, command transcripts,
-  artifact digests, and tolerance statements for rungs 13 through 18 are still
-  missing from this repository.
-- Full material/texture *resolution* for rendering loaded models: the audit
-  rungs now load and describe `.mat`, `.pix`, and `.pal` files, but attaching
-  them to rendered models end to end is still open.
-- Fixing the partial decode of 15-bit pixelmap variants.
-- Release packaging and a full interactive viewer.
+For the 21-target restoration, use the BRender Archival v0.1.1 release boundary
+named above. Engine Revival stores the evidence receipt, not a vendored copy of
+that build tree.
 
 ## Records
 
 The claims above are backed by structured records in this repository:
 `readiness/brender-production-readiness.json`,
 `harnesses/brender-v132-portable-core-plan.json`,
-`attempts/brender-v132-portable-core-*.json`, and
+`tasks/brender-critical-edition-packet.json`,
+`attempts/brender-v132-native-ctest-twentyone-targets-win32.json`, and
 `reproductions/brender-critical-edition-source-build.json`. The generated target
 dossier at `docs/generated/targets/brender.md` is the machine-updated view.
