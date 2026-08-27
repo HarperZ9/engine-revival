@@ -6,38 +6,37 @@
 |---|---|
 | Target | brender |
 | Type | source-build |
-| Status | planned |
+| Status | verified-public-release-boundary-imported |
 
 ## Public Notes
 
-First public reproduction recipe for turning BRender from archived source records into a repeatable critical-edition build track.
+The BRender source-build reproduction is represented as imported public BRender Archival v0.1.1 evidence. Engine Revival's local 12-target portable materializer is separate scaffold metadata; the external pinned BRender Archival v0.1.1 21-target release checkout at 11b5a8d539e911a9c07991b751402a7d51bf1bde is the source of the 21/21 native CTest receipt and media. Engine Revival does not vendor source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement.
 
 ## Environment
 
-- clean working checkout outside the public metadata repo
-- public BRender v1.3.2 source branch
-- public BRender 3D Movie Maker source branch
-- period-appropriate DOS/Windows C toolchain or documented compatibility layer
-- local build log and dependency manifest captured as derived metadata
+- public BRender v1.3.2 source checkout pinned at d88d0ed41122664b9781015b517db64353e16f19
+- public BRender Archival v0.1.1 release commit 11b5a8d539e911a9c07991b751402a7d51bf1bde
+- BRender Archival release candidate contents bbf3ba2f26ee9ae265759e282dc1454b2234b6be
+- Python 3.11+ with the BRender Archival / Engine Revival test extras
+- CMake and Visual Studio generator capable of a Win32 C target
+- out-of-tree harness and build directories
 
 ## Steps
 
-- mirror the public source branches listed in the BRender artifact records
-- record source commit identifiers, archive URLs, and local snapshot hashes
-- identify compiler, SDK, and platform assumptions from repository docs and source tree layout
-- attempt a clean build of the v1.3.2 branch without proprietary inputs
-- attempt a clean build of the 3D Movie Maker branch without proprietary inputs
-- record build commands, compiler diagnostics, missing dependencies, and successful outputs
-- promote repeatable commands into the BRender critical-edition packet
+- clone or locate the public BRender v1.3.2 snapshot at d88d0ed41122664b9781015b517db64353e16f19
+- optionally run the Engine Revival local 12-target portable materializer for scaffold metadata
+- clone https://github.com/HarperZ9/brender-archival.git into an external checkout
+- checkout external BRender Archival commit 11b5a8d539e911a9c07991b751402a7d51bf1bde
+- verify the checkout with git rev-parse HEAD before trusting the release receipt
+- import the public-safe transcript, media, provenance manifest, and receipt hashes into Engine Revival
 
 ## Expected Outputs
 
-- source snapshot manifest
-- build environment manifest
-- compiler transcript
-- dependency gap list
-- sample binary or library output when the public source builds
-- critical-edition reproduction notes
+- Engine Revival local 12-target scaffold metadata
+- external BRender Archival v0.1.1 pinned checkout receipt
+- CTest transcript for 21 external release targets
+- public-safe PNG media and provenance manifest
+- Engine Revival imported evidence record and sanitized transcript
 
 ## Artifacts
 
@@ -52,3 +51,4 @@ First public reproduction recipe for turning BRender from archived source record
 | Argonaut Blazing Render (BRender) v1.3.2 source repository | repository | high | BRender 1.3.2 source availability, provenance, and MIT license posture | https://github.com/foone/BRender-v1.3.2 |
 | BRender-3DMM source repository | repository | high | BRender 3D Movie Maker variant source availability, provenance, and MIT license posture | https://github.com/foone/BRender-3DMM |
 | BRender preservation index | curated-index | high | BRender source-release and binary-SDK index | https://blazingrender.net/ |
+| BRender Archival v0.1.1 public release | release | high | BRender Archival v0.1.1 public release boundary, PR #9 merge commit, 21-target CTest transcript, and release-media provenance | https://github.com/HarperZ9/brender-archival/releases/tag/v0.1.1 |

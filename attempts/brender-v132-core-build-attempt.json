@@ -7,7 +7,7 @@
     "portable replacement or 32-bit compatibility strategy is required before claiming a core library build"
   ],
   "build_id": "brender-v132-build-environment",
-  "command": "cmake --build C:\\dev\\public\\engine-revival-workspaces\\brender-v132-portable-core-configure-2026-07-03b --target brender_core_float",
+  "command": "cmake --build <external-workspace>\\brender-v132-portable-core-configure-2026-07-03b --target brender_core_float",
   "exit_code": 1,
   "harness_id": "brender-v132-portable-core-plan",
   "host_platform": "Windows local probe",
@@ -26,5 +26,5 @@
   ],
   "status": "failed",
   "target_id": "brender",
-  "transcript_location": "external-workspace:C:\\dev\\public\\engine-revival-workspaces\\brender-v132-portable-core-build-2026-07-03.txt"
+  "transcript_location": "external-workspace:<external-workspace>\\brender-v132-portable-core-build-2026-07-03.txt"
 }

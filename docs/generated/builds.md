@@ -4,4 +4,4 @@
 
 | Target | Build | Status | Reproduction | Snapshots | Host | Build System |
 |---|---|---|---|---|---|---|
-| brender | [brender-v132-build-environment](builds/brender-v132-build-environment.md) | portable-core-framework-startup-smoke-passing | brender-critical-edition-source-build | brender-v132-main-head | Windows local probe | period makefiles with BR_* environment imports |
+| brender | [brender-v132-build-environment](builds/brender-v132-build-environment.md) | public-release-21-target-receipt-imported | brender-critical-edition-source-build | brender-v132-main-head | Windows local probe; Visual Studio Win32 Debug; CMake -A Win32 | Engine Revival local 12-target portable materializer metadata plus external BRender Archival v0.1.1 21-target release receipt |

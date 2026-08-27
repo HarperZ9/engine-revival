@@ -12,12 +12,12 @@
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
 | Exit Code | 1 |
-| Transcript | external-workspace:C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-build-2026-07-03.txt |
+| Transcript | external-workspace:<external-workspace>\brender-v132-portable-core-build-2026-07-03.txt |
 
 ## Command
 
 ```powershell
-cmake --build C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-configure-2026-07-03b --target brender_core_float
+cmake --build <external-workspace>\brender-v132-portable-core-configure-2026-07-03b --target brender_core_float
 ```
 
 ## Result Summary

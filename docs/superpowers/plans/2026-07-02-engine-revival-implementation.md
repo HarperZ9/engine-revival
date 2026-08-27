@@ -10,7 +10,7 @@
 
 ## Global Constraints
 
-- Root: `C:\dev\public\engine-revival`.
+- Root: `<workspace>/public/engine-revival`.
 - Never publish proprietary SDK binaries, leaked source, game assets, private donor material, private contact data, credentials, or restricted media.
 - Initial record format: JSON.
 - Initial CLI commands: `seed`, `validate`, `audit-public`, `index`, `report`.

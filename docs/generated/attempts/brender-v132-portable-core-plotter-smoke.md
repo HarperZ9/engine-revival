@@ -12,7 +12,7 @@
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
 | Exit Code | 0 |
-| Transcript | external-workspace:C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-ctest-plotter-2026-07-03.txt |
+| Transcript | external-workspace:<external-workspace>\brender-v132-portable-core-ctest-plotter-2026-07-03.txt |
 
 ## Command
 

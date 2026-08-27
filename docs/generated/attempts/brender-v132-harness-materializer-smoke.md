@@ -12,12 +12,12 @@
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
 | Exit Code | 0 |
-| Transcript | external-workspace:C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-harness |
+| Transcript | external-workspace:<external-workspace>\brender-v132-portable-core-harness |
 
 ## Command
 
 ```powershell
-engine-revival materialize-brender-harness --source-root C:\dev\public\engine-revival-workspaces\brender-v132 --output-root C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-harness
+engine-revival materialize-brender-harness --source-root <external-workspace>\brender-v132 --output-root <external-workspace>\brender-v132-portable-core-harness
 ```
 
 ## Result Summary

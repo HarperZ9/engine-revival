@@ -98,6 +98,8 @@ def _mentions_count(text: str, count: int, phrase: str) -> bool:
 
 def _implemented_brender_rung_count() -> int:
     text = (ROOT / "docs" / "BRENDER-ARCHIVAL.md").read_text(encoding="utf-8")
+    if "21/21 CTest targets" in text:
+        return 21
     return len(re.findall(r"^\d+\. ", text, flags=re.MULTILINE))
 
 
@@ -136,12 +138,17 @@ def test_brender_verified_boundary_is_derived_from_readiness_attempt_records():
     attempts = _brender_attempts(readiness)
 
     verified = _verified_ctest_count(attempts)
-    assert verified in (12, 20), f"unexpected verified ladder size: {verified}"
-    assert readiness["flagship_score"] == 86
+    assert verified in (12, 20, 21), f"unexpected verified ladder size: {verified}"
     if verified == 12:
+        assert readiness["flagship_score"] == 86
         assert readiness["readiness_stage"] == "portable-core-plotter-lane-passing"
         assert readiness["test_status"] == "plotter-lane-passing"
+    elif verified == 21:
+        assert readiness["flagship_score"] == 88
+        assert readiness["readiness_stage"] == "stage-5-public-release-evidence-imported"
+        assert readiness["test_status"] == "native-ctest-21-of-21-imported"
     else:
+        assert readiness["flagship_score"] == 86
         assert readiness["test_status"] != "plotter-lane-passing"
 
 

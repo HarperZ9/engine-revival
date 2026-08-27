@@ -10,10 +10,10 @@
 
 ## Global Constraints
 
-- Root: `C:\dev\public\engine-revival`.
+- Root: `<workspace>/public/engine-revival`.
 - Do not download or mirror restricted SDKs, leaked source, game assets, private donor files, private contact data, credentials, or restricted media.
 - Do not build the public website in this slice.
-- Do not scan all of `C:\dev` in this slice.
+- Do not scan all of `<workspace>` in this slice.
 - Do not implement a general web crawler or automatic downloader.
 - Do not store archival masters in git.
 - Generated docs stay under `docs/generated/`.

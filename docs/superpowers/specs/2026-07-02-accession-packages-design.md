@@ -2,7 +2,7 @@
 
 Date: 2026-07-02
 Status: Draft for review
-Workspace: `C:\dev\public\engine-revival`
+Workspace: `<workspace>/public/engine-revival`
 
 ## Purpose
 
@@ -34,7 +34,7 @@ public and it does not require committing binaries into git.
 - Do not download or mirror restricted SDKs, leaked source, game assets, private
   donor files, private contact data, credentials, or restricted media.
 - Do not build the public website in this slice.
-- Do not scan all of `C:\dev` in this slice.
+- Do not scan all of `<workspace>` in this slice.
 - Do not implement a general web crawler or automatic downloader.
 - Do not store archival masters in git unless a later design explicitly allows a
   small public document or fixture.

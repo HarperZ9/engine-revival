@@ -2,7 +2,7 @@
 
 Date: 2026-07-02
 Status: Approved for implementation planning
-Workspace: `C:\dev\public\engine-revival`
+Workspace: `<workspace>/public/engine-revival`
 
 ## Purpose
 
@@ -18,8 +18,8 @@ consume the same records.
 
 Seed research:
 
-- `C:\Users\Zain\Downloads\deep-research-report2.md`
-- `C:\Users\Zain\Downloads\deep-research-report3.md`
+- `<operator-downloads>\deep-research-report2.md`
+- `<operator-downloads>\deep-research-report3.md`
 
 The reports define two lanes:
 
@@ -31,7 +31,7 @@ The reports define two lanes:
 
 ## Goals
 
-- Create a public repo at `C:\dev\public\engine-revival`.
+- Create a public repo at `<workspace>/public/engine-revival`.
 - Define schemas for targets, artifacts, sources, tasks, and milestones.
 - Provide a Python CLI for validation, public-safety audit, indexing, seeding,
   and Markdown report generation.
@@ -227,9 +227,9 @@ archive states before publication.
 
 Approved decisions:
 
-- Use `C:\dev` as the canonical workspace.
+- Use `<workspace>` as the canonical workspace.
 - Make the archive public-facing from the start.
-- Create `C:\dev\public\engine-revival`.
+- Create `<workspace>/public/engine-revival`.
 - Choose a tooling-first archive approach.
 - Use the architecture, data model, CLI workflow, public boundary, and
   verification model in this spec.

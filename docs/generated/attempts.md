@@ -9,6 +9,7 @@
 | brender | [brender-v132-explicit-sources-core-build](attempts/brender-v132-explicit-sources-core-build.md) | cmake-build | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-framework-startup-smoke-win32](attempts/brender-v132-framework-startup-smoke-win32.md) | cmake-runtime-smoke | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-harness-materializer-smoke](attempts/brender-v132-harness-materializer-smoke.md) | harness-materialization | completed | brender-v132-portable-core-plan |
+| brender | [brender-v132-native-ctest-twentyone-targets-win32](attempts/brender-v132-native-ctest-twentyone-targets-win32.md) | native-ctest-release-boundary | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-period-defines-build-attempt](attempts/brender-v132-period-defines-build-attempt.md) | cmake-build | failed | brender-v132-portable-core-plan |
 | brender | [brender-v132-portable-core-depth-smoke](attempts/brender-v132-portable-core-depth-smoke.md) | cmake-depth-buffer-smoke | completed | brender-v132-portable-core-plan |
 | brender | [brender-v132-portable-core-fill-smoke](attempts/brender-v132-portable-core-fill-smoke.md) | cmake-solid-shaded-smoke | completed | brender-v132-portable-core-plan |

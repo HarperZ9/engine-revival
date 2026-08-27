@@ -12,12 +12,12 @@
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
 | Exit Code | 0 |
-| Transcript | external-workspace:C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-configure-2026-07-03b.txt |
+| Transcript | external-workspace:<external-workspace>\brender-v132-portable-core-configure-2026-07-03b.txt |
 
 ## Command
 
 ```powershell
-cmake -S C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-harness -B C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-configure-2026-07-03b "-DBRENDER_SOURCE_DIR=C:\dev\public\engine-revival-workspaces\brender-v132"
+cmake -S <external-workspace>\brender-v132-portable-core-harness -B <external-workspace>\brender-v132-portable-core-configure-2026-07-03b "-DBRENDER_SOURCE_DIR=<external-workspace>\brender-v132"
 ```
 
 ## Result Summary

@@ -1,18 +1,62 @@
 {
+  "blocked_by": [],
   "id": "brender-critical-edition-packet",
+  "inputs": [
+    "public BRender v1.3.2 source snapshot pinned at d88d0ed41122664b9781015b517db64353e16f19",
+    "BRender Archival v0.1.1 release commit 11b5a8d539e911a9c07991b751402a7d51bf1bde",
+    "BRender Archival PR #9 candidate contents bbf3ba2f26ee9ae265759e282dc1454b2234b6be",
+    "brender-production-readiness record",
+    "attempts/brender-v132-native-ctest-twentyone-targets-win32.json",
+    "gallery/release-20260827/provenance-manifest.json"
+  ],
+  "outputs": [
+    "standalone public evidence packet",
+    "reproducible build checklist",
+    "21-target native CTest receipt",
+    "sanitized CTest transcript",
+    "public-safe release media from verified nonblack output",
+    "release-media provenance manifest with SHA256 hashes"
+  ],
+  "public_notes": "The BRender critical-edition packet is publishable as an Engine Revival evidence packet once the operator approves publication. It separates the Engine Revival local 12-target portable materializer from the external pinned BRender Archival v0.1.1 21-target release checkout at 11b5a8d539e911a9c07991b751402a7d51bf1bde. The imported period-pipeline media source run renders sph32.dat as an eight-frame nonblack orbit and reports final_frame_lit=19284 valid=true. The packet does not vendor upstream source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. Engine Revival equals preservation, research, and evidence; BRender Archival equals the verified specific restoration; Retro Engine equals play; generic Retro output is never BRender proof.",
+  "source_ids": [
+    "foone-brender-v132",
+    "foone-brender-3dmm",
+    "blazingrender-index",
+    "harperz9-brender-archival-v011"
+  ],
+  "status": "public-release-evidence-imported",
   "target_id": "brender",
   "task_type": "build-archive-packet",
-  "status": "portable-render-lane-published",
-  "public_notes": "The BRender critical-edition portable pure-C render lane is published as the standalone brender-archival repository. From the pinned public v1.3.2 snapshot at d88d0ed41122664b9781015b517db64353e16f19, the engine-revival materializer builds the FLOAT core library and twelve verifying CTest rungs: vector math, framework startup, wireframe, v1db scene graph, flat fill, depth buffering, perspective-correct texturing, native datafile model loading, UV material rendering, multi-part loading, Gouraud shading, and hidden-line SVG plotter output. CTest 12/12 passed and readiness score 86 is recorded. Deferred work remains explicit: x64 pointer-width portability, period softrend translation, native .mat/.pal/.pix resolution, semantic compatibility-stub coverage, FIXED variants, drivers, packaged release binaries, and a full viewer.",
-  "inputs": ["public source branches", "community preservation index", "BRender accessions", "generated portable-core harness and render-smoke ladder", "brender-production-readiness record"],
-  "outputs": ["standalone archival packet", "version graph", "reproducible build checklist", "portable pure-C render harness generator", "twelve verifying render smokes (vector math through hidden-line plotter)", "public-safe render captures"],
-  "blocked_by": [],
-  "evidence_checkpoint": {
-    "id": "brender-v132-portable-core-plotter-2026-07-03",
-    "stage": "portable-core-plotter-lane-passing",
-    "passed": 12,
-    "total": 12,
-    "source_snapshot": "d88d0ed41122664b9781015b517db64353e16f19"
-  },
-  "source_ids": ["foone-brender-v132", "foone-brender-3dmm", "blazingrender-index"]
+  "evidence_boundaries": [
+    {
+      "id": "engine-revival-local-12-target-materializer",
+      "owner": "Engine Revival",
+      "scope": "local portable materializer metadata and scaffold",
+      "target_count": 12,
+      "claim": "local portable scaffold evidence only; not the external BRender Archival release receipt",
+      "recipe": [
+        "engine-revival materialize-brender-harness --source-root <public BRender v1.3.2 checkout> --output-root <out-of-tree-harness-dir>",
+        "cmake -S <out-of-tree-harness-dir> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<public BRender v1.3.2 checkout>",
+        "cmake --build <build> --config Debug",
+        "ctest --test-dir <build> -C Debug --output-on-failure for the local 12-target materializer ladder"
+      ]
+    },
+    {
+      "id": "harperz9-brender-archival-v0.1.1-21-target-release",
+      "owner": "HarperZ9/brender-archival",
+      "scope": "external pinned public release evidence imported as transcript, media, and hashes",
+      "target_count": 21,
+      "claim": "21-target release evidence comes from the pinned external BRender Archival v0.1.1 checkout; Engine Revival does not port or vendor that implementation in this patch",
+      "repository": "https://github.com/HarperZ9/brender-archival",
+      "release_tag": "v0.1.1",
+      "release_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "candidate_contents": "bbf3ba2f26ee9ae265759e282dc1454b2234b6be",
+      "checkout_recipe": [
+        "git clone https://github.com/HarperZ9/brender-archival.git <brender-archival-v0.1.1>",
+        "git -C <brender-archival-v0.1.1> fetch --tags origin",
+        "git -C <brender-archival-v0.1.1> checkout 11b5a8d539e911a9c07991b751402a7d51bf1bde",
+        "git -C <brender-archival-v0.1.1> rev-parse HEAD # must equal 11b5a8d539e911a9c07991b751402a7d51bf1bde"
+      ]
+    }
+  ]
 }

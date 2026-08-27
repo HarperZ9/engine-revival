@@ -12,12 +12,12 @@
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
 | Exit Code | 0 |
-| Transcript | external-workspace:C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-configure-explicit-sources-2026-07-03.txt; external-workspace:C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-build-explicit-sources-2026-07-03.txt |
+| Transcript | external-workspace:<external-workspace>\brender-v132-portable-core-configure-explicit-sources-2026-07-03.txt; external-workspace:<external-workspace>\brender-v132-portable-core-build-explicit-sources-2026-07-03.txt |
 
 ## Command
 
 ```powershell
-cmake -S C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-harness-explicit-sources-2026-07-03 -B C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-build-explicit-sources-2026-07-03 -DBRENDER_SOURCE_DIR=C:\dev\public\engine-revival-workspaces\brender-v132; cmake --build C:\dev\public\engine-revival-workspaces\brender-v132-portable-core-build-explicit-sources-2026-07-03 --target brender_core_float
+cmake -S <external-workspace>\brender-v132-portable-core-harness-explicit-sources-2026-07-03 -B <external-workspace>\brender-v132-portable-core-build-explicit-sources-2026-07-03 -DBRENDER_SOURCE_DIR=<external-workspace>\brender-v132; cmake --build <external-workspace>\brender-v132-portable-core-build-explicit-sources-2026-07-03 --target brender_core_float
 ```
 
 ## Result Summary
