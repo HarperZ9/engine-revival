@@ -28,6 +28,9 @@ Engine Revival therefore treats imported or derived BRender Archival release
 artifacts as AGPL-3.0-or-later covered third-party material unless verified
 asset-specific evidence later grants a different license.
 
+The canonical license text is committed at
+[AGPL-3.0-or-later](LICENSES/AGPL-3.0-or-later.txt).
+
 Asset-level treatment:
 
 | Asset set | Source project | Treatment |

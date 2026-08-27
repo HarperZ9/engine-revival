@@ -102,6 +102,7 @@ def boundary_records() -> list[dict[str, object]]:
         "recipe": [
             "engine-revival materialize-brender-harness --source-root <public BRender v1.3.2 checkout> --output-root <out-of-tree-harness-dir>",
             "cmake -S <out-of-tree-harness-dir> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<public BRender v1.3.2 checkout>",
+            "cmake --build <build> --config Debug",
             "ctest --test-dir <build> -C Debug --output-on-failure for the local 12-target materializer ladder",
         ],
     }
@@ -469,6 +470,7 @@ def update_manifest(sequence_panels: list[dict[str, object]]) -> None:
         "upstream_brender_source_scope": "public source checkout referenced by hash; not vendored in Engine Revival",
         "imported_release_artifact_license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
         "third_party_notice": "THIRD_PARTY_NOTICES.md",
+        "agpl_license_text": "LICENSES/AGPL-3.0-or-later.txt",
     }
     manifest["limitations"] = [
         "Experimental textured TIA executes but black output remains blocked by a measured vertex-layout/state mismatch.",

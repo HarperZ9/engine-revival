@@ -60,7 +60,7 @@
       },
       {
         "path": "gallery/release-20260827/provenance-manifest.json",
-        "sha256": "e5a92d9c52e7a266d1c6d0501ce0c986ca2454f5c7b9935845bae5722443866d"
+        "sha256": "8c109dd7b99f16fa8bc4e8779c402dc9a18a80c891bf1f7fc61583efff8daa7d"
       },
       {
         "path": "gallery/release-20260827/period-pipeline-still.png",
@@ -102,6 +102,7 @@
         "recipe": [
           "engine-revival materialize-brender-harness --source-root <public BRender v1.3.2 checkout> --output-root <out-of-tree-harness-dir>",
           "cmake -S <out-of-tree-harness-dir> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<public BRender v1.3.2 checkout>",
+          "cmake --build <build> --config Debug",
           "ctest --test-dir <build> -C Debug --output-on-failure for the local 12-target materializer ladder"
         ]
       },

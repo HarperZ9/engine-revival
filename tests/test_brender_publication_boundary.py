@@ -8,9 +8,11 @@ ATTEMPT_ID = "brender-v132-native-ctest-twentyone-targets-win32"
 TRANSCRIPT = ROOT / "attempts" / "transcripts" / "brender-v132-ctest-twentyone-targets-2026-08-27.log"
 MEDIA_MANIFEST = ROOT / "gallery" / "release-20260827" / "provenance-manifest.json"
 THIRD_PARTY_NOTICES = ROOT / "THIRD_PARTY_NOTICES.md"
+AGPL_LICENSE = ROOT / "LICENSES" / "AGPL-3.0-or-later.txt"
 BRENDER_RELEASE_SHA = "11b5a8d539e911a9c07991b751402a7d51bf1bde"
 BRENDER_CANDIDATE_SHA = "bbf3ba2f26ee9ae265759e282dc1454b2234b6be"
 BRENDER_SOURCE_SHA = "d88d0ed41122664b9781015b517db64353e16f19"
+AGPL_LICENSE_SHA256 = "0d96a4ff68ad6d4b6f1f30f713b18d5184912ba8dd389f86aa7710db079abcb0"
 LOCAL_MATERIALIZER_BOUNDARY = "engine-revival-local-12-target-materializer"
 EXTERNAL_RELEASE_BOUNDARY = "harperz9-brender-archival-v0.1.1-21-target-release"
 
@@ -35,6 +37,7 @@ def _assert_local_and_external_boundaries(record: dict[str, object]) -> None:
     assert local["target_count"] == 12
     assert "portable materializer" in str(local["scope"]).lower()
     assert "21" not in str(local["claim"]).lower()
+    _assert_local_recipe_orders_configure_build_test(local["recipe"])
 
     external = boundaries[EXTERNAL_RELEASE_BOUNDARY]
     assert external["owner"] == "HarperZ9/brender-archival"
@@ -47,6 +50,15 @@ def _assert_local_and_external_boundaries(record: dict[str, object]) -> None:
     assert "https://github.com/HarperZ9/brender-archival.git" in checkout_recipe
     assert BRENDER_RELEASE_SHA in checkout_recipe
     assert "materialize-brender-harness" not in checkout_recipe
+
+
+def _assert_local_recipe_orders_configure_build_test(recipe: list[str]) -> None:
+    assert recipe == [
+        "engine-revival materialize-brender-harness --source-root <public BRender v1.3.2 checkout> --output-root <out-of-tree-harness-dir>",
+        "cmake -S <out-of-tree-harness-dir> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<public BRender v1.3.2 checkout>",
+        "cmake --build <build> --config Debug",
+        "ctest --test-dir <build> -C Debug --output-on-failure for the local 12-target materializer ladder",
+    ]
 
 
 def test_brender_readiness_names_transcript_backed_21_target_attempt():
@@ -92,6 +104,12 @@ def test_brender_records_separate_local_12_target_materializer_from_external_21_
 
     for record in structured_records:
         _assert_local_and_external_boundaries(record)
+
+
+def test_manifest_canonical_local_recipe_orders_configure_build_test():
+    manifest = _load_json(MEDIA_MANIFEST)
+    local_recipe = manifest["recipes"]["engine_revival_local_12_target_materializer"]
+    _assert_local_recipe_orders_configure_build_test(local_recipe)
 
 
 def test_brender_21_target_transcript_is_sanitized_text():
@@ -174,7 +192,10 @@ def test_imported_brender_release_assets_have_third_party_notice_and_asset_level
     assert "not vendored" in notice_lower
     assert "imported brender archival release artifacts" in notice_lower
     assert "agpl" in notice_lower
+    assert "[AGPL-3.0-or-later](LICENSES/AGPL-3.0-or-later.txt)" in notice
     assert BRENDER_RELEASE_SHA in notice
+    assert AGPL_LICENSE.is_file()
+    assert hashlib.sha256(AGPL_LICENSE.read_bytes()).hexdigest() == AGPL_LICENSE_SHA256
 
     manifest = _load_json(MEDIA_MANIFEST)
     rights = manifest["rights"]
