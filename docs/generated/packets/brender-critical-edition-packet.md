@@ -10,7 +10,7 @@
 
 ## Public Notes
 
-The BRender critical-edition packet is publishable as an Engine Revival evidence packet once the operator approves publication. The current imported boundary is 2026-08-27: BRender Archival v0.1.1 builds from the public MIT BRender v1.3.2 snapshot pinned at d88d0ed41122664b9781015b517db64353e16f19, runs a Visual Studio Win32 harness, and passes native CTest 21/21. The period-pipeline media source run renders sph32.dat as an eight-frame nonblack orbit and reports final_frame_lit=19284 valid=true. The packet does not vendor upstream source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. Engine Revival equals preservation, research, and evidence; BRender Archival equals the verified specific restoration; Retro Engine equals play; generic Retro output is never BRender proof.
+The BRender critical-edition packet is publishable as an Engine Revival evidence packet once the operator approves publication. It separates the Engine Revival local 12-target portable materializer from the external pinned BRender Archival v0.1.1 21-target release checkout at 11b5a8d539e911a9c07991b751402a7d51bf1bde. The imported period-pipeline media source run renders sph32.dat as an eight-frame nonblack orbit and reports final_frame_lit=19284 valid=true. The packet does not vendor upstream source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. Engine Revival equals preservation, research, and evidence; BRender Archival equals the verified specific restoration; Retro Engine equals play; generic Retro output is never BRender proof.
 
 ## Inputs
 

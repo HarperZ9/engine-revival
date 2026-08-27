@@ -2,10 +2,42 @@
   "claim_scope": "BRender Archival v0.1.1 public release boundary, PR #9 merge commit, 21-target CTest transcript, and release-media provenance",
   "confidence": "high",
   "id": "harperz9-brender-archival-v011",
-  "notes": "Verified by git remote on 2026-08-27: origin/main and tag v0.1.1 both resolve to 11b5a8d539e911a9c07991b751402a7d51bf1bde. The candidate contents commit is bbf3ba2f26ee9ae265759e282dc1454b2234b6be; PR #9 merged the public release branch.",
+  "notes": "Verified by git remote on 2026-08-27: origin/main and tag v0.1.1 both resolve to 11b5a8d539e911a9c07991b751402a7d51bf1bde. The candidate contents commit is bbf3ba2f26ee9ae265759e282dc1454b2234b6be; PR #9 merged the public release branch. Engine Revival imports public-safe receipts and media only, not the implementation.",
   "publisher": "GitHub / HarperZ9",
   "retrieved_at": "2026-08-27",
   "source_type": "release",
   "title": "BRender Archival v0.1.1 public release",
-  "url": "https://github.com/HarperZ9/brender-archival/releases/tag/v0.1.1"
+  "url": "https://github.com/HarperZ9/brender-archival/releases/tag/v0.1.1",
+  "license_treatment": "AGPL-3.0-or-later for the public BRender Archival release repository and imported release artifacts unless verified asset-specific evidence grants otherwise",
+  "evidence_boundaries": [
+    {
+      "id": "engine-revival-local-12-target-materializer",
+      "owner": "Engine Revival",
+      "scope": "local portable materializer metadata and scaffold",
+      "target_count": 12,
+      "claim": "local portable scaffold evidence only; not the external BRender Archival release receipt",
+      "recipe": [
+        "engine-revival materialize-brender-harness --source-root <public BRender v1.3.2 checkout> --output-root <out-of-tree-harness-dir>",
+        "cmake -S <out-of-tree-harness-dir> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<public BRender v1.3.2 checkout>",
+        "ctest --test-dir <build> -C Debug --output-on-failure for the local 12-target materializer ladder"
+      ]
+    },
+    {
+      "id": "harperz9-brender-archival-v0.1.1-21-target-release",
+      "owner": "HarperZ9/brender-archival",
+      "scope": "external pinned public release evidence imported as transcript, media, and hashes",
+      "target_count": 21,
+      "claim": "21-target release evidence comes from the pinned external BRender Archival v0.1.1 checkout; Engine Revival does not port or vendor that implementation in this patch",
+      "repository": "https://github.com/HarperZ9/brender-archival",
+      "release_tag": "v0.1.1",
+      "release_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "candidate_contents": "bbf3ba2f26ee9ae265759e282dc1454b2234b6be",
+      "checkout_recipe": [
+        "git clone https://github.com/HarperZ9/brender-archival.git <brender-archival-v0.1.1>",
+        "git -C <brender-archival-v0.1.1> fetch --tags origin",
+        "git -C <brender-archival-v0.1.1> checkout 11b5a8d539e911a9c07991b751402a7d51bf1bde",
+        "git -C <brender-archival-v0.1.1> rev-parse HEAD # must equal 11b5a8d539e911a9c07991b751402a7d51bf1bde"
+      ]
+    }
+  ]
 }

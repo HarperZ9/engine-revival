@@ -2,14 +2,6 @@
   "archival_repo_base_sha": "323c679a70417bd00414f646891d734e664966bb",
   "brender_archival_candidate_contents": "bbf3ba2f26ee9ae265759e282dc1454b2234b6be",
   "brender_archival_release_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
-  "commands": [
-    "engine-revival materialize-brender-harness --source-root <BRender-v1.3.2 checkout at d88d0ed41122664b9781015b517db64353e16f19> --output-root <out-of-tree harness>",
-    "cmake -S <harness> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<BRender-v1.3.2 checkout>",
-    "cmake --build <build> --config Debug",
-    "ctest --test-dir <build> -C Debug --output-on-failure",
-    "brender_core_softrend_render.exe <dat/sph32.dat> <dat/earth.pix> <dat/std.pal> brender-core-softrend-render.ppm",
-    "python scripts/generate_brender_release_media.py --ppm-dir <verified PPM output directory> --output-dir gallery/release-20260827 --final-frame-lit <receipt metric>"
-  ],
   "generated_date": "2026-08-27",
   "pull_request": "HarperZ9/brender-archival#9",
   "release_tag": "v0.1.1",
@@ -99,7 +91,8 @@
     "Experimental textured TIA executes but black output remains blocked by a measured vertex-layout/state mismatch.",
     "Native repeat executions on the Win32 Debug port can vary by a few edge pixels; this manifest pins the exact verified PPM source hashes used for public media.",
     "The release media does not claim completed textured rendering, x64 readiness, production readiness, endorsement, or vendored upstream source/assets.",
-    "All raster media derive from verified render outputs or factual diagrams/cards; black diagnostic frames are excluded."
+    "All raster media derive from verified render outputs or factual diagrams/cards; black diagnostic frames are excluded.",
+    "The Engine Revival local 12-target portable materializer is not the source of the external BRender Archival v0.1.1 21-target release receipt."
   ],
   "metric": {
     "final_frame_lit": 19284,
@@ -197,18 +190,84 @@
       "width": 320
     },
     {
-      "bytes": 49789,
+      "bytes": 51555,
       "height": 720,
       "path": "gallery/release-20260827/pipeline-diagram.png",
-      "sha256": "62ec7b6923c2795b17ad8973a0dc27db198e190d0ae90433f9723eaabf560881",
-      "width": 1280
+      "sha256": "df37fef7db59055509c0809c709edd71f8a878c20dfdf482c77b66f122387b3d",
+      "width": 1280,
+      "label": "boundary-diagram",
+      "diagram_boundaries": [
+        "engine-revival-local-12-target-materializer",
+        "harperz9-brender-archival-v0.1.1-21-target-release"
+      ],
+      "provenance": "factual Engine Revival diagram distinguishing local scaffold from external release receipt"
     },
     {
-      "bytes": 32850,
-      "height": 596,
-      "path": "gallery/release-20260827/progress-sequence.png",
-      "sha256": "b964790d3a8ed01679831011b78ca8389c5db5adb66577e9a6d465d3133e2e2c",
-      "width": 1412
+      "bytes": 142383,
+      "height": 760,
+      "path": "gallery/release-20260827/orbit-frame-sequence.png",
+      "sha256": "3bb1ba28487d7616c392e14f5e069d9a5c1e670625889612f1717e5d19962c58",
+      "width": 1412,
+      "label": "orbit-frame-sequence",
+      "provenance": "eight ordered frames from brender_core_softrend_render",
+      "panels": [
+        {
+          "label": "orbit frame 00",
+          "source_input_label": "period-pipeline-frame-00",
+          "source_sha256": "520c41e25ea07d5558cb3ffd186e658094a0be3be85ecc269c4fe865b3e1ea33",
+          "source_rung": "brender_core_softrend_render",
+          "source_path": "gallery/release-20260827/period-pipeline-orbit-00.png"
+        },
+        {
+          "label": "orbit frame 01",
+          "source_input_label": "period-pipeline-frame-01",
+          "source_sha256": "fc49af27a8a9d2ed5e9d7539ae7daba5497fdbd776bc308972f0c93f51dca556",
+          "source_rung": "brender_core_softrend_render",
+          "source_path": "gallery/release-20260827/period-pipeline-orbit-01.png"
+        },
+        {
+          "label": "orbit frame 02",
+          "source_input_label": "period-pipeline-frame-02",
+          "source_sha256": "164f5325edae703032f1e7f5cbf6de5f68f5245b9f5bcd6d8852b7ddce54550a",
+          "source_rung": "brender_core_softrend_render",
+          "source_path": "gallery/release-20260827/period-pipeline-orbit-02.png"
+        },
+        {
+          "label": "orbit frame 03",
+          "source_input_label": "period-pipeline-frame-03",
+          "source_sha256": "f2f71e604c94bfece0b5e6fe5a6db1dcb1ed1074c661ea20c4a1bf163a585aeb",
+          "source_rung": "brender_core_softrend_render",
+          "source_path": "gallery/release-20260827/period-pipeline-orbit-03.png"
+        },
+        {
+          "label": "orbit frame 04",
+          "source_input_label": "period-pipeline-frame-04",
+          "source_sha256": "589de514c6cc023249cb8090474fa5c1897b1f64502d42a720089526df02eaff",
+          "source_rung": "brender_core_softrend_render",
+          "source_path": "gallery/release-20260827/period-pipeline-orbit-04.png"
+        },
+        {
+          "label": "orbit frame 05",
+          "source_input_label": "period-pipeline-frame-05",
+          "source_sha256": "355105c0653e116f25d524c32a9f74527254fbc3f437ec28a32c9abfafa7fda6",
+          "source_rung": "brender_core_softrend_render",
+          "source_path": "gallery/release-20260827/period-pipeline-orbit-05.png"
+        },
+        {
+          "label": "orbit frame 06",
+          "source_input_label": "period-pipeline-frame-06",
+          "source_sha256": "5473258f74a53f8d8caf4484b7aca8456c3a4ed8461fbd80fd053867ade07c0f",
+          "source_rung": "brender_core_softrend_render",
+          "source_path": "gallery/release-20260827/period-pipeline-orbit-06.png"
+        },
+        {
+          "label": "orbit frame 07",
+          "source_input_label": "period-pipeline-frame-07",
+          "source_sha256": "99623942a07b6d951da95038747d86fbb33007c475a7f81b2c76b44ad5738aa1",
+          "source_rung": "brender_core_softrend_render",
+          "source_path": "gallery/release-20260827/period-pipeline-orbit-07.png"
+        }
+      ]
     },
     {
       "bytes": 44600,
@@ -220,5 +279,175 @@
   ],
   "schema": "brender-archival.release-media-provenance/v1",
   "source_attribution": "Argonaut Software BRender public MIT snapshot via foone/BRender-v1.3.2; referenced only, never vendored.",
-  "source_sha": "d88d0ed41122664b9781015b517db64353e16f19"
+  "source_sha": "d88d0ed41122664b9781015b517db64353e16f19",
+  "evidence_boundaries": [
+    {
+      "id": "engine-revival-local-12-target-materializer",
+      "owner": "Engine Revival",
+      "scope": "local portable materializer metadata and scaffold",
+      "target_count": 12,
+      "claim": "local portable scaffold evidence only; not the external BRender Archival release receipt",
+      "recipe": [
+        "engine-revival materialize-brender-harness --source-root <public BRender v1.3.2 checkout> --output-root <out-of-tree-harness-dir>",
+        "cmake -S <out-of-tree-harness-dir> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<public BRender v1.3.2 checkout>",
+        "ctest --test-dir <build> -C Debug --output-on-failure for the local 12-target materializer ladder"
+      ]
+    },
+    {
+      "id": "harperz9-brender-archival-v0.1.1-21-target-release",
+      "owner": "HarperZ9/brender-archival",
+      "scope": "external pinned public release evidence imported as transcript, media, and hashes",
+      "target_count": 21,
+      "claim": "21-target release evidence comes from the pinned external BRender Archival v0.1.1 checkout; Engine Revival does not port or vendor that implementation in this patch",
+      "repository": "https://github.com/HarperZ9/brender-archival",
+      "release_tag": "v0.1.1",
+      "release_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "candidate_contents": "bbf3ba2f26ee9ae265759e282dc1454b2234b6be",
+      "checkout_recipe": [
+        "git clone https://github.com/HarperZ9/brender-archival.git <brender-archival-v0.1.1>",
+        "git -C <brender-archival-v0.1.1> fetch --tags origin",
+        "git -C <brender-archival-v0.1.1> checkout 11b5a8d539e911a9c07991b751402a7d51bf1bde",
+        "git -C <brender-archival-v0.1.1> rev-parse HEAD # must equal 11b5a8d539e911a9c07991b751402a7d51bf1bde"
+      ]
+    }
+  ],
+  "recipes": {
+    "engine_revival_local_12_target_materializer": [
+      "engine-revival materialize-brender-harness --source-root <public BRender v1.3.2 checkout> --output-root <out-of-tree-harness-dir>",
+      "cmake -S <out-of-tree-harness-dir> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<public BRender v1.3.2 checkout>",
+      "ctest --test-dir <build> -C Debug --output-on-failure for the local 12-target materializer ladder"
+    ],
+    "external_brender_archival_v0.1.1_21_target_checkout": [
+      "git clone https://github.com/HarperZ9/brender-archival.git <brender-archival-v0.1.1>",
+      "git -C <brender-archival-v0.1.1> fetch --tags origin",
+      "git -C <brender-archival-v0.1.1> checkout 11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "git -C <brender-archival-v0.1.1> rev-parse HEAD # must equal 11b5a8d539e911a9c07991b751402a7d51bf1bde"
+    ],
+    "engine_revival_import_receipt": [
+      "read sanitized transcript and release media from pinned external commit 11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "copy public-safe release media and transcript into Engine Revival",
+      "verify transcript, manifest, media hashes, and public-boundary scans"
+    ]
+  },
+  "rights": {
+    "engine_revival_code_license": "MIT",
+    "upstream_brender_source_license": "MIT",
+    "upstream_brender_source_scope": "public source checkout referenced by hash; not vendored in Engine Revival",
+    "imported_release_artifact_license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+    "third_party_notice": "THIRD_PARTY_NOTICES.md"
+  },
+  "asset_rights": [
+    {
+      "path": "gallery/release-20260827/evidence-card.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-orbit-00.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-orbit-01.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-orbit-02.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-orbit-03.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-orbit-04.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-orbit-05.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-orbit-06.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-orbit-07.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-orbit-contact-sheet.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-poster.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/period-pipeline-still.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/pipeline-diagram.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/orbit-frame-sequence.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "gallery/release-20260827/social-card-1200x630.png",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; Engine Revival treats the imported/derived release asset as third-party material."
+    },
+    {
+      "path": "attempts/transcripts/brender-v132-ctest-twentyone-targets-2026-08-27.log",
+      "source_project": "HarperZ9/brender-archival",
+      "source_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "license_treatment": "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise",
+      "copyright": "BRender Archival release contributors and applicable upstream rightsholders; sanitized by Engine Revival for public-safe publication."
+    }
+  ]
 }

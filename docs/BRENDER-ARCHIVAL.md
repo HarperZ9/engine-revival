@@ -21,6 +21,22 @@ and provenance. BRender Archival is the verified specific restoration.
 - This repository vendors none of the BRender source and none of BRender's
   assets. Model, texture, and palette datafiles are read from the public source
   checkout at run time by the restoration harness and are never copied here.
+- Imported or derived BRender Archival release media, transcript, and release
+  provenance are treated as AGPL-3.0-or-later covered third-party artifacts
+  unless verified asset-specific evidence grants otherwise. See
+  [third-party notices](../THIRD_PARTY_NOTICES.md).
+
+## Local and external boundary split
+
+Engine Revival local 12-target portable materializer means the public
+Engine Revival scaffold that creates the portable core harness metadata. It is
+not the source of the 21-target receipt imported in this packet.
+
+External pinned BRender Archival v0.1.1 21-target release means the public
+`HarperZ9/brender-archival` checkout at commit
+`11b5a8d539e911a9c07991b751402a7d51bf1bde`. Engine Revival imports the
+sanitized transcript, media, manifest, and hashes from that external release
+boundary. This patch does not port or vendor the external implementation.
 
 ## Verified release boundary
 
@@ -76,6 +92,9 @@ the same boundary. It excludes black diagnostic frames and generative imitation.
   is a lossless PNG from the final verified orbit frame.
 - [Period pipeline orbit contact sheet](../gallery/release-20260827/period-pipeline-orbit-contact-sheet.png)
   shows the provenance-pinned eight-frame period-pipeline orbit.
+- [Orbit frame sequence](../gallery/release-20260827/orbit-frame-sequence.png)
+  shows the same ordered orbit frames with per-panel source frame labels and
+  short source hashes. It is not a restoration-stage or progress ladder.
 - [Evidence card](../gallery/release-20260827/evidence-card.png),
   [pipeline diagram](../gallery/release-20260827/pipeline-diagram.png), and
   [1200x630 social card](../gallery/release-20260827/social-card-1200x630.png)
@@ -116,8 +135,18 @@ ctest --test-dir <build> -C Debug --output-on-failure
 ```
 
 For the 21-target restoration, use the BRender Archival v0.1.1 release boundary
-named above. Engine Revival stores the evidence receipt, not a vendored copy of
-that build tree.
+named above:
+
+```powershell
+git clone https://github.com/HarperZ9/brender-archival.git <brender-archival-v0.1.1>
+git -C <brender-archival-v0.1.1> fetch --tags origin
+git -C <brender-archival-v0.1.1> checkout 11b5a8d539e911a9c07991b751402a7d51bf1bde
+git -C <brender-archival-v0.1.1> rev-parse HEAD
+```
+
+The final command must resolve to
+`11b5a8d539e911a9c07991b751402a7d51bf1bde`. Engine Revival stores the evidence
+receipt, not a vendored copy of that build tree.
 
 ## Records
 

@@ -40,7 +40,7 @@ honestly claimable at each rung.
 
 | Engine | Rung | Evidence |
 |---|---|---|
-| Argonaut BRender v1.3.2 | R2/R4 evidence imported; release boundary is preservation evidence, not a remaster-play claim. | BRender Archival v0.1.1 release commit `11b5a8d539e911a9c07991b751402a7d51bf1bde`, sanitized 21-target CTest transcript, readiness score 88, and `gallery/release-20260827/provenance-manifest.json` |
+| Argonaut BRender v1.3.2 | R2/R4 evidence imported; release boundary is preservation evidence, not a remaster-play claim. | Engine Revival local 12-target portable materializer remains scaffold metadata. External pinned BRender Archival v0.1.1 21-target release commit `11b5a8d539e911a9c07991b751402a7d51bf1bde` supplies the sanitized CTest transcript, readiness score 88, and `gallery/release-20260827/provenance-manifest.json` |
 | All other targets | R0 | target + accession records |
 
 ## Next candidates

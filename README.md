@@ -25,6 +25,14 @@ public BRender Archival v0.1.1 boundary:
 - Release media source run: `brender_core_softrend_render` over `dat/sph32.dat`
   with `final_frame_lit=19284 valid=true`.
 
+Two build/evidence boundaries are intentionally separate:
+
+- Engine Revival local 12-target portable materializer: public metadata and
+  scaffold for the portable core ladder.
+- External pinned BRender Archival v0.1.1 21-target release: public receipt
+  imported from `HarperZ9/brender-archival` at commit
+  `11b5a8d539e911a9c07991b751402a7d51bf1bde`.
+
 The relationship boundary is explicit:
 
 - Retro Engine equals play.
@@ -64,6 +72,7 @@ python -m pytest
 - [Release media provenance](gallery/release-20260827/provenance-manifest.json)
 - [Period pipeline still](gallery/release-20260827/period-pipeline-still.png)
 - [Period pipeline contact sheet](gallery/release-20260827/period-pipeline-orbit-contact-sheet.png)
+- [Orbit frame sequence](gallery/release-20260827/orbit-frame-sequence.png)
 - [Social card](gallery/release-20260827/social-card-1200x630.png)
 
 ## BRender Harness Metadata
@@ -75,8 +84,28 @@ engine-revival materialize-brender-harness `
 ```
 
 This command is retained as public harness metadata and scaffolding. The
-verified 21-target restoration boundary is the BRender Archival v0.1.1 release
-referenced above; Engine Revival stores the public receipt and provenance.
+verified 21-target restoration boundary is not produced by this local
+materializer in this patch. Use an explicit pinned external checkout recipe for
+that receipt:
+
+```powershell
+git clone https://github.com/HarperZ9/brender-archival.git <brender-archival-v0.1.1>
+git -C <brender-archival-v0.1.1> fetch --tags origin
+git -C <brender-archival-v0.1.1> checkout 11b5a8d539e911a9c07991b751402a7d51bf1bde
+git -C <brender-archival-v0.1.1> rev-parse HEAD
+```
+
+The final command must resolve to
+`11b5a8d539e911a9c07991b751402a7d51bf1bde`. Engine Revival stores the public
+receipt and provenance, not the external implementation checkout.
+
+## Third-party notices
+
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Engine Revival code is
+MIT licensed. The upstream BRender source snapshot is recorded as MIT-licensed
+source provenance and is not vendored here. Imported or derived BRender Archival
+release media/transcript/provenance is treated as AGPL-3.0-or-later covered
+third-party material unless verified asset-specific evidence grants otherwise.
 
 ## Public Docs
 

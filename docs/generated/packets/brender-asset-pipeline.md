@@ -10,7 +10,7 @@
 
 ## Public Notes
 
-The BRender asset-pipeline evidence is now represented by the imported BRender Archival v0.1.1 public release boundary. The sanitized transcript records 21/21 native CTest targets, including asset/material/pixelmap audits, material resolution, file texture sampling, deterministic game shell, host semantic checks, and the period softrend plus pentprim pipeline. Release media is pinned by gallery/release-20260827/provenance-manifest.json and reports final_frame_lit=19284 valid=true. Completed textured TIA output, x64 readiness, production readiness, adoption, endorsement, and generic Retro output as BRender proof are not claimed.
+The BRender asset-pipeline evidence is represented by imported external BRender Archival v0.1.1 public release receipts. Engine Revival's local 12-target portable materializer is separate scaffold metadata; the external pinned BRender Archival v0.1.1 21-target release supplies the asset/material/pixelmap audit, material resolution, file texture sampling, game shell, host semantic, and period-pipeline evidence. Release media is pinned by gallery/release-20260827/provenance-manifest.json and reports final_frame_lit=19284 valid=true. Completed textured TIA output, x64 readiness, production readiness, adoption, endorsement, and generic Retro output as BRender proof are not claimed.
 
 ## Inputs
 

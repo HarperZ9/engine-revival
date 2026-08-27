@@ -7,13 +7,46 @@ ROOT = Path(__file__).resolve().parents[1]
 ATTEMPT_ID = "brender-v132-native-ctest-twentyone-targets-win32"
 TRANSCRIPT = ROOT / "attempts" / "transcripts" / "brender-v132-ctest-twentyone-targets-2026-08-27.log"
 MEDIA_MANIFEST = ROOT / "gallery" / "release-20260827" / "provenance-manifest.json"
+THIRD_PARTY_NOTICES = ROOT / "THIRD_PARTY_NOTICES.md"
 BRENDER_RELEASE_SHA = "11b5a8d539e911a9c07991b751402a7d51bf1bde"
 BRENDER_CANDIDATE_SHA = "bbf3ba2f26ee9ae265759e282dc1454b2234b6be"
 BRENDER_SOURCE_SHA = "d88d0ed41122664b9781015b517db64353e16f19"
+LOCAL_MATERIALIZER_BOUNDARY = "engine-revival-local-12-target-materializer"
+EXTERNAL_RELEASE_BOUNDARY = "harperz9-brender-archival-v0.1.1-21-target-release"
 
 
 def _load_json(path: Path) -> dict[str, object]:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _boundary_map(record: dict[str, object]) -> dict[str, dict[str, object]]:
+    boundaries = record.get("evidence_boundaries")
+    assert isinstance(boundaries, list), "missing evidence_boundaries list"
+    return {str(boundary["id"]): boundary for boundary in boundaries}
+
+
+def _assert_local_and_external_boundaries(record: dict[str, object]) -> None:
+    boundaries = _boundary_map(record)
+
+    assert set(boundaries) >= {LOCAL_MATERIALIZER_BOUNDARY, EXTERNAL_RELEASE_BOUNDARY}
+
+    local = boundaries[LOCAL_MATERIALIZER_BOUNDARY]
+    assert local["owner"] == "Engine Revival"
+    assert local["target_count"] == 12
+    assert "portable materializer" in str(local["scope"]).lower()
+    assert "21" not in str(local["claim"]).lower()
+
+    external = boundaries[EXTERNAL_RELEASE_BOUNDARY]
+    assert external["owner"] == "HarperZ9/brender-archival"
+    assert external["target_count"] == 21
+    assert external["release_tag"] == "v0.1.1"
+    assert external["release_commit"] == BRENDER_RELEASE_SHA
+    assert external["candidate_contents"] == BRENDER_CANDIDATE_SHA
+
+    checkout_recipe = "\n".join(str(step) for step in external["checkout_recipe"])
+    assert "https://github.com/HarperZ9/brender-archival.git" in checkout_recipe
+    assert BRENDER_RELEASE_SHA in checkout_recipe
+    assert "materialize-brender-harness" not in checkout_recipe
 
 
 def test_brender_readiness_names_transcript_backed_21_target_attempt():
@@ -43,6 +76,22 @@ def test_brender_21_target_receipt_records_public_release_provenance():
     assert provenance["command_hashes"]
     assert provenance["platform_hashes"]
     assert provenance["output_hashes"]
+
+
+def test_brender_records_separate_local_12_target_materializer_from_external_21_target_release():
+    structured_records = [
+        _load_json(MEDIA_MANIFEST),
+        _load_json(ROOT / "attempts" / f"{ATTEMPT_ID}.json")["release_provenance"],
+        _load_json(ROOT / "harnesses" / "brender-v132-portable-core-plan.json"),
+        _load_json(ROOT / "reproductions" / "brender-critical-edition-source-build.json"),
+        _load_json(ROOT / "builds" / "brender-v132-build-environment.json"),
+        _load_json(ROOT / "readiness" / "brender-production-readiness.json"),
+        _load_json(ROOT / "tasks" / "brender-asset-pipeline.json"),
+        _load_json(ROOT / "tasks" / "brender-critical-edition-packet.json"),
+    ]
+
+    for record in structured_records:
+        _assert_local_and_external_boundaries(record)
 
 
 def test_brender_21_target_transcript_is_sanitized_text():
@@ -81,6 +130,71 @@ def test_release_media_manifest_hashes_match_committed_public_media():
         assert digest == entry["sha256"], f"sha256 drift for {entry['path']}"
 
 
+def test_orbit_frame_sequence_replaces_progress_stage_labels():
+    manifest = _load_json(MEDIA_MANIFEST)
+    inputs = {entry["label"]: entry for entry in manifest["inputs"]}
+    outputs = {entry["path"]: entry for entry in manifest["outputs"]}
+
+    assert "gallery/release-20260827/progress-sequence.png" not in outputs
+    sequence = outputs["gallery/release-20260827/orbit-frame-sequence.png"]
+    assert sequence["label"] == "orbit-frame-sequence"
+    assert sequence["provenance"] == "eight ordered frames from brender_core_softrend_render"
+
+    panels = sequence["panels"]
+    assert len(panels) == 8
+    for index, panel in enumerate(panels):
+        input_label = f"period-pipeline-frame-{index:02d}"
+        assert panel["label"] == f"orbit frame {index:02d}"
+        assert panel["source_input_label"] == input_label
+        assert panel["source_sha256"] == inputs[input_label]["sha256"]
+        assert panel["source_rung"] == "brender_core_softrend_render"
+
+    panel_text = json.dumps(panels).lower()
+    forbidden_stage_labels = (
+        "wireframe",
+        "flat fill",
+        "depth",
+        "texture file",
+        "material resolve",
+        "game shell",
+        "restoration stage",
+        "progress stage",
+    )
+    assert not any(term in panel_text for term in forbidden_stage_labels)
+
+
+def test_imported_brender_release_assets_have_third_party_notice_and_asset_level_rights():
+    assert THIRD_PARTY_NOTICES.is_file()
+    notice = THIRD_PARTY_NOTICES.read_text(encoding="utf-8")
+    notice_lower = notice.lower()
+
+    assert "engine revival code" in notice_lower
+    assert "mit" in notice_lower
+    assert "upstream brender source" in notice_lower
+    assert "not vendored" in notice_lower
+    assert "imported brender archival release artifacts" in notice_lower
+    assert "agpl" in notice_lower
+    assert BRENDER_RELEASE_SHA in notice
+
+    manifest = _load_json(MEDIA_MANIFEST)
+    rights = manifest["rights"]
+    assert rights["engine_revival_code_license"] == "MIT"
+    assert rights["upstream_brender_source_license"] == "MIT"
+    assert rights["imported_release_artifact_license_treatment"] == (
+        "AGPL-3.0-or-later unless verified asset-specific evidence grants otherwise"
+    )
+
+    asset_rights = {entry["path"]: entry for entry in manifest["asset_rights"]}
+    expected_assets = {entry["path"] for entry in manifest["outputs"]} | {
+        TRANSCRIPT.relative_to(ROOT).as_posix()
+    }
+    assert set(asset_rights) == expected_assets
+    for asset in asset_rights.values():
+        assert asset["source_project"] == "HarperZ9/brender-archival"
+        assert asset["license_treatment"].startswith("AGPL-3.0")
+        assert "copyright" in asset
+
+
 def test_public_docs_define_engine_boundaries_and_non_claims():
     public_text = "\n".join(
         path.read_text(encoding="utf-8")
@@ -101,7 +215,8 @@ def test_public_docs_define_engine_boundaries_and_non_claims():
     assert "x64" in lowered and "not claimed" in lowered
     assert "production" in lowered and "not claimed" in lowered
     assert "endorsement" in lowered and "not claimed" in lowered
-    assert "12 ctest" not in lowered
+    assert "engine revival local 12-target portable materializer" in lowered
+    assert "external pinned brender archival v0.1.1 21-target release" in lowered
     assert "20 executed ctest" not in lowered
     assert "twenty-rung" not in lowered
 

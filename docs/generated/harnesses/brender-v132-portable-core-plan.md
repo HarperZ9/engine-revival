@@ -6,7 +6,7 @@
 |---|---|
 | Target | brender |
 | Status | public-release-21-target-receipt-imported |
-| Type | public-release-evidence-plan |
+| Type | local-12-target-materializer-with-external-21-target-release-receipt |
 | Build | brender-v132-build-environment |
 | Reproduction | brender-critical-edition-source-build |
 | Entrypoint | docs/generated/harnesses/brender-v132-portable-core-plan.md |
@@ -19,51 +19,38 @@ Use only the public BRender v1.3.2 checkout at the recorded snapshot commit and 
 
 ## Public Notes
 
-This record describes the BRender Archival v0.1.1 public release harness boundary imported into Engine Revival. The verified boundary is a Visual Studio Win32, out-of-tree CMake materialization from the public BRender v1.3.2 snapshot pinned at d88d0ed41122664b9781015b517db64353e16f19. The public release passes 21 native targets under CTest and includes a period-pipeline rung that renders nonblack softrend-float plus pentprim-float output. Engine Revival preserves the receipt and media provenance; BRender Archival owns the specific restoration; Retro Engine play output is not BRender proof.
+This record distinguishes two boundaries. The Engine Revival local 12-target portable materializer remains metadata/scaffold for the public BRender v1.3.2 snapshot. The external pinned BRender Archival v0.1.1 21-target release checkout at 11b5a8d539e911a9c07991b751402a7d51bf1bde is the source of the imported Win32 CTest receipt and release media. Engine Revival preserves the receipt and media provenance; BRender Archival owns the specific restoration; Retro Engine play output is not BRender proof.
 
 ## Implementation Units
 
-- vector math target: brender_core_smoke
-- framework startup target: brender_core_startup_smoke
-- wireframe render target: brender_core_render_smoke
-- scene graph target: brender_core_scene_smoke
-- solid fill target: brender_core_fill_smoke
-- depth target: brender_core_depth_smoke
-- texture target: brender_core_texture_smoke
-- model target: brender_core_model_smoke
-- material target: brender_core_material_smoke
-- multimodel target: brender_core_multimodel_smoke
-- Gouraud target: brender_core_gouraud_smoke
-- plotter target: brender_core_plotter_smoke
-- asset audit target: brender_core_asset_audit
-- material audit target: brender_core_material_audit
-- material file audit target: brender_core_material_file_audit
-- pixelmap roundtrip target: brender_core_pixelmap_roundtrip
-- material resolve target: brender_core_material_resolve
-- file texture target: brender_core_texture_file_sample
-- game shell target: brender_core_game_shell
-- host semantic target: brender_core_host_semantic
-- period-pipeline target: brender_core_softrend_render builds softrend and pentprim from the pinned upstream tree and emits an eight-frame nonblack sph32.dat orbit
+- local vector math target: brender_core_smoke
+- local framework startup target: brender_core_startup_smoke
+- local wireframe render target: brender_core_render_smoke
+- local scene graph target: brender_core_scene_smoke
+- local solid fill target: brender_core_fill_smoke
+- local depth target: brender_core_depth_smoke
+- local texture target: brender_core_texture_smoke
+- local model target: brender_core_model_smoke
+- local material target: brender_core_material_smoke
+- local multimodel target: brender_core_multimodel_smoke
+- local Gouraud target: brender_core_gouraud_smoke
+- local plotter target: brender_core_plotter_smoke
 
 ## Steps
 
-- start from the public BRender v1.3.2 source snapshot
-- use the public BRender Archival v0.1.1 release boundary for the verified restoration
-- materialize build files outside the source tree
-- verify the materialized scaffold references BRENDER_SOURCE_DIR instead of copying source
-- configure with Visual Studio -A Win32
-- build the Debug target set
-- run ctest --test-dir <build> -C Debug --output-on-failure
-- capture public-safe transcript/media/provenance artifacts into Engine Revival
+- for local scaffold work, run the Engine Revival 12-target portable materializer outside this repo
+- for the 21-target release receipt, clone the external BRender Archival repository
+- checkout the external release commit 11b5a8d539e911a9c07991b751402a7d51bf1bde
+- verify the external checkout commit before importing public-safe receipts
+- import only sanitized transcript, media, provenance, and hashes into Engine Revival
 
 ## Expected Outputs
 
-- out-of-tree CMake harness files
-- core FLOAT static library build artifact outside this repo
-- 21 CTest targets covering portable, audit, semantic, shell, and period-pipeline rungs
-- sanitized 21-target CTest transcript committed in Engine Revival
-- provenance-pinned eight-frame period-pipeline media under gallery/release-20260827
-- release-media provenance manifest with source, command, input, and output hashes
+- Engine Revival local 12-target portable materializer scaffold outside this repo
+- external BRender Archival v0.1.1 pinned checkout receipt for the 21-target release
+- sanitized 21-target CTest transcript imported into Engine Revival
+- provenance-pinned eight-frame period-pipeline orbit media under gallery/release-20260827
+- release-media provenance manifest with source, command, input, output, and rights hashes
 
 ## Blockers
 

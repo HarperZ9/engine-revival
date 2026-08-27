@@ -5,7 +5,7 @@
     "MSVC builds still emit warnings that need a separate portability audit before any zero-warning claim.",
     "Production renderer readiness, adoption, and endorsement are not claimed."
   ],
-  "build_system": "period makefiles interpreted by a public BRender Archival CMake materializer",
+  "build_system": "Engine Revival local 12-target portable materializer metadata plus external BRender Archival v0.1.1 21-target release receipt",
   "host_platform": "Windows local probe; Visual Studio Win32 Debug; CMake -A Win32",
   "id": "brender-v132-build-environment",
   "next_actions": [
@@ -52,7 +52,7 @@
       "BR_MAKE_DIR"
     ]
   },
-  "public_notes": "Engine Revival records the public build environment for the BRender Archival v0.1.1 release boundary. The specific restoration uses a public BRender v1.3.2 checkout pinned at d88d0ed41122664b9781015b517db64353e16f19, generates an out-of-tree CMake harness, builds under Visual Studio Win32 Debug, and passes native CTest 21/21. The committed Engine Revival evidence is metadata, a sanitized transcript, media, and hashes only; no upstream source, assets, build tree, executables, or PPM source frames are vendored.",
+  "public_notes": "Engine Revival records two build boundaries. The local Engine Revival portable materializer is a 12-target scaffold path. The 21/21 Win32 CTest receipt is imported from the external pinned BRender Archival v0.1.1 release commit 11b5a8d539e911a9c07991b751402a7d51bf1bde. The committed Engine Revival evidence is metadata, a sanitized transcript, media, and hashes only; no upstream source, assets, build tree, executables, or PPM source frames are vendored.",
   "reproduction_id": "brender-critical-edition-source-build",
   "required_variables": [
     "BR_SOURCE_DIR",
@@ -83,5 +83,36 @@
       "zero-warning portability",
       "completed textured TIA output"
     ]
-  }
+  },
+  "evidence_boundaries": [
+    {
+      "id": "engine-revival-local-12-target-materializer",
+      "owner": "Engine Revival",
+      "scope": "local portable materializer metadata and scaffold",
+      "target_count": 12,
+      "claim": "local portable scaffold evidence only; not the external BRender Archival release receipt",
+      "recipe": [
+        "engine-revival materialize-brender-harness --source-root <public BRender v1.3.2 checkout> --output-root <out-of-tree-harness-dir>",
+        "cmake -S <out-of-tree-harness-dir> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<public BRender v1.3.2 checkout>",
+        "ctest --test-dir <build> -C Debug --output-on-failure for the local 12-target materializer ladder"
+      ]
+    },
+    {
+      "id": "harperz9-brender-archival-v0.1.1-21-target-release",
+      "owner": "HarperZ9/brender-archival",
+      "scope": "external pinned public release evidence imported as transcript, media, and hashes",
+      "target_count": 21,
+      "claim": "21-target release evidence comes from the pinned external BRender Archival v0.1.1 checkout; Engine Revival does not port or vendor that implementation in this patch",
+      "repository": "https://github.com/HarperZ9/brender-archival",
+      "release_tag": "v0.1.1",
+      "release_commit": "11b5a8d539e911a9c07991b751402a7d51bf1bde",
+      "candidate_contents": "bbf3ba2f26ee9ae265759e282dc1454b2234b6be",
+      "checkout_recipe": [
+        "git clone https://github.com/HarperZ9/brender-archival.git <brender-archival-v0.1.1>",
+        "git -C <brender-archival-v0.1.1> fetch --tags origin",
+        "git -C <brender-archival-v0.1.1> checkout 11b5a8d539e911a9c07991b751402a7d51bf1bde",
+        "git -C <brender-archival-v0.1.1> rev-parse HEAD # must equal 11b5a8d539e911a9c07991b751402a7d51bf1bde"
+      ]
+    }
+  ]
 }

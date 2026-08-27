@@ -17,7 +17,7 @@
 ## Command
 
 ```powershell
-engine-revival materialize-brender-harness --source-root <BRender-v1.3.2 checkout at d88d0ed41122664b9781015b517db64353e16f19> --output-root <out-of-tree harness>; cmake -S <harness> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<BRender-v1.3.2 checkout>; cmake --build <build> --config Debug; ctest --test-dir <build> -C Debug --output-on-failure; brender_core_softrend_render.exe <dat/sph32.dat> <dat/earth.pix> <dat/std.pal> brender-core-softrend-render.ppm; python scripts/generate_brender_release_media.py --ppm-dir <verified PPM output directory> --output-dir gallery/release-20260827 --final-frame-lit <receipt metric>
+git clone https://github.com/HarperZ9/brender-archival.git <brender-archival-v0.1.1>; git -C <brender-archival-v0.1.1> fetch --tags origin; git -C <brender-archival-v0.1.1> checkout 11b5a8d539e911a9c07991b751402a7d51bf1bde; git -C <brender-archival-v0.1.1> rev-parse HEAD # must equal 11b5a8d539e911a9c07991b751402a7d51bf1bde; read sanitized transcript and release media from pinned external commit 11b5a8d539e911a9c07991b751402a7d51bf1bde; copy public-safe release media and transcript into Engine Revival; verify transcript, manifest, media hashes, and public-boundary scans
 ```
 
 ## Result Summary
@@ -26,11 +26,11 @@ ctest: passed 21/21 CTest targets, 0 failed out of 21; transcript sanitized with
 
 ## Artifacts Policy
 
-The BRender source checkout, generated harness, build tree, executables, PPM source frames, and upstream datafiles stayed outside this metadata repo. Engine Revival commits only the sanitized CTest transcript, public-safe release media, and provenance hashes imported from the public BRender Archival v0.1.1 release.
+The BRender source checkout, external BRender Archival checkout, generated harness, build tree, executables, PPM source frames, and upstream datafiles stayed outside this metadata repo. Engine Revival commits only the sanitized CTest transcript, public-safe release media, and provenance hashes imported or derived from the public BRender Archival v0.1.1 release.
 
 ## Public Notes
 
-Imported public BRender Archival v0.1.1 release evidence. The release commit 11b5a8d539e911a9c07991b751402a7d51bf1bde merged PR #9 from candidate contents bbf3ba2f26ee9ae265759e282dc1454b2234b6be. The sanitized CTest transcript records 21/21 passing native targets with `Test project <build>`, including asset audit, pixelmap audit, material audit, material-file audit, pixelmap round trip, material resolution, file-texture sampling, game shell, host semantic checks, and the period-pipeline render. The period-pipeline release media derives from verified nonblack softrend-float plus pentprim-float output over the public BRender v1.3.2 source snapshot d88d0ed41122664b9781015b517db64353e16f19 and reports final_frame_lit=19284 valid=true. Engine Revival preserves this evidence boundary; BRender Archival owns the specific restoration; Retro Engine is for play and generic Retro output is never BRender proof.
+Imported public BRender Archival v0.1.1 release evidence. The external pinned release commit 11b5a8d539e911a9c07991b751402a7d51bf1bde merged PR #9 from candidate contents bbf3ba2f26ee9ae265759e282dc1454b2234b6be. The sanitized CTest transcript records 21/21 passing native targets with `Test project <build>`. Engine Revival's local 12-target portable materializer is a separate scaffold boundary and is not the source of the 21-target receipt. Release media derives from verified nonblack brender_core_softrend_render orbit frames and reports final_frame_lit=19284 valid=true. Engine Revival preserves this evidence boundary; BRender Archival owns the specific restoration; Retro Engine is for play and generic Retro output is never BRender proof.
 
 ## Blockers
 

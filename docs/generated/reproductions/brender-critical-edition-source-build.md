@@ -10,7 +10,7 @@
 
 ## Public Notes
 
-The BRender source-build reproduction is verified at the public BRender Archival v0.1.1 boundary and imported into Engine Revival as evidence. The specific restoration materializes a harness from the pinned MIT BRender v1.3.2 snapshot, builds under Visual Studio Win32, passes native CTest 21/21, and produces public media from nonblack period-pipeline output with final_frame_lit=19284 valid=true. Engine Revival does not vendor source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement.
+The BRender source-build reproduction is represented as imported public BRender Archival v0.1.1 evidence. Engine Revival's local 12-target portable materializer is separate scaffold metadata; the external pinned BRender Archival v0.1.1 21-target release checkout at 11b5a8d539e911a9c07991b751402a7d51bf1bde is the source of the 21/21 native CTest receipt and media. Engine Revival does not vendor source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement.
 
 ## Environment
 
@@ -24,21 +24,17 @@ The BRender source-build reproduction is verified at the public BRender Archival
 ## Steps
 
 - clone or locate the public BRender v1.3.2 snapshot at d88d0ed41122664b9781015b517db64353e16f19
-- use the public BRender Archival v0.1.1 release boundary at commit 11b5a8d539e911a9c07991b751402a7d51bf1bde
-- run the release materializer with the public checkout as source-root and an out-of-tree output-root
-- configure with cmake -S <harness> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<public checkout>
-- build with cmake --build <build> --config Debug
-- run ctest --test-dir <build> -C Debug --output-on-failure
-- generate release media only from verified nonblack period-pipeline PPM frames
+- optionally run the Engine Revival local 12-target portable materializer for scaffold metadata
+- clone https://github.com/HarperZ9/brender-archival.git into an external checkout
+- checkout external BRender Archival commit 11b5a8d539e911a9c07991b751402a7d51bf1bde
+- verify the checkout with git rev-parse HEAD before trusting the release receipt
 - import the public-safe transcript, media, provenance manifest, and receipt hashes into Engine Revival
 
 ## Expected Outputs
 
-- source snapshot manifest
-- out-of-tree CMake harness
-- Win32 Debug build transcript
-- CTest transcript for 21 targets
-- period-pipeline PPM source frames from sph32.dat
+- Engine Revival local 12-target scaffold metadata
+- external BRender Archival v0.1.1 pinned checkout receipt
+- CTest transcript for 21 external release targets
 - public-safe PNG media and provenance manifest
 - Engine Revival imported evidence record and sanitized transcript
 

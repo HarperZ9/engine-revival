@@ -9,12 +9,12 @@
 | Reproduction | brender-critical-edition-source-build |
 | Host Platform | Windows local probe; Visual Studio Win32 Debug; CMake -A Win32 |
 | Source Checkout | out-of-tree public checkout at recorded source snapshot d88d0ed41122664b9781015b517db64353e16f19 |
-| Build System | period makefiles interpreted by a public BRender Archival CMake materializer |
+| Build System | Engine Revival local 12-target portable materializer metadata plus external BRender Archival v0.1.1 21-target release receipt |
 | Snapshots | brender-v132-main-head |
 
 ## Public Notes
 
-Engine Revival records the public build environment for the BRender Archival v0.1.1 release boundary. The specific restoration uses a public BRender v1.3.2 checkout pinned at d88d0ed41122664b9781015b517db64353e16f19, generates an out-of-tree CMake harness, builds under Visual Studio Win32 Debug, and passes native CTest 21/21. The committed Engine Revival evidence is metadata, a sanitized transcript, media, and hashes only; no upstream source, assets, build tree, executables, or PPM source frames are vendored.
+Engine Revival records two build boundaries. The local Engine Revival portable materializer is a 12-target scaffold path. The 21/21 Win32 CTest receipt is imported from the external pinned BRender Archival v0.1.1 release commit 11b5a8d539e911a9c07991b751402a7d51bf1bde. The committed Engine Revival evidence is metadata, a sanitized transcript, media, and hashes only; no upstream source, assets, build tree, executables, or PPM source frames are vendored.
 
 ## Required Variables
 

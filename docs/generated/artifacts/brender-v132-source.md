@@ -35,7 +35,7 @@ Public source release suitable for critical-edition work. Date is approximate as
 
 | Reproduction | Type | Status | Notes |
 |---|---|---|---|
-| [brender-critical-edition-source-build](../reproductions/brender-critical-edition-source-build.md) | source-build | verified-public-release-boundary-imported | The BRender source-build reproduction is verified at the public BRender Archival v0.1.1 boundary and imported into Engine Revival as evidence. The specific restoration materializes a harness from the pinned MIT BRender v1.3.2 snapshot, builds under Visual Studio Win32, passes native CTest 21/21, and produces public media from nonblack period-pipeline output with final_frame_lit=19284 valid=true. Engine Revival does not vendor source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. |
+| [brender-critical-edition-source-build](../reproductions/brender-critical-edition-source-build.md) | source-build | verified-public-release-boundary-imported | The BRender source-build reproduction is represented as imported public BRender Archival v0.1.1 evidence. Engine Revival's local 12-target portable materializer is separate scaffold metadata; the external pinned BRender Archival v0.1.1 21-target release checkout at 11b5a8d539e911a9c07991b751402a7d51bf1bde is the source of the 21/21 native CTest receipt and media. Engine Revival does not vendor source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. |
 
 ## Evidence Sources
 

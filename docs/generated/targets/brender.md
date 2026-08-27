@@ -42,8 +42,8 @@ Open BRender source releases and the public BRender Archival v0.1.1 restoration 
 
 | Task | Type | Status | Notes |
 |---|---|---|---|
-| brender-asset-pipeline | build-archive-packet | public-release-evidence-imported | The BRender asset-pipeline evidence is now represented by the imported BRender Archival v0.1.1 public release boundary. The sanitized transcript records 21/21 native CTest targets, including asset/material/pixelmap audits, material resolution, file texture sampling, deterministic game shell, host semantic checks, and the period softrend plus pentprim pipeline. Release media is pinned by gallery/release-20260827/provenance-manifest.json and reports final_frame_lit=19284 valid=true. Completed textured TIA output, x64 readiness, production readiness, adoption, endorsement, and generic Retro output as BRender proof are not claimed. |
-| brender-critical-edition-packet | build-archive-packet | public-release-evidence-imported | The BRender critical-edition packet is publishable as an Engine Revival evidence packet once the operator approves publication. The current imported boundary is 2026-08-27: BRender Archival v0.1.1 builds from the public MIT BRender v1.3.2 snapshot pinned at d88d0ed41122664b9781015b517db64353e16f19, runs a Visual Studio Win32 harness, and passes native CTest 21/21. The period-pipeline media source run renders sph32.dat as an eight-frame nonblack orbit and reports final_frame_lit=19284 valid=true. The packet does not vendor upstream source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. Engine Revival equals preservation, research, and evidence; BRender Archival equals the verified specific restoration; Retro Engine equals play; generic Retro output is never BRender proof. |
+| brender-asset-pipeline | build-archive-packet | public-release-evidence-imported | The BRender asset-pipeline evidence is represented by imported external BRender Archival v0.1.1 public release receipts. Engine Revival's local 12-target portable materializer is separate scaffold metadata; the external pinned BRender Archival v0.1.1 21-target release supplies the asset/material/pixelmap audit, material resolution, file texture sampling, game shell, host semantic, and period-pipeline evidence. Release media is pinned by gallery/release-20260827/provenance-manifest.json and reports final_frame_lit=19284 valid=true. Completed textured TIA output, x64 readiness, production readiness, adoption, endorsement, and generic Retro output as BRender proof are not claimed. |
+| brender-critical-edition-packet | build-archive-packet | public-release-evidence-imported | The BRender critical-edition packet is publishable as an Engine Revival evidence packet once the operator approves publication. It separates the Engine Revival local 12-target portable materializer from the external pinned BRender Archival v0.1.1 21-target release checkout at 11b5a8d539e911a9c07991b751402a7d51bf1bde. The imported period-pipeline media source run renders sph32.dat as an eight-frame nonblack orbit and reports final_frame_lit=19284 valid=true. The packet does not vendor upstream source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. Engine Revival equals preservation, research, and evidence; BRender Archival equals the verified specific restoration; Retro Engine equals play; generic Retro output is never BRender proof. |
 | brender-triage | triage-public-record | seeded | Create public-safe sources and artifact records for Argonaut BRender. |
 
 ## Milestones
@@ -56,7 +56,7 @@ Open BRender source releases and the public BRender Archival v0.1.1 restoration 
 
 | Reproduction | Type | Status | Notes |
 |---|---|---|---|
-| brender-critical-edition-source-build | source-build | verified-public-release-boundary-imported | The BRender source-build reproduction is verified at the public BRender Archival v0.1.1 boundary and imported into Engine Revival as evidence. The specific restoration materializes a harness from the pinned MIT BRender v1.3.2 snapshot, builds under Visual Studio Win32, passes native CTest 21/21, and produces public media from nonblack period-pipeline output with final_frame_lit=19284 valid=true. Engine Revival does not vendor source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. |
+| brender-critical-edition-source-build | source-build | verified-public-release-boundary-imported | The BRender source-build reproduction is represented as imported public BRender Archival v0.1.1 evidence. Engine Revival's local 12-target portable materializer is separate scaffold metadata; the external pinned BRender Archival v0.1.1 21-target release checkout at 11b5a8d539e911a9c07991b751402a7d51bf1bde is the source of the 21/21 native CTest receipt and media. Engine Revival does not vendor source/assets and does not claim completed textured TIA rendering, x64 readiness, production readiness, adoption, or endorsement. |
 
 ## Build Environments
 
@@ -68,7 +68,7 @@ Open BRender source releases and the public BRender Archival v0.1.1 restoration 
 
 | Harness | Status | Type | Build |
 |---|---|---|---|
-| brender-v132-portable-core-plan | public-release-21-target-receipt-imported | public-release-evidence-plan | brender-v132-build-environment |
+| brender-v132-portable-core-plan | public-release-21-target-receipt-imported | local-12-target-materializer-with-external-21-target-release-receipt | brender-v132-build-environment |
 
 ## Attempts
 

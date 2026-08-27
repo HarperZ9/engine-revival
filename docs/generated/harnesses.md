@@ -4,4 +4,4 @@
 
 | Target | Harness | Status | Type | Build |
 |---|---|---|---|---|
-| brender | [brender-v132-portable-core-plan](harnesses/brender-v132-portable-core-plan.md) | public-release-21-target-receipt-imported | public-release-evidence-plan | brender-v132-build-environment |
+| brender | [brender-v132-portable-core-plan](harnesses/brender-v132-portable-core-plan.md) | public-release-21-target-receipt-imported | local-12-target-materializer-with-external-21-target-release-receipt | brender-v132-build-environment |
