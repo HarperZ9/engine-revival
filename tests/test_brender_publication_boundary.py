@@ -1,5 +1,6 @@
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 
@@ -110,6 +111,26 @@ def test_manifest_canonical_local_recipe_orders_configure_build_test():
     manifest = _load_json(MEDIA_MANIFEST)
     local_recipe = manifest["recipes"]["engine_revival_local_12_target_materializer"]
     _assert_local_recipe_orders_configure_build_test(local_recipe)
+
+
+def test_agpl_license_checkout_bytes_are_pinned_to_lf_by_git_attributes():
+    license_path = AGPL_LICENSE.relative_to(ROOT).as_posix()
+    completed = subprocess.run(
+        ["git", "check-attr", "text", "eol", "--", license_path],
+        cwd=ROOT,
+        text=True,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        check=False,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    attributes = {}
+    for line in completed.stdout.splitlines():
+        parts = line.split(": ")
+        attributes[parts[-2]] = parts[-1]
+
+    assert attributes == {"text": "set", "eol": "lf"}
 
 
 def test_brender_21_target_transcript_is_sanitized_text():
