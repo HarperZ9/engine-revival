@@ -1,0 +1,87 @@
+{
+  "header": {
+    "name": "engine-revival",
+    "role": "a directory of lost engines that states its own posture",
+    "tagline": "Cite the source, name the rights, claim only the rung you reached.",
+    "words": ["lead", "cite", "rights", "record", "rung"]
+  },
+  "flows": [
+    {
+      "file": "directory-lane.svg",
+      "kicker": "an engine nobody can rebuild is a dossier, and saying so is the work",
+      "title": "How a lost engine lead becomes a posture the archive can defend",
+      "footnote": "The triage is what keeps the directory honest. A project somebody still maintains is linked, never forked or re-hosted here. A lead whose rights are unresolved stays a dossier no matter how interesting the engine is, and the note saying why is part of the record. Confidence is carried per source rather than per claim, so a weak citation stays visible instead of averaging away.",
+      "alt": "Eight stages taking a lost engine lead to a stated posture: lead, sources, liveness, rights, source, record, directory, posture. A lead starts as a name and a dead link. Sources are cited first, each carrying its own confidence rating, and eighty-five of them are cited across the corpus with sixty-eight rated high, sixteen moderate and one low. The archive then asks whether anybody still maintains the project, and eight of them are still maintained, so the directory links the maintainer instead of forking the code. Rights come next: a license, a named rightsholder, or an unresolved posture that blocks any revival. The source itself is either released, reconstructable clean-room, or genuinely lost. Each lead becomes one JSON file whose id matches its filename, and the directory sorts it into hosted restoration, maintained upstream, buildable candidate, or dossier. Twenty-nine engine targets are tracked across nineteen categories. Three outcomes: a revival candidate whose source exists and whose rights allow the work, a lead recorded as a dossier with nothing buildable claimed, and a project the archive does not re-host because its maintainer is active.",
+      "stages": [
+        { "title": "Lead", "note": "A name, a rumour, a dead link." },
+        { "title": "Sources", "note": "Cite first. Confidence rated per source." },
+        { "title": "Liveness", "note": "Is anybody still maintaining it?" },
+        { "title": "Rights", "note": "A license, a holder, or unresolved." },
+        { "title": "Source", "note": "Released, clean-room, or lost." },
+        { "title": "Record", "note": "One file, one id, one target." },
+        { "title": "Directory", "note": "Hosted, upstream, candidate, dossier." },
+        { "title": "Posture", "note": "The claim the evidence supports." }
+      ],
+      "returns": [
+        { "from": 2, "to": 0, "label": "MAINTAINED: POINT AT THE MAINTAINER" },
+        { "from": 6, "to": 4, "label": "RIGHTS UNRESOLVED, SO NO REVIVAL" }
+      ],
+      "outcomes": [
+        { "label": "REVIVAL CANDIDATE", "note": "source exists, rights allow it", "tone": "verified" },
+        { "label": "LEAD DOSSIER", "note": "recorded, nothing buildable yet", "tone": "drift" },
+        { "label": "NOT REHOSTED", "note": "the maintainer is still active", "tone": "none" }
+      ]
+    },
+    {
+      "file": "rung-lane.svg",
+      "kicker": "each rung names the claim it earns, and nothing above it",
+      "title": "How a restored engine climbs, and what each rung is allowed to claim",
+      "footnote": "The ladder is graded so that a partial result has somewhere honest to sit. Rights gate every rung above the first, and a rung claim exists only with the transcript, the digests and the tolerance behind it. Quality at the top of the ladder is stated as a measurement against the parity baseline, so an engine that honestly stops at parity is recorded as stopping there rather than being described in adjectives.",
+      "alt": "Eight rungs taking a restored engine from dossier to a recovered title: dossier, source secured, build ladder, render parity, asset pipeline, game shell, remaster pass, lost-game recovery. The first rung records the lead and states its rights posture, claiming nothing buildable. The second pins authorized, license-verified source by commit or archive id. The third stands up a reproducible out-of-tree harness in which every rung self-verifies. The fourth matches reference frames to documented original output within a stated tolerance, and the fifth loads and renders original data formats from rights-clean assets. The sixth runs a title flow start to finish, the seventh reports measured gains such as resolution independence and float color, and the eighth makes a platform-lost title playable with provenance for every asset. Twenty-eight of the twenty-nine tracked targets sit at the first rung, twenty-one of them carrying a baseline readiness record and seven carrying none. The remaining engine carries imported evidence from a pinned external release, with a sanitized twenty-one target transcript and a readiness score of eighty-eight. Three outcomes: evidence imported for one engine, every other target still at the first rung, and neither a remaster pass nor a recovered title claimed anywhere.",
+      "stages": [
+        { "title": "Dossier", "note": "Lead recorded. Rights posture stated." },
+        { "title": "Source", "note": "Authorized source, pinned by commit." },
+        { "title": "Ladder", "note": "Out of tree, every rung self-checks." },
+        { "title": "Parity", "note": "Frames match, within a tolerance." },
+        { "title": "Assets", "note": "Original formats load and render." },
+        { "title": "Shell", "note": "A title runs start to finish." },
+        { "title": "Remaster", "note": "Measured gains, never adjectives." },
+        { "title": "Recovery", "note": "A lost title made playable again." }
+      ],
+      "returns": [
+        { "from": 2, "to": 0, "label": "NO TRANSCRIPT, NO RUNG CLAIM" },
+        { "from": 6, "to": 4, "label": "RIGHTS GATE EVERY RUNG ABOVE ONE" }
+      ],
+      "outcomes": [
+        { "label": "EVIDENCE IMPORTED", "note": "one engine, a pinned release", "tone": "verified" },
+        { "label": "OTHERS AT RUNG ZERO", "note": "no rung claim above the first", "tone": "drift" },
+        { "label": "NOT CLAIMED", "note": "no remaster, no recovered title", "tone": "none" }
+      ]
+    }
+  ],
+  "cards": [
+    {
+      "file": "corpus-table.svg",
+      "kicker": "counts, not adjectives",
+      "title": "What the archive holds, and where each number is read from",
+      "source": "the record corpus and src/engine_revival, on this checkout",
+      "heads": ["what is in the archive", "how many", "where the number comes from"],
+      "alt": "A table of twelve rows: what is in the archive, how many of it there are, and where each number is read from. Twelve record kinds are named in RECORD_DIRS, and three hundred and eighty-two JSON records sit across their directories, with sources leading at eighty-five and artifacts and accessions at sixty-six each. Twenty-nine engine targets span nineteen categories. Eighty-five sources are cited, sixty-eight of them rated high confidence, sixteen moderate and one low. Seven hundred and eighty-five references point from one record to another, and the validator resolves every one of them. Five artifacts are marked do-not-redistribute, and none of them carries a publishable access level. Twelve schemas name one hundred and fifteen required fields between them. The report command writes two hundred and thirty-five files and leaves the committed pages byte-identical. The local portable materializer generates eighteen files and twelve build targets, which is scaffold metadata and not the external twenty-one target release. Twenty-eight of the twenty-nine targets carry no rung claim above the first. One hundred and thirty-three Python tests cover the loaders, the validator, the reports, the audit, the materializer, and every number drawn here.",
+      "footnote": "Every count here was read from the corpus or from the module that defines it, not typed in. The marked row is the honest null this archive most needs to carry: one engine has imported evidence and everything else is still a lead with a record behind it, which is a directory rather than a shelf of finished restorations.",
+      "fields": [
+        { "key": "record kinds", "value": "twelve of them", "note": "RECORD_DIRS in records.py: target, artifact, source, task, milestone, accession, reproduction, snapshot, readiness, build, harness, attempt." },
+        { "key": "records on disk", "value": "382 files", "note": "JSON records across the twelve directories. Sources lead at eighty-five, then artifacts and accessions at sixty-six each, then tasks at thirty-eight." },
+        { "key": "engines tracked", "value": "29 targets", "note": "One record per engine or lineage in targets/, across nineteen categories. Fifteen carry curated public metadata and thirteen carry curated public sources." },
+        { "key": "sources cited", "value": "85 of them", "note": "Sixty-eight rated high confidence, sixteen moderate, one low. Confidence is carried per source, so a weak citation stays visible in the record." },
+        { "key": "links that resolve", "value": "785 edges", "note": "References from one record to another, counted across every id field. The validator reports an unknown id, and it reports none against this corpus." },
+        { "key": "restricted holds", "value": "five artifacts", "note": "Marked do-not-redistribute. None of them carries a publishable access level, which is the rule audit-public exists to enforce." },
+        { "key": "schemas", "value": "twelve files", "note": "One JSON schema per record kind under schemas/. The validator also checks declared types, unique ids, and that a record id matches its filename." },
+        { "key": "required fields", "value": "115 named", "note": "Summed across the twelve schemas. A record missing one of them fails validate, so a field is either present or the command is red." },
+        { "key": "generated pages", "value": "235 written", "note": "The report command writes two hundred and thirty-four markdown pages plus a database file, and the committed tree stays byte-identical afterwards." },
+        { "key": "local ladder", "value": "12 targets", "note": "The portable materializer writes eighteen files and twelve build targets. Scaffold metadata, and not the external twenty-one target release receipt." },
+        { "key": "still at rung zero", "value": "28 of 29", "note": "One engine sits above the first rung on imported evidence. Of the other twenty-eight, twenty-one carry a baseline readiness record and seven carry none.", "tone": "drift" },
+        { "key": "python tests", "value": "133 passing", "note": "pytest over tests/, covering the record loaders, the validator, the reports, the audit, the materializer, and every number on these three drawings." }
+      ]
+    }
+  ]
+}

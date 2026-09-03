@@ -1,1 +1,3 @@
 LICENSES/AGPL-3.0-or-later.txt text eol=lf
+docs/art/* text eol=lf
+docs/art/*.svg -linguist-detectable
