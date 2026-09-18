@@ -88,6 +88,20 @@ engine-revival report
 python -m pytest
 ```
 
+If the generated public docs look stale, run `engine-revival seed` before
+`engine-revival report`. The seed command writes only the repository's synthetic
+public fixtures. It does not fetch proprietary engines, source snapshots,
+restricted media, or third-party assets.
+
+`engine-revival audit-public` is the public-clean guard. Treat a failure there
+as a release hold until the named record is corrected or removed from the public
+surface. For image/media-specific checks, install the optional media extra only
+when you need it:
+
+```powershell
+python -m pip install -e ".[media,test]"
+```
+
 ## BRender Evidence
 
 - [BRender archival packet](docs/BRENDER-ARCHIVAL.md)
