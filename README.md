@@ -173,7 +173,7 @@ third-party material unless verified asset-specific evidence grants otherwise.
 
 ---
 
-**[Zentropy Labs](https://github.com/ZentropyLabs-ai)** · order out of entropy.
+Built by **[Zain Dana Harper](https://harperz9.github.io)** in Seattle.
 An independent lab building evidence-first tools that leave a re-checkable
 artifact behind. Built by Zain Dana Harper in Seattle. The full workbench is at
 [Project Telos](https://harperz9.github.io).
