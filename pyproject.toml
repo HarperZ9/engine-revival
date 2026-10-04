@@ -1,14 +1,15 @@
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "engine-revival"
-version = "0.1.0"
+version = "0.2.0"
 description = "Public tooling spine for historical engine, SDK, and rendering-library revival records."
 readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = "FSL-1.1-MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "Zain Dana Harper" }]
 keywords = ["game-engines", "preservation", "archives", "provenance", "rendering"]
 dependencies = []

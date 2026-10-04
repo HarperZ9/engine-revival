@@ -56,7 +56,7 @@ The BRender packet uses two explicit evidence boundaries:
 
 Imported or derived BRender Archival release media and the sanitized release
 transcript are treated as AGPL-3.0-or-later covered third-party artifacts unless
-verified asset-specific evidence grants otherwise. Engine Revival code remains
-MIT licensed, and the upstream BRender source MIT license is recorded separately
+verified asset-specific evidence grants otherwise. Engine Revival code is
+FSL-1.1-MIT from v0.2.0 (earlier releases remain MIT), and the upstream BRender source MIT license is recorded separately
 as non-vendored source provenance. See
 [third-party notices](../THIRD_PARTY_NOTICES.md).

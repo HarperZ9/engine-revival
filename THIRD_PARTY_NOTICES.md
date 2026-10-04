@@ -6,8 +6,8 @@ the license scopes distinct when reusing material.
 ## Engine Revival code
 
 Engine Revival source code, schemas, tests, and first-party metadata tooling in
-this repository are licensed under the repository MIT license unless a file
-states otherwise.
+this repository are licensed under FSL-1.1-MIT (see [LICENSE](LICENSE)) from
+v0.2.0, unless a file states otherwise. Earlier releases remain under MIT.
 
 ## Upstream BRender source
 
