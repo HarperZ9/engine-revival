@@ -139,8 +139,10 @@ receipt and provenance, not the external implementation checkout.
 
 ## Third-party notices
 
-See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Engine Revival code is
-MIT licensed. The upstream BRender source snapshot is recorded as MIT-licensed
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). From v0.2.0, code is licensed FSL-1.1-MIT. Earlier releases remain under MIT. FSL-1.1-MIT is the Functional
+Source License, Version 1.1, with MIT as the future licence: each release
+becomes available under MIT two years after it is made available. See
+[LICENSE](LICENSE). The upstream BRender source snapshot is recorded as MIT-licensed
 source provenance and is not vendored here. Imported or derived BRender Archival
 release media/transcript/provenance is treated as AGPL-3.0-or-later covered
 third-party material unless verified asset-specific evidence grants otherwise.
