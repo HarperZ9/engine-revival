@@ -31,6 +31,12 @@ contact data, credentials, restricted media, or upstream source snapshots.
 A project somebody still maintains is linked, not forked. A lead whose rights
 are unresolved stays a dossier. The posture is part of the record.
 
+## See it work, step by step
+
+The [animated explainer](https://harperz9.github.io/repo-explainers/engine-revival.html)
+walks through a lead as a record, validation and its refusals, rights postures, the public-clean audit, the priority index, and claims by rung. Every value on it is output from this repository. Its
+source is [docs/explainer/index.html](docs/explainer/index.html).
+
 ## Current Public Boundary
 
 BRender is the current flagship evidence lane. Engine Revival now preserves the
