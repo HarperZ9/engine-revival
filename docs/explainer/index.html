@@ -121,6 +121,14 @@ footer.foot p{max-width:70ch;margin:0 0 .6rem}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{transition-duration:0s!important;animation-duration:0s!important;animation-iteration-count:1!important;scroll-behavior:auto!important}
 }
+.film{margin:1rem 0 0;max-width:56rem}
+.film video{width:100%;height:auto;display:block;background:#000;border:1px solid var(--line)}
+.film figcaption{font-size:.9rem;color:var(--ink-soft);margin-top:.55rem;max-width:44rem;line-height:1.5}
+.soon{font-family:var(--font-mono);font-size:.8rem;color:var(--muted);margin-top:.8rem}
+ol.walkthrough{padding-left:1.4rem;max-width:56rem;margin:1rem 0 0}
+ol.walkthrough li{margin:0 0 1.4rem}
+ol.walkthrough h3{margin:0 0 .3rem;font-size:1.05rem}
+ol.walkthrough p{margin:0 0 .3rem;max-width:44rem}
 
 /* generic scene kit: a pipeline strip, an input/output panel, a case picker, a table */
 .kscene{display:flex;flex-direction:column;gap:.8rem}
@@ -172,6 +180,12 @@ footer.foot p{max-width:70ch;margin:0 0 .6rem}
     <li><b>Claims by rung</b>Each rung names the claim it earns and nothing above it.</li>
   </ul>
   <p class="src">Source: <a href="https://github.com/HarperZ9/engine-revival/blob/e86d2171f8f525e0d10c3d8b4f0dadee48b36782/README.md">README.md</a> at e86d217 (version 0.2.0)</p>
+</section>
+
+<section class="block wrap" aria-labelledby="watch">
+  <h2 id="watch">Watch</h2>
+  <p class="measure">No concept film fits this tool closely yet. The walkthrough below covers it in text, with real commands and output.</p>
+  <p class="soon">Video walkthrough: coming with the next release.</p>
 </section>
 
 <section class="block wrap" aria-labelledby="how">
@@ -231,15 +245,27 @@ footer.foot p{max-width:70ch;margin:0 0 .6rem}
   </div>
 </section>
 
-<section class="block wrap" aria-labelledby="try">
-  <h2 id="try">Try it</h2>
-  <div class="measure"><p>Python 3.11 or newer. The seed command writes only the repository's synthetic fixtures and fetches nothing.</p></div>
+<section class="block wrap" aria-labelledby="walkthrough">
+  <h2 id="walkthrough">Walkthrough</h2>
+  <p class="measure">Install it, run it once, then use the main feature. Each command below is real, and so is its output.</p>
+  <ol class="walkthrough">
+    <li><h3>Install</h3><p>Install from a checkout. Python 3.11 or newer.</p>
 <pre class="cmd"><code>$ git clone https://github.com/HarperZ9/engine-revival && cd engine-revival
-$ python -m pip install -e ".[test]"
-$ engine-revival validate
-$ engine-revival audit-public
-$ engine-revival index
-$ python -m pytest</code></pre>
+$ python -m pip install -e ".[test]"</code></pre></li>
+    <li><h3>First run: validate the archive</h3><p>Check every record and reference. A clean archive prints nothing.</p>
+<pre class="cmd"><code>$ engine-revival validate
+<span class="out">(no output)</span></code></pre></li>
+    <li><h3>The public-clean guard</h3><p>Run the audit before publishing.</p>
+<pre class="cmd"><code>$ engine-revival audit-public
+<span class="out">redistribution do-not-redistribute, access metadata-only
+(no output)</span></code></pre></li>
+    <li><h3>A record that breaks validation</h3><p>Rename one id and validation names every record it orphans.</p>
+<pre class="cmd"><code>$ engine-revival validate
+<span class="out">targets\brender.json: target id must match filename stem: brender-x != brender
+artifacts\brender-v132-source.json: unknown target_id: brender
+tasks\brender-triage.json: unknown target_id: brender
+...</span></code></pre></li>
+  </ol>
   <p class="src">Output from the CLI at e86d217 with Python 3.12 on Windows; pytest reported 133 tests passing. Counts were read from the committed records.</p>
 </section>
 
