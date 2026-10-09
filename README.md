@@ -37,6 +37,48 @@ The [animated explainer](https://harperz9.github.io/repo-explainers/engine-reviv
 walks through a lead as a record, validation and its refusals, rights postures, the public-clean audit, the priority index, and claims by rung. Every value on it is output from this repository. Its
 source is [docs/explainer/index.html](docs/explainer/index.html).
 
+## Watch
+
+No concept film fits this tool closely yet. The walkthrough below covers it in text, with real commands and output.
+
+Video walkthrough: coming with the next release.
+
+## Walkthrough
+
+Install it, run it once, then use the main feature. Each command below is real, and so is its output.
+
+1. **Install.** Install from a checkout. Python 3.11 or newer.
+
+   ```text
+   $ git clone https://github.com/HarperZ9/engine-revival && cd engine-revival
+   $ python -m pip install -e ".[test]"
+   ```
+
+2. **First run: validate the archive.** Check every record and reference. A clean archive prints nothing.
+
+   ```text
+   $ engine-revival validate
+   (no output)
+   ```
+
+3. **The public-clean guard.** Run the audit before publishing.
+
+   ```text
+   $ engine-revival audit-public
+   redistribution do-not-redistribute, access metadata-only
+   (no output)
+   ```
+
+4. **A record that breaks validation.** Rename one id and validation names every record it orphans.
+
+   ```text
+   $ engine-revival validate
+   targets\brender.json: target id must match filename stem: brender-x != brender
+   artifacts\brender-v132-source.json: unknown target_id: brender
+   tasks\brender-triage.json: unknown target_id: brender
+   ...
+   ```
+
 ## Current Public Boundary
 
 BRender is the current flagship evidence lane. Engine Revival now preserves the
