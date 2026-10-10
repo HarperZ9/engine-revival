@@ -173,9 +173,9 @@ def test_twelve_schemas_name_one_hundred_and_fifteen_required_fields():
 
     assert CARD["schemas"]["value"] == "twelve files"
     assert CARD["required fields"]["value"] == "115 named"
-    files = sorted((ROOT / "schemas").glob("*.schema.json"))
+    files = sorted((ROOT / "src" / "engine_revival" / "schemas").glob("*.schema.json"))
     assert len(files) == 12
-    required = sum(len(load_schema(ROOT, kind).required) for kind in RECORD_DIRS)
+    required = sum(len(load_schema(ROOT / "src" / "engine_revival", kind).required) for kind in RECORD_DIRS)
     assert required == 115
 
 
@@ -199,15 +199,18 @@ def test_the_report_leaves_the_committed_pages_byte_identical(tmp_path):
         assert committed.read_bytes() == path.read_bytes(), committed
 
 
-def test_the_local_materializer_is_twelve_targets_not_twenty_one():
+def test_the_materializer_writes_the_twenty_one_target_ladder():
+    import inspect
+
     from engine_revival import brender_harness as harness
     from engine_revival import brender_harness_templates as templates
 
-    assert CARD["local ladder"]["value"] == "12 targets"
-    assert len(harness.OUTPUT_FILES) == 18
-    assert len(set(harness.OUTPUT_FILES)) == 18
+    assert CARD["BRender ladder"]["value"] == "21 targets"
+    assert len(harness.OUTPUT_FILES) == 31
+    assert len(set(harness.OUTPUT_FILES)) == 31
     project = templates.cmake_project_source(harness.CORE_FLOAT_DEFINES)
-    assert project.count("add_test(NAME") == 12
+    softrend = inspect.getsource(harness).count('"add_test(NAME brender_core_')
+    assert project.count("add_test(NAME") + softrend == 21
     assert len(harness.CORE_FLOAT_DIRS) == 8
     assert len(harness.CORE_FLOAT_DEFINES) == 9
 

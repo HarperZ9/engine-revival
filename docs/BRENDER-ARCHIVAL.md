@@ -28,6 +28,10 @@ and provenance. BRender Archival is the verified specific restoration.
 
 ## Local and external boundary split
 
+From engine-revival 0.3.0 (9 October 2026) the materializer writes the same
+21-target ladder, and CI builds and runs it. The paragraphs below describe the
+boundary as it stood on 27 August 2026.
+
 Engine Revival local 12-target portable materializer means the public
 Engine Revival scaffold that creates the portable core harness metadata. It is
 not the source of the 21-target receipt imported in this packet.

@@ -20,6 +20,8 @@ endif()
 get_filename_component(BRENDER_SOURCE_DIR "${{BRENDER_SOURCE_DIR}}" ABSOLUTE)
 
 include(${{CMAKE_CURRENT_LIST_DIR}}/cmake/brender-core-sources.cmake)
+include(${{CMAKE_CURRENT_LIST_DIR}}/cmake/brender-softrend.cmake)
+include(${{CMAKE_CURRENT_LIST_DIR}}/cmake/brender-pentprim.cmake)
 
 set(BRENDER_PORTABLE_COMPAT_SOURCES
   "${{CMAKE_CURRENT_LIST_DIR}}/compat/brender-portable-core-stubs.c"
@@ -176,6 +178,99 @@ add_test(NAME brender_core_plotter_smoke
   COMMAND brender_core_plotter_smoke
     "${{BRENDER_SOURCE_DIR}}/dat/teapot.dat"
     brender-core-plotter-smoke.svg brender-core-plotter-smoke.ppm)
+
+add_executable(brender_core_asset_audit smoke/brender-core-asset-audit.c)
+target_include_directories(brender_core_asset_audit PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_asset_audit PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_asset_audit PRIVATE brender_core_float)
+add_test(NAME brender_core_asset_audit
+  COMMAND brender_core_asset_audit
+    "${{BRENDER_SOURCE_DIR}}/dat/duck.dat"
+    "${{BRENDER_SOURCE_DIR}}/dat/sph32.dat"
+    "${{BRENDER_SOURCE_DIR}}/dat/coupe.dat"
+    "${{BRENDER_SOURCE_DIR}}/dat/teapot.dat")
+
+add_executable(brender_core_material_audit smoke/brender-core-material-audit.c)
+target_include_directories(brender_core_material_audit PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_material_audit PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_material_audit PRIVATE brender_core_float)
+add_test(NAME brender_core_material_audit
+  COMMAND brender_core_material_audit
+    "${{BRENDER_SOURCE_DIR}}/dat/earth.pix"
+    "${{BRENDER_SOURCE_DIR}}/dat/earth15.pix"
+    "${{BRENDER_SOURCE_DIR}}/dat/std.pal"
+    "${{BRENDER_SOURCE_DIR}}/dat/texture.pal")
+
+add_executable(brender_core_material_file_audit smoke/brender-core-material-file-audit.c)
+target_include_directories(brender_core_material_file_audit PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_material_file_audit PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_material_file_audit PRIVATE brender_core_float)
+add_test(NAME brender_core_material_file_audit
+  COMMAND brender_core_material_file_audit
+    "${{BRENDER_SOURCE_DIR}}/dat/std.mat"
+    "${{BRENDER_SOURCE_DIR}}/dat/winstd.mat")
+add_executable(brender_core_pixelmap_roundtrip smoke/brender-core-pixelmap-roundtrip.c)
+target_include_directories(brender_core_pixelmap_roundtrip PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_pixelmap_roundtrip PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_pixelmap_roundtrip PRIVATE brender_core_float)
+add_test(NAME brender_core_pixelmap_roundtrip
+  COMMAND brender_core_pixelmap_roundtrip
+    "${{BRENDER_SOURCE_DIR}}/dat/logo.pix")
+
+add_executable(brender_core_material_resolve smoke/brender-core-material-resolve.c)
+target_include_directories(brender_core_material_resolve PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_material_resolve PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_material_resolve PRIVATE brender_core_float)
+add_test(NAME brender_core_material_resolve
+  COMMAND brender_core_material_resolve
+    "${{BRENDER_SOURCE_DIR}}/dat/sph32.dat"
+    brender-core-material-resolve.ppm)
+
+add_executable(brender_core_texture_file_sample smoke/brender-core-texture-file-sample.c)
+target_include_directories(brender_core_texture_file_sample PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_texture_file_sample PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_texture_file_sample PRIVATE brender_core_float)
+add_test(NAME brender_core_texture_file_sample
+  COMMAND brender_core_texture_file_sample
+    "${{BRENDER_SOURCE_DIR}}/dat/sph32.dat"
+    "${{BRENDER_SOURCE_DIR}}/dat/earth.pix"
+    "${{BRENDER_SOURCE_DIR}}/dat/std.pal"
+    brender-core-texture-file-sample.ppm)
+
+add_executable(brender_core_game_shell smoke/brender-core-game-shell.c)
+target_include_directories(brender_core_game_shell PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_game_shell PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_game_shell PRIVATE brender_core_float)
+add_test(NAME brender_core_game_shell
+  COMMAND brender_core_game_shell
+    "${{BRENDER_SOURCE_DIR}}/dat/sph32.dat"
+    "${{BRENDER_SOURCE_DIR}}/dat/earth.pix"
+    "${{BRENDER_SOURCE_DIR}}/dat/std.pal"
+    8
+    "${{CMAKE_CURRENT_BINARY_DIR}}")
+
+add_executable(brender_core_host_semantic smoke/brender-core-host-semantic.c)
+target_include_directories(brender_core_host_semantic PRIVATE ${{BRENDER_CORE_INCLUDE_DIRS}})
+target_compile_definitions(brender_core_host_semantic PRIVATE
+{compile_definitions}
+)
+target_link_libraries(brender_core_host_semantic PRIVATE brender_core_float)
+add_test(NAME brender_core_host_semantic
+  COMMAND brender_core_host_semantic)
 """
 
 

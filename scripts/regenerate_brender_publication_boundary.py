@@ -16,6 +16,7 @@ BRENDER_RELEASE_SHA = "11b5a8d539e911a9c07991b751402a7d51bf1bde"
 BRENDER_CANDIDATE_SHA = "bbf3ba2f26ee9ae265759e282dc1454b2234b6be"
 BRENDER_SOURCE_SHA = "d88d0ed41122664b9781015b517db64353e16f19"
 LOCAL_BOUNDARY_ID = "engine-revival-local-12-target-materializer"
+CURRENT_BOUNDARY_ID = "engine-revival-0.3.0-21-target-materializer"
 EXTERNAL_BOUNDARY_ID = "harperz9-brender-archival-v0.1.1-21-target-release"
 TRANSCRIPT_REF = "attempts/transcripts/brender-v132-ctest-twentyone-targets-2026-08-27.log"
 
@@ -123,7 +124,22 @@ def boundary_records() -> list[dict[str, object]]:
             f"git -C <brender-archival-v0.1.1> rev-parse HEAD # must equal {BRENDER_RELEASE_SHA}",
         ],
     }
-    return [local, external]
+    current = {
+        "id": CURRENT_BOUNDARY_ID,
+        "owner": "Engine Revival",
+        "recorded": "2026-10-09",
+        "scope": "Engine Revival 0.3.0 portable materializer and its native CI ladder",
+        "target_count": 21,
+        "claim": "From engine-revival 0.3.0 the materializer writes the full 21-target ladder from the pinned public BRender v1.3.2 source, and CI builds it Win32 under MSVC and runs every rung on each change. This supersedes the 12-target local boundary of 2026-08-27, which stays here as the record of that date.",
+        "recipe": [
+            "engine-revival materialize-brender-harness --source-root <public BRender v1.3.2 checkout> --output-root <out-of-tree-harness-dir>",
+            "cmake -S <out-of-tree-harness-dir> -B <build> -A Win32 -DBRENDER_SOURCE_DIR=<public BRender v1.3.2 checkout>",
+            "cmake --build <build> --config Debug",
+            "ctest --test-dir <build> -C Debug --output-on-failure for the 21-target materializer ladder",
+        ],
+        "ci_job": ".github/workflows/ci.yml brender-native",
+    }
+    return [local, external, current]
 
 
 def recipes() -> dict[str, list[str]]:

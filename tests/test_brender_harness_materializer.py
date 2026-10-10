@@ -16,6 +16,43 @@ def _write_source_fixture(root):
     (root / "inc").mkdir(parents=True)
     (root / "inc" / "brender.h").write_text("/* public header fixture */\n", encoding="utf-8")
     (root / "core" / "inc").mkdir(parents=True)
+    softrend_dir = root / "drivers" / "softrend"
+    softrend_dir.mkdir(parents=True)
+    (softrend_dir / "alpha.c").write_text("void sr_alpha(void) {}\n", encoding="utf-8")
+    (softrend_dir / "clip.c").write_text("void sr_clip(void) {}\n", encoding="utf-8")
+    (softrend_dir / "makefile").write_text(
+        "\n".join([
+            "OBJS_C=\\",
+            "    $(BLD_DIR)/alpha$(OBJ_EXT)\\",
+            "    $(BLD_DIR)/clip$(OBJ_EXT)\\",
+            "",
+            "OBJS_ASM=\\",
+            "    $(BLD_DIR)/cull$(OBJ_EXT)\\",
+            ""],
+        ),
+        encoding="utf-8",
+    )
+
+    pentprim_dir = root / "drivers" / "pentprim"
+    pentprim_dir.mkdir(parents=True)
+    (pentprim_dir / "driver.c").write_text("void pp_driver(void) {}\n", encoding="utf-8")
+    (pentprim_dir / "l_pi.c").write_text("void pp_lpi(void) {}\n", encoding="utf-8")
+
+    (pentprim_dir / "awtmz.c").write_text("void pp_awtmz(void) {}\n", encoding="utf-8")
+    (pentprim_dir / "makefile").write_text(
+        "\n".join([
+            "OBJS_C=\\",
+            "    $(BLD_DIR)/driver$(OBJ_EXT)\\",
+            "",
+            "XOBJS_C=\\",
+            "    $(BLD_DIR)/l_pi$(OBJ_EXT)\\",
+            "",
+            "XOBJS_ASM=\\",
+            "    $(BLD_DIR)/zb8$(OBJ_EXT)\\",
+            ""],
+        ),
+        encoding="utf-8",
+    )
     for name in CORE_DIRS:
         directory = root / "core" / name
         directory.mkdir(parents=True)
@@ -31,8 +68,24 @@ def _write_source_fixture(root):
                 "OBJS_ASM=\\",
                 "",
             ]),
-            encoding="utf-8",
-        )
+        encoding="utf-8",
+    )
+
+
+def _materialized_smoke_sources(tmp_path):
+    source = tmp_path / "source"
+    output = tmp_path / "harness"
+    _write_source_fixture(source)
+    materialize_brender_core_harness(source, output)
+    return output / "smoke"
+
+
+def _materialized_harness(tmp_path):
+    source = tmp_path / "source"
+    output = tmp_path / "harness"
+    _write_source_fixture(source)
+    materialize_brender_core_harness(source, output)
+    return output
 
 
 def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
@@ -45,21 +98,34 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert written == [
         output / "CMakeLists.txt",
         output / "README.md",
-        output / "cmake" / "brender-core-sources.cmake",
-        output / "compat" / "brender-portable-core-stubs.c",
-        output / "compat" / "brender-portable-host-stubs.c",
-        output / "smoke" / "brender-core-smoke.c",
-        output / "smoke" / "brender-core-startup-smoke.c",
-        output / "smoke" / "brender-core-render-smoke.c",
-        output / "smoke" / "brender-core-scene-smoke.c",
-        output / "smoke" / "brender-core-fill-smoke.c",
-        output / "smoke" / "brender-core-depth-smoke.c",
-        output / "smoke" / "brender-core-texture-smoke.c",
-        output / "smoke" / "brender-core-model-smoke.c",
-        output / "smoke" / "brender-core-material-smoke.c",
-        output / "smoke" / "brender-core-multimodel-smoke.c",
-        output / "smoke" / "brender-core-gouraud-smoke.c",
-        output / "smoke" / "brender-core-plotter-smoke.c",
+        output / "cmake/brender-core-sources.cmake",
+        output / "cmake/brender-softrend.cmake",
+        output / "cmake/brender-pentprim.cmake",
+        output / "compat/brender-softrend-float-fallbacks.c",
+        output / "compat/brender-pentprim-c-port.c",
+        output / "compat/brender-portable-core-stubs.c",
+        output / "compat/brender-portable-host-stubs.c",
+        output / "smoke/brender-core-smoke.c",
+        output / "smoke/brender-core-startup-smoke.c",
+        output / "smoke/brender-core-render-smoke.c",
+        output / "smoke/brender-core-scene-smoke.c",
+        output / "smoke/brender-core-fill-smoke.c",
+        output / "smoke/brender-core-depth-smoke.c",
+        output / "smoke/brender-core-texture-smoke.c",
+        output / "smoke/brender-core-model-smoke.c",
+        output / "smoke/brender-core-material-smoke.c",
+        output / "smoke/brender-core-multimodel-smoke.c",
+        output / "smoke/brender-core-gouraud-smoke.c",
+        output / "smoke/brender-core-plotter-smoke.c",
+        output / "smoke/brender-core-asset-audit.c",
+        output / "smoke/brender-core-material-audit.c",
+        output / "smoke/brender-core-material-file-audit.c",
+        output / "smoke/brender-core-pixelmap-roundtrip.c",
+        output / "smoke/brender-core-material-resolve.c",
+        output / "smoke/brender-core-texture-file-sample.c",
+        output / "smoke/brender-core-game-shell.c",
+        output / "smoke/brender-core-host-semantic.c",
+        output / "smoke/brender-core-softrend-render.c",
         output / "harness-manifest.json",
     ]
     cmake = (output / "CMakeLists.txt").read_text(encoding="utf-8")
@@ -98,6 +164,27 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     assert "add_executable(brender_core_gouraud_smoke" in cmake
     assert "add_executable(brender_core_plotter_smoke" in cmake
     assert "${BRENDER_SOURCE_DIR}/dat/teapot.dat" in cmake
+    assert "add_executable(brender_core_asset_audit" in cmake
+    assert "target_link_libraries(brender_core_asset_audit PRIVATE brender_core_float)" in cmake
+    assert "add_test(NAME brender_core_asset_audit" in cmake
+    assert "add_executable(brender_core_material_audit" in cmake
+    assert "target_link_libraries(brender_core_material_audit PRIVATE brender_core_float)" in cmake
+    assert "add_test(NAME brender_core_material_audit" in cmake
+    assert "add_executable(brender_core_material_file_audit" in cmake
+    assert "add_test(NAME brender_core_material_file_audit" in cmake
+    assert "${BRENDER_SOURCE_DIR}/dat/std.pal" in cmake
+    assert "add_executable(brender_core_pixelmap_roundtrip" in cmake
+    assert "add_test(NAME brender_core_pixelmap_roundtrip" in cmake
+    assert "add_executable(brender_core_material_resolve" in cmake
+    assert "add_test(NAME brender_core_material_resolve" in cmake
+    assert "add_executable(brender_core_texture_file_sample" in cmake
+    assert "${BRENDER_SOURCE_DIR}/dat/std.pal" in cmake
+    assert "add_test(NAME brender_core_texture_file_sample" in cmake
+    assert "add_executable(brender_core_game_shell" in cmake
+    assert "add_test(NAME brender_core_game_shell" in cmake
+    assert "add_executable(brender_core_host_semantic" in cmake
+    assert "target_link_libraries(brender_core_host_semantic PRIVATE brender_core_float)" in cmake
+    assert "add_test(NAME brender_core_host_semantic" in cmake
     assert "compat/brender-portable-core-stubs.c" in cmake
     assert "compat/brender-portable-host-stubs.c" in cmake
     assert "CMAKE_SIZEOF_VOID_P" in cmake
@@ -191,6 +278,54 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
     plotter_smoke = (output / "smoke" / "brender-core-plotter-smoke.c").read_text(encoding="utf-8")
     assert "raster_depth(" in plotter_smoke
     assert "<svg xmlns=" in plotter_smoke
+    asset_audit = (output / "smoke" / "brender-core-asset-audit.c").read_text(
+        encoding="utf-8"
+    )
+    assert "BrModelLoad(" in asset_audit
+    assert "nonfinite_vertices" in asset_audit
+    assert "out_of_range_faces" in asset_audit
+    assert "degenerate_faces" in asset_audit
+    assert "BrModelFree(model)" in asset_audit
+    material_audit = (output / "smoke" / "brender-core-material-audit.c").read_text(
+        encoding="utf-8"
+    )
+    assert "BrPixelmapLoad(" in material_audit
+    assert "pixels_decoded" in material_audit
+    assert "BrPixelmapFree(pm)" in material_audit
+    material_file = (output / "smoke" / "brender-core-material-file-audit.c").read_text(
+        encoding="utf-8"
+    )
+    assert "BrMaterialLoad(" in material_file
+    assert "has_colour_map" in material_file
+    assert "BrMaterialFree(mat)" in material_file
+    assert "faces_with_material" in asset_audit
+    roundtrip = (output / "smoke" / "brender-core-pixelmap-roundtrip.c").read_text(
+        encoding="utf-8"
+    )
+    assert "BrPixelmapSave(" in roundtrip
+    assert 'remove(work_path)' in roundtrip
+    assert '"match":%s' in roundtrip or 'match' in roundtrip
+    resolve = (output / "smoke" / "brender-core-material-resolve.c").read_text(
+        encoding="utf-8"
+    )
+    assert "BrMaterialLoad(" in resolve
+    assert ".material = mat;" in resolve
+    assert "faces_attached" in resolve
+    texfile = (output / "smoke" / "brender-core-texture-file-sample.c").read_text(
+        encoding="utf-8"
+    )
+    assert "BrPixelmapLoad(" in texfile
+    assert "resolve_texel_colour(tex, tu, tv)" in texfile
+    assert ".map.v[0]" in texfile
+    assert "distinct_colours" in texfile
+    shell = (output / "smoke" / "brender-core-game-shell.c").read_text(
+        encoding="utf-8"
+    )
+    assert "SHELL_INIT" in shell
+    assert "SHELL_LOAD" in shell
+    assert "SHELL_RUN" in shell
+    assert "SHELL_TEARDOWN" in shell
+    assert "shell-frame-%02d.ppm" in shell
     compat = (output / "compat" / "brender-portable-core-stubs.c").read_text(
         encoding="utf-8"
     )
@@ -229,6 +364,15 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         "brender_core_multimodel_smoke",
         "brender_core_gouraud_smoke",
         "brender_core_plotter_smoke",
+        "brender_core_asset_audit",
+        "brender_core_material_audit",
+        "brender_core_material_file_audit",
+        "brender_core_pixelmap_roundtrip",
+        "brender_core_material_resolve",
+        "brender_core_texture_file_sample",
+        "brender_core_game_shell",
+        "brender_core_host_semantic",
+        "brender_core_softrend_render",
     ]
     assert manifest["portable_compat_source"] == "compat/brender-portable-core-stubs.c"
     assert manifest["portable_compat_sources"] == [
@@ -247,6 +391,170 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         "STATIC=static",
         "ADD_RCS_ID=0",
     ]
+
+
+def test_material_resolve_scanline_edge_initializes_third_edge_w2(tmp_path):
+    smoke = _materialized_smoke_sources(tmp_path)
+
+    resolve = (smoke / "brender-core-material-resolve.c").read_text(encoding="utf-8")
+
+    assert "ex[2][0]=x2; ey[2][0]=y2; ew[2][0]=w2;" in resolve
+    assert "ex[2][0]=x2; ey[2][0]=y2; ew[2][1]=w2;" not in resolve
+
+
+def test_pixelmap_roundtrip_rejects_existing_workfile_and_cleans_only_owned_path(tmp_path):
+    smoke = _materialized_smoke_sources(tmp_path)
+
+    roundtrip = (smoke / "brender-core-pixelmap-roundtrip.c").read_text(
+        encoding="utf-8"
+    )
+
+    assert "path_exists(work_path)" in roundtrip
+    assert '"workfile-exists"' in roundtrip
+    assert "created_workfile = 1;" in roundtrip
+    assert "if (created_workfile) remove(work_path);" in roundtrip
+    assert (
+        roundtrip.replace("if (created_workfile) remove(work_path);", "").find(
+            "remove(work_path);"
+        )
+        == -1
+    )
+
+
+def test_material_file_audit_cleans_only_owned_default_workfile(tmp_path):
+    smoke = _materialized_smoke_sources(tmp_path)
+
+    material_file = (smoke / "brender-core-material-file-audit.c").read_text(
+        encoding="utf-8"
+    )
+
+    assert "path_exists(work_path)" in material_file
+    assert '\\"workfile_exists\\":true' in material_file
+    assert "created_workfile = 1;" in material_file
+    assert "if (created_workfile) remove(work_path);" in material_file
+    assert (
+        material_file.replace("if (created_workfile) remove(work_path);", "").find(
+            "remove(work_path);"
+        )
+        == -1
+    )
+
+
+def test_generated_receipts_escape_json_string_values(tmp_path):
+    smoke = _materialized_smoke_sources(tmp_path)
+    generated_sources = [
+        smoke / "brender-core-asset-audit.c",
+        smoke / "brender-core-material-audit.c",
+        smoke / "brender-core-material-file-audit.c",
+        smoke / "brender-core-pixelmap-roundtrip.c",
+        smoke / "brender-core-material-resolve.c",
+        smoke / "brender-core-texture-file-sample.c",
+        smoke / "brender-core-game-shell.c",
+        smoke / "brender-core-softrend-render.c",
+    ]
+    unsafe_receipt_formats = [
+        '{"model":"%s"',
+        '{"file":"%s"',
+        '{"asset":"%s"',
+        ',"id":"%s"',
+        ',"roundtrip":"%s"',
+        ',"material":"%s"',
+        ',"material_id":"%s"',
+        ',"texture":"%s"',
+        ',"palette":"%s"',
+    ]
+
+    for path in generated_sources:
+        source = path.read_text(encoding="utf-8")
+        assert "static void json_write_string" in source
+        assert "case '\"':" in source
+        assert "case '\\\\':" in source
+        assert "ch < 0x20" in source
+        assert "\\\\u%04x" in source
+        for unsafe_format in unsafe_receipt_formats:
+            assert unsafe_format not in source
+
+
+def test_texture_rungs_resolve_indexed_texels_through_loaded_palette(tmp_path):
+    smoke = _materialized_smoke_sources(tmp_path)
+    texture_sources = [
+        smoke / "brender-core-texture-file-sample.c",
+        smoke / "brender-core-game-shell.c",
+    ]
+
+    for path in texture_sources:
+        source = path.read_text(encoding="utf-8")
+        assert "resolve_texel_colour(tex, tu, tv)" in source
+        assert "case BR_PMT_INDEX_8:" in source
+        assert "if (tex->map != NULL)" in source
+        assert "BrPixelmapPixelGet(tex->map, 0, texel)" in source
+        assert (
+            "texel = BrPixelmapPixelGet(tex, tu, tv);\n"
+            "                r  = (int)(((texel >> 16) & 0xff) * shade);"
+        ) not in source
+
+
+def test_host_semantic_rejects_existing_workfile_and_cleans_only_owned_path(tmp_path):
+    smoke = _materialized_smoke_sources(tmp_path)
+
+    host = (smoke / "brender-core-host-semantic.c").read_text(encoding="utf-8")
+
+    assert "path_exists(work_path)" in host
+    assert '\\"workfile_exists\\":true' in host
+    assert "created_workfile = 1;" in host
+    assert "if (created_workfile) remove(work_path);" in host
+    assert (
+        host.replace("if (created_workfile) remove(work_path);", "").find(
+            "remove(work_path);"
+        )
+        == -1
+    )
+
+
+def test_softrend_and_tia_sources_omit_investigation_diagnostics(tmp_path):
+    harness = _materialized_harness(tmp_path)
+
+    softrend = (harness / "smoke" / "brender-core-softrend-render.c").read_text(
+        encoding="utf-8"
+    )
+    pentprim = (harness / "compat" / "brender-pentprim-c-port.c").read_text(
+        encoding="utf-8"
+    )
+
+    for diagnostic in ["PLIB[", "MARK af-precomputed", "STATECHK"]:
+        assert diagnostic not in softrend
+    for diagnostic in ["TIA tw=", "pal[0]=", "TIADBG"]:
+        assert diagnostic not in pentprim
+
+
+def test_softrend_period_pipeline_emits_eight_orbit_frames(tmp_path):
+    smoke = _materialized_smoke_sources(tmp_path)
+    softrend = (smoke / "brender-core-softrend-render.c").read_text(
+        encoding="utf-8"
+    )
+
+    assert "for (frame = 0; frame < 8; frame++)" in softrend
+    assert '\\"frames\\":8' in softrend
+    assert 'frame * 45' in softrend
+
+
+def test_softrend_period_pipeline_clears_colour_and_depth_each_orbit_frame(tmp_path):
+    smoke = _materialized_smoke_sources(tmp_path)
+    softrend = (smoke / "brender-core-softrend-render.c").read_text(
+        encoding="utf-8"
+    )
+    render_loop = softrend.split("for (frame = 0; frame < 8; frame++)", 1)[1]
+
+    assert "static void clear_pixelmap_storage" in softrend
+    assert "clear_pixelmap_storage(pm);" in render_loop
+    assert "BrPixelmapFill(depth, 0);" in render_loop
+    assert render_loop.index("clear_pixelmap_storage(pm);") < render_loop.index(
+        "BrZbSceneRender(world, camera_actor, pm, depth);"
+    )
+    assert render_loop.index("BrPixelmapFill(depth, 0);") < render_loop.index(
+        "BrZbSceneRender(world, camera_actor, pm, depth);"
+    )
+    assert "BrZbSceneRenderContinue(" not in render_loop
 
 
 def test_materializer_refuses_output_inside_source_checkout(tmp_path):
