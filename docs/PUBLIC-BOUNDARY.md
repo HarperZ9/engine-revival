@@ -46,7 +46,9 @@ attribution, release commit, commands, dimensions, input hashes, output hashes,
 and limitations. It does not include upstream BRender source, upstream assets,
 private build trees, or restricted media.
 
-The BRender packet uses two explicit evidence boundaries:
+The BRender packet of 27 August 2026 uses two explicit evidence boundaries. A
+third, dated 9 October 2026, records that engine-revival 0.3.0 writes the full
+21-target ladder and CI runs it:
 
 - Engine Revival local 12-target portable materializer: public scaffold metadata
   for the local portable harness.

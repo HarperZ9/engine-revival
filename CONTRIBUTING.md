@@ -6,7 +6,7 @@ recovery tasks for historical engine and toolchain revival.
 ## Add A Target
 
 Create `targets/<id>.json` with the fields required by
-`schemas/target.schema.json`. Use a stable lowercase ID with hyphens. Keep the
+`src/engine_revival/schemas/target.schema.json`. Use a stable lowercase ID with hyphens. Keep the
 summary factual and public-safe.
 
 ## Add An Artifact

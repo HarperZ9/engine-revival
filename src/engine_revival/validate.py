@@ -15,7 +15,8 @@ TYPE_MAP = {
 
 
 def _schema_root() -> Path:
-    return Path(__file__).resolve().parents[2]
+    """Schemas ship inside the package, so validation works from any install."""
+    return Path(__file__).resolve().parent
 
 
 def _validate_types(record: RecordFile, schema: SchemaSpec) -> list[str]:

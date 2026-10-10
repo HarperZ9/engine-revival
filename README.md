@@ -96,10 +96,12 @@ public BRender Archival v0.1.1 boundary:
 - Release media source run: `brender_core_softrend_render` over `dat/sph32.dat`
   with `final_frame_lit=19284 valid=true`.
 
-Two build/evidence boundaries are intentionally separate:
+From engine-revival 0.3.0 the materializer writes the full 21-target ladder,
+and CI builds it Win32 under MSVC and runs every rung on each change. The
+records keep the two boundaries of 27 August 2026 as the record of that date:
 
 - Engine Revival local 12-target portable materializer: public metadata and
-  scaffold for the portable core ladder.
+  scaffold for the portable core ladder, as it stood on 27 August 2026.
 - External pinned BRender Archival v0.1.1 21-target release: public receipt
   imported from `HarperZ9/brender-archival` at commit
   `11b5a8d539e911a9c07991b751402a7d51bf1bde`.
@@ -133,7 +135,7 @@ the [remaster lane](docs/REMASTER-LANE.md).
 
 ## What the archive holds
 
-![A table of twelve rows: what is in the archive, how many of it there are, and where each number is read from. Twelve record kinds are named in RECORD_DIRS, and three hundred and eighty-two JSON records sit across their directories, with sources leading at eighty-five and artifacts and accessions at sixty-six each. Twenty-nine engine targets span nineteen categories. Eighty-five sources are cited, sixty-eight of them rated high confidence, sixteen moderate and one low. Seven hundred and eighty-five references point from one record to another, and the validator resolves every one of them. Five artifacts are marked do-not-redistribute, and none of them carries a publishable access level. Twelve schemas name one hundred and fifteen required fields between them. The report command writes two hundred and thirty-five files and leaves the committed pages byte-identical. The local portable materializer generates eighteen files and twelve build targets, which is scaffold metadata and not the external twenty-one target release. Twenty-eight of the twenty-nine targets carry no rung claim above the first. One hundred and thirty-three Python tests cover the loaders, the validator, the reports, the audit, the materializer, and every number drawn here.](docs/art/corpus-table.svg)
+![A table of twelve rows: what is in the archive, how many of it there are, and where each number is read from. Twelve record kinds are named in RECORD_DIRS, and three hundred and eighty-two JSON records sit across their directories, with sources leading at eighty-five and artifacts and accessions at sixty-six each. Twenty-nine engine targets span nineteen categories. Eighty-five sources are cited, sixty-eight of them rated high confidence, sixteen moderate and one low. Seven hundred and eighty-five references point from one record to another, and the validator resolves every one of them. Five artifacts are marked do-not-redistribute, and none of them carries a publishable access level. Twelve schemas name one hundred and fifteen required fields between them. The report command writes two hundred and thirty-five files and leaves the committed pages byte-identical. The portable materializer generates thirty-one files and twenty-one CTest targets, and CI builds and runs every one of them on Windows. Twenty-eight of the twenty-nine targets carry no rung claim above the first. One hundred and forty-five Python tests cover the loaders, the validator, the reports, the audit, the materializer, and every number drawn here.](docs/art/corpus-table.svg)
 
 Every count is read from the corpus or from the module that defines it. Rerun
 the commands below and the numbers regenerate.

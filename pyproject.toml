@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "engine-revival"
-version = "0.2.0"
+version = "0.3.0"
 description = "Public tooling spine for historical engine, SDK, and rendering-library revival records."
 readme = "README.md"
 requires-python = ">=3.11"
-license = "FSL-1.1-MIT"
-license-files = ["LICENSE"]
+license = "FSL-1.1-MIT AND MIT"
+license-files = ["LICENSE", "src/engine_revival/brender_compat/MIT-BRender.txt", "src/engine_revival/brender_compat/LICENSE-NOTE.md"]
 authors = [{ name = "Zain Dana Harper" }]
 keywords = ["game-engines", "preservation", "archives", "provenance", "rendering"]
 dependencies = []
@@ -23,6 +23,9 @@ engine-revival = "engine_revival.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.package-data]
+engine_revival = ["schemas/*.schema.json", "brender_compat/*.c", "brender_compat/*.txt", "brender_compat/*.md"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]

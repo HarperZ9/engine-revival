@@ -286,3 +286,55 @@ def test_public_records_do_not_reference_private_workspace_paths():
                 offenders.append(f"{path.relative_to(ROOT).as_posix()}: {term}")
 
     assert offenders == []
+
+
+CURRENT_MATERIALIZER_BOUNDARY = "engine-revival-0.3.0-21-target-materializer"
+CI_WORKFLOW = ROOT / ".github" / "workflows" / "ci.yml"
+
+
+def test_current_boundary_claims_21_targets_and_matches_the_ci_gate():
+    """The dated 0.3.0 boundary must agree with the rung count CI enforces."""
+    workflow = CI_WORKFLOW.read_text(encoding="utf-8")
+    assert 'EXPECTED_RUNGS: "21"' in workflow
+    records = [
+        _load_json(ROOT / "attempts" / f"{ATTEMPT_ID}.json")["release_provenance"],
+        _load_json(ROOT / "harnesses" / "brender-v132-portable-core-plan.json"),
+        _load_json(ROOT / "readiness" / "brender-production-readiness.json"),
+        _load_json(MEDIA_MANIFEST),
+    ]
+    for record in records:
+        current = _boundary_map(record)[CURRENT_MATERIALIZER_BOUNDARY]
+        assert current["owner"] == "Engine Revival"
+        assert current["target_count"] == 21
+        assert current["recorded"] == "2026-10-09"
+        assert current["recipe"][-1].endswith("for the 21-target materializer ladder")
+        # the 2026-08-27 boundary stays as the record of that date
+        assert _boundary_map(record)[LOCAL_MATERIALIZER_BOUNDARY]["target_count"] == 12
+
+
+def test_materializer_template_declares_the_21_target_ladder():
+    """The CMake template the materializer writes must hold 21 CTest targets."""
+    import inspect
+
+    import engine_revival.brender_harness as harness
+    import engine_revival.brender_harness_templates as templates
+
+    project = templates.cmake_project_source(harness.CORE_FLOAT_DEFINES)
+    softrend = inspect.getsource(harness).count('"add_test(NAME brender_core_')
+    assert project.count("add_test(NAME brender_core_") + softrend == 21
+
+
+def test_compat_ports_and_schemas_ship_inside_the_package():
+    from importlib import resources
+
+    compat = resources.files("engine_revival.brender_compat")
+    for name in (
+        "brender-pentprim-c-port.c",
+        "brender-softrend-float-fallbacks.c",
+        "MIT-BRender.txt",
+        "LICENSE-NOTE.md",
+    ):
+        assert compat.joinpath(name).is_file(), name
+    assert "Argonaut Software Limited" in compat.joinpath("MIT-BRender.txt").read_text(encoding="utf-8")
+    schemas = resources.files("engine_revival").joinpath("schemas")
+    assert len([p for p in schemas.iterdir() if p.name.endswith(".schema.json")]) == 12

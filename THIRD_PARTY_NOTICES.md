@@ -20,6 +20,13 @@ and assets are not vendored here. The upstream BRender MIT grant is therefore
 recorded as source provenance, not as a grant for every imported release asset
 in this repository.
 
+## BRender C ports shipped in the package
+
+`src/engine_revival/brender_compat/` holds C ports of BRender v1.3.2 routines.
+They are MIT: ported material copyright 1998 Argonaut Software Limited, new work
+copyright 2026 Zain Dana Harper. The notices sit beside them in
+`MIT-BRender.txt` and `LICENSE-NOTE.md`.
+
 ## Imported BRender Archival release artifacts
 
 The public BRender Archival v0.1.1 release repository at commit
@@ -27,6 +34,13 @@ The public BRender Archival v0.1.1 release repository at commit
 Engine Revival therefore treats imported or derived BRender Archival release
 artifacts as AGPL-3.0-or-later covered third-party material unless verified
 asset-specific evidence later grants a different license.
+
+Update of 9 October 2026: the author, who holds the copyright in these
+artifacts, relicensed `HarperZ9/brender-archival` under MIT from 0.3.0 (commit
+`1a93b7e`), `gallery/` included. The imported copies listed below may therefore
+also be used under MIT, and the upstream BRender notice still applies to any
+BRender asset they depict. The AGPL text stays as the record of the v0.1.1
+terms.
 
 The canonical license text is committed at
 [AGPL-3.0-or-later](LICENSES/AGPL-3.0-or-later.txt).
