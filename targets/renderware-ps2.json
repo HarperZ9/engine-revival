@@ -1,6 +1,34 @@
 {
   "category": "middleware",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "RenderWare was a 3D middleware SDK; this entry covers its PlayStation 2 version.",
+    "links": [
+      {
+        "label": "PS2 Gold 1.3 release notes (Internet Archive)",
+        "url": "https://archive.org/stream/render-ware-3-ps-2-gold-1.3-update-release-notes/RenderWare3%20%28PS2%20Gold%20-%201.3%20update%29%20Release%20Notes_djvu.txt"
+      },
+      {
+        "label": "SDK 3.10 PS2 listing (Internet Archive)",
+        "url": "https://archive.org/details/rw310-ps2"
+      },
+      {
+        "label": "Gene Buckle papers finding aid",
+        "url": "https://www.museumofplay.org/app/uploads/2025/01/Guide-to-the-Gene-Buckle-papers.pdf"
+      }
+    ],
+    "maker": "Criterion (later EA)",
+    "next": "Map the public release notes and version history, then test whether librw can stand in for the PS2 SDK.",
+    "source_ids": [
+      "internet-archive-renderware-ps2-gold-notes",
+      "internet-archive-rw310-ps2",
+      "strong-gene-buckle-renderware"
+    ],
+    "status": "candidate",
+    "what_it_was": "RenderWare 3 for PlayStation 2 was a 3D graphics SDK used with a Linux development host and Windows PC tools. Release notes for the PS2 Gold 1.3 update date from about January 2000, and an SDK 3.10 package for PS2 is also recorded.",
+    "what_survives": "The original source is lost or restricted, and the release notes say the software was furnished under licence or NDA, so the archive redistributes nothing. The release notes and an SDK package exist only as Internet Archive listings, and The Strong museum holds a copy of the notes. The librw project is a clean-room reimplementation that a revival could build on.",
+    "years": "around 2000"
+  },
   "id": "renderware-ps2",
   "name": "RenderWare PS2",
   "platforms": [

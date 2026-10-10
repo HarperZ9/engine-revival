@@ -1,9 +1,46 @@
 {
   "category": "platform-toolchain",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "Sony's official PlayStation development tools, including SDevTC and the Net Yaroze hobbyist kit.",
+    "links": [
+      {
+        "label": "PSn00bSDK",
+        "url": "https://github.com/Lameguy64/PSn00bSDK"
+      },
+      {
+        "label": "SDevTC manual (Internet Archive)",
+        "url": "https://archive.org/details/SCE-SDevTC-Aug1998"
+      },
+      {
+        "label": "Net Yaroze documentation (Internet Archive)",
+        "url": "https://archive.org/details/NetYarozeDocumentation"
+      },
+      {
+        "label": "Runtime Library 3.3 (Redump)",
+        "url": "https://redump.org/disc/50387/"
+      }
+    ],
+    "maker": "Sony Computer Entertainment",
+    "next": "Point readers to PSn00bSDK and write one page that maps the Sony tools to their open replacements.",
+    "source_ids": [
+      "psnoobsdk-github",
+      "internet-archive-sdevtc-aug1998",
+      "internet-archive-net-yaroze-documentation",
+      "redump-ps1-runtime-library-33"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "SDevTC was Sony's development toolchain for the original PlayStation, formerly known as Psy-Q; its manual dates from August 1998. Net Yaroze came with its own user, startup, library and MIPS reference documentation. Sony also shipped runtime library discs such as Programmer Tool Runtime Library 3.3.",
+    "what_survives": "The Sony SDK is not public, and the manuals and discs appear here only as archive listings. PSn00bSDK is a maintained open-source PlayStation SDK under MPL-2.0 (some sub-tools are GPL) that replaces the Sony libraries without using their files.",
+    "years": "1990s"
+  },
   "id": "ps1-programmer-tool",
   "name": "PS1 Programmer's Tool / SDevTC / Net Yaroze",
-  "platforms": ["PlayStation", "Net Yaroze", "Windows PC toolchain"],
+  "platforms": [
+    "PlayStation",
+    "Net Yaroze",
+    "Windows PC toolchain"
+  ],
   "priority": 84,
   "public_status": "curated-public-metadata",
   "related_targets": [],

@@ -1,12 +1,48 @@
 {
   "category": "graphics-api",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "QuickDraw 3D was Apple's 3D graphics API for the classic Mac OS and Windows.",
+    "links": [
+      {
+        "label": "QuickDraw 3D 1.5.4 manual (PDF)",
+        "url": "https://worldcolleges.info/sites/default/files/3D_Graphics_With_QuickDraw_3D.pdf"
+      },
+      {
+        "label": "QuickDraw 3D documentation Q&A",
+        "url": "https://leopard-adc.pepas.com/qa/qd3d/qd3d28.html"
+      },
+      {
+        "label": "Quesa",
+        "url": "https://github.com/jwwalker/Quesa"
+      }
+    ],
+    "maker": "Apple",
+    "next": "Find original distribution media and documentation, and match each part of the API to its Quesa equivalent.",
+    "source_ids": [
+      "apple-quickdraw3d-manual-154-pdf",
+      "apple-quickdraw3d-documentation-qa",
+      "quesa-github"
+    ],
+    "status": "dossier",
+    "what_it_was": "QuickDraw 3D gave Mac OS and Windows programs a 3D API with both retained and immediate rendering. It used the 3DMF file format and the RAVE rendering layer. Version 1.5.4 is documented in Apple's manual, 3D Graphics Programming with QuickDraw 3D.",
+    "what_survives": "Apple never released the source. The 1.5.4 programming manual and an Apple Technical Q&A on the documentation set are public online. Quesa, a maintained open-source reimplementation of the API, is the practical way to use it today.",
+    "years": "unknown"
+  },
   "id": "quickdraw-3d",
   "name": "QuickDraw 3D",
-  "platforms": ["Mac OS", "Windows", "QuickDraw 3D", "RAVE", "3DMF"],
+  "platforms": [
+    "Mac OS",
+    "Windows",
+    "QuickDraw 3D",
+    "RAVE",
+    "3DMF"
+  ],
   "priority": 73,
   "public_status": "curated-public-metadata",
-  "related_targets": ["quesa"],
+  "related_targets": [
+    "quesa"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "distribution-media-recovery",
   "rights_posture": "public-reference-only",

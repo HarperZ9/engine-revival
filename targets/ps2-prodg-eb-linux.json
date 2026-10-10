@@ -1,9 +1,48 @@
 {
   "category": "platform-toolchain",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "The PlayStation 2 development tools: SN Systems' ProDG, Sony's Linux kit, and the open PS2SDK.",
+    "links": [
+      {
+        "label": "PS2SDK",
+        "url": "https://github.com/ps2dev/ps2sdk"
+      },
+      {
+        "label": "ps2dev",
+        "url": "https://ps2dev.github.io/"
+      },
+      {
+        "label": "Linux for PlayStation 2 release (2002)",
+        "url": "https://sonyinteractive.com/en/press-releases/2002/sony-computer-entertainment-announces-worldwide-release-of-linux-for-playstation2/"
+      },
+      {
+        "label": "Sony to acquire SN Systems (2005)",
+        "url": "https://sonyinteractive.com/en/press-releases/2005/sony-computer-entertainment-to-acquire-sn-systems/"
+      }
+    ],
+    "maker": "SN Systems and Sony Computer Entertainment",
+    "next": "Map the original toolchain against PS2SDK and record a repeatable PS2SDK build.",
+    "source_ids": [
+      "sie-sn-systems-acquisition-2005",
+      "sie-ps2-linux-release-2002",
+      "internet-archive-ps2-linux-pal-discs",
+      "ps2dev-site",
+      "ps2dev-ps2sdk-github"
+    ],
+    "status": "dossier",
+    "what_it_was": "ProDG was SN Systems' toolchain used by PlayStation 2 developers; Sony announced in 2005 that it would acquire SN Systems. Sony also released Linux for PlayStation 2 Release 1.0 worldwide in 2002, a kit for running Linux on the console.",
+    "what_survives": "ProDG is proprietary and not public, and publishing it would need the rights holder. PS2 Linux installation discs appear as an Internet Archive listing. The ps2dev project's PS2SDK is an open-source library set for PS2 homebrew development.",
+    "years": "2000s"
+  },
   "id": "ps2-prodg-eb-linux",
   "name": "PS2 ProDG / EB / Linux stack",
-  "platforms": ["PlayStation 2", "ProDG", "PS2 Linux", "ps2dev"],
+  "platforms": [
+    "PlayStation 2",
+    "ProDG",
+    "PS2 Linux",
+    "ps2dev"
+  ],
   "priority": 78,
   "public_status": "curated-public-metadata",
   "related_targets": [],

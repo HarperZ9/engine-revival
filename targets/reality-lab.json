@@ -1,12 +1,57 @@
 {
   "category": "middleware",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "Reality Lab was RenderMorphics' real-time 3D library, which Microsoft bought before shipping Direct3D.",
+    "links": [
+      {
+        "label": "Reality Lab release two report",
+        "url": "https://www.techmonitor.ai/technology/rendermorphics_to_release_new_reality_lab"
+      },
+      {
+        "label": "Otto Berkes on DirectX",
+        "url": "https://ottoberkes.wordpress.com/2015/04/12/directx/"
+      },
+      {
+        "label": "Microsoft ships Direct3D (1996)",
+        "url": "https://news.microsoft.com/source/1996/06/13/microsoft-ships-direct3d/"
+      },
+      {
+        "label": "DirectX SDK legacy samples",
+        "url": "https://github.com/microsoft/DirectX-SDK-Samples"
+      }
+    ],
+    "maker": "RenderMorphics, then Microsoft",
+    "next": "Collect more primary documents on Reality Lab and ask the rights holder about its material.",
+    "source_ids": [
+      "techmonitor-reality-lab-release-1995",
+      "microsoft-acquisition-history-rendermorphics",
+      "drdobbs-reality-lab-windows-plan",
+      "otto-berkes-directx-reality-lab-history",
+      "microsoft-direct3d-ships-1996",
+      "microsoft-directx-sdk-samples-github"
+    ],
+    "status": "dossier",
+    "what_it_was": "Reality Lab was a C-based 3D rendering library with an object-oriented, scene-graph style API. Its release two, reported in January 1995, targeted PlayStation, Windows NT and WinG, with hardware drivers planned. Microsoft acquired RenderMorphics on February 23, 1995, planned to include Reality Lab in Windows, and shipped Direct3D in the DirectX 2 SDK on June 13, 1996.",
+    "what_survives": "No Reality Lab source is public, and publishing anything more needs the rights holder. What survives publicly is press coverage, a former Microsoft engineer's account, and Microsoft's legacy DirectX SDK samples under the MIT licence, which show the successor API and not Reality Lab itself.",
+    "years": "1990s"
+  },
   "id": "reality-lab",
   "name": "RenderMorphics Reality Lab",
-  "platforms": ["Windows 95", "Windows NT", "WinG", "PlayStation", "Direct3D", "DirectX 2"],
+  "platforms": [
+    "Windows 95",
+    "Windows NT",
+    "WinG",
+    "PlayStation",
+    "Direct3D",
+    "DirectX 2"
+  ],
   "priority": 77,
   "public_status": "curated-public-metadata",
-  "related_targets": ["brender", "renderware-ps2"],
+  "related_targets": [
+    "brender",
+    "renderware-ps2"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "private-lead-public-metadata",
   "rights_posture": "rights-holder-needed",

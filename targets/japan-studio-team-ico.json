@@ -1,12 +1,56 @@
 {
   "category": "studio-lineage",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "Team Ico, part of Sony's Japan Studio, made ICO, Shadow of the Colossus and The Last Guardian.",
+    "links": [
+      {
+        "label": "Fumito Ueda interview (PlayStation Blog)",
+        "url": "https://blog.playstation.com/2010/09/24/team-ico-talks-fumito-ueda-on-the-last-guardian-shadow-of-the-colossus/"
+      },
+      {
+        "label": "ICO and Shadow of the Colossus Collection",
+        "url": "https://blog.playstation.com/2010/09/15/ico-and-shadow-of-the-colossus-collection-hits-ps3-spring-2011-with-3d/"
+      },
+      {
+        "label": "Introducing Team Asobi",
+        "url": "https://blog.playstation.com/2021/06/02/introducing-team-asobi-creators-of-the-astro-bot-series/"
+      },
+      {
+        "label": "Japan Studio reorganization",
+        "url": "https://www.siliconera.com/japan-studio-reorganization-announced/"
+      }
+    ],
+    "maker": "Sony Japan Studio / Team Ico (Fumito Ueda)",
+    "next": "Write a studio history page from the official pages and interviews.",
+    "source_ids": [
+      "playstation-blog-team-ico-ueda-interview",
+      "playstation-blog-team-ico-collection-2010",
+      "playstation-store-the-last-guardian",
+      "playstation-store-shadow-of-the-colossus",
+      "playstation-blog-team-asobi-2021",
+      "siliconera-japan-studio-reorganization"
+    ],
+    "status": "dossier",
+    "what_it_was": "Team Ico was the group around Fumito Ueda behind ICO and Shadow of the Colossus; it presented their PS3 collection in 2010. Its later game, The Last Guardian, came to PlayStation 4, and Shadow of the Colossus was remade for PS4 with Bluepoint. Sony re-centred Japan Studio on Team Asobi on April 1, 2021.",
+    "what_survives": "The engine and production material are not public, and rights are restricted. Only official PlayStation pages, interviews and reorganization reporting are public.",
+    "years": "unknown; Japan Studio was reorganized in 2021"
+  },
   "id": "japan-studio-team-ico",
   "name": "Japan Studio / Team Ico",
-  "platforms": ["PlayStation 2", "PlayStation 3", "PlayStation 4", "ICO", "Shadow of the Colossus", "The Last Guardian"],
+  "platforms": [
+    "PlayStation 2",
+    "PlayStation 3",
+    "PlayStation 4",
+    "ICO",
+    "Shadow of the Colossus",
+    "The Last Guardian"
+  ],
   "priority": 69,
   "public_status": "curated-public-metadata",
-  "related_targets": ["ps2-prodg-eb-linux"],
+  "related_targets": [
+    "ps2-prodg-eb-linux"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "oral-history-and-binary-archaeology",
   "rights_posture": "restricted",

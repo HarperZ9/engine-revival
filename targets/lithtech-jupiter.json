@@ -1,6 +1,33 @@
 {
   "category": "game-engine",
   "era": "2000s",
+  "hub": {
+    "headline": "LithTech Jupiter was Monolith's game engine and development system for Windows PCs.",
+    "links": [
+      {
+        "label": "ltjs (reference only, rights unresolved)",
+        "url": "https://github.com/bibendovsky/ltjs"
+      },
+      {
+        "label": "Jupiter build 51 (Internet Archive)",
+        "url": "https://archive.org/details/lithengine"
+      },
+      {
+        "label": "Jupiter Development Guide text",
+        "url": "https://archive.org/stream/lithengine/JupiterDevGuide_djvu.txt"
+      }
+    ],
+    "maker": "Monolith Productions / LithTech, Inc.",
+    "next": "Write build notes for people who already own a lawful copy, without copying any engine files.",
+    "source_ids": [
+      "internet-archive-lithtech-jupiter",
+      "internet-archive-lithtech-jupiter-dev-guide"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "Jupiter was a version of the LithTech Development System for Windows PCs, built with Visual C++ 6.0 against DirectX 8.1 and working with 3ds Max and Maya. An Internet Archive item preserves build 51, dated March 19, 2002, with a development guide that covers toolchain needs and component layout.",
+    "what_survives": "The Internet Archive item and the development guide are public, but the guide's legal notice reads copyright 1998 to 2002 LithTech, Inc., all rights reserved. The ltjs project maintains a fork, yet its source carries an in-tree all-rights-reserved notice and the claimed GPLv2 release has no primary source, so rights are unresolved.",
+    "years": "1998 to 2002"
+  },
   "id": "lithtech-jupiter",
   "name": "LithTech Jupiter",
   "platforms": [
@@ -12,7 +39,9 @@
   ],
   "priority": 79,
   "public_status": "curated-public-metadata",
-  "related_targets": ["reality-lab"],
+  "related_targets": [
+    "reality-lab"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "user-supplied-reproduction",
   "rights_posture": "rights-holder-needed",

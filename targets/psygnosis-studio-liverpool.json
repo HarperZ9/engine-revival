@@ -1,12 +1,50 @@
 {
   "category": "studio-lineage",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "Psygnosis, later Sony's Studio Liverpool, was the Liverpool studio behind Wipeout.",
+    "links": [
+      {
+        "label": "National Museums Liverpool: Psygnosis",
+        "url": "https://www.liverpoolmuseums.org.uk/stories/psygnosis-how-did-liverpool-company-transform-gaming-world-big-question"
+      },
+      {
+        "label": "Game Developer: Studio Liverpool closure",
+        "url": "https://www.gamedeveloper.com/business/sony-closes-i-wipeout-i-s-studio-liverpool"
+      },
+      {
+        "label": "WIRED: Studio Liverpool closure",
+        "url": "https://www.wired.com/2012/08/wireduk-studio-liverpool-closed/"
+      }
+    ],
+    "maker": "Psygnosis / Sony Studio Liverpool",
+    "next": "Write a studio history page and list leads on its asset tools and file formats.",
+    "source_ids": [
+      "national-museums-liverpool-psygnosis-history",
+      "gamedeveloper-studio-liverpool-closure",
+      "wired-studio-liverpool-closure"
+    ],
+    "status": "dossier",
+    "what_it_was": "Psygnosis was a Liverpool game company with a large influence on the PlayStation years, known for Wipeout and Colony Wars. As Sony's Studio Liverpool it made games for platforms from Amiga to PlayStation Vita, including the Wipeout and Formula One series. Sony closed the studio in August 2012.",
+    "what_survives": "No engine source or production assets are public, and the archive copies none. Public history comes from National Museums Liverpool and from closure reporting by Game Developer and WIRED.",
+    "years": "1984 to 2012"
+  },
   "id": "psygnosis-studio-liverpool",
   "name": "Psygnosis / Studio Liverpool",
-  "platforms": ["Amiga", "PlayStation", "PlayStation 2", "PlayStation Portable", "PlayStation Vita", "Wipeout"],
+  "platforms": [
+    "Amiga",
+    "PlayStation",
+    "PlayStation 2",
+    "PlayStation Portable",
+    "PlayStation Vita",
+    "Wipeout"
+  ],
   "priority": 73,
   "public_status": "curated-public-metadata",
-  "related_targets": ["ps1-programmer-tool", "ps2-prodg-eb-linux"],
+  "related_targets": [
+    "ps1-programmer-tool",
+    "ps2-prodg-eb-linux"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "asset-pipeline-reconstruction",
   "rights_posture": "public-reference-only",

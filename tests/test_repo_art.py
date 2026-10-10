@@ -91,11 +91,11 @@ def test_the_corpus_holds_twelve_record_kinds():
     assert [word.strip() for word in named.split(",")] == list(RECORD_DIRS)
 
 
-def test_three_hundred_and_eighty_two_records_sit_on_disk(records):
-    assert CARD["records on disk"]["value"] == "382 files"
+def test_three_hundred_and_eighty_three_records_sit_on_disk(records):
+    assert CARD["records on disk"]["value"] == "383 files"
     counts = {kind: len(found) for kind, found in records.items()}
-    assert sum(counts.values()) == 382
-    assert counts["source"] == 85
+    assert sum(counts.values()) == 383
+    assert counts["source"] == 86
     assert counts["artifact"] == 66
     assert counts["accession"] == 66
     assert counts["task"] == 38
@@ -113,10 +113,10 @@ def test_twenty_nine_engines_across_nineteen_categories(records):
 
 
 def test_every_source_carries_its_own_confidence(records):
-    assert CARD["sources cited"]["value"] == "85 of them"
+    assert CARD["sources cited"]["value"] == "86 of them"
     confidence = Counter(source.payload["confidence"] for source in records["source"])
-    assert confidence == {"high": 68, "moderate": 16, "low": 1}
-    assert sum(confidence.values()) == 85
+    assert confidence == {"high": 69, "moderate": 16, "low": 1}
+    assert sum(confidence.values()) == 86
 
 
 def test_seven_hundred_and_eighty_five_references_all_resolve(records):

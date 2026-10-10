@@ -190,6 +190,9 @@ def test_live_sources_are_cited_by_archive_records():
     ):
         for record in _json_records(directory):
             used_source_ids.update(str(source_id) for source_id in record.get("source_ids", []))
+    # the catalogue entry on each target cites its sources too
+    for record in _json_records("targets"):
+        used_source_ids.update(str(source_id) for source_id in record.get("hub", {}).get("source_ids", []))
     assert sorted(source_ids - used_source_ids) == []
 
 

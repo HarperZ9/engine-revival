@@ -1,18 +1,34 @@
 {
-    "category":  "renderer-dcc",
-    "era":  "1990s-2000s",
-    "id":  "truespace-caligari",
-    "name":  "trueSpace / Caligari",
-    "platforms":  [
-                      "Windows"
-                  ],
-    "priority":  60,
-    "public_status":  "curated-public-sources",
-    "related_targets":  [
-
-                        ],
-    "restricted_status":  "none-known",
-    "revival_lane":  "lead-dossier",
-    "rights_posture":  "unresolved",
-    "summary":  "Caligari trueSpace DCC and its renderer; freeware binaries circulated after acquisition but no authorized source release is known."
+  "category": "renderer-dcc",
+  "era": "1990s-2000s",
+  "hub": {
+    "headline": "trueSpace was Caligari's 3D modelling and rendering program for Windows.",
+    "links": [
+      {
+        "label": "trueSpace (Wikipedia)",
+        "url": "https://en.wikipedia.org/wiki/TrueSpace"
+      }
+    ],
+    "maker": "Caligari Corporation (from Octree Software, founded by Roman Ormandy)",
+    "next": "Document the authorized freeware release and look for a rights holder able to grant more.",
+    "source_ids": [
+      "truespace-caligari-lead"
+    ],
+    "status": "dossier",
+    "what_it_was": "trueSpace grew out of Octree Software, founded in 1986, and shipped on Windows from 1994 after Caligari Corporation formed in 1993. Microsoft acquired Caligari in February 2008, released trueSpace 7.6 as freeware in July 2008, and officially discontinued it in May 2009.",
+    "what_survives": "No authorized source release is known; the freeware is proprietary. A leaked source for an older version circulates, and the archive will not use or link it. Rights are unresolved.",
+    "years": "1994 to 2009"
+  },
+  "id": "truespace-caligari",
+  "name": "trueSpace / Caligari",
+  "platforms": [
+    "Windows"
+  ],
+  "priority": 60,
+  "public_status": "curated-public-sources",
+  "related_targets": [],
+  "restricted_status": "none-known",
+  "revival_lane": "lead-dossier",
+  "rights_posture": "unresolved",
+  "summary": "Caligari trueSpace DCC and its renderer; freeware binaries circulated after acquisition but no authorized source release is known."
 }

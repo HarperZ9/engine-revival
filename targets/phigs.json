@@ -1,12 +1,57 @@
 {
   "category": "graphics-standard",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "PHIGS is an international standard API for 3D graphics from the years before OpenGL.",
+    "links": [
+      {
+        "label": "CERN OpenPHIGS",
+        "url": "https://github.com/CERN/OpenPHIGS"
+      },
+      {
+        "label": "Open PHIGS on SourceForge",
+        "url": "https://sourceforge.net/projects/phigs/"
+      },
+      {
+        "label": "ISO/IEC 9592-3:1989",
+        "url": "https://www.iso.org/standard/17363.html"
+      },
+      {
+        "label": "NIST PHIGS validation tests",
+        "url": "https://www.nist.gov/publications/users-guide-phigs-validation-tests-version-21"
+      }
+    ],
+    "maker": "ISO/IEC standards bodies",
+    "next": "Point readers to CERN OpenPHIGS and record a repeatable build while its licence notices are reviewed.",
+    "source_ids": [
+      "github-cern-openphigs",
+      "github-fbradasc-openphigs-license",
+      "sourceforge-open-phigs",
+      "iso-phigs-9592-3",
+      "nist-phigs-validation-guide"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "PHIGS (with its PHIGS+ extension) is a 3D graphics standard published as ISO/IEC 9592 and 9593. ISO/IEC 9592-3:1989 defined its clear-text archive encoding and is now withdrawn. NIST published validation tests for checking PHIGS implementations.",
+    "what_survives": "The standard text is not copied here, but ISO and NIST catalogue pages are public. OpenPHIGS reimplements PHIGS with an OpenGL backend; CERN keeps a version on GitHub with data-preservation extensions, under permissive X Consortium and Sun Microsystems licence notices.",
+    "years": "1989 to 1990s"
+  },
   "id": "phigs",
   "name": "PHIGS",
-  "platforms": ["PHIGS", "PHIGS+", "ISO/IEC 9592", "ISO/IEC 9593", "PEX", "OpenPHIGS", "OpenGL"],
+  "platforms": [
+    "PHIGS",
+    "PHIGS+",
+    "ISO/IEC 9592",
+    "ISO/IEC 9593",
+    "PEX",
+    "OpenPHIGS",
+    "OpenGL"
+  ],
   "priority": 62,
   "public_status": "curated-public-metadata",
-  "related_targets": ["iris-gl-opengl-bridge", "open-inventor"],
+  "related_targets": [
+    "iris-gl-opengl-bridge",
+    "open-inventor"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "upstream-dependency-atlas",
   "rights_posture": "public-reference-only",

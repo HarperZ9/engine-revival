@@ -7,12 +7,12 @@
 | Artifact accession coverage | 66 | 66 |
 | Target task coverage | 29 | 29 |
 | Target milestone coverage | 29 | 29 |
-| Source usage coverage | 85 | 85 |
+| Source usage coverage | 85 | 86 |
 
 | Record kind | Count |
 |---|---:|
 | target | 29 |
-| source | 85 |
+| source | 86 |
 | artifact | 66 |
 | accession | 66 |
 | task | 38 |
@@ -38,4 +38,4 @@ No missing target milestones.
 
 ## Unused Sources
 
-No unused sources.
+- `blazingrenderer-brender-github`

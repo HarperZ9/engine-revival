@@ -1,22 +1,33 @@
 {
-    "category":  "console-sdk",
-    "era":  "1990s",
-    "id":  "sega-saturn-sgl-sbl",
-    "name":  "Sega Saturn SGL / SBL",
-    "platforms":  [
-                      "Sega Saturn",
-                      "SH-2",
-                      "VDP1",
-                      "VDP2",
-                      "SCU"
-                  ],
-    "priority":  68,
-    "public_status":  "curated-public-sources",
-    "related_targets":  [
-
-                        ],
-    "restricted_status":  "none-known",
-    "revival_lane":  "lead-dossier",
-    "rights_posture":  "unresolved",
-    "summary":  "Sega graphics/system libraries for dual-SH2 Saturn development; documentation-only lead, no known authorized source release."
+  "category": "console-sdk",
+  "era": "1990s",
+  "hub": {
+    "headline": "SGL and SBL were Sega's graphics and system libraries for developing Sega Saturn games.",
+    "links": [],
+    "maker": "Sega",
+    "next": "Find and verify primary documentation for SGL and SBL.",
+    "source_ids": [
+      "saturn-sgl-sbl-lead"
+    ],
+    "status": "dossier",
+    "what_it_was": "SGL and SBL were libraries for programming the Sega Saturn, a console with two SH-2 processors and the VDP1, VDP2 and SCU chips. The archive has not yet confirmed further detail from a primary source.",
+    "what_survives": "No authorized source release is known, and rights are unresolved. The archive has not yet located a verified primary source for this entry.",
+    "years": "1990s"
+  },
+  "id": "sega-saturn-sgl-sbl",
+  "name": "Sega Saturn SGL / SBL",
+  "platforms": [
+    "Sega Saturn",
+    "SH-2",
+    "VDP1",
+    "VDP2",
+    "SCU"
+  ],
+  "priority": 68,
+  "public_status": "curated-public-sources",
+  "related_targets": [],
+  "restricted_status": "none-known",
+  "revival_lane": "lead-dossier",
+  "rights_posture": "unresolved",
+  "summary": "Sega graphics/system libraries for dual-SH2 Saturn development; documentation-only lead, no known authorized source release."
 }

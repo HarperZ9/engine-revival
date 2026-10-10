@@ -1,12 +1,39 @@
 {
   "category": "renderer",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "Aqsis is an open-source renderer compatible with Pixar's RenderMan Interface.",
+    "links": [
+      {
+        "label": "Aqsis source",
+        "url": "https://github.com/aqsis/aqsis"
+      }
+    ],
+    "maker": "The Aqsis Team",
+    "next": "Turn the public source into a repeatable renderer build with a simple test render.",
+    "source_ids": [
+      "aqsis-github"
+    ],
+    "status": "candidate",
+    "what_it_was": "Aqsis is a RenderMan-compatible renderer suite for Windows, Linux and macOS. It includes a renderer, a shader compiler, a texture preprocessor, a RIB processor, a framebuffer and developer libraries.",
+    "what_survives": "The source is public on GitHub under the GPL (GPL-2.0 in the repository metadata). The project is dormant.",
+    "years": "unknown"
+  },
   "id": "aqsis",
   "name": "Aqsis",
-  "platforms": ["Windows", "Linux", "macOS", "RenderMan Interface", "RIB", "RSL"],
+  "platforms": [
+    "Windows",
+    "Linux",
+    "macOS",
+    "RenderMan Interface",
+    "RIB",
+    "RSL"
+  ],
   "priority": 66,
   "public_status": "curated-public-sources",
-  "related_targets": ["renderman-interface"],
+  "related_targets": [
+    "renderman-interface"
+  ],
   "restricted_status": "none-known",
   "revival_lane": "public-source-preservation",
   "rights_posture": "open",

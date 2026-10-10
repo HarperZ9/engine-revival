@@ -27,6 +27,7 @@
     "restricted_status": "string",
     "related_targets": "array",
     "notes": "string",
-    "tags": "array"
+    "tags": "array",
+    "hub": "object"
   }
 }

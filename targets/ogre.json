@@ -1,12 +1,51 @@
 {
   "category": "engine",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "OGRE is an open-source C++ rendering engine that hides the differences between graphics APIs.",
+    "links": [
+      {
+        "label": "OGRE source",
+        "url": "https://github.com/OGRECave/ogre"
+      },
+      {
+        "label": "OGRE site",
+        "url": "https://www.ogre3d.org/"
+      },
+      {
+        "label": "OGRE licensing",
+        "url": "https://www.ogre3d.org/licensing"
+      }
+    ],
+    "maker": "The OGRE project (OGRECave)",
+    "next": "Point readers to the OGRE maintainers and record a repeatable source build with its backend choices.",
+    "source_ids": [
+      "ogre-github",
+      "ogre-licensing",
+      "ogre-site"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "OGRE is a modular C++ rendering backend that sits on top of Vulkan, Direct3D and OpenGL. It runs on Windows, Linux, macOS, Android and iOS.",
+    "what_survives": "OGRE is alive and its source is public on GitHub under the MIT licence. Versions before 1.7 were LGPL, and the official licensing page keeps that history.",
+    "years": "unknown"
+  },
   "id": "ogre",
   "name": "OGRE",
-  "platforms": ["Windows", "Linux", "macOS", "Android", "iOS", "Direct3D", "OpenGL", "Vulkan"],
+  "platforms": [
+    "Windows",
+    "Linux",
+    "macOS",
+    "Android",
+    "iOS",
+    "Direct3D",
+    "OpenGL",
+    "Vulkan"
+  ],
   "priority": 72,
   "public_status": "curated-public-sources",
-  "related_targets": ["mesa"],
+  "related_targets": [
+    "mesa"
+  ],
   "restricted_status": "none-known",
   "revival_lane": "public-source-preservation",
   "rights_posture": "open",

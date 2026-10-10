@@ -1,25 +1,43 @@
 {
-    "category":  "renderer",
-    "era":  "1990s-2000s",
-    "id":  "bmrt-lineage",
-    "name":  "BMRT / Entropy / Gelato Lineage",
-    "platforms":  [
-                      "Windows",
-                      "Linux",
-                      "IRIX",
-                      "RenderMan Interface",
-                      "RIB",
-                      "SL"
-                  ],
-    "priority":  58,
-    "public_status":  "curated-public-sources",
-    "related_targets":  [
-                            "renderman-interface",
-                            "pixie",
-                            "aqsis"
-                        ],
-    "restricted_status":  "none-known",
-    "revival_lane":  "lead-dossier",
-    "rights_posture":  "unresolved",
-    "summary":  "Blue Moon Rendering Tools and its Entropy/Gelato successors: historically pivotal RenderMan-compliant renderers distributed as freeware binaries, sources never released."
+  "category": "renderer",
+  "era": "1990s-2000s",
+  "hub": {
+    "headline": "BMRT was a free RenderMan-compliant renderer that led to the Entropy and Gelato products.",
+    "links": [
+      {
+        "label": "Blue Moon Rendering Tools (Wikipedia)",
+        "url": "https://en.wikipedia.org/wiki/Blue_Moon_Rendering_Tools"
+      }
+    ],
+    "maker": "Larry Gritz (BMRT), then Exluna (Entropy)",
+    "next": "Collect dated primary sources on BMRT and its successors.",
+    "source_ids": [
+      "bmrt-lineage-lead"
+    ],
+    "status": "dossier",
+    "what_it_was": "Blue Moon Rendering Tools was a RenderMan-compliant renderer that Larry Gritz developed at GWU and Cornell, first published in 1994. It ran on Windows, Linux and IRIX, and its final release, 2.6, came in November 2000. Exluna's Entropy followed in 2001; NVIDIA acquired Exluna in July 2002, and the settlement of Pixar's lawsuit ended BMRT and Entropy distribution. The records list Gelato as a later successor.",
+    "what_survives": "BMRT was only ever distributed as shareware and freeware binaries, and the source was never released. Rights are unresolved.",
+    "years": "1994 to 2002"
+  },
+  "id": "bmrt-lineage",
+  "name": "BMRT / Entropy / Gelato Lineage",
+  "platforms": [
+    "Windows",
+    "Linux",
+    "IRIX",
+    "RenderMan Interface",
+    "RIB",
+    "SL"
+  ],
+  "priority": 58,
+  "public_status": "curated-public-sources",
+  "related_targets": [
+    "renderman-interface",
+    "pixie",
+    "aqsis"
+  ],
+  "restricted_status": "none-known",
+  "revival_lane": "lead-dossier",
+  "rights_posture": "unresolved",
+  "summary": "Blue Moon Rendering Tools and its Entropy/Gelato successors: historically pivotal RenderMan-compliant renderers distributed as freeware binaries, sources never released."
 }

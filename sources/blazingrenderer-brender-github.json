@@ -1,0 +1,11 @@
+{
+  "claim_scope": "existence, licence, version and feature set of the maintained modernized BRender fork",
+  "confidence": "high",
+  "id": "blazingrenderer-brender-github",
+  "notes": "Public GitHub repository README read 2026-10-09: Blazing Renderer (BRender) 1.4.0, a modernized fork based on BRender-1997 and BRender-v1.3.2, with OpenGL and SDL2/SDL3 drivers, a portable software rendering backend replacing the x86 assembly rasteriser, samples and utilities, built with CMake, MIT licensed. CI build workflow passing on 2026-10-09.",
+  "publisher": "BlazingRenderer (Zane van Iperen and contributors)",
+  "retrieved_at": "2026-10-09",
+  "source_type": "source-repository",
+  "title": "BlazingRenderer/BRender: modernized fork of BRender",
+  "url": "https://github.com/BlazingRenderer/BRender"
+}

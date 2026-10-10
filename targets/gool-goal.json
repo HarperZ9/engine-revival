@@ -1,12 +1,51 @@
 {
   "category": "engine-language",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "GOOL and GOAL were Lisp-derived languages used to program the Crash Bandicoot and Jak and Daxter games.",
+    "links": [
+      {
+        "label": "OpenGOAL source",
+        "url": "https://github.com/open-goal/jak-project"
+      },
+      {
+        "label": "OpenGOAL project overview",
+        "url": "https://github.com/open-goal/jak-project/blob/master/docs/project-overview.md"
+      },
+      {
+        "label": "Andy Gavin on GOOL",
+        "url": "https://all-things-andy-gavin.com/tag/gool/"
+      }
+    ],
+    "maker": "Andy Gavin (GOOL, per his own account); OpenGOAL Team (modern tools)",
+    "next": "Point readers to OpenGOAL and assemble a page that combines the creator's account with the OpenGOAL tools.",
+    "source_ids": [
+      "andy-gavin-gool-article",
+      "opengoal-jak-project-github",
+      "opengoal-license",
+      "opengoal-project-overview",
+      "opengoal-decompiling-getting-started"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "GOOL was a Lisp-derived object control language for the Crash Bandicoot games on PlayStation. GOAL was later, separate work, used for Jak and Daxter on PlayStation 2. Andy Gavin describes GOOL and how it differs from GOAL in his own developer article.",
+    "what_survives": "OpenGOAL is a maintained open-source project under the ISC licence that rebuilds the GOAL compiler and decompiler and ports the games. Players supply data from their own legal copy of the game; no game assets are included.",
+    "years": "unknown"
+  },
   "id": "gool-goal",
   "name": "GOOL and GOAL",
-  "platforms": ["PlayStation", "PlayStation 2", "Crash Bandicoot", "Jak and Daxter", "OpenGOAL"],
+  "platforms": [
+    "PlayStation",
+    "PlayStation 2",
+    "Crash Bandicoot",
+    "Jak and Daxter",
+    "OpenGOAL"
+  ],
   "priority": 80,
   "public_status": "curated-public-metadata",
-  "related_targets": ["ps1-programmer-tool", "ps2-prodg-eb-linux"],
+  "related_targets": [
+    "ps1-programmer-tool",
+    "ps2-prodg-eb-linux"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "tooling-only-legal-copy-assets",
   "rights_posture": "clean-room-only",
