@@ -5,6 +5,10 @@
     "headline": "BRender (Blazing Render) was Argonaut Software's real-time 3D engine of the 1990s.",
     "links": [
       {
+        "label": "brview for Windows (download)",
+        "url": "https://github.com/HarperZ9/brender-archival/releases/tag/brview-v0.1.0"
+      },
+      {
         "label": "BRender restoration",
         "url": "https://github.com/HarperZ9/brender-archival"
       },
@@ -15,14 +19,10 @@
       {
         "label": "BRender v1.3.2 source (MIT)",
         "url": "https://github.com/foone/BRender-v1.3.2"
-      },
-      {
-        "label": "BRender 3D Movie Maker variant",
-        "url": "https://github.com/foone/BRender-3DMM"
       }
     ],
     "maker": "Argonaut Software",
-    "next": "The modern 64-bit path is being chosen with BlazingRenderer in view, since that fork already runs BRender on current PCs. Textured output in one test path of the period build still renders black and is not claimed as working.",
+    "next": "Run it: download brview for Windows from the restoration's releases. Next, The Keeper's Hour, a short original game built on the same engine to show what it can do. The 64-bit line builds on BlazingRenderer by choice and can be reversed. Textured output in one test path of the 1998 build still renders black and is not claimed as working.",
     "source_ids": [
       "foone-brender-v132",
       "foone-brender-3dmm",
@@ -32,7 +32,7 @@
     ],
     "status": "rebuilt",
     "what_it_was": "BRender drew real-time 3D scenes in software on DOS, Windows, PlayStation and OS/2. It shipped through the 1990s and was used in titles such as Carmageddon, FX Fighter and Microsoft 3D Movie Maker. A variant of the library from about May 1995 sits inside 3D Movie Maker.",
-    "what_survives": "The BRender v1.3.2 source (about November 1998, copyright 1998 Argonaut Software Limited) is public under the MIT licence at foone/BRender-v1.3.2, released with approval attributed to Argonaut's former CEO Jez San. The 3D Movie Maker variant is public too, and BlazingRender.net indexes the source releases and old SDKs. BlazingRenderer maintains a modernized 64-bit fork (version 1.4.0, MIT) with a portable C software rasteriser and SDL3 and OpenGL drivers. The archive rebuilt v1.3.2 from that source: its 21-step test ladder builds and passes in CI, and the restoration is published at HarperZ9/brender-archival.",
+    "what_survives": "The BRender v1.3.2 source (about November 1998, copyright 1998 Argonaut Software Limited) is public under the MIT licence at foone/BRender-v1.3.2, released with approval attributed to Argonaut's former CEO Jez San. The 3D Movie Maker variant is public too, and BlazingRender.net indexes the source releases and old SDKs. BlazingRenderer maintains BRender 1.4, a modernized 64-bit fork (MIT) with a portable C software rasteriser and SDL3 and OpenGL drivers. The archive rebuilt v1.3.2 from its source with a 21-step test ladder, and the same 21 steps pass against BlazingRenderer's 64-bit engine in CI. brview, a viewer for the 1998 sample models on 64-bit Windows, is built on it and released as a download.",
     "years": "1990s"
   },
   "id": "brender",
