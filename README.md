@@ -5,28 +5,57 @@
 
 # engine-revival
 
-Triage lost game engines into evidence-backed revival records.
+The catalogue of lost rendering and game engines: who made each one, what
+survives today and under what licence, and which ones are being rebuilt.
 
-```
-python -m pip install -e ".[test]"
-```
+**Read it as a site: [harperz9.github.io/engine-revival](https://harperz9.github.io/engine-revival/)**
 
-[![version: 0.2.0](https://img.shields.io/badge/version-0.2.0-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/engine-revival/releases/latest)
+[![version: 0.3.0](https://img.shields.io/badge/version-0.3.0-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/engine-revival/releases/latest)
 [![CI](https://github.com/HarperZ9/engine-revival/actions/workflows/ci.yml/badge.svg)](https://github.com/HarperZ9/engine-revival/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-FSL--1.1--MIT-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/engine-revival/blob/main/LICENSE)
 ![python 3.11+](https://img.shields.io/badge/python-3.11%2B-e6e1d6?style=flat-square&labelColor=1a1712)
 
-Public tooling spine for reviving historical game engines, SDKs, rendering
-libraries, CGI toolkits, and studio technology lineages.
+## Rebuilt engines
 
-This repo publishes public-safe metadata, schemas, validation tools, target
-matrices, generated summaries, and evidence packets. It does not publish
-proprietary SDKs, leaked source, game assets, private donor files, private
-contact data, credentials, restricted media, or upstream source snapshots.
+Each rebuilt engine lives in its own repository. This one is the hub that
+catalogues all of them.
+
+| Engine | What you get | Repository |
+|---|---|---|
+| Argonaut BRender v1.3.2 | The 1998 engine rebuilt from its public MIT source, with 21 tests that build it and check each step on every change | [HarperZ9/brender-archival](https://github.com/HarperZ9/brender-archival) |
+
+## The catalogue
+
+29 engines, libraries and APIs, each with what it was, what survives and where
+to go. [Browse the catalogue](https://harperz9.github.io/engine-revival/#catalogue).
+
+| Status | Engines | What it means |
+|---|---|---|
+| Rebuilt | 1 | Rebuilt from public source, with tests that build it and check every step. |
+| Revival candidate | 6 | Public source or a clean-room project exists, so a revival could be built. |
+| Alive upstream | 8 | A living project still maintains it. The catalogue points you there. |
+| Documents only | 14 | Only documents and history survive in public, or the rights are unresolved. |
+
+Coming next: the revival candidates, highest priority first, are listed on the
+[site](https://harperz9.github.io/engine-revival/#next).
+
+## Use it
+
+```
+pip install "engine-revival @ git+https://github.com/HarperZ9/engine-revival@v0.3.0"
+git clone https://github.com/HarperZ9/engine-revival && cd engine-revival
+engine-revival validate        # every record carries the fields its schema names
+engine-revival audit-public    # nothing restricted is marked publishable
+engine-revival site --out _site
+```
+
+The archive never hosts proprietary SDKs, leaked source, game assets, private
+files or restricted media. A restricted engine is recorded as metadata only, and
+`audit-public` refuses any record that marks restricted material as publishable.
 
 ## How a lead is triaged
 
-![Eight stages taking a lost engine lead to a stated posture: lead, sources, liveness, rights, source, record, directory, posture. A lead starts as a name and a dead link. Sources are cited first, each carrying its own confidence rating, and eighty-five of them are cited across the corpus with sixty-eight rated high, sixteen moderate and one low. The archive then asks whether anybody still maintains the project, and eight of them are still maintained, so the directory links the maintainer instead of forking the code. Rights come next: a license, a named rightsholder, or an unresolved posture that blocks any revival. The source itself is either released, reconstructable clean-room, or genuinely lost. Each lead becomes one JSON file whose id matches its filename, and the directory sorts it into hosted restoration, maintained upstream, buildable candidate, or dossier. Twenty-nine engine targets are tracked across nineteen categories. Three outcomes: a revival candidate whose source exists and whose rights allow the work, a lead recorded as a dossier with nothing buildable claimed, and a project the archive does not re-host because its maintainer is active.](docs/art/directory-lane.svg)
+![Eight stages taking a lost engine lead to a stated posture: lead, sources, liveness, rights, source, record, directory, posture. A lead starts as a name and a dead link. Sources are cited first, each carrying its own confidence rating, and eighty-six of them are cited across the corpus with sixty-nine rated high, sixteen moderate and one low. The archive then asks whether anybody still maintains the project, and eight of them are still maintained, so the directory links the maintainer instead of forking the code. Rights come next: a license, a named rightsholder, or an unresolved posture that blocks any revival. The source itself is either released, reconstructable clean-room, or genuinely lost. Each lead becomes one JSON file whose id matches its filename, and the directory sorts it into hosted restoration, maintained upstream, buildable candidate, or dossier. Twenty-nine engine targets are tracked across nineteen categories. Three outcomes: a revival candidate whose source exists and whose rights allow the work, a lead recorded as a dossier with nothing buildable claimed, and a project the archive does not re-host because its maintainer is active.](docs/art/directory-lane.svg)
 
 A project somebody still maintains is linked, not forked. A lead whose rights
 are unresolved stays a dossier. The posture is part of the record.
@@ -36,12 +65,6 @@ are unresolved stays a dossier. The posture is part of the record.
 The [animated explainer](https://harperz9.github.io/repo-explainers/engine-revival.html)
 walks through a lead as a record, validation and its refusals, rights postures, the public-clean audit, the priority index, and claims by rung. Every value on it is output from this repository. Its
 source is [docs/explainer/index.html](docs/explainer/index.html).
-
-## Watch
-
-No concept film fits this tool closely yet. The walkthrough below covers it in text, with real commands and output.
-
-Video walkthrough: coming with the next release.
 
 ## Walkthrough
 
@@ -79,52 +102,6 @@ Install it, run it once, then use the main feature. Each command below is real, 
    ...
    ```
 
-## Current Public Boundary
-
-BRender is the current flagship evidence lane. Engine Revival now preserves the
-public BRender Archival v0.1.1 boundary:
-
-- BRender Archival release commit:
-  `11b5a8d539e911a9c07991b751402a7d51bf1bde`.
-- Release tag: `v0.1.1`.
-- PR: `HarperZ9/brender-archival#9`.
-- Candidate contents: `bbf3ba2f26ee9ae265759e282dc1454b2234b6be`.
-- Upstream public source snapshot:
-  `foone/BRender-v1.3.2` at
-  `d88d0ed41122664b9781015b517db64353e16f19`.
-- Native verification: 21/21 CTest targets under Visual Studio Win32 Debug.
-- Release media source run: `brender_core_softrend_render` over `dat/sph32.dat`
-  with `final_frame_lit=19284 valid=true`.
-
-From engine-revival 0.3.0 the materializer writes the full 21-target ladder,
-and CI builds it Win32 under MSVC and runs every rung on each change. The
-records keep the two boundaries of 27 August 2026 as the record of that date:
-
-- Engine Revival local 12-target portable materializer: public metadata and
-  scaffold for the portable core ladder, as it stood on 27 August 2026.
-- External pinned BRender Archival v0.1.1 21-target release: public receipt
-  imported from `HarperZ9/brender-archival` at commit
-  `11b5a8d539e911a9c07991b751402a7d51bf1bde`.
-
-The relationship boundary is explicit:
-
-- Retro Engine equals play.
-- Engine Revival equals preservation, research, metadata, and evidence.
-- BRender Archival equals the verified specific BRender restoration.
-- Generic Retro output is never BRender proof.
-
-Engine Revival imports BRender Archival's public-safe receipt, transcript,
-media, and provenance. It does not import local experimental branches, private
-build trees, upstream source, binaries, or assets.
-
-## Non-Claims
-
-The BRender evidence packet does not claim completed textured TIA output, x64
-readiness, production readiness, adoption, endorsement, or vendored upstream
-source/assets. The experimental textured TIA path executes in BRender Archival,
-but public release notes record black output from a measured
-vertex-layout/state mismatch.
-
 ## The rung ladder
 
 ![Eight rungs taking a restored engine from dossier to a recovered title: dossier, source secured, build ladder, render parity, asset pipeline, game shell, remaster pass, lost-game recovery. The first rung records the lead and states its rights posture, claiming nothing buildable. The second pins authorized, license-verified source by commit or archive id. The third stands up a reproducible out-of-tree harness in which every rung self-verifies. The fourth matches reference frames to documented original output within a stated tolerance, and the fifth loads and renders original data formats from rights-clean assets. The sixth runs a title flow start to finish, the seventh reports measured gains such as resolution independence and float color, and the eighth makes a platform-lost title playable with provenance for every asset. Twenty-eight of the twenty-nine tracked targets sit at the first rung, twenty-one of them carrying a baseline readiness record and seven carrying none. The remaining engine carries imported evidence from a pinned external release, with a sanitized twenty-one target transcript and a readiness score of eighty-eight. Three outcomes: evidence imported for one engine, every other target still at the first rung, and neither a remaster pass nor a recovered title claimed anywhere.](docs/art/rung-lane.svg)
@@ -135,7 +112,7 @@ the [remaster lane](docs/REMASTER-LANE.md).
 
 ## What the archive holds
 
-![A table of twelve rows: what is in the archive, how many of it there are, and where each number is read from. Twelve record kinds are named in RECORD_DIRS, and three hundred and eighty-two JSON records sit across their directories, with sources leading at eighty-five and artifacts and accessions at sixty-six each. Twenty-nine engine targets span nineteen categories. Eighty-five sources are cited, sixty-eight of them rated high confidence, sixteen moderate and one low. Seven hundred and eighty-five references point from one record to another, and the validator resolves every one of them. Five artifacts are marked do-not-redistribute, and none of them carries a publishable access level. Twelve schemas name one hundred and fifteen required fields between them. The report command writes two hundred and thirty-five files and leaves the committed pages byte-identical. The portable materializer generates thirty-one files and twenty-one CTest targets, and CI builds and runs every one of them on Windows. Twenty-eight of the twenty-nine targets carry no rung claim above the first. One hundred and forty-five Python tests cover the loaders, the validator, the reports, the audit, the materializer, and every number drawn here.](docs/art/corpus-table.svg)
+![A table of twelve rows: what is in the archive, how many of it there are, and where each number is read from. Twelve record kinds are named in RECORD_DIRS, and three hundred and eighty-three JSON records sit across their directories, with sources leading at eighty-six and artifacts and accessions at sixty-six each. Twenty-nine engine targets span nineteen categories. Eighty-six sources are cited, sixty-nine of them rated high confidence, sixteen moderate and one low. Seven hundred and eighty-five references point from one record to another, and the validator resolves every one of them. Five artifacts are marked do-not-redistribute, and none of them carries a publishable access level. Twelve schemas name one hundred and fifteen required fields between them. The report command writes two hundred and thirty-five files and leaves the committed pages byte-identical. The portable materializer generates thirty-one files and twenty-one CTest targets, and CI builds and runs every one of them on Windows. Twenty-eight of the twenty-nine targets carry no rung claim above the first. One hundred and fifty-two Python tests cover the loaders, the validator, the reports, the audit, the materializer, and every number drawn here.](docs/art/corpus-table.svg)
 
 Every count is read from the corpus or from the module that defines it. Rerun
 the commands below and the numbers regenerate.
@@ -166,50 +143,14 @@ when you need it:
 python -m pip install -e ".[media,test]"
 ```
 
-## BRender Evidence
+## Licence
 
-- [BRender archival packet](docs/BRENDER-ARCHIVAL.md)
-- [Sanitized 21-target transcript](attempts/transcripts/brender-v132-ctest-twentyone-targets-2026-08-27.log)
-- [21-target attempt record](attempts/brender-v132-native-ctest-twentyone-targets-win32.json)
-- [Release media provenance](gallery/release-20260827/provenance-manifest.json)
-- [Period pipeline still](gallery/release-20260827/period-pipeline-still.png)
-- [Period pipeline contact sheet](gallery/release-20260827/period-pipeline-orbit-contact-sheet.png)
-- [Orbit frame sequence](gallery/release-20260827/orbit-frame-sequence.png)
-- [Social card](gallery/release-20260827/social-card-1200x630.png)
-
-## BRender Harness Metadata
-
-```powershell
-engine-revival materialize-brender-harness `
-  --source-root C:\path\to\BRender-v1.3.2 `
-  --output-root C:\path\to\brender-v132-portable-core-harness
-```
-
-This command is retained as public harness metadata and scaffolding. The
-verified 21-target restoration boundary is not produced by this local
-materializer in this patch. Use an explicit pinned external checkout recipe for
-that receipt:
-
-```powershell
-git clone https://github.com/HarperZ9/brender-archival.git <brender-archival-v0.1.1>
-git -C <brender-archival-v0.1.1> fetch --tags origin
-git -C <brender-archival-v0.1.1> checkout 11b5a8d539e911a9c07991b751402a7d51bf1bde
-git -C <brender-archival-v0.1.1> rev-parse HEAD
-```
-
-The final command must resolve to
-`11b5a8d539e911a9c07991b751402a7d51bf1bde`. Engine Revival stores the public
-receipt and provenance, not the external implementation checkout.
-
-## Third-party notices
-
-See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). From v0.2.0, code is licensed FSL-1.1-MIT. Earlier releases remain under MIT. FSL-1.1-MIT is the Functional
-Source License, Version 1.1, with MIT as the future licence: each release
-becomes available under MIT two years after it is made available. See
-[LICENSE](LICENSE). The upstream BRender source snapshot is recorded as MIT-licensed
-source provenance and is not vendored here. Imported or derived BRender Archival
-release media/transcript/provenance is treated as AGPL-3.0-or-later covered
-third-party material unless verified asset-specific evidence grants otherwise.
+Code is FSL-1.1-MIT from v0.2.0 (earlier releases MIT): the Functional Source
+License, Version 1.1, with MIT as the future licence, so each release becomes
+MIT two years after it ships. The BRender C ports in
+`src/engine_revival/brender_compat/` are MIT, with the Argonaut Software 1998
+notice beside them. Upstream BRender source is never vendored here. See
+[LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
 ## Public Docs
 

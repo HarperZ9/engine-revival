@@ -161,3 +161,89 @@ The claims above are backed by structured records in this repository:
 `attempts/brender-v132-native-ctest-twentyone-targets-win32.json`, and
 `reproductions/brender-critical-edition-source-build.json`. The generated target
 dossier at `docs/generated/targets/brender.md` is the machine-updated view.
+
+## Evidence record
+
+These sections were on the README front page until 9 October 2026, when the
+README became the catalogue front page. They are kept here unchanged except
+where the 0.3.0 materializer changed what they describe.
+
+### Public boundary
+
+BRender is the current flagship evidence lane. Engine Revival now preserves the
+public BRender Archival v0.1.1 boundary:
+
+- BRender Archival release commit:
+  `11b5a8d539e911a9c07991b751402a7d51bf1bde`.
+- Release tag: `v0.1.1`.
+- PR: `HarperZ9/brender-archival#9`.
+- Candidate contents: `bbf3ba2f26ee9ae265759e282dc1454b2234b6be`.
+- Upstream public source snapshot:
+  `foone/BRender-v1.3.2` at
+  `d88d0ed41122664b9781015b517db64353e16f19`.
+- Native verification: 21/21 CTest targets under Visual Studio Win32 Debug.
+- Release media source run: `brender_core_softrend_render` over `dat/sph32.dat`
+  with `final_frame_lit=19284 valid=true`.
+
+From engine-revival 0.3.0 the materializer writes the full 21-target ladder,
+and CI builds it Win32 under MSVC and runs every rung on each change. The
+records keep the two boundaries of 27 August 2026 as the record of that date:
+
+- Engine Revival local 12-target portable materializer: public metadata and
+  scaffold for the portable core ladder, as it stood on 27 August 2026.
+- External pinned BRender Archival v0.1.1 21-target release: public receipt
+  imported from `HarperZ9/brender-archival` at commit
+  `11b5a8d539e911a9c07991b751402a7d51bf1bde`.
+
+The relationship boundary is explicit:
+
+- Retro Engine equals play.
+- Engine Revival equals preservation, research, metadata, and evidence.
+- BRender Archival equals the verified specific BRender restoration.
+- Generic Retro output is never BRender proof.
+
+Engine Revival imports BRender Archival's public-safe receipt, transcript,
+media, and provenance. It does not import local experimental branches, private
+build trees, upstream source, binaries, or assets.
+
+### Non-claims
+
+The BRender evidence packet does not claim completed textured TIA output, x64
+readiness, production readiness, adoption, endorsement, or vendored upstream
+source/assets. The experimental textured TIA path executes in BRender Archival,
+but public release notes record black output from a measured
+vertex-layout/state mismatch.
+
+### Evidence files
+
+- [BRender archival packet](BRENDER-ARCHIVAL.md)
+- [Sanitized 21-target transcript](../attempts/transcripts/brender-v132-ctest-twentyone-targets-2026-08-27.log)
+- [21-target attempt record](../attempts/brender-v132-native-ctest-twentyone-targets-win32.json)
+- [Release media provenance](../gallery/release-20260827/provenance-manifest.json)
+- [Period pipeline still](../gallery/release-20260827/period-pipeline-still.png)
+- [Period pipeline contact sheet](../gallery/release-20260827/period-pipeline-orbit-contact-sheet.png)
+- [Orbit frame sequence](../gallery/release-20260827/orbit-frame-sequence.png)
+- [Social card](../gallery/release-20260827/social-card-1200x630.png)
+
+### Harness command
+
+```powershell
+engine-revival materialize-brender-harness `
+  --source-root C:\path\to\BRender-v1.3.2 `
+  --output-root C:\path\to\brender-v132-portable-core-harness
+```
+
+From engine-revival 0.3.0 this command writes the full 21-target ladder, and
+CI builds it and runs every step. The 27 August 2026 receipt below came from
+the pinned v0.1.1 release checkout, which stays reproducible with this recipe:
+
+```powershell
+git clone https://github.com/HarperZ9/brender-archival.git <brender-archival-v0.1.1>
+git -C <brender-archival-v0.1.1> fetch --tags origin
+git -C <brender-archival-v0.1.1> checkout 11b5a8d539e911a9c07991b751402a7d51bf1bde
+git -C <brender-archival-v0.1.1> rev-parse HEAD
+```
+
+The final command must resolve to
+`11b5a8d539e911a9c07991b751402a7d51bf1bde`. Engine Revival stores the public
+receipt and provenance, not the external implementation checkout.

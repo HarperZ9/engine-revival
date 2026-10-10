@@ -33,6 +33,8 @@ jobs:
         run: engine-revival validate
       - name: no restricted material carries a publishable level
         run: engine-revival audit-public
+      - name: the documentation site builds from the records
+        run: engine-revival site --out _site
       - name: the published pages regenerate byte for byte
         run: |
           engine-revival report > /dev/null

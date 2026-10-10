@@ -1,12 +1,50 @@
 {
   "category": "graphics-library",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "Open Inventor is SGI's object-oriented 3D scene graph library, built on OpenGL.",
+    "links": [
+      {
+        "label": "Open Inventor source",
+        "url": "https://github.com/aumuell/open-inventor"
+      },
+      {
+        "label": "2000 release notes (README.FIRST)",
+        "url": "https://github.com/aumuell/open-inventor/blob/master/README.FIRST"
+      },
+      {
+        "label": "Coin3D",
+        "url": "https://www.coin3d.org/"
+      }
+    ],
+    "maker": "SGI (Silicon Graphics)",
+    "next": "Point readers to the maintained fork and record a repeatable build of the 2000 source release.",
+    "source_ids": [
+      "open-inventor-github",
+      "open-inventor-readme-first",
+      "coin3d-api-compatibility"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "Open Inventor is a C++ scene graph library layered on OpenGL, originally developed by SGI. It ran on IRIX, Linux and macOS with X11 and Motif. Coin3D later built an independent library on the same API without sharing SGI's code.",
+    "what_survives": "SGI's source was released as open source on August 15, 2000, and a maintained fork is public on GitHub under LGPL-2.1, with the original release notes and build notes. Coin3D offers an independent implementation of the same API.",
+    "years": "unknown"
+  },
   "id": "open-inventor",
   "name": "Open Inventor",
-  "platforms": ["IRIX", "Linux", "macOS", "OpenGL", "X11", "Motif"],
+  "platforms": [
+    "IRIX",
+    "Linux",
+    "macOS",
+    "OpenGL",
+    "X11",
+    "Motif"
+  ],
   "priority": 72,
   "public_status": "curated-public-sources",
-  "related_targets": ["opengl-performer", "iris-gl-opengl-bridge"],
+  "related_targets": [
+    "opengl-performer",
+    "iris-gl-opengl-bridge"
+  ],
   "restricted_status": "none-known",
   "revival_lane": "public-source-preservation",
   "rights_posture": "open",

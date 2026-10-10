@@ -1,12 +1,42 @@
 {
   "category": "rendering-technique",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "tri-Ace's PlayStation 2 renderer used spherical harmonic lighting and HDR rendering.",
+    "links": [
+      {
+        "label": "tri-Ace R&D publications",
+        "url": "https://research.tri-ace.com/"
+      },
+      {
+        "label": "Practical Implementation at tri-Ace (PDF)",
+        "url": "https://research.tri-ace.com/Data/course_note_practical_implementation_at_triace.pdf"
+      }
+    ],
+    "maker": "tri-Ace",
+    "next": "Write a step-by-step reconstruction of the technique from the public presentation and notes.",
+    "source_ids": [
+      "tri-ace-rd-publications-index",
+      "tri-ace-pbr-course-notes-2010"
+    ],
+    "status": "dossier",
+    "what_it_was": "tri-Ace presented its PlayStation 2 techniques for spherical harmonic (SH) lighting and HDR rendering at GDC 2005. Later course notes by Yoshiharu Gotanda show the studio's rendering research continuing into physically based shading.",
+    "what_survives": "No source is public. tri-Ace's research site lists the GDC 2005 presentation, and the later course notes are public as a PDF.",
+    "years": "2000s"
+  },
   "id": "tri-ace-ps2-renderer",
   "name": "tri-Ace PS2 renderer",
-  "platforms": ["PlayStation 2", "tri-Ace", "GDC", "SIGGRAPH"],
+  "platforms": [
+    "PlayStation 2",
+    "tri-Ace",
+    "GDC",
+    "SIGGRAPH"
+  ],
   "priority": 74,
   "public_status": "curated-public-metadata",
-  "related_targets": ["ps2-prodg-eb-linux"],
+  "related_targets": [
+    "ps2-prodg-eb-linux"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "documentation-based-reconstruction",
   "rights_posture": "public-reference-only",

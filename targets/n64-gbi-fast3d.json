@@ -1,20 +1,40 @@
 {
-    "category":  "microcode",
-    "era":  "1990s",
-    "id":  "n64-gbi-fast3d",
-    "name":  "N64 GBI / Fast3D Microcode Family",
-    "platforms":  [
-                      "Nintendo 64",
-                      "RSP",
-                      "RDP"
-                  ],
-    "priority":  70,
-    "public_status":  "curated-public-sources",
-    "related_targets":  [
-
-                        ],
-    "restricted_status":  "none-known",
-    "revival_lane":  "clean-room-lineage",
-    "rights_posture":  "unresolved",
-    "summary":  "The RSP/RDP microcode family behind a console generation. Official microcode is proprietary; libdragon demonstrates a complete open-source replacement path (own ucodes, rspq, open IPL3), making capability revival practical without Nintendo material."
+  "category": "microcode",
+  "era": "1990s",
+  "hub": {
+    "headline": "The GBI and Fast3D microcode family ran the Nintendo 64's graphics coprocessor.",
+    "links": [
+      {
+        "label": "libdragon",
+        "url": "https://libdragon.dev/"
+      },
+      {
+        "label": "libdragon source",
+        "url": "https://github.com/DragonMinded/libdragon"
+      }
+    ],
+    "maker": "Nintendo",
+    "next": "Write a history page and show which libdragon parts replace each piece of the original microcode family.",
+    "source_ids": [
+      "n64-microcode-lead"
+    ],
+    "status": "candidate",
+    "what_it_was": "Nintendo 64 games drew 3D graphics by sending commands to microcode running on the console's RSP and RDP chips. This microcode family, along with the libultra library, was Nintendo's official way to program them.",
+    "what_survives": "The official microcode and libultra are proprietary and not public. libdragon is an open-source replacement SDK under the Unlicense, with its own RSP microcode, a command queue, open boot code, a GCC toolchain and an OpenGL 1.1 port, complete enough for commercial-quality homebrew.",
+    "years": "1990s"
+  },
+  "id": "n64-gbi-fast3d",
+  "name": "N64 GBI / Fast3D Microcode Family",
+  "platforms": [
+    "Nintendo 64",
+    "RSP",
+    "RDP"
+  ],
+  "priority": 70,
+  "public_status": "curated-public-sources",
+  "related_targets": [],
+  "restricted_status": "none-known",
+  "revival_lane": "clean-room-lineage",
+  "rights_posture": "unresolved",
+  "summary": "The RSP/RDP microcode family behind a console generation. Official microcode is proprietary; libdragon demonstrates a complete open-source replacement path (own ucodes, rspq, open IPL3), making capability revival practical without Nintendo material."
 }

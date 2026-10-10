@@ -1,12 +1,55 @@
 {
   "category": "graphics-library",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "Mesa is an open-source library that implements OpenGL and other graphics APIs.",
+    "links": [
+      {
+        "label": "Mesa source (freedesktop.org)",
+        "url": "https://gitlab.freedesktop.org/mesa/mesa"
+      },
+      {
+        "label": "Mesa home",
+        "url": "https://www.mesa3d.org/"
+      },
+      {
+        "label": "Mesa licence",
+        "url": "https://docs.mesa3d.org/license.html"
+      },
+      {
+        "label": "Mesa build guide",
+        "url": "https://docs.mesa3d.org/install.html"
+      }
+    ],
+    "maker": "The Mesa 3D project",
+    "next": "Point readers to the Mesa maintainers and record a repeatable local build from the official build documentation.",
+    "source_ids": [
+      "mesa-home",
+      "mesa-license-docs",
+      "mesa-source-repository-docs",
+      "mesa-build-docs"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "Mesa provides open-source implementations of OpenGL, OpenGL ES, Vulkan, OpenCL and more. It runs on Linux and BSD systems. The archive tracks it as part of OpenGL's history and as a dependency for other engines.",
+    "what_survives": "Mesa is alive. Its upstream Git repository is hosted on freedesktop.org and can be cloned anonymously; the core library is MIT licensed, and some components carry their own licences. Official documentation covers building with Meson.",
+    "years": "unknown"
+  },
   "id": "mesa",
   "name": "Mesa",
-  "platforms": ["Linux", "BSD", "OpenGL", "OpenGL ES", "Vulkan", "OpenCL"],
+  "platforms": [
+    "Linux",
+    "BSD",
+    "OpenGL",
+    "OpenGL ES",
+    "Vulkan",
+    "OpenCL"
+  ],
   "priority": 72,
   "public_status": "curated-public-sources",
-  "related_targets": ["iris-gl-opengl-bridge", "opengl-performer"],
+  "related_targets": [
+    "iris-gl-opengl-bridge",
+    "opengl-performer"
+  ],
   "restricted_status": "none-known",
   "revival_lane": "public-source-preservation",
   "rights_posture": "open",

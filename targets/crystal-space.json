@@ -1,12 +1,45 @@
 {
   "category": "engine",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "Crystal Space is an open-source 3D SDK and game engine written in C++.",
+    "links": [
+      {
+        "label": "Crystal Space source",
+        "url": "https://github.com/crystalspace/CS"
+      },
+      {
+        "label": "Crystal Space on SourceForge",
+        "url": "https://sourceforge.net/projects/crystal/"
+      }
+    ],
+    "maker": "unknown",
+    "next": "Rebuild Crystal Space from its public source and record the older dependencies it needs.",
+    "source_ids": [
+      "crystal-space-github",
+      "crystal-space-sourceforge"
+    ],
+    "status": "candidate",
+    "what_it_was": "Crystal Space is an open-source 3D SDK for Unix, Windows and Mac OS X, with an OpenGL renderer and engine features. The project has been dormant since about 2011.",
+    "what_survives": "The full source is public on GitHub under the LGPL, with documentation pointers, and the SourceForge project page remains.",
+    "years": "unknown; inactive since about 2011"
+  },
   "id": "crystal-space",
   "name": "Crystal Space",
-  "platforms": ["Unix", "Linux", "Windows", "macOS", "OpenGL", "C++"],
+  "platforms": [
+    "Unix",
+    "Linux",
+    "Windows",
+    "macOS",
+    "OpenGL",
+    "C++"
+  ],
   "priority": 68,
   "public_status": "curated-public-sources",
-  "related_targets": ["mesa", "ogre"],
+  "related_targets": [
+    "mesa",
+    "ogre"
+  ],
   "restricted_status": "none-known",
   "revival_lane": "public-source-preservation",
   "rights_posture": "open",

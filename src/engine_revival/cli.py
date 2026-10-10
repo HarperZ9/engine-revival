@@ -15,10 +15,25 @@ def build_parser() -> argparse.ArgumentParser:
     for name in ("seed", "validate", "audit-public", "index", "report"):
         command = subparsers.add_parser(name)
         command.add_argument("--root", default=".", help="workspace root")
+    site = subparsers.add_parser("site", help="build the documentation site")
+    site.add_argument("--root", default=".", help="workspace root")
+    site.add_argument("--out", default="_site", help="output directory, replaced on each build")
     materialize = subparsers.add_parser("materialize-brender-harness")
     materialize.add_argument("--source-root", required=True, help="public BRender checkout")
     materialize.add_argument("--output-root", required=True, help="out-of-tree harness output")
     return parser
+
+
+def _run_site(root: Path, out: Path) -> int:
+    from engine_revival.site import SiteError, build_site
+
+    try:
+        written = build_site(root, out)
+    except SiteError as exc:
+        print(f"site: {exc}", file=sys.stderr)
+        return 1
+    print(f"wrote {len(written)} files to {out}")
+    return 0
 
 
 def _run_seed(root: Path) -> int:
@@ -94,6 +109,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         return _run_index(Path(args.root))
     if args.command == "report":
         return _run_report(Path(args.root))
+    if args.command == "site":
+        return _run_site(Path(args.root), Path(args.out))
     if args.command == "materialize-brender-harness":
         return _run_materialize_brender_harness(
             Path(args.source_root),

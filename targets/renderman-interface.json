@@ -1,12 +1,46 @@
 {
   "category": "rendering-standard",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "The RenderMan Interface is Pixar's standard for passing scenes from modelling programs to high-quality renderers.",
+    "links": [
+      {
+        "label": "RenderMan Interface Specification 3.1 (PDF)",
+        "url": "https://groups.csail.mit.edu/graphics/classes/6.838/S97/rispec31_4.pdf"
+      },
+      {
+        "label": "Pixar Ri documentation",
+        "url": "https://rmanwiki-26.pixar.com/space/REN26/19662055/RenderMan%2BInterface%2B%28Ri%29"
+      }
+    ],
+    "maker": "Pixar",
+    "next": "Write a reference page that ties the specification to the open renderers that implement it.",
+    "source_ids": [
+      "mit-rispec31-pdf",
+      "pixar-renderman-interface-ri-docs",
+      "aqsis-github",
+      "pixie-sourceforge",
+      "bmrt-lineage-lead"
+    ],
+    "status": "dossier",
+    "what_it_was": "The RenderMan Interface (Ri) defines how a modelling program describes a scene to a rendering program, including the RIB file format and the RenderMan Shading Language. Independent renderers such as Aqsis, Pixie and BMRT were built to follow it.",
+    "what_survives": "A public copy of version 3.1 of the specification is hosted on an MIT course site, and Pixar's current documentation describes the Ri API; the archive links to both and copies neither. Aqsis and Pixie are open-source renderers that implement it.",
+    "years": "unknown"
+  },
   "id": "renderman-interface",
   "name": "RenderMan Interface",
-  "platforms": ["RenderMan Interface", "RIB", "RSL", "production rendering"],
+  "platforms": [
+    "RenderMan Interface",
+    "RIB",
+    "RSL",
+    "production rendering"
+  ],
   "priority": 74,
   "public_status": "curated-public-metadata",
-  "related_targets": ["aqsis", "pixie"],
+  "related_targets": [
+    "aqsis",
+    "pixie"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "documentation-anchor",
   "rights_posture": "public-reference-only",

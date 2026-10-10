@@ -1,18 +1,34 @@
 {
-    "category":  "engine",
-    "era":  "1990s",
-    "id":  "realspace-engine",
-    "name":  "Origin RealSpace Engine",
-    "platforms":  [
-                      "DOS"
-                  ],
-    "priority":  64,
-    "public_status":  "curated-public-sources",
-    "related_targets":  [
-
-                        ],
-    "restricted_status":  "none-known",
-    "revival_lane":  "reverse-engineering-reconstruction",
-    "rights_posture":  "unresolved",
-    "summary":  "Origin Systems in-house 3D engine (Strike Commander 1993; Wing Commander Armada/III/IV, Pacific Strike, Wings of Glory). Source likely lost with Origin; Sanglard\u0027s libRealSpace reconstruction provides a reverse-engineered asset-format path, so revival runs through clean-room reconstruction plus rightsholder-basis content."
+  "category": "engine",
+  "era": "1990s",
+  "hub": {
+    "headline": "RealSpace was Origin Systems' in-house 3D engine for its 1990s flight and space games.",
+    "links": [
+      {
+        "label": "libRealSpace",
+        "url": "https://github.com/fabiensanglard/libRealSpace"
+      }
+    ],
+    "maker": "Origin Systems",
+    "next": "Build on libRealSpace so original assets from a user's own copy can be loaded in a new engine.",
+    "source_ids": [
+      "realspace-engine-lead"
+    ],
+    "status": "candidate",
+    "what_it_was": "RealSpace was Origin's first 3D engine, running on DOS. It debuted in Strike Commander (1993) and was reused in Wing Commander Armada, III and IV, Pacific Strike and Wings of Glory.",
+    "what_survives": "The original source is probably lost, having gone with Origin's closure, and the game content belongs to EA. Fabien Sanglard published libRealSpace on GitHub in 2013, a reverse-engineered reconstruction of the asset formats.",
+    "years": "1990s"
+  },
+  "id": "realspace-engine",
+  "name": "Origin RealSpace Engine",
+  "platforms": [
+    "DOS"
+  ],
+  "priority": 64,
+  "public_status": "curated-public-sources",
+  "related_targets": [],
+  "restricted_status": "none-known",
+  "revival_lane": "reverse-engineering-reconstruction",
+  "rights_posture": "unresolved",
+  "summary": "Origin Systems in-house 3D engine (Strike Commander 1993; Wing Commander Armada/III/IV, Pacific Strike, Wings of Glory). Source likely lost with Origin; Sanglard's libRealSpace reconstruction provides a reverse-engineered asset-format path, so revival runs through clean-room reconstruction plus rightsholder-basis content."
 }

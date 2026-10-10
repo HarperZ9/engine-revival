@@ -1,12 +1,49 @@
 {
   "category": "graphics-library",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "OpenGL Performer was SGI's toolkit for real-time visual simulation on OpenGL.",
+    "links": [
+      {
+        "label": "Getting Started Guide 3.0 (PDF)",
+        "url": "https://www.infania.net/misc1/sgi_techpubs/techpubs/007-3560-004.pdf"
+      },
+      {
+        "label": "Programmer's Guide 3.2 (PDF)",
+        "url": "https://irix7.com/techpubs/007-1680-100.pdf"
+      },
+      {
+        "label": "Product brochure (PDF)",
+        "url": "https://ftp.jurassic.nl/pub/irix/press/3381.pdf"
+      }
+    ],
+    "maker": "SGI (Silicon Graphics)",
+    "next": "Write a reference page from the public manuals that explains what Performer did and how it was structured.",
+    "source_ids": [
+      "sgi-opengl-performer-getting-started-30",
+      "sgi-opengl-performer-programmers-guide-32",
+      "sgi-opengl-performer-brochure"
+    ],
+    "status": "dossier",
+    "what_it_was": "OpenGL Performer was an SGI library for real-time visual simulation built on OpenGL, running on IRIX, Linux and Windows. It worked alongside OpenGL and other SGI visualization toolkits and came with sample tools such as Perfly.",
+    "what_survives": "SGI never released the core libraries. Public PDF copies of the 3.0 Getting Started Guide, the 3.2 Programmer's Guide and a product brochure exist online; the Programmer's Guide carries SGI restriction language, so the archive only links to them.",
+    "years": "unknown"
+  },
   "id": "opengl-performer",
   "name": "OpenGL Performer",
-  "platforms": ["IRIX", "Linux", "Windows", "OpenGL", "SGI visual simulation"],
+  "platforms": [
+    "IRIX",
+    "Linux",
+    "Windows",
+    "OpenGL",
+    "SGI visual simulation"
+  ],
   "priority": 76,
   "public_status": "curated-public-metadata",
-  "related_targets": ["open-inventor", "iris-gl-opengl-bridge"],
+  "related_targets": [
+    "open-inventor",
+    "iris-gl-opengl-bridge"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "partial-public-archive",
   "rights_posture": "public-reference-only",

@@ -1,12 +1,54 @@
 {
   "category": "graphics-lineage",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "IRIS GL was SGI's proprietary 3D graphics library and the direct ancestor of OpenGL.",
+    "links": [
+      {
+        "label": "Khronos OpenGL Registry",
+        "url": "https://registry.khronos.org/OpenGL/index_gl.php"
+      },
+      {
+        "label": "OpenGL Registry on GitHub",
+        "url": "https://github.com/KhronosGroup/OpenGL-Registry"
+      },
+      {
+        "label": "History of OpenGL",
+        "url": "https://wikis.khronos.org/opengl/History_of_OpenGL"
+      }
+    ],
+    "maker": "SGI (Silicon Graphics); OpenGL is now kept by the Khronos Group",
+    "next": "Build a lineage page from IRIS GL to OpenGL and confirm finer details against primary sources.",
+    "source_ids": [
+      "khronos-opengl-history",
+      "khronos-opengl-registry",
+      "khronos-opengl-registry-github"
+    ],
+    "status": "dossier",
+    "what_it_was": "IRIS GL was SGI's proprietary graphics API. OpenGL was created as an open alternative to it, and the OpenGL specification family (including GLSL, GLX, WGL and GLU) is now maintained by the Khronos Group.",
+    "what_survives": "IRIS GL source is not public. The Khronos OpenGL Registry publishes the specifications, extensions, headers and an XML API registry, also on GitHub, and the Khronos wiki carries a history of the transition.",
+    "years": "unknown"
+  },
   "id": "iris-gl-opengl-bridge",
   "name": "IRIS GL / OpenGL bridge",
-  "platforms": ["IRIS GL", "OpenGL", "GLSL", "GLX", "WGL", "GLU", "SGI", "Khronos Registry"],
+  "platforms": [
+    "IRIS GL",
+    "OpenGL",
+    "GLSL",
+    "GLX",
+    "WGL",
+    "GLU",
+    "SGI",
+    "Khronos Registry"
+  ],
   "priority": 68,
   "public_status": "curated-public-metadata",
-  "related_targets": ["mesa", "open-inventor", "opengl-performer", "phigs"],
+  "related_targets": [
+    "mesa",
+    "open-inventor",
+    "opengl-performer",
+    "phigs"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "upstream-dependency-atlas",
   "rights_posture": "public-reference-only",

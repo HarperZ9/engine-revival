@@ -1,12 +1,48 @@
 {
   "category": "renderer",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "Pixie is a free, open-source photorealistic renderer with a RenderMan-like interface.",
+    "links": [
+      {
+        "label": "Pixie on SourceForge",
+        "url": "https://sourceforge.net/projects/pixie/"
+      },
+      {
+        "label": "Pixie source mirror",
+        "url": "https://github.com/daliborgaric/pixie"
+      },
+      {
+        "label": "Pixie summary",
+        "url": "https://www.renderpixie.com/pixie_renderer.html"
+      }
+    ],
+    "maker": "unknown",
+    "next": "Rebuild Pixie from the public source mirror and note any limits on its output.",
+    "source_ids": [
+      "pixie-sourceforge",
+      "pixie-github-mirror",
+      "renderpixie-summary"
+    ],
+    "status": "candidate",
+    "what_it_was": "Pixie is a RenderMan-like renderer with programmable shading, ray tracing and global illumination. It ran on Windows, Linux, macOS and Unix.",
+    "what_survives": "The SourceForge project page lists Pixie under the LGPL, and a public mirror of the source is on GitHub. The project is dormant.",
+    "years": "unknown"
+  },
   "id": "pixie",
   "name": "Pixie",
-  "platforms": ["Windows", "Linux", "macOS", "Unix", "RenderMan-like interface"],
+  "platforms": [
+    "Windows",
+    "Linux",
+    "macOS",
+    "Unix",
+    "RenderMan-like interface"
+  ],
   "priority": 65,
   "public_status": "curated-public-sources",
-  "related_targets": ["renderman-interface"],
+  "related_targets": [
+    "renderman-interface"
+  ],
   "restricted_status": "none-known",
   "revival_lane": "public-source-preservation",
   "rights_posture": "open",

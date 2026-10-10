@@ -1,12 +1,43 @@
 {
   "category": "compatibility-library",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "Quesa is an open-source library that reimplements Apple's QuickDraw 3D API.",
+    "links": [
+      {
+        "label": "Quesa source",
+        "url": "https://github.com/jwwalker/Quesa"
+      },
+      {
+        "label": "Quesa 1.6d13 report",
+        "url": "https://www.gamedeveloper.com/game-platforms/open-source-implementation-of-quick-draw-3d-updated"
+      }
+    ],
+    "maker": "James W. Walker",
+    "next": "Point readers to the Quesa maintainer and record a repeatable source build.",
+    "source_ids": [
+      "quesa-github",
+      "gamedeveloper-quesa-16d13"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "Quesa began as a reimplementation of Apple's QuickDraw 3D APIs and grew into a 3D rendering and scene graph library for macOS and Windows. It works with OpenGL and the QuickDraw 3D 3DMF file format. Game Developer reported its 1.6d13 release as a portable open-source implementation of QuickDraw 3D.",
+    "what_survives": "Quesa is alive and its source is public on GitHub under the BSD-3-Clause licence.",
+    "years": "unknown"
+  },
   "id": "quesa",
   "name": "Quesa",
-  "platforms": ["macOS", "Windows", "OpenGL", "QuickDraw 3D API", "3DMF"],
+  "platforms": [
+    "macOS",
+    "Windows",
+    "OpenGL",
+    "QuickDraw 3D API",
+    "3DMF"
+  ],
   "priority": 70,
   "public_status": "curated-public-sources",
-  "related_targets": ["quickdraw-3d"],
+  "related_targets": [
+    "quickdraw-3d"
+  ],
   "restricted_status": "none-known",
   "revival_lane": "public-source-preservation",
   "rights_posture": "open",

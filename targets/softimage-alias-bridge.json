@@ -1,12 +1,58 @@
 {
   "category": "dcc-pipeline",
   "era": "1980s-2000s",
+  "hub": {
+    "headline": "The history of the Softimage and Alias 3D animation tools and how both ended up at Autodesk.",
+    "links": [
+      {
+        "label": "Microsoft: Softimage 3D for Windows NT (1996)",
+        "url": "https://news.microsoft.com/source/1996/01/16/microsoft-delivers-high-end-3-d-animation-software-for-microsoft-windows-nt/"
+      },
+      {
+        "label": "Autodesk completes Alias acquisition",
+        "url": "https://investors.autodesk.com/news-releases/news-release-details/autodesk-completes-acquisition-alias"
+      },
+      {
+        "label": "Autodesk completes Softimage acquisition",
+        "url": "https://investors.autodesk.com/news-releases/news-release-details/autodesk-completes-acquisition-softimage"
+      },
+      {
+        "label": "Softimage last release FAQ (PDF)",
+        "url": "https://damassets.autodesk.net/content/dam/autodesk/www/products/autodesk-softimage/docs/pdf/Softimage%20Last%20Release%20Announcement_FAQ_UPDATE_MAY_20.pdf"
+      }
+    ],
+    "maker": "Softimage and Alias; later owned by Microsoft, Avid and Autodesk",
+    "next": "Write a timeline page of the tools and file formats that passed from Softimage and Alias into Autodesk.",
+    "source_ids": [
+      "microsoft-history-1994-softimage",
+      "microsoft-softimage-3d-nt-release",
+      "autodesk-alias-acquisition-2006",
+      "autodesk-softimage-acquisition-2008",
+      "autodesk-softimage-last-release-faq"
+    ],
+    "status": "dossier",
+    "what_it_was": "Softimage 3D was high-end animation software that Microsoft agreed to acquire in 1994 and brought to Windows NT in 1996. Autodesk completed its purchase of Alias, maker of Maya, MotionBuilder and FBX, in January 2006, and of Softimage in November 2008. Softimage 2015 was the last release, with support and hot fixes through April 30, 2016.",
+    "what_survives": "The software is commercial and no source is public. Official Microsoft and Autodesk press releases and Autodesk's last-release FAQ document the history.",
+    "years": "1994 to 2016"
+  },
   "id": "softimage-alias-bridge",
   "name": "Softimage / Alias bridge",
-  "platforms": ["Softimage 3D", "Softimage XSI", "Alias", "Maya", "MotionBuilder", "FBX", "Windows NT", "IRIX"],
+  "platforms": [
+    "Softimage 3D",
+    "Softimage XSI",
+    "Alias",
+    "Maya",
+    "MotionBuilder",
+    "FBX",
+    "Windows NT",
+    "IRIX"
+  ],
   "priority": 71,
   "public_status": "curated-public-metadata",
-  "related_targets": ["iris-gl-opengl-bridge", "opengl-performer"],
+  "related_targets": [
+    "iris-gl-opengl-bridge",
+    "opengl-performer"
+  ],
   "restricted_status": "metadata-only",
   "revival_lane": "pipeline-history",
   "rights_posture": "public-reference-only",
