@@ -6,7 +6,11 @@
     "links": [
       {
         "label": "brview for Windows (download)",
-        "url": "https://github.com/HarperZ9/brender-archival/releases/tag/brview-v0.1.0"
+        "url": "https://github.com/HarperZ9/brender-archival/releases/tag/brview-v0.1.1"
+      },
+      {
+        "label": "The Keeper's Hour for Windows (download)",
+        "url": "https://github.com/HarperZ9/brender-archival/releases/tag/keepers-v0.1.0"
       },
       {
         "label": "BRender restoration",
@@ -22,7 +26,7 @@
       }
     ],
     "maker": "Argonaut Software",
-    "next": "Run it: download brview for Windows from the restoration's releases. Next, The Keeper's Hour, a short original game built on the same engine to show what it can do. The 64-bit line builds on BlazingRenderer by choice and can be reversed. Textured output in one test path of the 1998 build still renders black and is not claimed as working.",
+    "next": "Run it: download brview for Windows, or play The Keeper's Hour, a short original game about the last night of a lighthouse, built on the same engine. The 64-bit line builds on BlazingRenderer by choice and can be reversed. Textured output in one test path of the 1998 build still renders black and is not claimed as working.",
     "source_ids": [
       "foone-brender-v132",
       "foone-brender-3dmm",
