@@ -11,7 +11,10 @@
 #define __BR_V1DB__ 1
 #include "brender.h"
 
+#include <stddef.h>
+#include <stdint.h>
 #include <stdio.h>
+#include <string.h>
 #include "drv.h"
 
 #if defined(_DEBUG)
@@ -32,12 +35,19 @@ br_int_32 BrFixedDiv(br_int_32 a, br_int_32 b)
     return (br_int_32)(((long long)a << 16) / b);
 }
 
+/* SafeFixedMac2Div(a,b,c,d,e) = (a*b + c*d) / e, from safediv.asm: a 64-bit
+ * sum, an unsigned divide of the magnitudes, the sign restored afterwards,
+ * and 0 when e is 0 or the quotient would not fit in 32 bits. */
 br_int_32 SafeFixedMac2Div(br_int_32 a, br_int_32 b, br_int_32 c, br_int_32 d, br_int_32 e)
 {
-    br_int_32 num = a * b;
-    br_int_32 den = c * d;
-    if (den == 0) return (num >= 0) ? 0x7fffffff : -0x7fffffff;
-    return (br_int_32)(((long long)num << 16) / den);
+    long long num = (long long)a * b + (long long)c * d;
+    unsigned long long m = num < 0 ? 0ull - (unsigned long long)num : (unsigned long long)num;
+    unsigned int sign = (unsigned int)e ^ (unsigned int)((unsigned long long)num >> 32);
+    unsigned int divisor = e < 0 ? 0u - (unsigned int)e : (unsigned int)e;
+    unsigned int q;
+    if (divisor == 0 || (unsigned int)(m >> 32) >= divisor) return 0;
+    q = (unsigned int)(m / divisor);
+    return (br_int_32)((sign & 0x80000000u) ? 0u - q : q);
 }
 
 void RasteriseBufferDisable(void)
@@ -50,7 +60,6 @@ void BR_ASM_CALL TrapezoidRenderPIZ2TA(struct brp_block *block, union brp_vertex
 void BR_ASM_CALL TrapezoidRenderPIZ2TIA(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3]) { (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices; }
 void BR_ASM_CALL TrapezoidRenderPIZ2TAN(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3]) { (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices; }
 void BR_ASM_CALL TrapezoidRenderPIZ2TA15(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3]) { (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices; }
-void BR_ASM_CALL TrapezoidRenderPIZ2TA24(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3]) { (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices; }
 void BR_ASM_CALL TrapezoidRenderPIZ2TIA_RGB_555(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3]) { (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices; }
 
 void BR_ASM_CALL ScanLinePITIP256_RGB_555(void)
@@ -1467,83 +1476,209 @@ void sar16(void)
 }
 
 /* ------------------------------------------------------------------ */
-/* Real TriangleRenderPIZ2TIA_RGB_888: Z-buffered, iterated-intensity, */
-/* affine-UV textured triangle into an RGB_888 target. Faithful to the */
-/* period PIZ2TIA family (affine texture stepping, LIGHT=1), with the  */
-/* measured DEPTH_16 convention: buffer clears to 0 and NEARER wins.   */
-void BR_ASM_CALL TriangleRenderPIZ2TIA_RGB_888(struct brp_block *block, union brp_vertex *a, union brp_vertex *b, union brp_vertex *c)
+/*
+ * TrapezoidRenderPIZ2TA24 (textured, RGB_888 texture into RGB_888) and
+ * TrapezoidRenderPIZ2TIA_RGB_888 (8-bit texture lit through the shade table
+ * into RGB_888): a line-by-line C port of the TriangleRenderZ2 macro in
+ * BRender v1.3.2 drivers/pentprim/t_piza.asm (MIT, Argonaut 1998), built
+ * with WRAP, WRAPROW and TRANSP as that file sets them. Argonaut's own C
+ * setup in awtmz.c / awtmi.h fills work.awsl and calls these once per half
+ * of the triangle.
+ *
+ * Registers are modelled as 32-bit unsigned values so adds wrap and carries
+ * come out where the assembly takes them: eax holds the u fraction in its
+ * high half and the biased integer u in its low half, ebx the v fraction.
+ *
+ * Additions, none of which changes a pixel the assembly would draw inside
+ * its buffers: a texel outside the texture is not read (the pixel is
+ * skipped), and a pixel or depth value outside its buffer is not written.
+ */
+static uint32_t awsl_u_int(void)
 {
-    float x0 = (float)a->comp_x[C_SX] * (1.0f/65536.0f), y0 = (float)a->comp_x[C_SY] * (1.0f/65536.0f);
-    float x1 = (float)b->comp_x[C_SX] * (1.0f/65536.0f), y1 = (float)b->comp_x[C_SY] * (1.0f/65536.0f);
-    float x2 = (float)c->comp_x[C_SX] * (1.0f/65536.0f), y2 = (float)c->comp_x[C_SY] * (1.0f/65536.0f);
-    long  z0 = a->comp_x[C_SZ], z1 = b->comp_x[C_SZ], z2 = c->comp_x[C_SZ];
-    long  i0 = a->comp_x[C_I],  i1 = b->comp_x[C_I],  i2 = c->comp_x[C_I];
-    long  u0 = a->comp_x[C_U],  u1 = b->comp_x[C_U],  u2 = c->comp_x[C_U];
-    long  v0 = a->comp_x[C_V],  v1 = b->comp_x[C_V],  v2 = c->comp_x[C_V];
+    uint32_t v;
+    memcpy(&v, &work.awsl.u_int_current, sizeof(v)); /* the assembly reads it as a dword */
+    return v;
+}
 
-    int minx = (int)(x0 < x1 ? (x0 < x2 ? x0 : x2) : (x1 < x2 ? x1 : x2));
-    int maxx = (int)(x0 > x1 ? (x0 > x2 ? x0 : x2) : (x1 > x2 ? x1 : x2)) + 1;
-    int miny = (int)(y0 < y1 ? (y0 < y2 ? y0 : y2) : (y1 < y2 ? y1 : y2));
-    int maxy = (int)(y0 > y1 ? (y0 > y2 ? y0 : y2) : (y1 > y2 ? y1 : y2)) + 1;
+static void awsl_set_u_int(uint32_t v) { memcpy(&work.awsl.u_int_current, &v, sizeof(v)); }
 
-    if (minx < 0) minx = 0;
-    if (miny < 0) miny = 0;
-    if (maxx > (int)work.colour.width_p) maxx = (int)work.colour.width_p;
-    if (maxy > (int)work.colour.height)  maxy = (int)work.colour.height;
-    if (minx >= maxx || miny >= maxy) return;
+static int awsl_in(const char *p, const void *base, size_t bytes, size_t need)
+{
+    return p >= (const char *)base && p + need <= (const char *)base + bytes;
+}
 
-    float d = (y1 - y2) * (x0 - x2) + (x2 - x1) * (y0 - y2);
-    if (d == 0.0f) return;
+static void awsl_trapezoid(int light, int sbpp, int dbpp)
+{
+    const size_t colour_bytes = (size_t)work.colour.stride_b * work.colour.height;
+    const size_t depth_bytes = (size_t)work.depth.stride_b * work.depth.height;
+    const size_t texture_bytes = (size_t)work.texture.size;
 
-    int twm = (int)work.texture.width_p - 1;
-    int thm = (int)work.texture.height - 1;
-    char *tbase = (char *)work.texture.base;
-    int tstride = work.texture.stride_b;
-    br_uint_32 *pal = (br_uint_32 *)work.texture.palette;
+    for (;;) {
+        struct scan_edge *edge = work.awsl.edge;
+        char *edi, *esi, *ebp;
+        uint32_t eax, ebx, carry;
 
-    char *cbase = (char *)work.colour.base;
-    char *zbase = (char *)work.depth.base;
-    int cstride = work.colour.stride_b;
-    int zstride = work.depth.stride_b;
+        if (edge->count == 0) return;
+        edge->count--;
 
-    for (int yy = miny; yy < maxy; yy++) {
-        for (int xx = minx; xx < maxx; xx++) {
-            float px = (float)xx + 0.5f, py = (float)yy + 0.5f;
-            float w0 = ((y1 - y2) * (px - x2) + (x2 - x1) * (py - y2)) / d;
-            float w1 = ((y2 - y0) * (px - x2) + (x0 - x2) * (py - y2)) / d;
-            float w2 = 1.0f - w0 - w1;
-            if (w0 < 0.0f || w1 < 0.0f || w2 < 0.0f) continue;
+        edi = work.awsl.start;
+        eax = ((uint32_t)work.awsl.u_current & 0xffff0000u) | (awsl_u_int() & 0xffffu);
+        ebx = (uint32_t)work.awsl.v_current;
+        work.pz.currentpix = work.pz.current;
+        if (light) work.pi.currentpix = work.pi.current;
+        esi = work.awsl.source_current;
+        ebp = work.awsl.zstart;
 
-            long zz = (w0 * z0 + w1 * z1 + w2 * z2) > 0.0f
-                    ? (long)((w0 * z0 + w1 * z1 + w2 * z2) / 65536.0f)
-                    : 0;
-            if (zz > 65535) zz = 65535;
+        if (edi < work.awsl.end) {
+            /* forward scan */
+            while (edi < work.awsl.end) {
+                int pass = awsl_in(esi, work.texture.base, texture_bytes, (size_t)sbpp);
+                if (pass) { /* TRANSP: a zero texel is transparent */
+                    if (sbpp == 1) pass = esi[0] != 0;
+                    else pass = (esi[0] | esi[1] | esi[2]) != 0;
+                }
+                if (pass && awsl_in(ebp, work.depth.base, depth_bytes, 2)) {
+                    uint16_t z16 = (uint16_t)((uint32_t)work.pz.currentpix >> 16), zbuf;
+                    memcpy(&zbuf, ebp, 2);
+                    pass = zbuf >= z16; /* cmp dl,bl ; sbb dh,bh ; jb failf */
+                } else {
+                    pass = 0;
+                }
+                if (pass && awsl_in(edi, work.colour.base, colour_bytes, (size_t)dbpp)) {
+                    uint16_t z16 = (uint16_t)((uint32_t)work.pz.currentpix >> 16);
+                    memcpy(ebp, &z16, 2);
+                    if (light) {
+                        uint32_t index = (((uint32_t)work.pi.currentpix >> 16) & 0xffu) << 8 | (uint8_t)esi[0];
+                        const uint8_t *lit = work.shade_table + index * 4;
+                        edi[0] = (char)lit[0];
+                        edi[1] = (char)lit[1];
+                        edi[2] = (char)lit[2];
+                    } else {
+                        edi[0] = esi[0];
+                        edi[1] = esi[1];
+                        edi[2] = esi[2];
+                    }
+                }
+                /* both paths: zptr += 2, ptr += DBPP, z += dz, i += di */
+                ebp += 2;
+                edi += dbpp;
+                work.pz.currentpix = (br_fixed_ls)((uint32_t)work.pz.currentpix + (uint32_t)work.pz.grad_x);
+                if (light) work.pi.currentpix = (br_fixed_ls)((uint32_t)work.pi.currentpix + (uint32_t)work.pi.grad_x);
 
-            unsigned short *zptr = (unsigned short *)(zbase + yy * zstride + xx * 2);
-            if (*zptr != 0 && zz < (long)*zptr) continue;
+                /* contf: step u, the source pointer and v */
+                carry = (uint32_t)(((uint64_t)eax + (uint32_t)work.awsl.du) >> 32);
+                eax += (uint32_t)work.awsl.du;
+                esi += work.awsl.dsource;
+                eax += carry;
+                esi += (ptrdiff_t)carry * sbpp;
+                eax += (uint32_t)work.awsl.du_int;
+                carry = (uint32_t)(((uint64_t)ebx + (uint32_t)work.awsl.dv) >> 32);
+                ebx += (uint32_t)work.awsl.dv;
+                if (carry) esi += work.texture.stride_b;
+                if (!(eax & 0x8000u)) { /* test ah,ah ; jl nowidthf */
+                    eax += work.texture.width_p;
+                    esi += (ptrdiff_t)work.texture.width_p * sbpp;
+                }
+                if (esi < (char *)work.texture.base) esi += work.texture.size;
+            }
+        } else {
+            /* backward scan */
+            while (edi > work.awsl.end) {
+                int pass;
+                work.pz.currentpix = (br_fixed_ls)((uint32_t)work.pz.currentpix - (uint32_t)work.pz.grad_x);
+                if (light) work.pi.currentpix = (br_fixed_ls)((uint32_t)work.pi.currentpix - (uint32_t)work.pi.grad_x);
 
-            int uu = (int)((w0 * u0 + w1 * u1 + w2 * u2) / 65536.0f) & twm;
-            int vv = (int)((w0 * v0 + w1 * v1 + w2 * v2) / 65536.0f) & thm;
+                carry = (uint32_t)(((uint64_t)eax + (uint32_t)work.awsl.du) >> 32);
+                eax += (uint32_t)work.awsl.du;
+                esi += work.awsl.dsource;
+                eax += carry;
+                eax += (uint32_t)work.awsl.du_int;
+                esi += (ptrdiff_t)carry * sbpp;
+                carry = (uint32_t)(((uint64_t)ebx + (uint32_t)work.awsl.dv) >> 32);
+                ebx += (uint32_t)work.awsl.dv;
+                if (carry) esi += work.texture.stride_b;
+                if (!(eax & 0x8000u)) {
+                    eax += work.texture.width_p;
+                    esi += (ptrdiff_t)work.texture.width_p * sbpp;
+                }
+                if (esi < (char *)work.texture.base) esi += work.texture.size;
+                ebp -= 2;
+                edi -= dbpp;
 
-            unsigned char texel = *(unsigned char *)(tbase + vv * tstride + uu);
-            br_uint_32 rgb = pal[texel];
+                pass = awsl_in(esi, work.texture.base, texture_bytes, (size_t)sbpp);
+                if (pass) {
+                    if (sbpp == 1) pass = esi[0] != 0;
+                    else pass = (esi[0] | esi[1] | esi[2]) != 0;
+                }
+                if (pass && awsl_in(ebp, work.depth.base, depth_bytes, 2)) {
+                    uint16_t z16 = (uint16_t)((uint32_t)work.pz.currentpix >> 16), zbuf;
+                    memcpy(&zbuf, ebp, 2);
+                    pass = zbuf >= z16; /* sub bl,dl ; sbb bh,dh ; jb loopb */
+                } else {
+                    pass = 0;
+                }
+                if (!pass || !awsl_in(edi, work.colour.base, colour_bytes, (size_t)dbpp)) continue;
+                {
+                    uint16_t z16 = (uint16_t)((uint32_t)work.pz.currentpix >> 16);
+                    memcpy(ebp, &z16, 2);
+                }
+                if (light) {
+                    uint32_t index = (((uint32_t)work.pi.currentpix >> 16) & 0xffu) << 8 | (uint8_t)esi[0];
+                    const uint8_t *lit = work.shade_table + index * 4;
+                    edi[0] = (char)lit[0];
+                    edi[1] = (char)lit[1];
+                    edi[2] = (char)lit[2];
+                } else {
+                    edi[0] = esi[0];
+                    edi[1] = esi[1];
+                    edi[2] = esi[2];
+                }
+            }
+        }
 
-            long ii = (long)(w0 * i0 + w1 * i1 + w2 * i2);
-            int shade = (int)(ii >> 8);
-            if (shade < 0) shade = 0;
-            if (shade > 255) shade = 255;
+        /* next: per scan line updates */
+        {
+            uint32_t f = (uint32_t)edge->f, d;
+            carry = (f + (uint32_t)edge->d_f) < f;
+            edge->f = (br_int_32)(f + (uint32_t)edge->d_f);
+            work.awsl.end += ((ptrdiff_t)edge->d_i + carry) * dbpp;
 
-            char *cp = cbase + yy * cstride + xx * 3;
-            cp[0] = (char)((((rgb >> 16) & 0xFF) * shade) >> 8);
-            cp[1] = (char)((((rgb >> 8) & 0xFF) * shade) >> 8);
-            cp[2] = (char)(((rgb & 0xFF) * shade) >> 8);
-            *zptr = (unsigned short)zz;
+            f = (uint32_t)work.main.f;
+            carry = (f + (uint32_t)work.main.d_f) < f;
+            work.main.f = (br_int_32)(f + (uint32_t)work.main.d_f);
+            d = (uint32_t)work.main.d_i + carry;
+            work.awsl.zstart += (ptrdiff_t)(br_int_32)d * 2;
+            work.awsl.start += (ptrdiff_t)(br_int_32)d * dbpp;
+
+            /* scan_inc carry|nocarry */
+            if (light)
+                work.pi.current = (br_fixed_ls)((uint32_t)work.pi.current + (uint32_t)(carry ? work.pi.d_carry : work.pi.d_nocarry));
+            work.pz.current = (br_fixed_ls)((uint32_t)work.pz.current + (uint32_t)(carry ? work.pz.d_carry : work.pz.d_nocarry));
+            {
+                uint32_t du = carry ? work.awsl.du_carry : work.awsl.du_nocarry;
+                uint32_t dv = carry ? work.awsl.dv_carry : work.awsl.dv_nocarry;
+                int dsrc = carry ? work.awsl.dsource_carry : work.awsl.dsource_nocarry;
+                int du_int = carry ? work.awsl.du_int_carry : work.awsl.du_int_nocarry;
+                uint32_t ucarry = (work.awsl.u_current + du) < work.awsl.u_current;
+                uint32_t vcarry;
+                work.awsl.u_current += du;
+                work.awsl.source_current += dsrc;
+                awsl_set_u_int(awsl_u_int() + (uint32_t)du_int + ucarry);
+                work.awsl.source_current += (ptrdiff_t)ucarry * sbpp;
+                vcarry = (work.awsl.v_current + dv) < work.awsl.v_current;
+                work.awsl.v_current += dv;
+                if (vcarry) work.awsl.source_current += work.texture.stride_b;
+            }
+            /* cont: wrap u and the source pointer */
+            if (!(awsl_u_int() & 0x8000u)) {
+                awsl_set_u_int(awsl_u_int() + work.texture.width_p);
+                work.awsl.source_current += (ptrdiff_t)work.texture.width_p * sbpp;
+            }
+            if (work.awsl.source_current < (char *)work.texture.base)
+                work.awsl.source_current += work.texture.size;
         }
     }
 }
 
-/* awtmz.c triangle wrappers excluded from this lane; unreachable for the
- * RGB_888 ZB configuration and superseded by template kernels later. */
-void BR_ASM_CALL TriangleRenderPIZ2TA24(struct brp_block *b, union brp_vertex *a, union brp_vertex *c, union brp_vertex *d) { (void)b;(void)a;(void)c;(void)d; }
-void BR_ASM_CALL TriangleRenderPIZ2TA15(struct brp_block *b, union brp_vertex *a, union brp_vertex *c, union brp_vertex *d) { (void)b;(void)a;(void)c;(void)d; }
-void BR_ASM_CALL TriangleRenderPIZ2TIA_RGB_555(struct brp_block *b, union brp_vertex *a, union brp_vertex *c, union brp_vertex *d) { (void)b;(void)a;(void)c;(void)d; }
+void BR_ASM_CALL TrapezoidRenderPIZ2TA24(void) { awsl_trapezoid(0, 3, 3); }
+void BR_ASM_CALL TrapezoidRenderPIZ2TIA_RGB_888(void) { awsl_trapezoid(1, 1, 3); }

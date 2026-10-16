@@ -247,10 +247,10 @@ def _load_pentprim_source_lists(source):
         return names
     filenames = [f"{n}.c" for n in parse("OBJS_C") + parse("XOBJS_C")]
     missing = [module_dir / f for f in filenames if not (module_dir / f).exists()]
-    # awtmz.c pairs its triangle wrappers with the excluded assembly
-    # scanline kernels; the compat port supersedes those wrappers, so the
-    # wrapper half is dropped from the float-lane sources.
-    filenames = [f for f in filenames if f != "awtmz.c"]
+    # awtmz.c is Argonaut's C triangle setup for the arbitrary-width texture
+    # mappers; its trapezoid loops (t_piza.asm) come from the compat port,
+    # which ports TrapezoidRenderPIZ2TA24 and TrapezoidRenderPIZ2TIA_RGB_888
+    # line by line and stubs the rest.
     if missing:
         raise HarnessMaterializationError(
             "pentprim makefile references missing C source: "

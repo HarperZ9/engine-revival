@@ -611,3 +611,33 @@ def test_pentprim_port_uses_the_real_component_slots():
         assert port.count(f"void BR_ASM_CALL {name}(") == 1, name
     # the depth test of tt24_piz.asm: draw where the new z is below the stored one
     assert "if (z16 < *zp)" in port
+
+
+def test_awtmz_setup_is_compiled_and_its_trapezoids_are_ported(tmp_path):
+    """Argonaut's C triangle setup for the textured mappers (awtmz.c) builds
+    with the harness; the port supplies the t_piza.asm trapezoid loops."""
+    port = (Path(__file__).resolve().parents[1] / "src" / "engine_revival" / "brender_compat"
+            / "brender-pentprim-c-port.c").read_text(encoding="utf-8")
+    for name in ("TrapezoidRenderPIZ2TA24", "TrapezoidRenderPIZ2TIA_RGB_888"):
+        assert port.count(f"void BR_ASM_CALL {name}(void)") == 1, name
+    # awtmz.c defines these triangle wrappers now; the port must not
+    for name in ("TriangleRenderPIZ2TA24(", "TriangleRenderPIZ2TIA_RGB_888(", "TriangleRenderPIZ2TA15("):
+        assert name not in port, name
+    # the forward and backward depth tests of t_piza.asm: draw where z <= *zbuf
+    assert port.count("pass = zbuf >= z16;") == 2
+
+
+def test_safe_fixed_mac2_div_is_the_safediv_asm_sum():
+    port = (Path(__file__).resolve().parents[1] / "src" / "engine_revival" / "brender_compat"
+            / "brender-pentprim-c-port.c").read_text(encoding="utf-8")
+    body = port[port.index("br_int_32 SafeFixedMac2Div("):port.index("void RasteriseBufferDisable")]
+    assert "(long long)a * b + (long long)c * d" in body
+    assert "<< 16" not in body
+
+
+def test_softrend_rung_requires_a_textured_frame(tmp_path):
+    smoke = _materialized_smoke_sources(tmp_path)
+    softrend = (smoke / "brender-core-softrend-render.c").read_text(encoding="utf-8")
+    assert "int ok = (lit > 500) && (chroma > 500);" in softrend
+    assert softrend.index("BrMapUpdate(tex, BR_MAPU_ALL);") < softrend.index("BrMaterialUpdate(material, BR_MATU_ALL);")
+    assert "expand_texture(tex," in softrend

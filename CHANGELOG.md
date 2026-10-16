@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.0
+
+The period BRender 1.3.2 build now draws textured scenes.
+
+- Argonaut's C triangle setup for the arbitrary-width texture mappers (`drivers/pentprim/awtmz.c` with `awtmi.h`) is compiled into the harness. It was left out before, and the port supplied an approximation of one of its wrappers and empty stand-ins for three more.
+- `TrapezoidRenderPIZ2TA24` (RGB_888 texture into RGB_888) and `TrapezoidRenderPIZ2TIA_RGB_888` (8-bit texture lit through the shade table) are a line-by-line C port of the `TriangleRenderZ2` macro in `t_piza.asm`, with its wrapping, its transparent zero texel and its depth test (draw where z is at most the stored value). The other trapezoid loops stay stubs.
+- `SafeFixedMac2Div` now computes what `safediv.asm` computes, (a*b + c*d) / e with 0 on overflow. The port had (a*b << 16) / (c*d).
+- The renderer rung expands `earth.pix` through `std.pal` into an RGB_888 map, registers it with `BrMapAdd` and `BrMapUpdate` before the material is stored, and now requires a textured frame: more than 500 coloured pixels as well as more than 500 lit ones. On Win32 Debug it reports 31,503 lit and 16,436 coloured pixels, with the same bytes on every run.
+- Measured with brender-archival's parity scenes (16 October 2026): three textured scenes. Against BRender 1.4 coverage IoU is 0.9992 or better, 95.7% to 99.7% of pixels are identical, and MAD is at most 1.09. Two period runs are byte-identical.
+
 ## 0.4.0
 
 The period BRender 1.3.2 build now draws its flat and Gouraud scenes the way the 1998 kernels do, and deterministically.
