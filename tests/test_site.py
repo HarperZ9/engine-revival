@@ -49,7 +49,7 @@ def site(tmp_path_factory):
 
 def test_every_target_has_a_page_linked_from_the_catalogue(site):
     targets = sorted(p.stem for p in (ROOT / "targets").glob("*.json"))
-    assert len(targets) == 29
+    assert len(targets) == 35
     pages = sorted(p.stem for p in (site / "engines").glob("*.html"))
     assert pages == targets
     index_links = _parse(site / "index.html").hrefs

@@ -1,0 +1,38 @@
+{
+  "category": "game-engine",
+  "era": "1980s-2000s",
+  "hub": {
+    "headline": "Marathon 2 was Bungie's 1995 first-person game; its engine lives on as Aleph One.",
+    "links": [
+      {
+        "label": "Aleph One source (GPL-3.0)",
+        "url": "https://github.com/Aleph-One-Marathon/alephone"
+      }
+    ],
+    "maker": "Bungie",
+    "next": "Point readers to Aleph One, which is maintained, and cite Bungie's original 2000 release notice once it is read.",
+    "source_ids": [
+      "aleph-one-github"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "A portal-based software renderer for 3D levels with rooms above rooms, liquids and networked play, first on the Macintosh.",
+    "what_survives": "Bungie released the engine source under the GPL in January 2000. Aleph One continues it under GPL-3.0 and is maintained, with its last change on 11 October 2026.",
+    "years": "1995"
+  },
+  "id": "marathon-2-aleph-one",
+  "name": "Marathon 2 engine (Aleph One)",
+  "platforms": [
+    "Windows",
+    "macOS",
+    "Linux",
+    "OpenGL",
+    "C++"
+  ],
+  "priority": 50,
+  "public_status": "curated-public-sources",
+  "related_targets": [],
+  "restricted_status": "none-known",
+  "revival_lane": "public-source-preservation",
+  "rights_posture": "open",
+  "summary": "Bungie's Marathon 2 engine, released under the GPL in 2000 and maintained today as Aleph One."
+}

@@ -1,0 +1,11 @@
+{
+  "claim_scope": "Microsoft 3D Movie Maker source release, MIT licence, and the bundled 1995 BRender build",
+  "confidence": "high",
+  "id": "microsoft-3dmm-github",
+  "notes": "Repository created 2022-04-14 and archived 2022-05-04; GitHub reports the MIT licence. The README states the repository includes a 1995 build of BRender and that approval to open-source BRender as MIT was given by email from Jez San, former CEO of Argonaut. It also says the SoftImage SDK is not included and the code needs Visual C++ 2.0 to build.",
+  "publisher": "GitHub / Microsoft",
+  "retrieved_at": "2026-10-16",
+  "source_type": "repository",
+  "title": "Microsoft 3D Movie Maker source repository",
+  "url": "https://github.com/microsoft/Microsoft-3D-Movie-Maker"
+}

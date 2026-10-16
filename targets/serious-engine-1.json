@@ -1,0 +1,37 @@
+{
+  "category": "game-engine",
+  "era": "1980s-2000s",
+  "hub": {
+    "headline": "Serious Engine 1 was Croteam's engine for Serious Sam: The First Encounter and The Second Encounter.",
+    "links": [
+      {
+        "label": "Serious Engine source (GPL-2.0)",
+        "url": "https://github.com/Croteam-official/Serious-Engine"
+      }
+    ],
+    "maker": "Croteam",
+    "next": "Build version 1.10 from Croteam's release with a current compiler and record which disabled SDK parts a working build needs.",
+    "source_ids": [
+      "croteam-serious-engine-github"
+    ],
+    "status": "candidate",
+    "what_it_was": "A hardware-accelerated 3D engine from 2001 built around large open levels, many enemies on screen and brush-based level geometry, with its own editor.",
+    "what_survives": "Croteam published version 1.10 of the source on 11 March 2016 under GPL-2.0. Game data is not included, and some third-party SDK parts are excluded or carry their own licences.",
+    "years": "2001"
+  },
+  "id": "serious-engine-1",
+  "name": "Serious Engine 1",
+  "platforms": [
+    "Windows",
+    "Direct3D",
+    "OpenGL",
+    "C++"
+  ],
+  "priority": 60,
+  "public_status": "curated-public-sources",
+  "related_targets": [],
+  "restricted_status": "none-known",
+  "revival_lane": "public-source-preservation",
+  "rights_posture": "open",
+  "summary": "Croteam's engine for the first Serious Sam games, released as source under GPL-2.0 in 2016."
+}

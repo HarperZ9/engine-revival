@@ -1,0 +1,11 @@
+{
+  "id": "id-tech-4-baseline",
+  "target_id": "id-tech-4",
+  "milestone_type": "public-dossier-established",
+  "status": "curated",
+  "evidence": "Public dossier cites the rights-holder source release of id Tech 4 (Doom 3) and its licence, read on 2026-10-16.",
+  "source_ids": [
+    "id-doom3-github",
+    "dhewm3-github"
+  ]
+}

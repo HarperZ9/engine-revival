@@ -5,7 +5,7 @@
 | Rights posture | Count |
 |---|---:|
 | clean-room-only | 2 |
-| open | 8 |
+| open | 14 |
 | public-reference-only | 8 |
 | restricted | 2 |
 | rights-holder-needed | 3 |

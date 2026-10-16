@@ -1,0 +1,11 @@
+{
+  "id": "microsoft-3d-movie-maker-baseline",
+  "target_id": "microsoft-3d-movie-maker",
+  "milestone_type": "public-dossier-established",
+  "status": "curated",
+  "evidence": "Public dossier cites the rights-holder source release of Microsoft 3D Movie Maker and its licence, read on 2026-10-16.",
+  "source_ids": [
+    "microsoft-3dmm-github",
+    "foone-brender-3dmm"
+  ]
+}

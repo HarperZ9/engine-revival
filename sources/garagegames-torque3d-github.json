@@ -1,0 +1,11 @@
+{
+  "claim_scope": "Torque 3D source release by GarageGames under the MIT licence",
+  "confidence": "high",
+  "id": "garagegames-torque3d-github",
+  "notes": "Repository created 2012-09-18; GitHub reports MIT and describes it as the MIT licensed open source version of Torque 3D from GarageGames. Last push 2022-04-03.",
+  "publisher": "GitHub / GarageGames",
+  "retrieved_at": "2026-10-16",
+  "source_type": "repository",
+  "title": "Torque 3D MIT source release (GarageGames)",
+  "url": "https://github.com/GarageGames/Torque3D"
+}

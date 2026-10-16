@@ -1,0 +1,10 @@
+{
+  "id": "serious-engine-1-baseline",
+  "target_id": "serious-engine-1",
+  "milestone_type": "public-dossier-established",
+  "status": "curated",
+  "evidence": "Public dossier cites the rights-holder source release of Serious Engine 1 and its licence, read on 2026-10-16.",
+  "source_ids": [
+    "croteam-serious-engine-github"
+  ]
+}

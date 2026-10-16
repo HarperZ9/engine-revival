@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Six engines join the catalogue, each from a source release by its rights holder under an open licence, with the licence read on 2026-10-16: Microsoft 3D Movie Maker (MIT, 2022, built on BRender), Serious Engine 1 (GPL-2.0, Croteam 2016) and Catacomb 3-D (GPL-2.0, 2014) as revival candidates; the Marathon 2 engine (Aleph One, GPL), id Tech 4 (Doom 3, GPL-3.0 with additional terms) and Torque 3D (MIT, GarageGames 2012) as maintained elsewhere. Eight sources, six tasks and six milestones come with them.
+- `docs/DIRECTORY.md` lists the three maintained projects and the three candidates, and names the engines checked and left out because their source notices bar commercial use or are not open licences (Build, Descent, FreeSpace 2, Homeworld, Glide, the id Wolfenstein 3D repository), or because no primary licence source was found (Genesis3D, Allegiance).
+- BRender's page links brview 0.1.2 and The Keeper's Hour 0.3.2, now for Windows and Linux, and relates BRender to 3D Movie Maker.
+- Every count on the front-page drawings and in the README moves to the 35-target corpus.
+
 ## 0.3.0
 
 - engine-revival is the single owner of the `engine_revival` package. The BRender harness from brender-archival is folded in: the materializer now writes the full 21-target ladder (31 files) instead of 12.

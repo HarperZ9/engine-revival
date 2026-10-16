@@ -1,0 +1,7 @@
+{
+  "id": "torque-3d-triage",
+  "public_notes": "Create public-safe artifact and accession records for Torque 3D; its rights-holder source release is cited.",
+  "status": "seeded",
+  "target_id": "torque-3d",
+  "task_type": "triage-public-record"
+}

@@ -1,0 +1,11 @@
+{
+  "claim_scope": "Serious Engine 1.10 source release by Croteam under GPL-2.0",
+  "confidence": "high",
+  "id": "croteam-serious-engine-github",
+  "notes": "Repository created 2016-03-11 by Croteam; GitHub reports GPL-2.0. Game assets are not included, and some third-party SDK parts are excluded or carry their own licences. Last push 2020-10-31.",
+  "publisher": "GitHub / Croteam",
+  "retrieved_at": "2026-10-16",
+  "source_type": "repository",
+  "title": "Serious Engine source repository (Croteam)",
+  "url": "https://github.com/Croteam-official/Serious-Engine"
+}

@@ -1,0 +1,44 @@
+{
+  "category": "authoring-application",
+  "era": "1980s-2000s",
+  "hub": {
+    "headline": "3D Movie Maker was Microsoft's 1995 program for making animated films from 3D scenes, actors and sound.",
+    "links": [
+      {
+        "label": "3D Movie Maker source (MIT)",
+        "url": "https://github.com/microsoft/Microsoft-3D-Movie-Maker"
+      },
+      {
+        "label": "BRender-3DMM, the 1995 BRender variant (MIT)",
+        "url": "https://github.com/foone/BRender-3DMM"
+      }
+    ],
+    "maker": "Microsoft, with BRender by Argonaut Software",
+    "next": "Build it with a modern compiler against the 1995 BRender variant, and record what the build needs that the release left out.",
+    "source_ids": [
+      "microsoft-3dmm-github",
+      "foone-brender-3dmm"
+    ],
+    "status": "candidate",
+    "what_it_was": "A Windows program for children and hobbyists that placed 3D actors and props in pre-rendered scenes, animated them along paths and recorded films with sound. Its 3D drawing ran on Argonaut's BRender, so it is a direct relative of the rebuilt BRender in this catalogue.",
+    "what_survives": "Microsoft published the source on 14 April 2022 under the MIT licence, with a 1995 build of BRender inside it, and archived the repository on 4 May 2022. The README credits Jez San, Argonaut's former CEO, with approving BRender's release under MIT. The SoftImage SDK is not included, and the code expects Visual C++ 2.0.",
+    "years": "1995"
+  },
+  "id": "microsoft-3d-movie-maker",
+  "name": "Microsoft 3D Movie Maker",
+  "platforms": [
+    "Windows 3.1",
+    "Windows 95",
+    "C++",
+    "BRender"
+  ],
+  "priority": 80,
+  "public_status": "curated-public-sources",
+  "related_targets": [
+    "brender"
+  ],
+  "restricted_status": "none-known",
+  "revival_lane": "public-source-preservation",
+  "rights_posture": "open",
+  "summary": "Microsoft's 1995 animation program, built on Argonaut's BRender, released as source under MIT in 2022."
+}

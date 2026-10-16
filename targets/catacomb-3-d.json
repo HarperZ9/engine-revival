@@ -1,0 +1,36 @@
+{
+  "category": "game-engine",
+  "era": "1980s-2000s",
+  "hub": {
+    "headline": "Catacomb 3-D was a 1991 first-person game whose ray-casting renderer led to Wolfenstein 3D.",
+    "links": [
+      {
+        "label": "Catacomb 3-D source (GPL-2.0)",
+        "url": "https://github.com/CatacombGames/Catacomb3D"
+      }
+    ],
+    "maker": "id Software, published by Softdisk",
+    "next": "Build the DOS source as released and record a reproducible build and a playable test under an emulator.",
+    "source_ids": [
+      "catacombgames-catacomb3d-github"
+    ],
+    "status": "candidate",
+    "what_it_was": "One of the first texture-mapped first-person games on the PC. Its ray caster draws walls column by column from a 2D grid, the technique Wolfenstein 3D refined a year later.",
+    "what_survives": "The source was published on 5 June 2014 under GPL-2.0 by the CatacombGames organisation. Game data is not covered by that licence.",
+    "years": "1991"
+  },
+  "id": "catacomb-3-d",
+  "name": "Catacomb 3-D",
+  "platforms": [
+    "MS-DOS",
+    "C",
+    "x86 assembly"
+  ],
+  "priority": 55,
+  "public_status": "curated-public-sources",
+  "related_targets": [],
+  "restricted_status": "none-known",
+  "revival_lane": "public-source-preservation",
+  "rights_posture": "open",
+  "summary": "The 1991 Softdisk and id Software ray-caster, released as source under GPL-2.0 in 2014."
+}

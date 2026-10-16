@@ -7,13 +7,17 @@
 | aqsis | aqsis-baseline | public-dossier-established | curated | Public dossier has curated Aqsis source, accession, and task records. |
 | bmrt-lineage | bmrt-lineage-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
 | brender | brender-baseline | public-release-evidence-imported | verified-public-boundary | Public dossier has curated BRender source, accession, task, 21-target CTest, release-media, and provenance records. |
+| catacomb-3-d | catacomb-3-d-baseline | public-dossier-established | curated | Public dossier cites the rights-holder source release of Catacomb 3-D and its licence, read on 2026-10-16. |
 | cosmo3d | cosmo3d-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
 | crystal-space | crystal-space-baseline | public-dossier-established | curated | Public dossier has curated Crystal Space source, accession, and task records. |
 | gool-goal | gool-goal-baseline | public-dossier-established | curated | Public dossier has curated GOOL and GOAL source, accession, and task records. |
+| id-tech-4 | id-tech-4-baseline | public-dossier-established | curated | Public dossier cites the rights-holder source release of id Tech 4 (Doom 3) and its licence, read on 2026-10-16. |
 | iris-gl-opengl-bridge | iris-gl-opengl-bridge-baseline | public-dossier-established | curated | Public dossier has curated IRIS GL and OpenGL bridge source, accession, and task records. |
 | japan-studio-team-ico | japan-studio-team-ico-baseline | public-dossier-established | curated | Public dossier has curated Japan Studio and Team Ico source, accession, and task records. |
 | lithtech-jupiter | lithtech-jupiter-baseline | public-dossier-established | curated | Public dossier has curated LithTech Jupiter target, source, artifact, accession, task, and reproduction records without holding restricted package contents. |
+| marathon-2-aleph-one | marathon-2-aleph-one-baseline | public-dossier-established | curated | Public dossier cites the rights-holder source release of the Marathon 2 engine (Aleph One) and its licence, read on 2026-10-16. |
 | mesa | mesa-baseline | public-dossier-established | curated | Public dossier has curated Mesa source, accession, and task records. |
+| microsoft-3d-movie-maker | microsoft-3d-movie-maker-baseline | public-dossier-established | curated | Public dossier cites the rights-holder source release of Microsoft 3D Movie Maker and its licence, read on 2026-10-16. |
 | n64-gbi-fast3d | n64-gbi-fast3d-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
 | ogre | ogre-baseline | public-dossier-established | curated | Public dossier has curated OGRE source, accession, and task records. |
 | open-inventor | open-inventor-baseline | public-dossier-established | curated | Public dossier has curated Open Inventor source, accession, and task records. |
@@ -30,6 +34,8 @@
 | renderman-interface | renderman-interface-baseline | public-dossier-established | curated | Public dossier has curated RenderMan Interface source, accession, and task records. |
 | renderware-ps2 | renderware-ps2-baseline | public-dossier-established | curated | Public dossier has curated RenderWare PS2 source, accession, and task records. |
 | sega-saturn-sgl-sbl | sega-saturn-sgl-sbl-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |
+| serious-engine-1 | serious-engine-1-baseline | public-dossier-established | curated | Public dossier cites the rights-holder source release of Serious Engine 1 and its licence, read on 2026-10-16. |
 | softimage-alias-bridge | softimage-alias-bridge-baseline | public-dossier-established | curated | Public dossier has curated Softimage and Alias bridge source, accession, and task records. |
+| torque-3d | torque-3d-baseline | public-dossier-established | curated | Public dossier cites the rights-holder source release of Torque 3D and its licence, read on 2026-10-16. |
 | tri-ace-ps2-renderer | tri-ace-ps2-renderer-baseline | public-dossier-established | curated | Public dossier has curated tri-Ace PS2 renderer source, accession, and task records. |
 | truespace-caligari | truespace-caligari-baseline | public-dossier-established | curated | Lead dossier established with curated target and accession records; no source captured yet. |

@@ -1,0 +1,11 @@
+{
+  "claim_scope": "dhewm 3, a maintained source port of the Doom 3 GPL release",
+  "confidence": "high",
+  "id": "dhewm3-github",
+  "notes": "GitHub reports GPL-3.0; last push 2026-06-08. Listed as the maintained place to run id Tech 4 today.",
+  "publisher": "GitHub / dhewm",
+  "retrieved_at": "2026-10-16",
+  "source_type": "repository",
+  "title": "dhewm 3 source port repository",
+  "url": "https://github.com/dhewm/dhewm3"
+}

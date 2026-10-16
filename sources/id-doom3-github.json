@@ -1,0 +1,11 @@
+{
+  "claim_scope": "Doom 3 (id Tech 4) source release under GPL-3.0 with additional terms",
+  "confidence": "high",
+  "id": "id-doom3-github",
+  "notes": "Repository created 2012-02-01 by id Software; GitHub reports GPL-3.0. The licence carries id's additional terms in place of the warranty and liability sections. Game assets are not included.",
+  "publisher": "GitHub / id Software",
+  "retrieved_at": "2026-10-16",
+  "source_type": "repository",
+  "title": "DOOM 3 GPL source release (id Software)",
+  "url": "https://github.com/id-Software/DOOM-3"
+}
