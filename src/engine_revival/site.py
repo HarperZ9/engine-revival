@@ -108,7 +108,7 @@ def index_page(targets: list[dict]) -> str:
         f"so a revival could be built. Highest priority first.</p>{_coming_next(targets)}"
         "<h2>Use the archive yourself</h2><p>The records behind these pages are plain JSON, and the "
         "tools that check and publish them install with pip.</p>"
-        f"<pre><code>pip install \"engine-revival @ git+{REPO}@v0.5.0\"\n"
+        f"<pre><code>pip install \"engine-revival @ git+{REPO}@v0.6.0\"\n"
         "git clone https://github.com/HarperZ9/engine-revival\ncd engine-revival\n"
         "engine-revival validate      # every record has the fields its schema names\n"
         "engine-revival audit-public  # nothing restricted is marked publishable\n"

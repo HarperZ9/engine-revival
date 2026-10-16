@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0
+
+The period BRender 1.3.2 build now draws in 8-bit colour, through BRender's own palette path.
+
+- Four INDEX_8 kernels with a 16-bit depth buffer are ported line by line: `TriangleRender_Z_I8_D16` (flat colour index) and `TriangleRender_ZTI_I8_D16_256` (256 x 256 map lit through the shade table) from `zb8.asm`, and `TriangleRender_ZI_I8_D16` (Gouraud index) and `TriangleRender_ZT_I8_D16_256` (256 x 256 map, unlit) from `fti8_piz.asm`. The diagnostic stubs for them are gone. They live in `brender_compat/brender-pentprim-i8-port.c`.
+- The floating point triangle setup they call, `fpsetup.asm`'s `SETUP_FLOAT`, `SETUP_FLOAT_PARAM` and `SETUP_FLOAT_COLOUR`, is ported in `brender-pentprim-fpsetup-port.c`: the same double operations in the same order, single precision where the assembly stores a dword, the 1.5 x 2^36 conversion to 16.16 fixed point, the integer y taken from the float's bits, and the overlapping sort tables read as one array.
+- Kept as found: `zb8.asm` compares the z step with the decimal constant 80000000 where `fti8_piz.asm` uses 80000000h, so the flat kernel takes one off a large positive step as well as a negative one.
+- The materializer writes 34 files (three new compat files); the ladder stays at 21 targets.
+- Measured with brender-archival's parity scenes (16 October 2026): nine 8-bit scenes against BRender 1.4, compared by palette index. Coverage IoU is 0.9983 or better, 96.4% to 99.9% of pixels carry the same index, and MAD is at most 0.43 levels. Two period runs are byte-identical.
+
 ## 0.5.0
 
 The period BRender 1.3.2 build now draws textured scenes.
