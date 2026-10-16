@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import pytest
 
@@ -547,11 +548,13 @@ def test_softrend_period_pipeline_clears_colour_and_depth_each_orbit_frame(tmp_p
 
     assert "static void clear_pixelmap_storage" in softrend
     assert "clear_pixelmap_storage(pm);" in render_loop
-    assert "BrPixelmapFill(depth, 0);" in render_loop
+    # far is 0xFFFF: tt24_piz.asm draws where z < *zbuf (corrected 2026-10-16)
+    assert "BrPixelmapFill(depth, 0xFFFFFFFF);" in render_loop
+    assert "BrPixelmapFill(depth, 0);" not in softrend
     assert render_loop.index("clear_pixelmap_storage(pm);") < render_loop.index(
         "BrZbSceneRender(world, camera_actor, pm, depth);"
     )
-    assert render_loop.index("BrPixelmapFill(depth, 0);") < render_loop.index(
+    assert render_loop.index("BrPixelmapFill(depth, 0xFFFFFFFF);") < render_loop.index(
         "BrZbSceneRender(world, camera_actor, pm, depth);"
     )
     assert "BrZbSceneRenderContinue(" not in render_loop
@@ -587,3 +590,24 @@ def test_cli_materializes_brender_harness(tmp_path, capsys):
     assert (output / "smoke" / "brender-core-render-smoke.c").exists()
     assert (output / "smoke" / "brender-core-scene-smoke.c").exists()
     assert (output / "smoke" / "brender-core-fill-smoke.c").exists()
+
+
+def test_softrend_rung_fails_ctest_when_its_render_is_invalid(tmp_path):
+    """Before 2026-10-16 main fell off its end and returned 0 whatever the
+    receipt said, so CTest passed an empty frame."""
+    smoke = _materialized_smoke_sources(tmp_path)
+    softrend = (smoke / "brender-core-softrend-render.c").read_text(encoding="utf-8")
+    assert "return ok ? 0 : 13;" in softrend
+
+
+def test_pentprim_port_uses_the_real_component_slots():
+    """The port once redefined C_SX and friends as 0..8 with #ifndef, which
+    shadows priminfo.h's enum (C_SX is 5) and read the wrong slots."""
+    port = (Path(__file__).resolve().parents[1] / "src" / "engine_revival" / "brender_compat"
+            / "brender-pentprim-c-port.c").read_text(encoding="utf-8")
+    assert "#define C_SX" not in port and "#ifndef C_SX" not in port
+    assert "static void tt24_triangle(" in port
+    for name in ("TriangleRenderPIZ2_RGB_888", "TriangleRenderPIZ2I_RGB_888"):
+        assert port.count(f"void BR_ASM_CALL {name}(") == 1, name
+    # the depth test of tt24_piz.asm: draw where the new z is below the stored one
+    assert "if (z16 < *zp)" in port
