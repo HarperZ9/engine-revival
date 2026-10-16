@@ -85,6 +85,45 @@ static long count_lit(br_pixelmap *pm)
     return t;
 }
 
+/* Expand an indexed period texture through its palette into RGB_888: the
+ * Z-buffered textured kernel for an RGB_888 target that needs no shade
+ * table (TriangleRenderPIZ2TA24) samples RGB_888 texels. The 1.4 rung does
+ * the same expansion, so both rungs texture from the same bytes. */
+static br_pixelmap *expand_texture(br_pixelmap *tex, br_pixelmap *pal)
+{
+    br_pixelmap *rgb;
+    int x, y;
+    if (tex->type != BR_PMT_INDEX_8 || pal == NULL || pal->pixels == NULL) return tex;
+    rgb = BrPixelmapAllocate(BR_PMT_RGB_888, tex->width, tex->height, NULL, BR_PMAF_NORMAL);
+    if (rgb == NULL) return NULL;
+    for (y = 0; y < (int)tex->height; y++) {
+        const unsigned char *src = (const unsigned char *)tex->pixels + (long)y * tex->row_bytes;
+        unsigned char *dst = (unsigned char *)rgb->pixels + (long)y * rgb->row_bytes;
+        for (x = 0; x < (int)tex->width; x++) {
+            const unsigned char *entry = (const unsigned char *)pal->pixels + (long)src[x] * pal->row_bytes;
+            dst[x * 3 + 0] = entry[0]; dst[x * 3 + 1] = entry[1]; dst[x * 3 + 2] = entry[2];
+        }
+    }
+    return rgb;
+}
+
+/* Pixels whose channels differ by more than 24: none for a grey or white
+ * silhouette, many for the earth texture. */
+static long count_chroma(br_pixelmap *pm)
+{
+    long t = 0; int x, y;
+    for (y = 0; y < (int)pm->height; y++) {
+        const unsigned char *row = (const unsigned char *)pm->pixels + (long)y * pm->row_bytes;
+        for (x = 0; x < (int)pm->width; x++) {
+            int b = row[x * 3], g = row[x * 3 + 1], r = row[x * 3 + 2];
+            int hi = r > g ? (r > b ? r : b) : (g > b ? g : b);
+            int lo = r < g ? (r < b ? r : b) : (g < b ? g : b);
+            if (hi - lo > 24) t++;
+        }
+    }
+    return t;
+}
+
 static void clear_pixelmap_storage(br_pixelmap *pm)
 {
     if (pm == NULL || pm->pixels == NULL || pm->row_bytes <= 0 || pm->height <= 0) return;
@@ -168,9 +207,11 @@ int main(int argc, char **argv)
     }
     material = BrMaterialAllocate("shell-texture");
     if (material == NULL) { BrEnd(); return 7; }
+    tex = expand_texture(tex, pal != NULL ? pal : tex->map);
+    if (tex == NULL) { BrEnd(); return 6; }
     material->colour_map = tex;
     material->identifier = "shell-texture";
-    /* Lit textured: triggers match.c to select TriangleRenderPIZ2TIA_RGB_888 */
+    /* Textured from an RGB_888 map, unlit: match.c selects TriangleRenderPIZ2TA24 */
     material->flags = BR_MATF_SMOOTH;
 
     model = BrModelLoad((char *)model_path);
@@ -205,6 +246,11 @@ int main(int argc, char **argv)
     BrModelUpdate(model, BR_MODU_ALL);
     /* Store the material with the renderer so material->stored is non-NULL;
      * renderFaces() skips models whose material was never stored. */
+    /* the renderer samples a stored map: register it and let the renderer
+     * build its copy before the material that names it is stored */
+    tex->identifier = "shell-texture-rgb";
+    BrMapAdd(tex);
+    BrMapUpdate(tex, BR_MAPU_ALL);
     BrMaterialUpdate(material, BR_MATU_ALL);
     model_actor = BrActorAllocate(BR_ACTOR_MODEL, NULL);
     if (world == NULL || camera_actor == NULL || camera_actor->type_data == NULL
@@ -281,7 +327,9 @@ int main(int argc, char **argv)
 
     {
         long lit = count_lit(pm);
-        int ok = (lit > 500);
+        long chroma = count_chroma(pm);
+        /* textured, not a silhouette: the earth texture is blue and green */
+        int ok = (lit > 500) && (chroma > 500);
         fputs("{\"rung\":\"brender_core_softrend_render\",\"renderer\":\"softrend-float\","
             "\"model\":", stdout);
         json_write_string(stdout, model_path);
@@ -305,8 +353,8 @@ int main(int argc, char **argv)
         fputs(",\"palette\":", stdout);
         json_write_string(stdout, pal_path ? pal_path : "-");
         printf(","
-            "\"frames\":8,\"final_frame_lit\":%ld,\"valid\":%s}\n",
-            lit,
+            "\"frames\":8,\"final_frame_lit\":%ld,\"final_frame_textured\":%ld,\"valid\":%s}\n",
+            lit, chroma,
             (ok && dump_ppm(pm, out_path)) ? "true" : "false");
         fflush(stdout);
 
