@@ -104,6 +104,9 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "cmake/brender-pentprim.cmake",
         output / "compat/brender-softrend-float-fallbacks.c",
         output / "compat/brender-pentprim-c-port.c",
+        output / "compat/brender-pentprim-fpsetup-port.h",
+        output / "compat/brender-pentprim-fpsetup-port.c",
+        output / "compat/brender-pentprim-i8-port.c",
         output / "compat/brender-portable-core-stubs.c",
         output / "compat/brender-portable-host-stubs.c",
         output / "smoke/brender-core-smoke.c",
@@ -641,3 +644,40 @@ def test_softrend_rung_requires_a_textured_frame(tmp_path):
     assert "int ok = (lit > 500) && (chroma > 500);" in softrend
     assert softrend.index("BrMapUpdate(tex, BR_MAPU_ALL);") < softrend.index("BrMaterialUpdate(material, BR_MATU_ALL);")
     assert "expand_texture(tex," in softrend
+
+
+def _compat_port(name: str) -> str:
+    return (Path(__file__).resolve().parents[1] / "src" / "engine_revival" / "brender_compat" / name).read_text(
+        encoding="utf-8")
+
+
+def test_index8_kernels_are_ported_once_and_not_stubbed():
+    """The 8-bit kernels of zb8.asm and fti8_piz.asm live in the i8 port; the
+    diagnostic stubs for them are gone from the main port."""
+    i8, main = _compat_port("brender-pentprim-i8-port.c"), _compat_port("brender-pentprim-c-port.c")
+    for name in ("TriangleRender_Z_I8_D16", "TriangleRender_ZI_I8_D16", "TriangleRender_ZT_I8_D16_256",
+                 "TriangleRender_ZTI_I8_D16_256"):
+        assert i8.count(f"void BR_ASM_CALL {name}(") == 1, name
+        assert f"void BR_ASM_CALL {name}(" not in main, name
+    # zb8.asm compares the z step with the decimal 80000000; fti8_piz.asm with 80000000h
+    assert "if (dzx >= 80000000u) dzx -= 1u;" in i8
+    assert "if (g >= 0x80000000u) g -= 1u;" in i8
+    # a zero texel is transparent in both textured kernels
+    assert i8.count("texel != 0") == 2
+
+
+def test_fpsetup_port_keeps_the_assembly_conversions():
+    setup = _compat_port("brender-pentprim-fpsetup-port.c")
+    assert "#define FP_CONV_D16 103079215104.0" in setup  # 1.5 * 2^36
+    assert 103079215104.0 == 1.5 * 2 ** 36
+    # the overlapping sort tables, read as one array, and the parity flip table
+    assert "{1, 2, 0, 0, 0, 0, 2, 1, 0, 1, 2, 0, 0, 0}" in setup
+    assert "#pragma fp_contract(off)" in setup
+
+
+def test_index8_ports_are_in_the_pentprim_library(tmp_path):
+    harness = _materialized_harness(tmp_path)
+    cmake = (harness / "cmake" / "brender-pentprim.cmake").read_text(encoding="utf-8")
+    for name in ("brender-pentprim-fpsetup-port.c", "brender-pentprim-i8-port.c"):
+        assert f"compat/{name}" in cmake, name
+    assert (harness / "compat" / "brender-pentprim-fpsetup-port.h").is_file()

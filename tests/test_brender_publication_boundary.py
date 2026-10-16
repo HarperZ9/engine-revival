@@ -330,6 +330,9 @@ def test_compat_ports_and_schemas_ship_inside_the_package():
     compat = resources.files("engine_revival.brender_compat")
     for name in (
         "brender-pentprim-c-port.c",
+        "brender-pentprim-fpsetup-port.c",
+        "brender-pentprim-fpsetup-port.h",
+        "brender-pentprim-i8-port.c",
         "brender-softrend-float-fallbacks.c",
         "MIT-BRender.txt",
         "LICENSE-NOTE.md",
