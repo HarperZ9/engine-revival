@@ -1,0 +1,43 @@
+{
+  "category": "game-engine",
+  "era": "1980s-2000s",
+  "hub": {
+    "headline": "id Tech 4 was id Software's 2004 engine for Doom 3, built around unified dynamic lighting.",
+    "links": [
+      {
+        "label": "DOOM 3 source (GPL-3.0 with additional terms)",
+        "url": "https://github.com/id-Software/DOOM-3"
+      },
+      {
+        "label": "dhewm 3, a maintained source port",
+        "url": "https://github.com/dhewm/dhewm3"
+      }
+    ],
+    "maker": "id Software",
+    "next": "Point readers to the maintained source ports and record which port builds the original release most faithfully.",
+    "source_ids": [
+      "id-doom3-github",
+      "dhewm3-github"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "A hardware renderer that lit every surface per pixel with dynamic lights and stencil shadows, used for Doom 3 and later games licensed from id.",
+    "what_survives": "id Software released the source in November 2011 under GPL-3.0 with additional terms that replace the warranty and liability sections. Game assets are not included. dhewm 3 maintains a source port.",
+    "years": "2004"
+  },
+  "id": "id-tech-4",
+  "name": "id Tech 4 (Doom 3)",
+  "platforms": [
+    "Windows",
+    "Linux",
+    "macOS",
+    "OpenGL",
+    "C++"
+  ],
+  "priority": 50,
+  "public_status": "curated-public-sources",
+  "related_targets": [],
+  "restricted_status": "none-known",
+  "revival_lane": "public-source-preservation",
+  "rights_posture": "open",
+  "summary": "The Doom 3 engine, released by id Software under GPL-3.0 with additional terms in 2011, maintained today in source ports such as dhewm 3."
+}

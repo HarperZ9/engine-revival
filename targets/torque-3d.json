@@ -1,0 +1,44 @@
+{
+  "category": "game-engine",
+  "era": "1980s-2000s",
+  "hub": {
+    "headline": "Torque 3D was GarageGames' commercial game engine, descended from the engine behind Tribes 2.",
+    "links": [
+      {
+        "label": "Torque 3D MIT release (GarageGames)",
+        "url": "https://github.com/GarageGames/Torque3D"
+      },
+      {
+        "label": "Torque 3D community repository",
+        "url": "https://github.com/TorqueGameEngines/Torque3D"
+      }
+    ],
+    "maker": "GarageGames",
+    "next": "Point readers to the community repository, and confirm its licence file, which GitHub does not identify.",
+    "source_ids": [
+      "garagegames-torque3d-github",
+      "torquegameengines-torque3d-github"
+    ],
+    "status": "maintained-elsewhere",
+    "what_it_was": "A licensable engine for independent studios, with a world editor, a scripting language (TorqueScript) and networking from the Tribes lineage.",
+    "what_survives": "GarageGames published Torque 3D under the MIT licence in September 2012. The Torque Game Engines community continues it; its last change was on 26 September 2026.",
+    "years": "2009"
+  },
+  "id": "torque-3d",
+  "name": "Torque 3D",
+  "platforms": [
+    "Windows",
+    "Linux",
+    "macOS",
+    "Direct3D",
+    "OpenGL",
+    "C++"
+  ],
+  "priority": 50,
+  "public_status": "curated-public-sources",
+  "related_targets": [],
+  "restricted_status": "none-known",
+  "revival_lane": "public-source-preservation",
+  "rights_posture": "open",
+  "summary": "GarageGames' engine, descended from the Tribes 2 engine, released under MIT in 2012 and continued by a community project."
+}

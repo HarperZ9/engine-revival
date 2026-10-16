@@ -1,0 +1,7 @@
+{
+  "id": "marathon-2-aleph-one-triage",
+  "public_notes": "Create public-safe artifact and accession records for the Marathon 2 engine (Aleph One); its rights-holder source release is cited.",
+  "status": "seeded",
+  "target_id": "marathon-2-aleph-one",
+  "task_type": "triage-public-record"
+}

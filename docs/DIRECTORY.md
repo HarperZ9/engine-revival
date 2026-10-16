@@ -30,6 +30,9 @@ repository.
 | PSn00bSDK (PS1 clean-room SDK) | https://github.com/Lameguy64/PSn00bSDK | MPL-2.0 (sub-tools GPL) |
 | OpenGOAL (Jak/GOAL) | https://github.com/open-goal/jak-project | ISC |
 | LithTech Jupiter (ltjs) | https://github.com/bibendovsky/ltjs | rights unresolved; see note |
+| Marathon 2 engine (Aleph One) | https://github.com/Aleph-One-Marathon/alephone | GPL-3.0 (Bungie GPL release, 2000) |
+| id Tech 4 / Doom 3 (dhewm 3) | https://github.com/dhewm/dhewm3 | GPL-3.0 with id's additional terms |
+| Torque 3D | https://github.com/TorqueGameEngines/Torque3D | MIT (GarageGames release, 2012) |
 
 Note on ltjs: the original Jupiter EX source carries an in-tree "all rights
 reserved" LithTech copyright, and the widely-repeated GPLv2 release claim has no
@@ -48,6 +51,17 @@ not claims.
 - RenderWare, via the `aap/librw` clean-room substrate (original Criterion/EA
   source is lost/restricted).
 - Aqsis and Pixie (RenderMan-compliant renderers, dormant mirrors).
+- Microsoft 3D Movie Maker (github.com/microsoft/Microsoft-3D-Movie-Maker, MIT,
+  released by Microsoft 2022-04-14, archived; carries a 1995 BRender build).
+- Serious Engine 1 (github.com/Croteam-official/Serious-Engine, GPL-2.0,
+  released by Croteam 2016-03-11).
+- Catacomb 3-D (github.com/CatacombGames/Catacomb3D, GPL-2.0, released 2014-06-05).
+
+Not added as candidates, checked 2026-10-16: the Build engine (BUILDLIC bars
+commercial use), Descent and FreeSpace 2 (non-commercial source notices),
+Homeworld (non-commercial EULA), 3dfx Glide (its own licence, not OSI
+approved), and the id Software Wolfenstein 3D repository (a 1995 limited-use
+licence). Genesis3D and Allegiance wait for a primary licence source.
 
 ### Missing from the roster, worth adding
 

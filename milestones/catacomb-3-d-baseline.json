@@ -1,0 +1,10 @@
+{
+  "id": "catacomb-3-d-baseline",
+  "target_id": "catacomb-3-d",
+  "milestone_type": "public-dossier-established",
+  "status": "curated",
+  "evidence": "Public dossier cites the rights-holder source release of Catacomb 3-D and its licence, read on 2026-10-16.",
+  "source_ids": [
+    "catacombgames-catacomb3d-github"
+  ]
+}

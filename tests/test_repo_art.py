@@ -91,39 +91,39 @@ def test_the_corpus_holds_twelve_record_kinds():
     assert [word.strip() for word in named.split(",")] == list(RECORD_DIRS)
 
 
-def test_three_hundred_and_eighty_three_records_sit_on_disk(records):
-    assert CARD["records on disk"]["value"] == "383 files"
+def test_four_hundred_and_nine_records_sit_on_disk(records):
+    assert CARD["records on disk"]["value"] == "409 files"
     counts = {kind: len(found) for kind, found in records.items()}
-    assert sum(counts.values()) == 383
-    assert counts["source"] == 86
+    assert sum(counts.values()) == 409
+    assert counts["source"] == 94
     assert counts["artifact"] == 66
     assert counts["accession"] == 66
-    assert counts["task"] == 38
+    assert counts["task"] == 44
     assert max(counts, key=counts.get) == "source"
 
 
-def test_twenty_nine_engines_across_nineteen_categories(records):
-    assert CARD["engines tracked"]["value"] == "29 targets"
+def test_thirty_five_engines_across_twenty_categories(records):
+    assert CARD["engines tracked"]["value"] == "35 targets"
     targets = records["target"]
-    assert len(targets) == 29
-    assert len({target.payload["category"] for target in targets}) == 19
+    assert len(targets) == 35
+    assert len({target.payload["category"] for target in targets}) == 20
     status = Counter(target.payload["public_status"] for target in targets)
     assert status["curated-public-metadata"] == 15
-    assert status["curated-public-sources"] == 13
+    assert status["curated-public-sources"] == 19
 
 
 def test_every_source_carries_its_own_confidence(records):
-    assert CARD["sources cited"]["value"] == "86 of them"
+    assert CARD["sources cited"]["value"] == "94 of them"
     confidence = Counter(source.payload["confidence"] for source in records["source"])
-    assert confidence == {"high": 69, "moderate": 16, "low": 1}
-    assert sum(confidence.values()) == 86
+    assert confidence == {"high": 77, "moderate": 16, "low": 1}
+    assert sum(confidence.values()) == 94
 
 
-def test_seven_hundred_and_eighty_five_references_all_resolve(records):
+def test_eight_hundred_and_six_references_all_resolve(records):
     from engine_revival.validate import validate_workspace
 
-    assert CARD["links that resolve"]["value"] == "785 edges"
-    assert _count_references(records) == 785
+    assert CARD["links that resolve"]["value"] == "806 edges"
+    assert _count_references(records) == 806
     assert validate_workspace(ROOT) == []
 
 
@@ -179,14 +179,14 @@ def test_twelve_schemas_name_one_hundred_and_fifteen_required_fields():
     assert required == 115
 
 
-def test_the_report_writes_two_hundred_and_thirty_five_files(tmp_path):
+def test_the_report_writes_two_hundred_and_forty_one_files(tmp_path):
     """Written into a copy, so the assertion never rewrites the real tree."""
     from engine_revival.report import write_reports
 
     written = list(write_reports(_corpus_copy(tmp_path)))
-    assert CARD["generated pages"]["value"] == "235 written"
-    assert len(written) == 235
-    assert len([path for path in written if path.suffix == ".md"]) == 234
+    assert CARD["generated pages"]["value"] == "241 written"
+    assert len(written) == 241
+    assert len([path for path in written if path.suffix == ".md"]) == 240
     assert len([path for path in written if path.suffix == ".json"]) == 1
 
 
@@ -215,8 +215,8 @@ def test_the_materializer_writes_the_twenty_one_target_ladder():
     assert len(harness.CORE_FLOAT_DEFINES) == 9
 
 
-def test_twenty_eight_of_twenty_nine_targets_claim_no_rung_above_the_first(records):
-    assert CARD["still at rung zero"]["value"] == "28 of 29"
+def test_thirty_four_of_thirty_five_targets_claim_no_rung_above_the_first(records):
+    assert CARD["still at rung zero"]["value"] == "34 of 35"
     readiness = records["readiness"]
     target_ids = {target.payload["id"] for target in records["target"]}
     scored = {record.payload["target_id"] for record in readiness}
@@ -225,12 +225,12 @@ def test_twenty_eight_of_twenty_nine_targets_claim_no_rung_above_the_first(recor
         for record in readiness
         if record.payload["readiness_stage"] != "baseline-assessment"
     ]
-    assert len(target_ids) == 29
+    assert len(target_ids) == 35
     assert len(readiness) == 22
     assert len(above) == 1
     assert len(readiness) - len(above) == 21
-    assert len(target_ids - scored) == 7
-    assert 21 + 7 == 28
+    assert len(target_ids - scored) == 13
+    assert 21 + 13 == 34
 
 
 def test_the_one_engine_above_the_first_rung_names_its_evidence(records):
@@ -251,7 +251,7 @@ def test_the_one_engine_above_the_first_rung_names_its_evidence(records):
     assert "eighty-eight" in RUNGS["alt"]
 
 
-def test_eight_maintained_projects_are_linked_rather_than_rehosted():
+def test_eleven_maintained_projects_are_linked_rather_than_rehosted():
     text = (ROOT / "docs" / "DIRECTORY.md").read_text(encoding="utf-8")
     section = text.split("## Actively maintained")[1].split("\n## ")[0]
     rows = [
@@ -259,8 +259,8 @@ def test_eight_maintained_projects_are_linked_rather_than_rehosted():
         for line in section.splitlines()
         if line.startswith("|") and not set(line) <= set("|- ")
     ]
-    assert len(rows) - 1 == 8
-    assert "eight of them are still maintained" in TRIAGE["alt"]
+    assert len(rows) - 1 == 11
+    assert "eleven of them are still maintained" in TRIAGE["alt"]
     assert "does not fork or re-host it" in text
 
 

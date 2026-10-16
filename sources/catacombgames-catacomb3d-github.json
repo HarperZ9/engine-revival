@@ -1,0 +1,11 @@
+{
+  "claim_scope": "Catacomb 3-D source release under GPL-2.0",
+  "confidence": "high",
+  "id": "catacombgames-catacomb3d-github",
+  "notes": "Repository created 2014-06-05; GitHub reports GPL-2.0. Game data is not covered. The repository does not itself name the releasing company, so the rights-holder statement rests on the organisation that published it.",
+  "publisher": "GitHub / CatacombGames",
+  "retrieved_at": "2026-10-16",
+  "source_type": "repository",
+  "title": "Catacomb 3-D source repository",
+  "url": "https://github.com/CatacombGames/Catacomb3D"
+}

@@ -8,6 +8,7 @@
 | 84 | [PS1 Programmer's Tool / SDevTC / Net Yaroze](targets/ps1-programmer-tool.md) | clean-room-only | clean-room-api-compatible | 4 | 4 | 2 | 1 |
 | 82 | [RenderWare PS2](targets/renderware-ps2.md) | restricted | compatibility-reimplementation | 2 | 2 | 2 | 1 |
 | 80 | [GOOL and GOAL](targets/gool-goal.md) | clean-room-only | tooling-only-legal-copy-assets | 3 | 3 | 2 | 1 |
+| 80 | [Microsoft 3D Movie Maker](targets/microsoft-3d-movie-maker.md) | open | public-source-preservation | 0 | 0 | 1 | 1 |
 | 79 | [LithTech Jupiter](targets/lithtech-jupiter.md) | rights-holder-needed | user-supplied-reproduction | 2 | 2 | 1 | 1 |
 | 78 | [PS2 ProDG / EB / Linux stack](targets/ps2-prodg-eb-linux.md) | rights-holder-needed | clean-room-and-corporate-outreach | 4 | 4 | 2 | 1 |
 | 77 | [RenderMorphics Reality Lab](targets/reality-lab.md) | rights-holder-needed | private-lead-public-metadata | 4 | 4 | 1 | 1 |
@@ -30,6 +31,11 @@
 | 65 | [Pixie](targets/pixie.md) | open | public-source-preservation | 2 | 2 | 1 | 1 |
 | 64 | [Origin RealSpace Engine](targets/realspace-engine.md) | unresolved | reverse-engineering-reconstruction | 1 | 1 | 1 | 1 |
 | 62 | [PHIGS](targets/phigs.md) | public-reference-only | upstream-dependency-atlas | 3 | 3 | 1 | 1 |
+| 60 | [Serious Engine 1](targets/serious-engine-1.md) | open | public-source-preservation | 0 | 0 | 1 | 1 |
 | 60 | [trueSpace / Caligari](targets/truespace-caligari.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
 | 58 | [BMRT / Entropy / Gelato Lineage](targets/bmrt-lineage.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
+| 55 | [Catacomb 3-D](targets/catacomb-3-d.md) | open | public-source-preservation | 0 | 0 | 1 | 1 |
 | 55 | [SGI Cosmo3D / OpenGL++](targets/cosmo3d.md) | unresolved | lead-dossier | 1 | 1 | 1 | 1 |
+| 50 | [id Tech 4 (Doom 3)](targets/id-tech-4.md) | open | public-source-preservation | 0 | 0 | 1 | 1 |
+| 50 | [Marathon 2 engine (Aleph One)](targets/marathon-2-aleph-one.md) | open | public-source-preservation | 0 | 0 | 1 | 1 |
+| 50 | [Torque 3D](targets/torque-3d.md) | open | public-source-preservation | 0 | 0 | 1 | 1 |

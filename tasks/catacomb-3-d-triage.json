@@ -1,0 +1,7 @@
+{
+  "id": "catacomb-3-d-triage",
+  "public_notes": "Create public-safe artifact and accession records for Catacomb 3-D; its rights-holder source release is cited.",
+  "status": "seeded",
+  "target_id": "catacomb-3-d",
+  "task_type": "triage-public-record"
+}

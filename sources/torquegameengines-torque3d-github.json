@@ -1,0 +1,11 @@
+{
+  "claim_scope": "Torque 3D, continued by the Torque Game Engines community",
+  "confidence": "high",
+  "id": "torquegameengines-torque3d-github",
+  "notes": "Repository created 2020-05-27; last push 2026-09-26. GitHub does not detect a single licence identifier for this repository (NOASSERTION); the MIT grant is cited from the GarageGames release.",
+  "publisher": "GitHub / Torque Game Engines",
+  "retrieved_at": "2026-10-16",
+  "source_type": "repository",
+  "title": "Torque 3D community repository",
+  "url": "https://github.com/TorqueGameEngines/Torque3D"
+}

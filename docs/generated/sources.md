@@ -4,6 +4,7 @@
 
 | Source | Type | Confidence | Uses | Scope | URL |
 |---|---|---|---:|---|---|
+| Aleph One source repository | repository | high | 1 | Aleph One, the open-source continuation of Bungie's Marathon 2 engine, under GPL-3.0 | https://github.com/Aleph-One-Marathon/alephone |
 | Making Crash Bandicoot - GOOL - part 9 | developer-article | high | 5 | GOOL authorship, purpose, and relationship to Crash Bandicoot and GOAL | https://all-things-andy-gavin.com/tag/gool/ |
 | QuickDraw 3D Documentation | technical-qa | moderate | 4 | QuickDraw 3D documentation set and developer CD references | https://leopard-adc.pepas.com/qa/qd3d/qd3d28.html |
 | 3D Graphics Programming with QuickDraw 3D 1.5.4 | manual-pdf | high | 4 | QuickDraw 3D 1.5.4 API manual, service list, 3DMF, RAVE, and rendering modes | https://worldcolleges.info/sites/default/files/3D_Graphics_With_QuickDraw_3D.pdf |
@@ -14,18 +15,23 @@
 | BRender preservation index | curated-index | high | 31 | BRender source-release and binary-SDK index | https://blazingrender.net/ |
 | BlazingRenderer/BRender: modernized fork of BRender | source-repository | high | 0 | existence, licence, version and feature set of the maintained modernized BRender fork | https://github.com/BlazingRenderer/BRender |
 | BMRT / Entropy / Gelato lineage history | reference | high | 3 | BMRT existence, authorship (Larry Gritz), RenderMan compliance, shareware/freeware binary-only distribution, final release 2.6 (November 2000), Exluna Entropy successor (2001), NVIDIA acquisition (2002), discontinuation after the Pixar settlement | https://en.wikipedia.org/wiki/Blue_Moon_Rendering_Tools |
+| Catacomb 3-D source repository | repository | high | 1 | Catacomb 3-D source release under GPL-2.0 | https://github.com/CatacombGames/Catacomb3D |
 | Coin3D API compatibility statement | project-site | high | 4 | Coin3D independent Open Inventor API compatibility and clean-room distinction | https://www.coin3d.org/ |
 | Cosmo3D / OpenGL++ / Fahrenheit lineage | reference | high | 3 | Cosmo3D existence and lineage: SGI scene graph halted near beta when SGI pivoted to OpenGL++, shipped only as the substrate beneath OpenGL Optimizer, absorbed into the Fahrenheit program (announced 1997-12-17, dead by 2000); only the XSG scene-graph slice ever shipped, briefly | https://en.wikipedia.org/wiki/Fahrenheit_(graphics_API) |
+| Serious Engine source repository (Croteam) | repository | high | 1 | Serious Engine 1.10 source release by Croteam under GPL-2.0 | https://github.com/Croteam-official/Serious-Engine |
 | Crystal Space source repository | repository | high | 5 | Crystal Space public source repository, LGPL license metadata, and documentation pointers | https://github.com/crystalspace/CS |
 | Crystal Space SourceForge project record | project-registry | high | 6 | Crystal Space project registry, platform support, OpenGL renderer, and feature summary | https://sourceforge.net/projects/crystal/ |
+| dhewm 3 source port repository | repository | high | 1 | dhewm 3, a maintained source port of the Doom 3 GPL release | https://github.com/dhewm/dhewm3 |
 | JUL95: Of Interest - Reality Lab Windows plan | trade-press-archive | moderate | 2 | Reality Lab planned inclusion in Windows and hardware acceleration context | https://jacobfilipp.com/DrDobbs/articles/DDJ/1995/9507/9507q/9507q.htm |
-| BRender-3DMM source repository | repository | high | 7 | BRender 3D Movie Maker variant source availability, provenance, and MIT license posture | https://github.com/foone/BRender-3DMM |
+| BRender-3DMM source repository | repository | high | 8 | BRender 3D Movie Maker variant source availability, provenance, and MIT license posture | https://github.com/foone/BRender-3DMM |
 | Argonaut Blazing Render (BRender) v1.3.2 source repository | repository | high | 29 | BRender 1.3.2 source availability, provenance, and MIT license posture | https://github.com/foone/BRender-v1.3.2 |
 | Open Source Implementation of Quick Draw 3D Updated | trade-press-archive | moderate | 4 | Quesa 1.6d13 release report, cross-platform QuickDraw 3D compatibility, and LGPL-era metadata | https://www.gamedeveloper.com/game-platforms/open-source-implementation-of-quick-draw-3d-updated |
 | Sony closes Wipeout's Studio Liverpool | trade-report | high | 4 | Studio Liverpool closure confirmation, Psygnosis lineage, Sony statement excerpts, and Liverpool facility clarification | https://www.gamedeveloper.com/business/sony-closes-i-wipeout-i-s-studio-liverpool |
+| Torque 3D MIT source release (GarageGames) | repository | high | 1 | Torque 3D source release by GarageGames under the MIT licence | https://github.com/GarageGames/Torque3D |
 | CERN/OpenPHIGS | source-repository | high | 5 | OpenPHIGS repository with OpenGL backend and data-preservation extensions | https://github.com/CERN/OpenPHIGS |
 | fbradasc/OpenPHIGS LICENSE | license-file | high | 5 | License notices for the public OpenPHIGS source tree based on X Consortium and Sun Microsystems permissions | https://raw.githubusercontent.com/fbradasc/OpenPHIGS/main/LICENSE |
 | BRender Archival v0.1.1 public release | release | high | 8 | BRender Archival v0.1.1 public release boundary, PR #9 merge commit, 21-target CTest transcript, and release-media provenance | https://github.com/HarperZ9/brender-archival/releases/tag/v0.1.1 |
+| DOOM 3 GPL source release (id Software) | repository | high | 1 | Doom 3 (id Tech 4) source release under GPL-3.0 with additional terms | https://github.com/id-Software/DOOM-3 |
 | Initial engine revival research reports | local-research-summary | moderate | 21 | initial target selection |  |
 | Jupiter Development Guide full text | document-ocr | moderate | 5 | OCR and PDF reference for the Jupiter Development Guide version 2002.03.19, including toolchain requirements, component layout, build paths, and legal notices. | https://archive.org/stream/lithengine/JupiterDevGuide_djvu.txt |
 | LithTech Jupiter archive item | archive-item | moderate | 7 | Internet Archive metadata for the LithTech Jupiter build 51 item, including identifier, publication date, package description, collection placement, and original file fixity. | https://archive.org/details/lithengine |
@@ -42,6 +48,7 @@
 | The Mesa 3D Graphics Library | project-site | high | 3 | Mesa project identity and supported graphics API implementations | https://www.mesa3d.org/ |
 | Mesa license and copyright documentation | license-documentation | high | 4 | Mesa license posture for core library and component-level licenses | https://docs.mesa3d.org/license.html |
 | Mesa source code repository documentation | repository-documentation | high | 5 | Mesa upstream repository location and anonymous Git access | https://docs.mesa3d.org/repository.html |
+| Microsoft 3D Movie Maker source repository | repository | high | 1 | Microsoft 3D Movie Maker source release, MIT licence, and the bundled 1995 BRender build | https://github.com/microsoft/Microsoft-3D-Movie-Maker |
 | Microsoft acquisition history - RenderMorphics, Ltd. | corporate-acquisition-record | high | 2 | Microsoft acquisition date for RenderMorphics Ltd. | https://www.microsoft.com/en-us/investor/acquisition-history |
 | Microsoft ships Direct3D | press-release | high | 3 | Direct3D final release in the DirectX 2 SDK and Windows 95 availability | https://news.microsoft.com/source/1996/06/13/microsoft-ships-direct3d/ |
 | DirectX SDK Legacy Samples | repository | high | 3 | Legacy DirectX SDK sample archive, educational/historical reference posture, and MIT license metadata | https://github.com/microsoft/DirectX-SDK-Samples |
@@ -86,6 +93,7 @@
 | Open PHIGS | project-registry | moderate | 5 | Open PHIGS project metadata, C library scope, PHIGS/OpenGL relationship, and ISO 9592/9593 references | https://sourceforge.net/projects/phigs/ |
 | Guide to the Gene Buckle Papers, 1981-2000 | finding-aid | high | 4 | Institutional finding aid listing Renderware 3 PS2 Gold release notes | https://www.museumofplay.org/app/uploads/2025/01/Guide-to-the-Gene-Buckle-papers.pdf |
 | RenderMorphics to release new Reality Lab | trade-press-archive | moderate | 2 | Reality Lab platform support, API description, and release-two feature reporting | https://www.techmonitor.ai/technology/rendermorphics_to_release_new_reality_lab |
+| Torque 3D community repository | repository | high | 1 | Torque 3D, continued by the Torque Game Engines community | https://github.com/TorqueGameEngines/Torque3D |
 | Practical Implementation at tri-Ace course notes | course-notes | high | 4 | tri-Ace physically based shading implementation notes and rendering lineage | https://research.tri-ace.com/Data/course_note_practical_implementation_at_triace.pdf |
 | tri-Ace Research and Development publications index | official-publication-index | high | 4 | tri-Ace rendering research publication index and PS2 SH/HDR presentation metadata | https://research.tri-ace.com/ |
 | trueSpace / Caligari history | reference | high | 3 | Caligari trueSpace existence, Octree Software origins, Microsoft acquisition (February 2008), trueSpace 7.6 freeware release (July 2008), official discontinuation (May 2009), proprietary-freeware license | https://en.wikipedia.org/wiki/TrueSpace |

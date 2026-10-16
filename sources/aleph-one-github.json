@@ -1,0 +1,11 @@
+{
+  "claim_scope": "Aleph One, the open-source continuation of Bungie's Marathon 2 engine, under GPL-3.0",
+  "confidence": "high",
+  "id": "aleph-one-github",
+  "notes": "GitHub reports GPL-3.0 and describes the project as the open source continuation of Bungie's Marathon 2 engine; last push 2026-10-11. Bungie's original January 2000 GPL release notice was not read for this record.",
+  "publisher": "GitHub / Aleph One",
+  "retrieved_at": "2026-10-16",
+  "source_type": "repository",
+  "title": "Aleph One source repository",
+  "url": "https://github.com/Aleph-One-Marathon/alephone"
+}

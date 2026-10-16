@@ -1,0 +1,11 @@
+{
+  "id": "torque-3d-baseline",
+  "target_id": "torque-3d",
+  "milestone_type": "public-dossier-established",
+  "status": "curated",
+  "evidence": "Public dossier cites the rights-holder source release of Torque 3D and its licence, read on 2026-10-16.",
+  "source_ids": [
+    "garagegames-torque3d-github",
+    "torquegameengines-torque3d-github"
+  ]
+}
