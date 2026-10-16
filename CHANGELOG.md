@@ -1,6 +1,15 @@
 # Changelog
 
-## Unreleased
+## 0.4.0
+
+The period BRender 1.3.2 build now draws its flat and Gouraud scenes the way the 1998 kernels do, and deterministically.
+
+- `brender-pentprim-c-port.c`: `TriangleRenderPIZ2_RGB_888` (constant colour) and `TriangleRenderPIZ2I_RGB_888` (interpolated colour) are rewritten as a line-by-line C port of `RawTriangle_PIZ2_RGB_888` and `RawTriangle_PIZ2I_RGB_888` in BRender's `tt24_piz.asm`. The port keeps the assembly's fixed-point setup, its edge stepping with carry, its truncating divides and its depth test (draw where z is below the stored value, with far = 0xFFFF).
+- Root cause of the black and broken period renders: the port redefined `C_SX`, `C_SY` and the other component slots as 0 to 8 with `#ifndef`. Those names are enum constants in `priminfo.h` (`C_SX` is 5), so the macros shadowed them and the kernels written after them read the wrong slots: the flat kernel's screen x came out as zero, and its colour came from the wrong place. The Gouraud kernel also interpolated the intensity slot as grey and shifted it 8 bits instead of 16, which saturated to white. Its depth convention was inverted.
+- The renderer rung clears depth to far (0xFFFFFFFF) and returns its verdict as the exit status. Before, `main` returned 0 whatever its receipt said, so CTest passed an invalid render. With this release it renders a lit silhouette on every orbit frame (31,509 pixels in the last frame on Win32 Debug). The rung's material carries a texture, but the frames show none, so the textured path is still open.
+- Measured with brender-archival's parity scenes on 16 October 2026: two period runs give identical bytes. Against BRender 1.4's software rasteriser, coverage IoU is 0.9993 or better on all six scenes, 90.7% to 100% of pixels are identical, and the mean absolute difference is under 0.2 levels.
+
+### Catalogue
 
 - Six engines join the catalogue, each from a source release by its rights holder under an open licence, with the licence read on 2026-10-16: Microsoft 3D Movie Maker (MIT, 2022, built on BRender), Serious Engine 1 (GPL-2.0, Croteam 2016) and Catacomb 3-D (GPL-2.0, 2014) as revival candidates; the Marathon 2 engine (Aleph One, GPL), id Tech 4 (Doom 3, GPL-3.0 with additional terms) and Torque 3D (MIT, GarageGames 2012) as maintained elsewhere. Eight sources, six tasks and six milestones come with them.
 - `docs/DIRECTORY.md` lists the three maintained projects and the three candidates, and names the engines checked and left out because their source notices bar commercial use or are not open licences (Build, Descent, FreeSpace 2, Homeworld, Glide, the id Wolfenstein 3D repository), or because no primary licence source was found (Genesis3D, Allegiance).

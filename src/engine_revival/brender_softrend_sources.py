@@ -257,7 +257,7 @@ int main(int argc, char **argv)
     depth = BrPixelmapAllocate(BR_PMT_DEPTH_16, RENDER_W, RENDER_H, NULL, BR_PMAF_NORMAL);
     if (pm == NULL || depth == NULL || pm->pixels == NULL) { BrEnd(); return 10; }
     BrPixelmapFill(pm, COLOUR_BLACK);
-    BrPixelmapFill(depth, 0);
+    BrPixelmapFill(depth, 0xFFFFFFFF); /* far: pentprim draws where z < *zbuf */
     pm->origin_x = (br_int_16)(RENDER_W / 2); pm->origin_y = (br_int_16)(RENDER_H / 2);
     depth->origin_x = pm->origin_x; depth->origin_y = pm->origin_y;
 
@@ -270,7 +270,7 @@ int main(int argc, char **argv)
         BrMatrix34PreRotateX(&model_actor->t.t.mat, BR_ANGLE_DEG(25));
         model_actor->t.type = BR_TRANSFORM_MATRIX34;
         clear_pixelmap_storage(pm);
-        BrPixelmapFill(depth, 0);
+        BrPixelmapFill(depth, 0xFFFFFFFF);
         BrZbSceneRender(world, camera_actor, pm, depth);
         {
             char path[512];
@@ -312,6 +312,8 @@ int main(int argc, char **argv)
 
         BrZbEnd();
         if (BrEnd() != BRE_OK) return 12;
+        /* the receipt's verdict is the exit status, so CTest fails an invalid render */
+        return ok ? 0 : 13;
     }
 }
 """
