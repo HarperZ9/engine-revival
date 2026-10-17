@@ -55,7 +55,12 @@ void BR_ASM_CALL CPUInfo(br_token *cpu_type, br_uint_32 *features)
         *cpu_type = BRT_INTEL_386;
     }
     if (features != NULL) {
+#if BRENDER_HOST_MMX
+        /* the harness option BRENDER_PENTPRIM_MMX: a Pentium with MMX */
+        *features = HOST_CAPS_MMX;
+#else
         *features = 0;
+#endif
     }
 }
 

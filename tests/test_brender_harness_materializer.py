@@ -113,6 +113,15 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "compat/brender-pentprim-tt-port.c",
         output / "compat/brender-pentprim-awsl-port.c",
         output / "compat/brender-pentprim-zb16-port.c",
+        output / "compat/brender-pentprim-mmx-port.h",
+        output / "compat/brender-pentprim-mmx-tables-port.c",
+        output / "compat/brender-pentprim-mmx-common-port.c",
+        output / "compat/brender-pentprim-mmx-uv-port.c",
+        output / "compat/brender-pentprim-mmx-setup-port.c",
+        output / "compat/brender-pentprim-mmx-zrgb-port.c",
+        output / "compat/brender-pentprim-mmx-zuv-port.c",
+        output / "compat/brender-pentprim-mmx-zuvc-port.c",
+        output / "compat/brender-pentprim-mmx-zuvrgb-port.c",
         output / "compat/brender-portable-core-stubs.c",
         output / "compat/brender-portable-host-stubs.c",
         output / "smoke/brender-core-smoke.c",
@@ -640,7 +649,7 @@ def test_awtmz_setup_is_compiled_and_its_trapezoids_are_ported(tmp_path):
 def test_safe_fixed_mac2_div_is_the_safediv_asm_sum():
     port = (Path(__file__).resolve().parents[1] / "src" / "engine_revival" / "brender_compat"
             / "brender-pentprim-c-port.c").read_text(encoding="utf-8")
-    body = port[port.index("br_int_32 SafeFixedMac2Div("):port.index("void RasteriseBufferDisable")]
+    body = port[port.index("br_int_32 SafeFixedMac2Div("):port.index("/* RasteriseBufferDisable and the rest of rastbuff.asm")]
     assert "(long long)a * b + (long long)c * d" in body
     assert "<< 16" not in body
 
@@ -755,3 +764,56 @@ def test_index8_ports_are_in_the_pentprim_library(tmp_path):
         assert f"compat/{name}" in cmake, name
     assert (harness / "compat" / "brender-pentprim-fpsetup-port.h").is_file()
     assert (harness / "compat" / "brender-pentprim-pfpsetup-port.h").is_file()
+
+
+def test_mmx_family_is_ported_and_behind_an_explicit_option(tmp_path):
+    """pentprim's MMX 15/16-bit table (gsetuptf.asm, rastbuff.asm and the
+    xz*.inc kernels) has a C port in the pentprim library; the harness only
+    reaches it with BRENDER_PENTPRIM_MMX, which is off by default."""
+    harness = _materialized_harness(tmp_path)
+    cmake = (harness / "cmake" / "brender-pentprim.cmake").read_text(encoding="utf-8")
+    for name in ("brender-pentprim-mmx-tables-port.c", "brender-pentprim-mmx-common-port.c",
+                 "brender-pentprim-mmx-uv-port.c", "brender-pentprim-mmx-setup-port.c",
+                 "brender-pentprim-mmx-zrgb-port.c", "brender-pentprim-mmx-zuv-port.c",
+                 "brender-pentprim-mmx-zuvc-port.c", "brender-pentprim-mmx-zuvrgb-port.c"):
+        assert f"compat/{name}" in cmake, name
+    assert (harness / "compat" / "brender-pentprim-mmx-port.h").is_file()
+    assert 'option(BRENDER_PENTPRIM_MMX "' in cmake and '" OFF)' in cmake
+    option = cmake[cmake.index("if(BRENDER_PENTPRIM_MMX)"):]
+    assert "target_compile_definitions(brender_pentprim_float PRIVATE USE_MMX=1)" in option
+    assert "BRENDER_HOST_MMX=1" in option
+    host = (harness / "compat" / "brender-portable-host-stubs.c").read_text(encoding="utf-8")
+    assert "#if BRENDER_HOST_MMX" in host and "*features = HOST_CAPS_MMX;" in host
+    # every MMX rasteriser entry point, 555 and 565, plain, D, S and SD, LR and RL
+    ports = {k: _compat_port(f"brender-pentprim-mmx-{k}-port.c") for k in ("zrgb", "zuv", "zuvc", "zuvrgb")}
+    for kernel, family in (("zrgb", "Z_RGB"), ("zuv", "Z_UV"), ("zuvc", "Z_UV_C"), ("zuvrgb", "Z_UV_RGB")):
+        for fmt in ("555", "565"):
+            for variant in ("", "_D", "_S", "_SD"):
+                assert f"_PAIR(RasteriseMMX{fmt}_{family}{variant}," in ports[kernel], (fmt, family, variant)
+    setup = _compat_port("brender-pentprim-mmx-setup-port.c")
+    for name in ("ZRGBUVS", "ZRGBUV", "ZRGB", "Z", "ZRGBS", "ZUVC", "ZUV", "ZC"):
+        assert f"void BR_ASM_CALL GenericSetupFloat{name}_A(void)" in setup, name
+    assert "void BR_ASM_CALL GenericSetupTriangleFloat_A(" in setup
+    # rastbuff.asm: 40 qwords of leeway under 200 qwords of stack, drawn top first
+    assert "#define RB_LEEWAY (40 * 8)" in setup and "#define RB_OFF (RB_LEEWAY + 200 * 8)" in setup
+    assert "void BR_ASM_CALL RasteriseBufferDisable(void)" in setup
+    assert "void RasteriseBufferDisable" not in _compat_port("brender-pentprim-c-port.c")
+
+
+def test_mmx_port_keeps_the_assembly_details():
+    """Details kept as found in the 1998 assembly."""
+    common = _compat_port("brender-pentprim-mmx-common-port.c") + _compat_port("brender-pentprim-mmx-tables-port.c")
+    header = _compat_port("brender-pentprim-mmx-port.h")
+    zuv = _compat_port("brender-pentprim-mmx-zuv-port.c")
+    zuvc = _compat_port("brender-pentprim-mmx-zuvc-port.c")
+    # the saturating instructions saturate
+    assert "mmx_usat16" in header and "mmx_ssat16" in header and "mmx_ssat8" in header
+    # rastrise.asm's dither squares and right_masks/left_masks
+    assert "0x07ff04ff037f007full" in common and "0xffff000000000000ull" in common
+    # the 16-bit dithered many-word span leaves green unmasked (xzuv1.inc tests COLOUR_TYPE_15 twice)
+    assert "if (k->c15) g = mmx_pand(mmx_pand(g, mmx_mask_5), mmx_mask_6);" in zuv
+    # the constant-colour modulate dithers with paddw (wrapping), the plain map with paddusw
+    assert "b = mmx_paddw(b, mmx_dither_table_11[row]);" in zuvc
+    assert "r = mmx_paddusw(r, mmx_dither_table_11[row & 3]);" in zuv
+    # the carry from bit 18 of xm picks the dy1 step
+    assert "w->carry = (edx >> 18) & 1u ? -1 : 0;" in common

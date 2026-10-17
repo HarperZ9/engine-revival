@@ -50,9 +50,7 @@ br_int_32 SafeFixedMac2Div(br_int_32 a, br_int_32 b, br_int_32 c, br_int_32 d, b
     return (br_int_32)((sign & 0x80000000u) ? 0u - q : q);
 }
 
-void RasteriseBufferDisable(void)
-{
-}
+/* RasteriseBufferDisable and the rest of rastbuff.asm: brender-pentprim-mmx-setup-port.c */
 
 /* ---- diagnostic stubs: print name when called ---- */
 

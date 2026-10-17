@@ -312,6 +312,13 @@ rasterizes each triangle face with a C scanline fill, shaded from the world-spac
 face normal and composited back-to-front. Keep the generated images out of git
 unless they are intentionally reviewed as public release artifacts.
 
+`-DBRENDER_PENTPRIM_MMX=ON` builds pentprim the way BRender 1.3.2 runs on a
+Pentium with MMX: `USE_MMX=1`, and the host reports an MMX processor, so the
+matcher swaps in its MMX table for 15 and 16-bit triangles (`match.c`,
+`plib.c`). Those draw through the C port of `gsetuptf.asm`, `rastbuff.asm` and
+the `xz*.inc` kernels in `compat/brender-pentprim-mmx-*-port.c`. The option is
+off by default, and every other output type is unchanged either way.
+
 The first compiler run is expected to produce portability findings. Record the
 transcript before advancing production-readiness status.
 """
