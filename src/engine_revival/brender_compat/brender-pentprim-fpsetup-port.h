@@ -25,6 +25,12 @@ typedef struct fps_workspace {
     int32_t t_y, flip, topCount, bottomCount;
     uint32_t xm_f, d_xm_f;
     uint8_t colour;
+    /* pfpsetup.asm keeps these too: the vertices in y order (top_vertex,
+     * mid_vertex, bot_vertex) and flip_table's parity of that order, which
+     * pfpsetup.asm leaves in workspace.flip where fpsetup.asm stores the
+     * LR/RL bit. fps.flip above is the LR/RL bit in both. */
+    union brp_vertex *top, *mid, *bot;
+    uint32_t sort_flip;
 } fps_workspace;
 
 extern fps_workspace fps;

@@ -941,12 +941,6 @@ void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_128_FLAT(struct brp_block *block, un
     (void)block; (void)v0; (void)v1; (void)v2;
 }
 
-void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_256(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZPTI_I8_D16_256\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
 void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_256_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
 {
     fprintf(stderr, "CALL TriangleRender_ZPTI_I8_D16_256_FLAT\n"); fflush(stderr);
@@ -986,12 +980,6 @@ void BR_ASM_CALL TriangleRender_ZPT_I8_D16_1024(struct brp_block *block, union b
 void BR_ASM_CALL TriangleRender_ZPT_I8_D16_128(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
 {
     fprintf(stderr, "CALL TriangleRender_ZPT_I8_D16_128\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZPT_I8_D16_256(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZPT_I8_D16_256\n"); fflush(stderr);
     (void)block; (void)v0; (void)v1; (void)v2;
 }
 

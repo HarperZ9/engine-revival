@@ -16,7 +16,9 @@
  *
  * with the floating point triangle setup they call, fpsetup.asm's
  * SETUP_FLOAT, SETUP_FLOAT_PARAM and SETUP_FLOAT_COLOUR, in
- * brender-pentprim-fpsetup-port.c.
+ * brender-pentprim-fpsetup-port.c. The ZT and ZTI rasterisers after their
+ * setup (the TriangleRasterise_ labels) are separate functions, because the
+ * perspective kernels jump into them (brender-pentprim-i8p-port.c).
  *
  * Registers are 32-bit unsigned values, so adds wrap and the carries come
  * out where the assembly takes them; a carry the assembly keeps in the flags
@@ -35,6 +37,7 @@
 #include <string.h>
 #include "drv.h"
 #include "brender-pentprim-fpsetup-port.h"
+#include "brender-pentprim-pfpsetup-port.h"
 
 static uint32_t i8_ror16(uint32_t v) { return (v >> 16) | (v << 16); }
 
@@ -282,22 +285,29 @@ static void zt8_half(const i8_target *t, fti8_line *l, uint32_t *half_i, uint32_
     }
 }
 
-void BR_ASM_CALL TriangleRender_ZT_I8_D16_256(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
+/* TriangleRasterise_ZT_I8_D16_256: everything after the setup call. The
+ * perspective kernels jump here in their cheat case. */
+void i8_rasterise_zt_256(void)
 {
     i8_target t;
     fti8_line l;
-    (void)block;
     if (!i8_target_open(&t)) return;
-    if (fps_setup(v0, v1, v2) != 0) return;
-    fps_param(C_SZ, v0, v1, v2, &fps.s_z, &fps.d_z_y_1, &fps.d_z_x, &fps.d_z_y_0, 1);
-    fps_param(C_U, v0, v1, v2, &fps.s_u, &fps.d_u_y_1, &fps.d_u_x, &fps.d_u_y_0, 0);
-    fps_param(C_V, v0, v1, v2, &fps.s_v, &fps.d_v_y_1, &fps.d_v_x, &fps.d_v_y_0, 0);
     i8_first_line(&t, &l.scan, &l.depth);
     l.main_f = fps.xm << 16;
     l.main_d_f = fps.d_xm << 16;
     fps.d_z_x = fti8_swap_grad(fps.d_z_x);
     zt8_half(&t, &l, &fps.x1, fps.d_x1, &fps.topCount, fps.flip != 0);
     zt8_half(&t, &l, &fps.x2, fps.d_x2, &fps.bottomCount, fps.flip != 0);
+}
+
+void BR_ASM_CALL TriangleRender_ZT_I8_D16_256(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
+{
+    (void)block;
+    if (fps_setup(v0, v1, v2) != 0) return;
+    fps_param(C_SZ, v0, v1, v2, &fps.s_z, &fps.d_z_y_1, &fps.d_z_x, &fps.d_z_y_0, 1);
+    fps_param(C_U, v0, v1, v2, &fps.s_u, &fps.d_u_y_1, &fps.d_u_x, &fps.d_u_y_0, 0);
+    fps_param(C_V, v0, v1, v2, &fps.s_v, &fps.d_v_y_1, &fps.d_v_x, &fps.d_v_y_0, 0);
+    i8_rasterise_zt_256();
 }
 
 /* ------------------------------------------------------------------ */
@@ -347,20 +357,27 @@ static void zti8_half(const i8_target *t, uint32_t *minor, uint32_t d_minor, int
     }
 }
 
-void BR_ASM_CALL TriangleRender_ZTI_I8_D16_256(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
+/* TriangleRasterise_ZTI_I8_D16_256: everything after the setup call. The
+ * lit perspective kernel jumps here in its cheat case. */
+void i8_rasterise_zti_256(void)
 {
     i8_target t;
     int32_t scan, depth;
-    (void)block;
     if (!i8_target_open(&t)) return;
-    if (fps_setup(v0, v1, v2) != 0) return;
-    fps_param(C_SZ, v0, v1, v2, &fps.s_z, &fps.d_z_y_1, &fps.d_z_x, &fps.d_z_y_0, 1);
-    fps_param(C_U, v0, v1, v2, &fps.s_u, &fps.d_u_y_1, &fps.d_u_x, &fps.d_u_y_0, 0);
-    fps_param(C_V, v0, v1, v2, &fps.s_v, &fps.d_v_y_1, &fps.d_v_x, &fps.d_v_y_0, 0);
-    fps_param(C_I, v0, v1, v2, &fps.s_i, &fps.d_i_y_1, &fps.d_i_x, &fps.d_i_y_0, 0);
     i8_first_line(&t, &scan, &depth);
     fps.xm_f = fps.xm << 16;
     fps.d_xm_f = fps.d_xm << 16;
     zti8_half(&t, &fps.x1, fps.d_x1, &fps.topCount, fps.flip != 0, &scan, &depth);
     zti8_half(&t, &fps.x2, fps.d_x2, &fps.bottomCount, fps.flip != 0, &scan, &depth);
+}
+
+void BR_ASM_CALL TriangleRender_ZTI_I8_D16_256(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
+{
+    (void)block;
+    if (fps_setup(v0, v1, v2) != 0) return;
+    fps_param(C_SZ, v0, v1, v2, &fps.s_z, &fps.d_z_y_1, &fps.d_z_x, &fps.d_z_y_0, 1);
+    fps_param(C_U, v0, v1, v2, &fps.s_u, &fps.d_u_y_1, &fps.d_u_x, &fps.d_u_y_0, 0);
+    fps_param(C_V, v0, v1, v2, &fps.s_v, &fps.d_v_y_1, &fps.d_v_x, &fps.d_v_y_0, 0);
+    fps_param(C_I, v0, v1, v2, &fps.s_i, &fps.d_i_y_1, &fps.d_i_x, &fps.d_i_y_0, 0);
+    i8_rasterise_zti_256();
 }

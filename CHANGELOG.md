@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.7.0
+
+The period BRender 1.3.2 build now draws perspective-correct textures in 8-bit colour.
+
+- The two 256 x 256 perspective kernels of `fti8pizp.asm` are ported line by line: `TriangleRender_ZPT_I8_D16_256` (unlit) and `TriangleRender_ZPTI_I8_D16_256` (lit through the shade table), each with its forward and backward trapezium and the five scanline loops the assembly picks between by the signs of the q, u and v gradients. They live in `brender_compat/brender-pentprim-i8p-port.c`. Their diagnostic stubs are gone. The other map sizes and the constant-intensity `_FLAT` variant stay stubs.
+- The setup they call, `pfpsetup.asm`'s `TriangleSetup_ZPT` and `TriangleSetup_ZPTI`, is ported in `brender-pentprim-pfpsetup-port.c`: the perspective cheat test (w range times screen range against four times the smallest w, compared as the bits of two singles), the base texel by `fistp`, q' as the product of the other two w, the `maxuv` normalisation rounded up to a power of two from the float's bits, and the u, v and q parameters converted with 1.5 x 2^52. `pfpsetup.asm`'s `SETUP_FLOAT` and `SETUP_FLOAT_PARAM` do the same double operations as `fpsetup.asm`'s, so the 0.6.0 port of those is reused; it now also records the sorted vertices and the sort parity, which the perspective setup needs.
+- In the cheat case the 1998 setup returns with carry set and the kernel jumps into the linear rasteriser. The ZT and ZTI ports are split at that label (`i8_rasterise_zt_256`, `i8_rasterise_zti_256`) so the perspective kernels can do the same.
+- Kept as found: the per-pixel u and v loops test the exact sign of each add or subtract, as the x86 flags do, and the decreasing loop ends on the carry (`jnc`). The texel offset wraps u and v at 256 through `inc al` and `inc ah`.
+- Checked against the 1998 assembly itself: `pfpsetup.asm` and `fti8pizp.asm`, assembled with MASM against the harness's own structure offsets and linked in place of the port, draw all 27 of brender-archival's parity scenes byte for byte as the port does. Changing one instruction in the assembly (v stepping) changes exactly the two unlit scenes with perspective triangles, so the comparison can fail.
+- The materializer writes 37 files (three new compat files); the ladder stays at 21 targets.
+- Measured with brender-archival's parity scenes (17 October 2026, Win32 Debug period against BRender 1.4 on Windows): the v0.6.0 stubs draw nothing in the six perspective scenes, the port draws them, and two period runs are byte-identical. Against BRender 1.4, coverage IoU is 0.9983 or better, 92.6% to 97.9% of pixels carry the same index and MAD is at most 1.62. The lowest scores are on the steep plane, and the same plane drawn without perspective scores the same (92.7%), so that difference is not in the perspective kernels: the vertices the two softrend versions hand the rasteriser differ by up to 0.03 pixels.
+
 ## 0.6.0
 
 The period BRender 1.3.2 build now draws in 8-bit colour, through BRender's own palette path.

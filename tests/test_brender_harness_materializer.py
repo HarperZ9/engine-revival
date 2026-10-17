@@ -107,6 +107,9 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "compat/brender-pentprim-fpsetup-port.h",
         output / "compat/brender-pentprim-fpsetup-port.c",
         output / "compat/brender-pentprim-i8-port.c",
+        output / "compat/brender-pentprim-pfpsetup-port.h",
+        output / "compat/brender-pentprim-pfpsetup-port.c",
+        output / "compat/brender-pentprim-i8p-port.c",
         output / "compat/brender-portable-core-stubs.c",
         output / "compat/brender-portable-host-stubs.c",
         output / "smoke/brender-core-smoke.c",
@@ -666,6 +669,42 @@ def test_index8_kernels_are_ported_once_and_not_stubbed():
     assert i8.count("texel != 0") == 2
 
 
+def test_perspective_kernels_are_ported_once_and_not_stubbed():
+    """fti8pizp.asm's 256 x 256 perspective kernels live in the i8p port; their
+    diagnostic stubs are gone and the cheat case jumps into the linear ports."""
+    i8p, i8 = _compat_port("brender-pentprim-i8p-port.c"), _compat_port("brender-pentprim-i8-port.c")
+    main = _compat_port("brender-pentprim-c-port.c")
+    for name in ("TriangleRender_ZPT_I8_D16_256", "TriangleRender_ZPTI_I8_D16_256"):
+        assert i8p.count(f"void BR_ASM_CALL {name}(") == 1, name
+        assert f"void BR_ASM_CALL {name}(" not in main, name
+    # the other perspective sizes and the FLAT variant stay stubs
+    assert "void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_256_FLAT(" in main
+    assert "void BR_ASM_CALL TriangleRender_ZPT_I8_D16_128(" in main
+    # cheat case: jc TriangleRasterise_ZT_I8_D16_256 / TriangleRasterise_ZTI_I8_D16_256
+    assert "if (lit) i8_rasterise_zti_256(); else i8_rasterise_zt_256();" in i8p
+    assert i8.count("void i8_rasterise_zt_256(void)") == 1
+    assert i8.count("void i8_rasterise_zti_256(void)") == 1
+    # inc al / inc ah: u and v wrap at 256 inside the texel offset
+    assert "uint32_t mask = 0xffu << shift;" in i8p
+    # five scanline loops: udirn and vdirn of d, i or b
+    assert "enum { P8_D, P8_I, P8_B };" in i8p
+    # the major edge keeps its integer in the low word and adds the carry back
+    assert "p8.main_i += p8.main_d_i + carry;" in i8p
+
+
+def test_pfpsetup_port_keeps_the_assembly_formats():
+    setup = _compat_port("brender-pentprim-pfpsetup-port.c")
+    assert "#define FP_CONV_D 6755399441055744.0" in setup  # 1.5 * 2^52
+    assert 6755399441055744.0 == 1.5 * 2 ** 52
+    # 2^28 / maxuv from the float's bits, after rounding maxuv up to a power of two
+    assert "e += (uint32_t)(127 * 2 + 28) << 23;" in setup
+    # q0, q1, q2 and maxuv are stored as singles
+    assert "d->q0 = (float)q;" in setup and "maxuv = (float)mx;" in setup
+    # cheat when w_range * s_range < 4 * w_min, compared as single bits
+    assert "return pfps_bits(wr_sr) < pfps_bits(wmin_4);" in setup
+    assert "#pragma fp_contract(off)" in setup
+
+
 def test_fpsetup_port_keeps_the_assembly_conversions():
     setup = _compat_port("brender-pentprim-fpsetup-port.c")
     assert "#define FP_CONV_D16 103079215104.0" in setup  # 1.5 * 2^36
@@ -678,6 +717,8 @@ def test_fpsetup_port_keeps_the_assembly_conversions():
 def test_index8_ports_are_in_the_pentprim_library(tmp_path):
     harness = _materialized_harness(tmp_path)
     cmake = (harness / "cmake" / "brender-pentprim.cmake").read_text(encoding="utf-8")
-    for name in ("brender-pentprim-fpsetup-port.c", "brender-pentprim-i8-port.c"):
+    for name in ("brender-pentprim-fpsetup-port.c", "brender-pentprim-i8-port.c",
+                 "brender-pentprim-pfpsetup-port.c", "brender-pentprim-i8p-port.c"):
         assert f"compat/{name}" in cmake, name
     assert (harness / "compat" / "brender-pentprim-fpsetup-port.h").is_file()
+    assert (harness / "compat" / "brender-pentprim-pfpsetup-port.h").is_file()
