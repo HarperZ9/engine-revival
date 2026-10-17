@@ -319,6 +319,11 @@ matcher swaps in its MMX table for 15 and 16-bit triangles (`match.c`,
 the `xz*.inc` kernels in `compat/brender-pentprim-mmx-*-port.c`. The option is
 off by default, and every other output type is unchanged either way.
 
+Softrend's FLOAT build takes three routines from `subdiv.asm`, one of the
+assembly overlays the harness does not assemble; `compat/brender-softrend-
+subdiv-port.c` ports them, so blocks that ask for subdivision (the MMX
+table's perspective rows) are subdivided as in 1998.
+
 The first compiler run is expected to produce portability findings. Record the
 transcript before advancing production-readiness status.
 """

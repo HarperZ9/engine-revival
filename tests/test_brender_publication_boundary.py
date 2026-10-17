@@ -339,6 +339,7 @@ def test_compat_ports_and_schemas_ship_inside_the_package():
         "brender-pentprim-tt-port.c",
         "brender-pentprim-awsl-port.c",
         "brender-pentprim-zb16-port.c",
+        "brender-pentprim-tip-port.c",
         "brender-pentprim-mmx-port.h",
         "brender-pentprim-mmx-tables-port.c",
         "brender-pentprim-mmx-common-port.c",
@@ -348,7 +349,7 @@ def test_compat_ports_and_schemas_ship_inside_the_package():
         "brender-pentprim-mmx-zuv-port.c",
         "brender-pentprim-mmx-zuvc-port.c",
         "brender-pentprim-mmx-zuvrgb-port.c",
-        "brender-softrend-float-fallbacks.c",
+        "brender-softrend-subdiv-port.c",
         "MIT-BRender.txt",
         "LICENSE-NOTE.md",
     ):

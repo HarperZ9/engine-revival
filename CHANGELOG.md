@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.10.0
+
+The period BRender 1.3.2 build now draws z-sorted 15, 16 and 24-bit triangles, the 15/16-bit perspective-correct lit texture mappers, and softrend's triangle subdivision.
+
+- The z-sorted twins of the true colour kernels are ported: `TriangleRenderPI_RGB_555` / `_565` / `_888` and `TriangleRenderPII_*` from `tt15_pi.asm`, `tt16_pi.asm` and `tt24_pi.asm`, which are the z-buffered kernels without the depth buffer, now in `brender-pentprim-tt-port.c` beside them; and `t_pia.asm`'s `TrapezoidRenderPITA15`, `PITA24`, `PITIA_RGB_555` and `PITIA_RGB_888` under Argonaut's `awtm.c`, in `brender-pentprim-awsl-port.c` beside the z-buffered `t_piza.asm` instances. Kept as found: the unlit z-sorted trapezoids still write the scan start plus its step into `work.pi.current`, as `t_pia.asm`'s `scan_inc` does outside its `if LIGHT`.
+- The TIP256 perspective-correct lit texture scanlines are ported in `brender-pentprim-tip-port.c`: `ScanLinePIZ2TIP256_RGB_555` and `ScanLinePIZ2TIPB256_RGB_555` / `_565` from `t15_pizp.asm` (z-buffered) and `ScanLinePITIP256_RGB_555` and `ScanLinePITIPB256_RGB_555` / `_565` from `t15_pip.asm` (z-sorted), under Argonaut's C setups in `perspz.c` and `persp.c`. Every `jl`, `jge` and `jnc` of the perspective step keeps its x86 meaning. The blended (TIPB) forms halve and add the lit texel and the screen pixel; the z-buffered one tests depth without storing it, as in the assembly.
+- Softrend's subdivision is ported in `brender-softrend-subdiv-port.c`, which replaces the old link stubs: `subdivideCheck`, `averageVerticesOnScreen` and `averageVertices` from `subdiv.asm`, which the FLOAT build has no C for. The stubs returned "never subdivide", on the claim that no primitive block asks for subdivision; the MMX table's perspective rows do (`RF_NEED_SUBDIVIDE`), so until now the MMX build drew them affine, a triangle at a time.
+- Sixteen diagnostic stubs are gone. The materializer writes 50 files (one new compat file, and the subdivision port in place of the fallbacks file); the ladder stays at 21 targets.
+- Checked against the 1998 assembly itself: `tt15_pi.asm`, `tt16_pi.asm`, `tt24_pi.asm`, `t_pia.asm`, `t15_pip.asm`, `t15_pizp.asm` and softrend's `subdiv.asm`, assembled with MASM against the harness's own structure offsets and linked in place of the ports, draw all 91 of brender-archival's parity scenes byte for byte as the ports do, on the general and the MMX builds. A differential test of 96,000 random triangles over the sixteen new kernels finds no difference, and one-instruction changes to the assembly make both the scenes and the random test fail in exactly the kernels they touch.
+- Measured against BRender 1.4 (brender-archival, same angle on both sides): the ten z-sorted 15/16-bit scenes are byte-identical, and the MMX table's perspective rows, now subdivided, are identical but for one pixel. BRender 1.4 has no TIP kernel: it draws the z-buffered TIP shapes untextured through the MMX table and refuses the z-sorted ones.
+
 ## 0.9.0
 
 The period BRender 1.3.2 build can now draw 15 and 16-bit triangles the way it does on a Pentium with MMX, through pentprim's MMX table. That is the 1998 path BRender 1.4 reproduces, so the two can now be compared like for like, textured included.

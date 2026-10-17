@@ -12,7 +12,14 @@
  *   TriangleRenderPIZ2_RGB_555 / PIZ2I_RGB_555   tt15_piz.asm
  *   TriangleRenderPIZ2_RGB_565 / PIZ2I_RGB_565   tt16_piz.asm
  *
- * PIZ2 is constant colour, PIZ2I interpolated colour. The three files share
+ * and their z-sorted twins, the same code without the depth buffer (no z
+ * parameter, no depth test or store):
+ *
+ *   TriangleRenderPI_RGB_888 / PII_RGB_888       tt24_pi.asm
+ *   TriangleRenderPI_RGB_555 / PII_RGB_555       tt15_pi.asm
+ *   TriangleRenderPI_RGB_565 / PII_RGB_565       tt16_pi.asm
+ *
+ * PIZ2 / PI is constant colour, PIZ2I / PII interpolated colour. The files share
  * SETUP_PI, PARAM_PI_DIRN, FIX_DIV and the trapezoid loops; they differ in
  * the pixel size, in how a colour becomes a pixel, and in GDIVIDE: on
  * overflow tt15/tt16 give 0 where tt24 keeps the low dword of the numerator.
@@ -121,6 +128,7 @@ typedef struct tt_target {
     int64_t cbytes, zbytes;
     uint32_t bpp;
     enum tt_format fmt;
+    int zbuffered;
 } tt_target;
 
 /* One pixel: the depth test, then the depth and the colour. coff is the
@@ -129,10 +137,13 @@ static void tt_plot(const tt_target *t, uint32_t coff, int64_t zoff, uint32_t zz
                     uint32_t r, uint32_t g, uint32_t b, uint32_t flat_word)
 {
     uint16_t z16 = (uint16_t)(zz >> 16), zbuf;
-    if (zoff < 0 || zoff + 2 > t->zbytes || (int64_t)coff + t->bpp > t->cbytes) return;
-    memcpy(&zbuf, t->zbase + zoff, 2);
-    if (!(z16 < zbuf)) return;                  /* cmp ax,[edi] ; jae pixel_behind */
-    memcpy(t->zbase + zoff, &z16, 2);
+    if ((int64_t)coff + t->bpp > t->cbytes) return;
+    if (t->zbuffered) {
+        if (zoff < 0 || zoff + 2 > t->zbytes) return;
+        memcpy(&zbuf, t->zbase + zoff, 2);
+        if (!(z16 < zbuf)) return;              /* cmp ax,[edi] ; jae pixel_behind */
+        memcpy(t->zbase + zoff, &z16, 2);
+    }
     if (t->fmt == TT_888) {
         uint8_t *cp = t->cbase + coff;
         cp[0] = (uint8_t)(b >> 16);
@@ -162,7 +173,7 @@ static void tt_sort(union brp_vertex **pa, union brp_vertex **pb, union brp_vert
 }
 
 static void tt_triangle(union brp_vertex *a, union brp_vertex *b, union brp_vertex *c, int interpolated,
-                        enum tt_format fmt)
+                        enum tt_format fmt, int zbuffered)
 {
     tt_target tg;
     tt_edge top, bot, main_e;
@@ -178,7 +189,8 @@ static void tt_triangle(union brp_vertex *a, union brp_vertex *b, union brp_vert
     tg.zbytes = (int64_t)work.depth.stride_b * work.depth.height;
     tg.bpp = fmt == TT_888 ? 3u : 2u;
     tg.fmt = fmt;
-    if (tg.cbase == NULL || tg.zbase == NULL) return;
+    tg.zbuffered = zbuffered;
+    if (tg.cbase == NULL || (zbuffered && tg.zbase == NULL)) return;
     if (!interpolated) { /* colour comes from the first vertex, before sorting */
         temp_r = (uint32_t)a->comp_x[C_R];
         temp_g = (uint32_t)a->comp_x[C_G];
@@ -210,7 +222,8 @@ static void tt_triangle(union brp_vertex *a, union brp_vertex *b, union brp_vert
     backwards = g < 0;
     gd = backwards ? 0u - (uint32_t)g : (uint32_t)g;
 
-    tt_param_setup(&pz, C_SZ, a, b, c, &top, &main_e, gd, backwards, 1, zo);
+    memset(&pz, 0, sizeof(pz));
+    if (zbuffered) tt_param_setup(&pz, C_SZ, a, b, c, &top, &main_e, gd, backwards, 1, zo);
     if (interpolated) {
         tt_param_setup(&pr, C_R, a, b, c, &top, &main_e, gd, backwards, 0, zo);
         tt_param_setup(&pg, C_G, a, b, c, &top, &main_e, gd, backwards, 0, zo);
@@ -266,13 +279,19 @@ static void tt_triangle(union brp_vertex *a, union brp_vertex *b, union brp_vert
     }
 }
 
-#define TT_KERNEL(name, interpolated, fmt) \
+#define TT_KERNEL(name, interpolated, fmt, zb) \
     void BR_ASM_CALL name(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2) \
-    { (void)block; tt_triangle(v0, v1, v2, interpolated, fmt); }
+    { (void)block; tt_triangle(v0, v1, v2, interpolated, fmt, zb); }
 
-TT_KERNEL(TriangleRenderPIZ2_RGB_888, 0, TT_888)
-TT_KERNEL(TriangleRenderPIZ2I_RGB_888, 1, TT_888)
-TT_KERNEL(TriangleRenderPIZ2_RGB_555, 0, TT_555)
-TT_KERNEL(TriangleRenderPIZ2I_RGB_555, 1, TT_555)
-TT_KERNEL(TriangleRenderPIZ2_RGB_565, 0, TT_565)
-TT_KERNEL(TriangleRenderPIZ2I_RGB_565, 1, TT_565)
+TT_KERNEL(TriangleRenderPIZ2_RGB_888, 0, TT_888, 1)
+TT_KERNEL(TriangleRenderPIZ2I_RGB_888, 1, TT_888, 1)
+TT_KERNEL(TriangleRenderPIZ2_RGB_555, 0, TT_555, 1)
+TT_KERNEL(TriangleRenderPIZ2I_RGB_555, 1, TT_555, 1)
+TT_KERNEL(TriangleRenderPIZ2_RGB_565, 0, TT_565, 1)
+TT_KERNEL(TriangleRenderPIZ2I_RGB_565, 1, TT_565, 1)
+TT_KERNEL(TriangleRenderPI_RGB_888, 0, TT_888, 0)
+TT_KERNEL(TriangleRenderPII_RGB_888, 1, TT_888, 0)
+TT_KERNEL(TriangleRenderPI_RGB_555, 0, TT_555, 0)
+TT_KERNEL(TriangleRenderPII_RGB_555, 1, TT_555, 0)
+TT_KERNEL(TriangleRenderPI_RGB_565, 0, TT_565, 0)
+TT_KERNEL(TriangleRenderPII_RGB_565, 1, TT_565, 0)

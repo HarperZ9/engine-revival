@@ -58,57 +58,9 @@ void BR_ASM_CALL TrapezoidRenderPIZ2TA(struct brp_block *block, union brp_vertex
 void BR_ASM_CALL TrapezoidRenderPIZ2TIA(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3]) { (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices; }
 void BR_ASM_CALL TrapezoidRenderPIZ2TAN(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3]) { (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices; }
 
-void BR_ASM_CALL ScanLinePITIP256_RGB_555(void)
-{
-    fprintf(stderr, "CALL ScanLinePITIP256_RGB_555\n"); fflush(stderr);
-    
-}
-
-void BR_ASM_CALL ScanLinePITIPB256_RGB_555(void)
-{
-    fprintf(stderr, "CALL ScanLinePITIPB256_RGB_555\n"); fflush(stderr);
-    
-}
-
-void BR_ASM_CALL ScanLinePITIPB256_RGB_565(void)
-{
-    fprintf(stderr, "CALL ScanLinePITIPB256_RGB_565\n"); fflush(stderr);
-    
-}
-
-void BR_ASM_CALL ScanLinePIZ2TIP256_RGB_555(void)
-{
-    fprintf(stderr, "CALL ScanLinePIZ2TIP256_RGB_555\n"); fflush(stderr);
-    
-}
-
-void BR_ASM_CALL ScanLinePIZ2TIPB256_RGB_555(void)
-{
-    fprintf(stderr, "CALL ScanLinePIZ2TIPB256_RGB_555\n"); fflush(stderr);
-    
-}
-
-void BR_ASM_CALL ScanLinePIZ2TIPB256_RGB_565(void)
-{
-    fprintf(stderr, "CALL ScanLinePIZ2TIPB256_RGB_565\n"); fflush(stderr);
-    
-}
-
 void BR_ASM_CALL TrapezoidRenderPITA(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3])
 {
     fprintf(stderr, "CALL TrapezoidRenderPITA\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices;
-}
-
-void BR_ASM_CALL TrapezoidRenderPITA15(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3])
-{
-    fprintf(stderr, "CALL TrapezoidRenderPITA15\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices;
-}
-
-void BR_ASM_CALL TrapezoidRenderPITA24(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3])
-{
-    fprintf(stderr, "CALL TrapezoidRenderPITA24\n"); fflush(stderr);
     (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices;
 }
 
@@ -124,17 +76,6 @@ void BR_ASM_CALL TrapezoidRenderPITIA(struct brp_block *block, union brp_vertex 
     (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices;
 }
 
-void BR_ASM_CALL TrapezoidRenderPITIA_RGB_555(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3])
-{
-    fprintf(stderr, "CALL TrapezoidRenderPITIA_RGB_555\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices;
-}
-
-void BR_ASM_CALL TrapezoidRenderPITIA_RGB_888(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, br_uint_16 (*fp_vertices)[3])
-{
-    fprintf(stderr, "CALL TrapezoidRenderPITIA_RGB_888\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2; (void)fp_vertices;
-}
 
 
 
@@ -148,25 +89,6 @@ void BR_ASM_CALL TrapezoidRenderPITIA_RGB_888(struct brp_block *block, union brp
 
 
 
-
-
-void BR_ASM_CALL TriangleRenderPII_RGB_555(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRenderPII_RGB_555\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRenderPII_RGB_565(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRenderPII_RGB_565\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRenderPII_RGB_888(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRenderPII_RGB_888\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
 
 void BR_ASM_CALL TriangleRenderPIZ2TPD1024(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
 {
@@ -195,24 +117,6 @@ void BR_ASM_CALL TriangleRenderPIZ2TPD64(struct brp_block *block, union brp_vert
 
 
 /* TriangleRenderPIZ2(I)_RGB_888, _555 and _565: brender-pentprim-tt-port.c. */
-
-void BR_ASM_CALL TriangleRenderPI_RGB_555(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRenderPI_RGB_555\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRenderPI_RGB_565(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRenderPI_RGB_565\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRenderPI_RGB_888(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRenderPI_RGB_888\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
 
 void BR_ASM_CALL TriangleRender_I8(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
 {
