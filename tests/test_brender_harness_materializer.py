@@ -110,6 +110,9 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "compat/brender-pentprim-pfpsetup-port.h",
         output / "compat/brender-pentprim-pfpsetup-port.c",
         output / "compat/brender-pentprim-i8p-port.c",
+        output / "compat/brender-pentprim-tt-port.c",
+        output / "compat/brender-pentprim-awsl-port.c",
+        output / "compat/brender-pentprim-zb16-port.c",
         output / "compat/brender-portable-core-stubs.c",
         output / "compat/brender-portable-host-stubs.c",
         output / "smoke/brender-core-smoke.c",
@@ -609,28 +612,29 @@ def test_softrend_rung_fails_ctest_when_its_render_is_invalid(tmp_path):
 def test_pentprim_port_uses_the_real_component_slots():
     """The port once redefined C_SX and friends as 0..8 with #ifndef, which
     shadows priminfo.h's enum (C_SX is 5) and read the wrong slots."""
-    port = (Path(__file__).resolve().parents[1] / "src" / "engine_revival" / "brender_compat"
-            / "brender-pentprim-c-port.c").read_text(encoding="utf-8")
-    assert "#define C_SX" not in port and "#ifndef C_SX" not in port
-    assert "static void tt24_triangle(" in port
+    for name in ("brender-pentprim-c-port.c", "brender-pentprim-tt-port.c"):
+        port = _compat_port(name)
+        assert "#define C_SX" not in port and "#ifndef C_SX" not in port, name
+    port = _compat_port("brender-pentprim-tt-port.c")
+    assert "static void tt_triangle(" in port
     for name in ("TriangleRenderPIZ2_RGB_888", "TriangleRenderPIZ2I_RGB_888"):
-        assert port.count(f"void BR_ASM_CALL {name}(") == 1, name
+        assert port.count(f"TT_KERNEL({name},") == 1, name
     # the depth test of tt24_piz.asm: draw where the new z is below the stored one
-    assert "if (z16 < *zp)" in port
+    assert "if (!(z16 < zbuf)) return;" in port
 
 
 def test_awtmz_setup_is_compiled_and_its_trapezoids_are_ported(tmp_path):
     """Argonaut's C triangle setup for the textured mappers (awtmz.c) builds
     with the harness; the port supplies the t_piza.asm trapezoid loops."""
-    port = (Path(__file__).resolve().parents[1] / "src" / "engine_revival" / "brender_compat"
-            / "brender-pentprim-c-port.c").read_text(encoding="utf-8")
+    port = _compat_port("brender-pentprim-awsl-port.c")
     for name in ("TrapezoidRenderPIZ2TA24", "TrapezoidRenderPIZ2TIA_RGB_888"):
         assert port.count(f"void BR_ASM_CALL {name}(void)") == 1, name
-    # awtmz.c defines these triangle wrappers now; the port must not
-    for name in ("TriangleRenderPIZ2TA24(", "TriangleRenderPIZ2TIA_RGB_888(", "TriangleRenderPIZ2TA15("):
-        assert name not in port, name
-    # the forward and backward depth tests of t_piza.asm: draw where z <= *zbuf
-    assert port.count("pass = zbuf >= z16;") == 2
+    # awtmz.c defines these triangle wrappers now; no port may
+    for source in (port, _compat_port("brender-pentprim-c-port.c")):
+        for name in ("TriangleRenderPIZ2TA24(", "TriangleRenderPIZ2TIA_RGB_888(", "TriangleRenderPIZ2TA15("):
+            assert name not in source, name
+    # the forward and backward depth tests of t_piza.asm share one check: draw where z <= *zbuf
+    assert port.count("return zbuf >= z16;") == 1 and port.count("awsl_depth_passes(k, ebp)") == 2
 
 
 def test_safe_fixed_mac2_div_is_the_safediv_asm_sum():
@@ -692,6 +696,34 @@ def test_perspective_kernels_are_ported_once_and_not_stubbed():
     assert "p8.main_i += p8.main_d_i + carry;" in i8p
 
 
+def test_hicolor_kernels_are_ported_once_and_not_stubbed():
+    """The 15 and 16-bit kernels (tt15_piz.asm, tt16_piz.asm, zb16p2ul.asm and
+    t_piza.asm's DBPP 2 instances) live in their own ports, beside the 24-bit
+    ones they share code with; no diagnostic stub for them is left."""
+    tt, awsl = _compat_port("brender-pentprim-tt-port.c"), _compat_port("brender-pentprim-awsl-port.c")
+    zb16, main = _compat_port("brender-pentprim-zb16-port.c"), _compat_port("brender-pentprim-c-port.c")
+    for fmt in ("888", "555", "565"):
+        for name in (f"TriangleRenderPIZ2_RGB_{fmt}", f"TriangleRenderPIZ2I_RGB_{fmt}"):
+            assert f"TT_KERNEL({name}," in tt, name
+            assert f"void BR_ASM_CALL {name}(" not in main, name
+    for size in (32, 64, 128, 256, 1024):
+        assert f"ZB16_KERNEL({size}," in zb16, size
+        assert f"TriangleRender_ZT_RGB565_D16_{size}(" not in main, size
+    for name in ("TrapezoidRenderPIZ2TA24", "TrapezoidRenderPIZ2TIA_RGB_888", "TrapezoidRenderPIZ2TA15",
+                 "TrapezoidRenderPIZ2TIA_RGB_555"):
+        assert awsl.count(f"void BR_ASM_CALL {name}(void)") == 1, name
+        assert f"void BR_ASM_CALL {name}(" not in main, name
+    # tt15/tt16 GDIVIDE gives 0 on overflow; tt24 keeps the low dword
+    assert "return zero_on_overflow ? 0 : (int32_t)(uint32_t)m;" in tt
+    # the colour words: 555 and 565 masks as the assembly builds them
+    assert "((g & 0xfc0000u) >> 13)" in tt and "((g & 0xf80000u) >> 14)" in tt
+    # the DBPP 2 shade table entry is two bytes; the DBPP 3 one is read at four
+    assert "index * (k->dbpp == 2 ? 2u : 4u)" in awsl
+    # zb16p2ul.asm: the decimal 80000000, z drawn where z <= *zptr, zero texels transparent
+    assert "if (fps.d_z_x >= 80000000u) fps.d_z_x -= 1u;" in zb16
+    assert "if (z16 > zbuf) return;" in zb16 and "if (texel == 0) return;" in zb16
+
+
 def test_pfpsetup_port_keeps_the_assembly_formats():
     setup = _compat_port("brender-pentprim-pfpsetup-port.c")
     assert "#define FP_CONV_D 6755399441055744.0" in setup  # 1.5 * 2^52
@@ -718,7 +750,8 @@ def test_index8_ports_are_in_the_pentprim_library(tmp_path):
     harness = _materialized_harness(tmp_path)
     cmake = (harness / "cmake" / "brender-pentprim.cmake").read_text(encoding="utf-8")
     for name in ("brender-pentprim-fpsetup-port.c", "brender-pentprim-i8-port.c",
-                 "brender-pentprim-pfpsetup-port.c", "brender-pentprim-i8p-port.c"):
+                 "brender-pentprim-pfpsetup-port.c", "brender-pentprim-i8p-port.c",
+                 "brender-pentprim-tt-port.c", "brender-pentprim-awsl-port.c", "brender-pentprim-zb16-port.c"):
         assert f"compat/{name}" in cmake, name
     assert (harness / "compat" / "brender-pentprim-fpsetup-port.h").is_file()
     assert (harness / "compat" / "brender-pentprim-pfpsetup-port.h").is_file()

@@ -61,6 +61,9 @@ OUTPUT_FILES = (
     "compat/brender-pentprim-pfpsetup-port.h",
     "compat/brender-pentprim-pfpsetup-port.c",
     "compat/brender-pentprim-i8p-port.c",
+    "compat/brender-pentprim-tt-port.c",
+    "compat/brender-pentprim-awsl-port.c",
+    "compat/brender-pentprim-zb16-port.c",
     "compat/brender-portable-core-stubs.c",
     "compat/brender-portable-host-stubs.c",
     "smoke/brender-core-smoke.c",
@@ -122,6 +125,9 @@ def materialize_brender_core_harness(source_root: Path, output_root: Path) -> li
     "compat/brender-pentprim-pfpsetup-port.h": _compat_source("brender-pentprim-pfpsetup-port.h"),
     "compat/brender-pentprim-pfpsetup-port.c": _compat_source("brender-pentprim-pfpsetup-port.c"),
     "compat/brender-pentprim-i8p-port.c": _compat_source("brender-pentprim-i8p-port.c"),
+    "compat/brender-pentprim-tt-port.c": _compat_source("brender-pentprim-tt-port.c"),
+    "compat/brender-pentprim-awsl-port.c": _compat_source("brender-pentprim-awsl-port.c"),
+    "compat/brender-pentprim-zb16-port.c": _compat_source("brender-pentprim-zb16-port.c"),
         "compat/brender-portable-core-stubs.c": portable_core_stubs_source(),
         "compat/brender-portable-host-stubs.c": portable_host_stubs_source(),
         "smoke/brender-core-smoke.c": vector_smoke_source(),
@@ -260,9 +266,9 @@ def _load_pentprim_source_lists(source):
     filenames = [f"{n}.c" for n in parse("OBJS_C") + parse("XOBJS_C")]
     missing = [module_dir / f for f in filenames if not (module_dir / f).exists()]
     # awtmz.c is Argonaut's C triangle setup for the arbitrary-width texture
-    # mappers; its trapezoid loops (t_piza.asm) come from the compat port,
-    # which ports TrapezoidRenderPIZ2TA24 and TrapezoidRenderPIZ2TIA_RGB_888
-    # line by line and stubs the rest.
+    # mappers; its trapezoid loops (t_piza.asm) come from the compat awsl
+    # port, which ports TrapezoidRenderPIZ2TA24, TA15, TIA_RGB_888 and
+    # TIA_RGB_555 line by line; the 8-bit instances stay stubs.
     if missing:
         raise HarnessMaterializationError(
             "pentprim makefile references missing C source: "
@@ -484,7 +490,10 @@ def _pentprim_cmake(sources: list[str]) -> str:
         "  \"${CMAKE_CURRENT_LIST_DIR}/../compat/brender-pentprim-fpsetup-port.c\"",
         "  \"${CMAKE_CURRENT_LIST_DIR}/../compat/brender-pentprim-i8-port.c\"",
         "  \"${CMAKE_CURRENT_LIST_DIR}/../compat/brender-pentprim-pfpsetup-port.c\"",
-        "  \"${CMAKE_CURRENT_LIST_DIR}/../compat/brender-pentprim-i8p-port.c\")",
+        "  \"${CMAKE_CURRENT_LIST_DIR}/../compat/brender-pentprim-i8p-port.c\"",
+        "  \"${CMAKE_CURRENT_LIST_DIR}/../compat/brender-pentprim-tt-port.c\"",
+        "  \"${CMAKE_CURRENT_LIST_DIR}/../compat/brender-pentprim-awsl-port.c\"",
+        "  \"${CMAKE_CURRENT_LIST_DIR}/../compat/brender-pentprim-zb16-port.c\")",
         "",
         "foreach(source_file IN LISTS BRENDER_PENTPRIM_FLOAT_SOURCES)",
         "  if(NOT EXISTS \"${source_file}\")",
