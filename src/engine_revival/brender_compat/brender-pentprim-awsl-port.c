@@ -20,6 +20,17 @@
  * awtmz.c / awtmi.h fills work.awsl and calls these once per half of the
  * triangle.
  *
+ * The z-sorted instances come from t_pia.asm's TriangleRender macro, the
+ * same loops without the depth buffer, under awtm.c:
+ *
+ *   TrapezoidRenderPITA24, TrapezoidRenderPITIA_RGB_888,
+ *   TrapezoidRenderPITA15, TrapezoidRenderPITIA_RGB_555
+ *
+ * Kept as found there: the unlit instances still run scan_inc's
+ * "add ebx,ecx ; mov work.pi.current,ebx" outside its "if LIGHT", so they
+ * leave the scan start plus the start step in work.pi.current, which no
+ * unlit kernel reads.
+ *
  * Registers are modelled as 32-bit unsigned values so adds wrap and carries
  * come out where the assembly takes them: eax holds the u fraction in its
  * high half and the biased integer u in its low half, ebx the v fraction.
@@ -59,7 +70,7 @@ static int awsl_in(const char *p, const void *base, size_t bytes, size_t need)
 }
 
 typedef struct awsl_kernel {
-    int light, sbpp, dbpp;
+    int light, sbpp, dbpp, zbuffered;
     size_t colour_bytes, depth_bytes, texture_bytes;
 } awsl_kernel;
 
@@ -76,6 +87,7 @@ static int awsl_opaque(const awsl_kernel *k, const char *esi)
 static int awsl_depth_passes(const awsl_kernel *k, const char *ebp)
 {
     uint16_t z16 = (uint16_t)((uint32_t)work.pz.currentpix >> 16), zbuf;
+    if (!k->zbuffered) return 1;
     if (!awsl_in(ebp, work.depth.base, k->depth_bytes, 2)) return 0;
     memcpy(&zbuf, ebp, 2);
     return zbuf >= z16;
@@ -86,7 +98,7 @@ static int awsl_depth_passes(const awsl_kernel *k, const char *ebp)
 static void awsl_store(const awsl_kernel *k, char *edi, char *ebp, const char *esi)
 {
     uint16_t z16 = (uint16_t)((uint32_t)work.pz.currentpix >> 16);
-    memcpy(ebp, &z16, 2);
+    if (k->zbuffered) memcpy(ebp, &z16, 2);
     if (k->light) {
         uint32_t index = (((uint32_t)work.pi.currentpix >> 16) & 0xffu) << 8 | (uint8_t)esi[0];
         const uint8_t *lit = work.shade_table + index * (k->dbpp == 2 ? 2u : 4u);
@@ -121,7 +133,7 @@ static void awsl_scan(const awsl_kernel *k)
     uint32_t eax = ((uint32_t)work.awsl.u_current & 0xffff0000u) | (awsl_u_int() & 0xffffu);
     uint32_t ebx = (uint32_t)work.awsl.v_current;
 
-    work.pz.currentpix = work.pz.current;
+    if (k->zbuffered) work.pz.currentpix = work.pz.current;
     if (k->light) work.pi.currentpix = work.pi.current;
     if (edi < work.awsl.end) {
         /* forward scan */
@@ -132,14 +144,16 @@ static void awsl_scan(const awsl_kernel *k)
             /* both paths: zptr += 2, ptr += DBPP, z += dz, i += di */
             ebp += 2;
             edi += k->dbpp;
-            work.pz.currentpix = (br_fixed_ls)((uint32_t)work.pz.currentpix + (uint32_t)work.pz.grad_x);
+            if (k->zbuffered)
+                work.pz.currentpix = (br_fixed_ls)((uint32_t)work.pz.currentpix + (uint32_t)work.pz.grad_x);
             if (k->light) work.pi.currentpix = (br_fixed_ls)((uint32_t)work.pi.currentpix + (uint32_t)work.pi.grad_x);
             awsl_step_uv(k, &eax, &ebx, &esi);
         }
     } else {
         /* backward scan */
         while (edi > work.awsl.end) {
-            work.pz.currentpix = (br_fixed_ls)((uint32_t)work.pz.currentpix - (uint32_t)work.pz.grad_x);
+            if (k->zbuffered)
+                work.pz.currentpix = (br_fixed_ls)((uint32_t)work.pz.currentpix - (uint32_t)work.pz.grad_x);
             if (k->light) work.pi.currentpix = (br_fixed_ls)((uint32_t)work.pi.currentpix - (uint32_t)work.pi.grad_x);
             awsl_step_uv(k, &eax, &ebx, &esi);
             ebp -= 2;
@@ -163,12 +177,15 @@ static void awsl_next_line(const awsl_kernel *k, struct scan_edge *edge)
     carry = (f + (uint32_t)work.main.d_f) < f;
     work.main.f = (br_int_32)(f + (uint32_t)work.main.d_f);
     d = (uint32_t)work.main.d_i + carry;
-    work.awsl.zstart += (ptrdiff_t)(br_int_32)d * 2;
+    if (k->zbuffered) work.awsl.zstart += (ptrdiff_t)(br_int_32)d * 2;
     work.awsl.start += (ptrdiff_t)(br_int_32)d * k->dbpp;
 
     if (k->light)
         work.pi.current = (br_fixed_ls)((uint32_t)work.pi.current + (uint32_t)(carry ? work.pi.d_carry : work.pi.d_nocarry));
-    work.pz.current = (br_fixed_ls)((uint32_t)work.pz.current + (uint32_t)(carry ? work.pz.d_carry : work.pz.d_nocarry));
+    else if (!k->zbuffered) /* t_pia.asm's unconditional add ebx,ecx ; mov work.pi.current,ebx */
+        work.pi.current = (br_fixed_ls)((uint32_t)(uintptr_t)work.awsl.start + d * (k->dbpp == 3 ? 3u : 1u));
+    if (k->zbuffered)
+        work.pz.current = (br_fixed_ls)((uint32_t)work.pz.current + (uint32_t)(carry ? work.pz.d_carry : work.pz.d_nocarry));
     {
         uint32_t du = carry ? work.awsl.du_carry : work.awsl.du_nocarry;
         uint32_t dv = carry ? work.awsl.dv_carry : work.awsl.dv_nocarry;
@@ -193,9 +210,10 @@ static void awsl_next_line(const awsl_kernel *k, struct scan_edge *edge)
         work.awsl.source_current += work.texture.size;
 }
 
-static void awsl_trapezoid(int light, int sbpp, int dbpp)
+static void awsl_trapezoid(int light, int sbpp, int dbpp, int zbuffered)
 {
     awsl_kernel k;
+    k.zbuffered = zbuffered;
     k.light = light;
     k.sbpp = sbpp;
     k.dbpp = dbpp;
@@ -211,7 +229,11 @@ static void awsl_trapezoid(int light, int sbpp, int dbpp)
     }
 }
 
-void BR_ASM_CALL TrapezoidRenderPIZ2TA24(void) { awsl_trapezoid(0, 3, 3); }
-void BR_ASM_CALL TrapezoidRenderPIZ2TIA_RGB_888(void) { awsl_trapezoid(1, 1, 3); }
-void BR_ASM_CALL TrapezoidRenderPIZ2TA15(void) { awsl_trapezoid(0, 2, 2); }
-void BR_ASM_CALL TrapezoidRenderPIZ2TIA_RGB_555(void) { awsl_trapezoid(1, 1, 2); }
+void BR_ASM_CALL TrapezoidRenderPIZ2TA24(void) { awsl_trapezoid(0, 3, 3, 1); }
+void BR_ASM_CALL TrapezoidRenderPIZ2TIA_RGB_888(void) { awsl_trapezoid(1, 1, 3, 1); }
+void BR_ASM_CALL TrapezoidRenderPIZ2TA15(void) { awsl_trapezoid(0, 2, 2, 1); }
+void BR_ASM_CALL TrapezoidRenderPIZ2TIA_RGB_555(void) { awsl_trapezoid(1, 1, 2, 1); }
+void BR_ASM_CALL TrapezoidRenderPITA24(void) { awsl_trapezoid(0, 3, 3, 0); }
+void BR_ASM_CALL TrapezoidRenderPITIA_RGB_888(void) { awsl_trapezoid(1, 1, 3, 0); }
+void BR_ASM_CALL TrapezoidRenderPITA15(void) { awsl_trapezoid(0, 2, 2, 0); }
+void BR_ASM_CALL TrapezoidRenderPITIA_RGB_555(void) { awsl_trapezoid(1, 1, 2, 0); }

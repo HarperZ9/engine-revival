@@ -102,7 +102,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "cmake/brender-core-sources.cmake",
         output / "cmake/brender-softrend.cmake",
         output / "cmake/brender-pentprim.cmake",
-        output / "compat/brender-softrend-float-fallbacks.c",
+        output / "compat/brender-softrend-subdiv-port.c",
         output / "compat/brender-pentprim-c-port.c",
         output / "compat/brender-pentprim-fpsetup-port.h",
         output / "compat/brender-pentprim-fpsetup-port.c",
@@ -113,6 +113,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "compat/brender-pentprim-tt-port.c",
         output / "compat/brender-pentprim-awsl-port.c",
         output / "compat/brender-pentprim-zb16-port.c",
+        output / "compat/brender-pentprim-tip-port.c",
         output / "compat/brender-pentprim-mmx-port.h",
         output / "compat/brender-pentprim-mmx-tables-port.c",
         output / "compat/brender-pentprim-mmx-common-port.c",
@@ -817,3 +818,47 @@ def test_mmx_port_keeps_the_assembly_details():
     assert "r = mmx_paddusw(r, mmx_dither_table_11[row & 3]);" in zuv
     # the carry from bit 18 of xm picks the dy1 step
     assert "w->carry = (edx >> 18) & 1u ? -1 : 0;" in common
+
+
+def test_zsorted_and_tip_kernels_are_ported_once_and_not_stubbed(tmp_path):
+    """The z-sorted kernels (tt15/tt16/tt24_pi.asm, t_pia.asm's true colour
+    instances) share their ports with the z-buffered ones; the TIP256
+    perspective scanlines (t15_pizp.asm, t15_pip.asm) have their own; none of
+    them is left a stub, and the harness compiles the TIP port."""
+    tt, awsl, tip = (_compat_port("brender-pentprim-tt-port.c"), _compat_port("brender-pentprim-awsl-port.c"),
+                     _compat_port("brender-pentprim-tip-port.c"))
+    main = _compat_port("brender-pentprim-c-port.c")
+    for fmt in ("888", "555", "565"):
+        for name in (f"TriangleRenderPI_RGB_{fmt}", f"TriangleRenderPII_RGB_{fmt}"):
+            assert f"TT_KERNEL({name}," in tt, name
+            assert f"void BR_ASM_CALL {name}(" not in main, name
+    for name in ("TrapezoidRenderPITA24", "TrapezoidRenderPITIA_RGB_888", "TrapezoidRenderPITA15",
+                 "TrapezoidRenderPITIA_RGB_555"):
+        assert awsl.count(f"void BR_ASM_CALL {name}(void)") == 1, name
+        assert f"void BR_ASM_CALL {name}(" not in main, name
+    for name in ("ScanLinePIZ2TIP256_RGB_555", "ScanLinePIZ2TIPB256_RGB_555", "ScanLinePIZ2TIPB256_RGB_565",
+                 "ScanLinePITIP256_RGB_555", "ScanLinePITIPB256_RGB_555", "ScanLinePITIPB256_RGB_565"):
+        assert tip.count(f"void BR_ASM_CALL {name}(void)") == 1, name
+        assert f"void BR_ASM_CALL {name}(" not in main, name
+    # the z-buffered blended form tests depth but does not store it; the halving masks
+    assert "} else if (k->zbuffered) {" in tip and "0x3defu" in tip and "0xf7deu" in tip
+    # the unlit z-sorted trapezoids still write work.pi.current, as t_pia.asm does
+    assert "else if (!k->zbuffered) /* t_pia.asm's unconditional add ebx,ecx ; mov work.pi.current,ebx */" in awsl
+    harness = _materialized_harness(tmp_path)
+    assert "compat/brender-pentprim-tip-port.c" in (harness / "cmake" / "brender-pentprim.cmake").read_text(encoding="utf-8")
+
+
+def test_softrend_subdivision_is_ported_not_stubbed(tmp_path):
+    """subdiv.asm's three FLOAT routines: softrend subdivides blocks that ask
+    for it (the MMX table's perspective rows), so they must do the work."""
+    sub = _compat_port("brender-softrend-subdiv-port.c")
+    for name in ("br_boolean BR_ASM_CALL subdivideCheck(", "void BR_ASM_CALL averageVerticesOnScreen(",
+                 "void BR_ASM_CALL averageVertices("):
+        assert sub.count(name) == 1, name
+    assert "return BR_FALSE;\n}" not in sub.split("subdivideCheck(")[1][:400], "subdivideCheck is no stub"
+    # seven parameters, as subdiv.asm's FLOAT procs and faceops.c's FLOAT declarations have
+    assert "brp_vertex *m0, brp_vertex *m1, brp_vertex *m2,\n                                 brp_vertex *v0, brp_vertex *v1, brp_vertex *v2)" in sub
+    assert "const uint32_t table[16] = {G, G, 0, 0, G, G, GL, 0, 0, L, 0, 0, GL, L, GL, 0};" in sub
+    harness = _materialized_harness(tmp_path)
+    cmake = (harness / "cmake" / "brender-softrend.cmake").read_text(encoding="utf-8")
+    assert "compat/brender-softrend-subdiv-port.c" in cmake and "float-fallbacks" not in cmake
