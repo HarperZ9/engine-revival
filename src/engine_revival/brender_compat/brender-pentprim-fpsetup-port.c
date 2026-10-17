@@ -100,6 +100,8 @@ int fps_setup(union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
     bot = vv[sort_flat[6 + k]];
     mid = vv[sort_flat[k]];
     flip = flip_table[k];
+    fps.top = top; fps.mid = mid; fps.bot = bot;
+    fps.sort_flip = flip;
 
     y_t = fps_y_int(top->comp_f[C_SY]);
     y_m = fps_y_int(mid->comp_f[C_SY]);
