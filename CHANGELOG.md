@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.11.0
+
+The period BRender 1.3.2 build now draws 8-bit textures on the square power-of-two maps that are not 256 wide, linear and perspective-correct.
+
+- `zb8p2unl.asm` and `zb8p2lit.asm` are ported line by line in `brender-pentprim-i8pow2-port.c`: `TriangleRender_ZT_I8_D16_8`, `_16`, `_32`, `_64`, `_128` and `_1024` (unlit) and `TriangleRender_ZTI_I8_D16_*` (lit through the shade table), with `fpsetup.asm`'s `TriangleSetup_ZT` and `TriangleSetup_ZTI`. Their rasterisers are separate functions, because the perspective kernels of the same sizes jump into them.
+- `fti8pizp.asm`'s 32, 64, 128 and 1024 instances (`TriangleRender_ZPT_I8_D16_*` and `TriangleRender_ZPTI_I8_D16_*`) share the 256 port: each instance only shifts the packed texel offset so u and v wrap at the map's size, and starts it at (v mod n) * n + u mod n.
+- Kept as found: the power-of-two kernels adjust the z gradient with the decimal constant `80000000`, as `zb8.asm` and `zb16p2ul.asm` do. The lit kernel looks the shade table up with the whole of eax; for a 1024 wide map a texel at v of 64 or more leaves bits above the low two bytes, so the assembly reads past the table. The port skips such a pixel. That is inferred from the code: no scene measures it, and brender-archival draws no lit 1024 scene that reaches that kernel.
+- Twenty diagnostic stubs are gone (the `_FLAT` variants stay stubs; no scene reaches them). The materializer writes 51 files; the ladder stays at 21 targets.
+- Checked against the 1998 assembly itself: `fpsetup.asm`, `pfpsetup.asm`, `fti8pizp.asm`, `zb8p2unl.asm` and `zb8p2lit.asm`, assembled with MASM against the harness's own structure offsets and linked in place of the ports, draw all 124 of brender-archival's parity scenes byte for byte as the ports do. A differential test of 100,000 random triangles over the twenty kernels finds no difference. One-instruction changes to the assembly make it fail in exactly the kernels they touch.
+- The 91 older parity scenes are byte-identical to 0.10.0 on the general and MMX builds.
+- Measured against BRender 1.4 (brender-archival): the 33 new scenes are byte-identical to 1.4 built with 1.3.2's sine and cosine. Against 1.4 as published, the only differences are the one-pixel lit sphere residue the trig accounts for.
+
 ## 0.10.0
 
 The period BRender 1.3.2 build now draws z-sorted 15, 16 and 24-bit triangles, the 15/16-bit perspective-correct lit texture mappers, and softrend's triangle subdivision.

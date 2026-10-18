@@ -43,4 +43,10 @@ int pfps_setup(union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2,
 void i8_rasterise_zt_256(void);
 void i8_rasterise_zti_256(void);
 
+/* The same for the other power of two maps, 1 << pow2 wide: zb8p2unl.asm
+ * TriangleRasterise_ZT_I8_D16_<n> and zb8p2lit.asm
+ * TriangleRasterise_ZTI_I8_D16_<n>, in brender-pentprim-i8pow2-port.c. */
+void i8_rasterise_zt_pow2(uint32_t pow2);
+void i8_rasterise_zti_pow2(uint32_t pow2);
+
 #endif
