@@ -245,7 +245,11 @@ int pfps_setup(union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2,
     if (fps_setup(v0, v1, v2) != 0) return -1; /* SETUP_FLOAT <ret>, carry clear */
     pfps.direction = (uint32_t)fps.flip;
     fps_param(C_SZ, v0, v1, v2, &fps.s_z, &fps.d_z_y_1, &fps.d_z_x, &fps.d_z_y_0, 1);
-    if (lit) fps_param(C_I, v0, v1, v2, &fps.s_i, &fps.d_i_y_1, &fps.d_i_x, &fps.d_i_y_0, 0);
+    /* lit == 1: SETUP_FLOAT_PARAM C_I (interpolated). lit == 2: TriangleSetup_
+     * ZPTI_FLAT's SETUP_FLOAT_CONST C_I, the intensity of the mid vertex with
+     * no gradient, so the shade row is fixed for the face. */
+    if (lit == 1) fps_param(C_I, v0, v1, v2, &fps.s_i, &fps.d_i_y_1, &fps.d_i_x, &fps.d_i_y_0, 0);
+    else if (lit == 2) { fps_const_i(v0); } /* SETUP_FLOAT leaves ebx = v0 */
     if (pfps_cheat()) {
         /* mov esi,work.tsl.direction ; mov workspace.flip,esi: fps.flip
          * already holds the LR/RL bit, which the linear rasterisers read */

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.12.0
+
+The period BRender 1.3.2 build now draws flat lit 8-bit textures (BR_MATF_LIGHT without BR_MATF_SMOOTH), linear and perspective-correct.
+
+- `zb8p2fla.asm`'s linear flat lit kernels are ported in `brender-pentprim-i8pow2-port.c`: `TriangleRender_ZT_I8_D16_8_FLAT` through `_1024_FLAT`, with `fpsetup.asm`'s `TriangleSetup_ZT_FLAT_LIT`. Flat lighting fixes the shade row for the whole face (from v0's intensity), and the kernel masks the texel to a byte before the lookup, so it reads `shade_row[texel]` and does not read past the table the way the smooth 1024 kernel does.
+- `fti8pizp.asm`'s perspective flat lit kernels are ported in `brender-pentprim-i8p-port.c`: `TriangleRender_ZPTI_I8_D16_32_FLAT` through `_1024_FLAT`, with `pfpsetup.asm`'s `TriangleSetup_ZPTI_FLAT`, whose `SETUP_FLOAT_CONST C_I` takes the intensity of v0 (the vertex `SETUP_FLOAT` leaves in ebx) with no gradient. They reuse the smooth perspective scanlines with a constant intensity.
+- Twelve diagnostic stubs are gone (the last 8-bit `_FLAT` kernels). The materializer still writes 51 files; the ladder stays at 21 targets.
+- Checked against the 1998 assembly itself: `fpsetup.asm`, `pfpsetup.asm`, `fti8pizp.asm`, `zb8p2unl.asm`, `zb8p2lit.asm` and `zb8p2fla.asm`, assembled with MASM and linked in place of the ports, draw all of brender-archival's parity scenes byte for byte as the ports do. A differential test of 100,000 random triangles over the kernels, flat kernels included, finds no difference; one-instruction changes to the assembly fail in exactly the kernels they touch (widening the flat kernel's texel mask fails only the flat kernels).
+- Measured against BRender 1.4: the flat lit scenes are byte-identical. Flat lighting has no Gouraud interpolation, so the one-pixel sine residue of the smooth scenes does not arise.
+- Measured and documented (brender-archival parity README): the smooth 1024 lit kernel's overread reads up to about 975 KB past a 16 KB shade table and faults on a normal heap table. No shipped scene reaches it.
+
 ## 0.11.0
 
 The period BRender 1.3.2 build now draws 8-bit textures on the square power-of-two maps that are not 256 wide, linear and perspective-correct.

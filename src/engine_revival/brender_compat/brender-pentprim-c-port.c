@@ -580,36 +580,6 @@ void BR_ASM_CALL TriangleRender_ZPTIF_I8_D16_64_FLAT(struct brp_block *block, un
     (void)block; (void)v0; (void)v1; (void)v2;
 }
 
-void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_1024_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZPTI_I8_D16_1024_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_128_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZPTI_I8_D16_128_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_256_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZPTI_I8_D16_256_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_32_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZPTI_I8_D16_32_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_64_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZPTI_I8_D16_64_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
 void BR_ASM_CALL TriangleRender_ZTB_I8_D16(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
 {
     fprintf(stderr, "CALL TriangleRender_ZTB_I8_D16\n"); fflush(stderr);
@@ -895,48 +865,6 @@ void BR_ASM_CALL TriangleRender_ZTI_I8_D16_FLAT(struct brp_block *block, union b
 void BR_ASM_CALL TriangleRender_ZT_I8_D16(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
 {
     fprintf(stderr, "CALL TriangleRender_ZT_I8_D16\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZT_I8_D16_1024_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZT_I8_D16_1024_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZT_I8_D16_128_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZT_I8_D16_128_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZT_I8_D16_16_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZT_I8_D16_16_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZT_I8_D16_256_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZT_I8_D16_256_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZT_I8_D16_32_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZT_I8_D16_32_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZT_I8_D16_64_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZT_I8_D16_64_FLAT\n"); fflush(stderr);
-    (void)block; (void)v0; (void)v1; (void)v2;
-}
-
-void BR_ASM_CALL TriangleRender_ZT_I8_D16_8_FLAT(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    fprintf(stderr, "CALL TriangleRender_ZT_I8_D16_8_FLAT\n"); fflush(stderr);
     (void)block; (void)v0; (void)v1; (void)v2;
 }
 

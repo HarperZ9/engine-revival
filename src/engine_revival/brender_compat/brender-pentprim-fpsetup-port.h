@@ -25,6 +25,7 @@ typedef struct fps_workspace {
     int32_t t_y, flip, topCount, bottomCount;
     uint32_t xm_f, d_xm_f;
     uint8_t colour;
+    const uint8_t *shade_row; /* workspace.shadeTable: shade_table + (flat intensity row << 8) */
     /* pfpsetup.asm keeps these too: the vertices in y order (top_vertex,
      * mid_vertex, bot_vertex) and flip_table's parity of that order, which
      * pfpsetup.asm leaves in workspace.flip where fpsetup.asm stores the
@@ -46,5 +47,13 @@ void fps_param(int comp, union brp_vertex *v0, union brp_vertex *v1, union brp_v
 
 /* SETUP_FLOAT_COLOUR: the flat colour index from the first vertex's C_I. */
 void fps_colour(union brp_vertex *v0);
+
+/* SETUP_FLOAT_FLAT_LIT: the flat lit shade row, work.shade_table offset by the
+ * integer intensity of v0's C_I, for the flat lit textured kernels. */
+void fps_flat_shade(union brp_vertex *v0);
+
+/* SETUP_FLOAT_CONST C_I: a constant intensity (no gradient) from one vertex,
+ * for the perspective flat lit kernels. */
+void fps_const_i(union brp_vertex *v);
 
 #endif
