@@ -14,6 +14,9 @@
  *   TriangleRender_ZPTI_I8_D16_<n>  TrapeziumRender_ZPTI_I8_D16 n,f and n,b
  *                                   with ScanlineRender_ZPTI_I8_D16, lit
  *                                   through the shade table
+ *   TriangleRender_ZPTI_I8_D16_<n>_FLAT  the same scanlines after
+ *                                   TriangleSetup_ZPTI_FLAT: the intensity is
+ *                                   constant for the face, not interpolated
  *
  * with the setup they call, pfpsetup.asm's TriangleSetup_ZPT and
  * TriangleSetup_ZPTI, in brender-pentprim-pfpsetup-port.c. When the setup
@@ -269,7 +272,8 @@ static void p8_triangle(union brp_vertex *v0, union brp_vertex *v1, union brp_ve
     p8.pow2 = pow2;
     r = pfps_setup(v0, v1, v2, lit);
     if (r < 0) return;
-    if (r > 0) { /* jc TriangleRasterise_ZT(I)_I8_D16_<n> */
+    if (r > 0) { /* jc TriangleRasterise_ZT(I)_I8_D16_<n>; flat lit goes to the
+                  * smooth rasteriser, its intensity already constant */
         if (pow2 == 8) { if (lit) i8_rasterise_zti_256(); else i8_rasterise_zt_256(); }
         else if (lit) i8_rasterise_zti_pow2(pow2);
         else i8_rasterise_zt_pow2(pow2);
@@ -292,7 +296,8 @@ static void p8_triangle(union brp_vertex *v0, union brp_vertex *v1, union brp_ve
 #define P8_KERNEL(name, lit, pow2) void BR_ASM_CALL name(struct brp_block *block, union brp_vertex *v0, \
     union brp_vertex *v1, union brp_vertex *v2) { (void)block; p8_triangle(v0, v1, v2, lit, pow2); }
 #define P8_KERNELS(n, pow2) \
-    P8_KERNEL(TriangleRender_ZPT_I8_D16_##n, 0, pow2) P8_KERNEL(TriangleRender_ZPTI_I8_D16_##n, 1, pow2)
+    P8_KERNEL(TriangleRender_ZPT_I8_D16_##n, 0, pow2) P8_KERNEL(TriangleRender_ZPTI_I8_D16_##n, 1, pow2) \
+    P8_KERNEL(TriangleRender_ZPTI_I8_D16_##n##_FLAT, 2, pow2)
 P8_KERNELS(32, 5)
 P8_KERNELS(64, 6)
 P8_KERNELS(128, 7)

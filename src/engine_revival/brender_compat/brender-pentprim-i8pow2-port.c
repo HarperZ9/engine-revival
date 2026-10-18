@@ -9,12 +9,18 @@
  * 256 wide (8, 16, 32, 64, 128 and 1024), ported line by line from BRender
  * v1.3.2 drivers/pentprim (MIT, Argonaut Software 1998):
  *
- *   TriangleRender_ZT_I8_D16_<n>   zb8p2unl.asm  DRAW_ZT_I8_D16_POW2, unlit
- *   TriangleRender_ZTI_I8_D16_<n>  zb8p2lit.asm  DRAW_ZTI_I8_D16_POW2, lit
- *                                                through the shade table
+ *   TriangleRender_ZT_I8_D16_<n>        zb8p2unl.asm  DRAW_ZT_I8_D16_POW2, unlit
+ *   TriangleRender_ZTI_I8_D16_<n>       zb8p2lit.asm  DRAW_ZTI_I8_D16_POW2, lit
+ *                                                     through the shade table
+ *   TriangleRender_ZT_I8_D16_<n>_FLAT   zb8p2fla.asm  DRAW_ZT_I8_D16_POW2_FLAT,
+ *                                                     flat lit: the shade row
+ *                                                     is fixed for the face
  *
- * with fpsetup.asm's TriangleSetup_ZT and TriangleSetup_ZTI
- * (brender-pentprim-fpsetup-port.c). The rasterisers after the setup (the
+ * with fpsetup.asm's TriangleSetup_ZT, TriangleSetup_ZTI and
+ * TriangleSetup_ZT_FLAT_LIT (brender-pentprim-fpsetup-port.c). The flat lit
+ * kernel masks the texel to a byte before the shade lookup (`and eax,0ffh`),
+ * so it reads shade_row[texel], always in the row the setup chose; it does not
+ * read past the table the way the smooth 1024 kernel does. The rasterisers after the setup (the
  * TriangleRasterise_ labels) are separate functions, because the
  * perspective kernels of the same sizes jump into them in their cheat case
  * (brender-pentprim-i8p-port.c).
@@ -27,11 +33,16 @@
  *   constant where the 256 kernels compare with 80000000h. So a gradient of
  *   80,000,000 (04c4b400h) or more loses one in its last place, and a
  *   negative one under that does not.
- * - The lit kernel looks the shade table up with the whole of eax, whose
- *   low two bytes it has replaced with the intensity row and the texel. For
- *   maps up to 128 wide the texel address fits in those two bytes. For a
+ * - The smooth lit kernel looks the shade table up with the whole of eax,
+ *   whose low two bytes it has replaced with the intensity row and the texel.
+ *   For maps up to 128 wide the texel address fits in those two bytes. For a
  *   1024 wide map a texel at v of 64 or more leaves bits above them, and the
- *   assembly reads past the table (see Additions).
+ *   assembly reads past the table. Measured with a 1024 wide lit scene and a
+ *   guard page (brender-archival parity README): the 1998 kernel reads up to
+ *   about 975 KB past a 16 KB table, and faults on a normal heap table. The
+ *   flat lit kernel (zb8p2fla.asm, below) masks the texel to a byte first, so
+ *   it does not. This port skips the smooth read when it is past the table
+ *   bound (see Additions); no shipped scene reaches that kernel.
  *
  * Additions, none of which changes a pixel the assembly would draw inside
  * its buffers and tables: a pixel or depth value outside its buffer is not
@@ -53,9 +64,11 @@
 
 static uint32_t p2_ror16(uint32_t v) { return (v >> 16) | (v << 16); }
 
+enum { P2_UNLIT, P2_SMOOTH, P2_FLAT };
+
 typedef struct p2_target {
     uint8_t *cbase, *zbase;
-    const uint8_t *tex, *shade;
+    const uint8_t *tex, *shade, *shade_row;
     int32_t climit, zlimit, cstride, zstride;
     uint32_t tex_bytes, mask, pow2;
     int32_t scan, depth;
@@ -67,6 +80,7 @@ static int p2_open(p2_target *t, uint32_t pow2)
     t->zbase = (uint8_t *)work.depth.base;
     t->tex = (const uint8_t *)work.texture.base;
     t->shade = work.shade_table;
+    t->shade_row = fps.shade_row;
     t->cstride = work.colour.stride_b;
     t->zstride = work.depth.stride_b;
     t->climit = work.colour.stride_b * (int32_t)work.colour.height;
@@ -107,12 +121,12 @@ static uint32_t p2_step_z(uint32_t z, uint32_t dz, int rl)
 
 /* The per-line steps after lineDrawn: the major edge's fraction, then each
  * parameter by its carry (d_*_y_1) or no-carry (d_*_y_0) step. */
-static void p2_next_line(p2_target *t, uint32_t *minor, uint32_t d_minor, int lit)
+static void p2_next_line(p2_target *t, uint32_t *minor, uint32_t d_minor, int mode)
 {
     uint32_t carry = (uint32_t)(((uint64_t)fps.xm_f + fps.d_xm_f) >> 32);
     fps.xm_f += fps.d_xm_f;
     t->depth += t->zstride;
-    if (lit) fps.s_i += carry ? fps.d_i_y_1 : fps.d_i_y_0;
+    if (mode == P2_SMOOTH) fps.s_i += carry ? fps.d_i_y_1 : fps.d_i_y_0;
     fps.s_z += carry ? fps.d_z_y_1 : fps.d_z_y_0;
     fps.s_u += carry ? fps.d_u_y_1 : fps.d_u_y_0;
     fps.s_v += carry ? fps.d_v_y_1 : fps.d_v_y_0;
@@ -121,9 +135,9 @@ static void p2_next_line(p2_target *t, uint32_t *minor, uint32_t d_minor, int li
     fps.xm += fps.d_xm;
 }
 
-/* DRAW_ZT_I8_D16_POW2 minorX,direction,half,pow2 (unlit) and
- * DRAW_ZTI_I8_D16_POW2 (lit): one half of the triangle. */
-static void p2_half(p2_target *t, uint32_t *minor, uint32_t d_minor, int32_t *count, int rl, int lit)
+/* DRAW_ZT_I8_D16_POW2 (unlit), DRAW_ZTI_I8_D16_POW2 (smooth lit) and
+ * DRAW_ZT_I8_D16_POW2_FLAT (flat lit): one half of the triangle. */
+static void p2_half(p2_target *t, uint32_t *minor, uint32_t d_minor, int32_t *count, int rl, int mode)
 {
     if (*count < 0) return;
     for (;;) {
@@ -143,28 +157,32 @@ static void p2_half(p2_target *t, uint32_t *minor, uint32_t d_minor, int32_t *co
                     if (texel != 0) {
                         uint8_t c = texel;
                         int draw = 1;
-                        if (lit) {                   /* mov ah,byte ptr c_i+2 ; mov al,[edi+eax] */
+                        if (mode == P2_SMOOTH) {     /* mov ah,byte ptr c_i+2 ; mov al,[edi+eax] */
                             uint32_t row = (at & 0xffff0000u) | ((i >> 16) & 0xffu) << 8 | texel;
                             if (t->shade == NULL || row >= P2_SHADE_BYTES) draw = 0;
                             else c = t->shade[row];
+                        } else if (mode == P2_FLAT) { /* and eax,0ffh ; mov al,[shade_row+eax] */
+                            if (t->shade_row == NULL) draw = 0;
+                            else c = t->shade_row[texel];
                         }
                         if (draw) p2_write(t, dest + cnt, zrow + 2 * cnt, (uint16_t)z, c);
                     }
                 }
                 z = p2_step_z(z, fps.d_z_x, rl);
-                if (rl) { i -= fps.d_i_x; v -= fps.d_v_x; u -= fps.d_u_x; }
-                else { i += fps.d_i_x; v += fps.d_v_x; u += fps.d_u_x; }
+                if (mode == P2_SMOOTH) i = rl ? i - fps.d_i_x : i + fps.d_i_x;
+                if (rl) { v -= fps.d_v_x; u -= fps.d_u_x; }
+                else { v += fps.d_v_x; u += fps.d_u_x; }
                 next = (int64_t)cnt + (rl ? -1 : 1);  /* inc_d ecx ; jle_d drawPixel */
                 cnt = (int32_t)((uint32_t)cnt + (rl ? 0xffffffffu : 1u));
             } while (rl ? next >= 0 : next <= 0);
         }
-        p2_next_line(t, minor, d_minor, lit);
+        p2_next_line(t, minor, d_minor, mode);
         if (--*count < 0) break;
     }
 }
 
 /* TriangleRasterise_ZT(I)_I8_D16_<n>: everything after the setup call. */
-static void p2_rasterise(uint32_t pow2, int lit)
+static void p2_rasterise(uint32_t pow2, int mode)
 {
     p2_target t;
     uint32_t edx;
@@ -178,40 +196,36 @@ static void p2_rasterise(uint32_t pow2, int lit)
     edx = edx < 80000000u ? edx : edx - 1u;
     fps.d_z_x = p2_ror16(edx);
     rl = fps.flip != 0;
-    p2_half(&t, &fps.x1, fps.d_x1, &fps.topCount, rl, lit);
-    p2_half(&t, &fps.x2, fps.d_x2, &fps.bottomCount, rl, lit);
+    p2_half(&t, &fps.x1, fps.d_x1, &fps.topCount, rl, mode);
+    p2_half(&t, &fps.x2, fps.d_x2, &fps.bottomCount, rl, mode);
 }
 
-void i8_rasterise_zt_pow2(uint32_t pow2) { p2_rasterise(pow2, 0); }
-void i8_rasterise_zti_pow2(uint32_t pow2) { p2_rasterise(pow2, 1); }
+void i8_rasterise_zt_pow2(uint32_t pow2) { p2_rasterise(pow2, P2_UNLIT); }
+void i8_rasterise_zti_pow2(uint32_t pow2) { p2_rasterise(pow2, P2_SMOOTH); }
 
-static void p2_render(union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, uint32_t pow2, int lit)
+static void p2_render(union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, uint32_t pow2, int mode)
 {
+    if (mode == P2_FLAT) fps_flat_shade(v0); /* TriangleSetup_ZT_FLAT_LIT: before SETUP_FLOAT */
     if (fps_setup(v0, v1, v2) != 0) return;
     fps_param(C_SZ, v0, v1, v2, &fps.s_z, &fps.d_z_y_1, &fps.d_z_x, &fps.d_z_y_0, 1);
     fps_param(C_U, v0, v1, v2, &fps.s_u, &fps.d_u_y_1, &fps.d_u_x, &fps.d_u_y_0, 0);
     fps_param(C_V, v0, v1, v2, &fps.s_v, &fps.d_v_y_1, &fps.d_v_x, &fps.d_v_y_0, 0);
-    if (lit) fps_param(C_I, v0, v1, v2, &fps.s_i, &fps.d_i_y_1, &fps.d_i_x, &fps.d_i_y_0, 0);
-    p2_rasterise(pow2, lit);
+    if (mode == P2_SMOOTH) fps_param(C_I, v0, v1, v2, &fps.s_i, &fps.d_i_y_1, &fps.d_i_x, &fps.d_i_y_0, 0);
+    p2_rasterise(pow2, mode);
 }
 
+#define P2_KERNEL(name, mode, pow2)                                                                 \
+    void BR_ASM_CALL name(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1,      \
+                          union brp_vertex *v2) { (void)block; p2_render(v0, v1, v2, pow2, mode); }
 #define P2_KERNELS(n, pow2)                                                                         \
-    void BR_ASM_CALL TriangleRender_ZT_I8_D16_##n(struct brp_block *block, union brp_vertex *v0,    \
-                                                  union brp_vertex *v1, union brp_vertex *v2)      \
-    {                                                                                               \
-        (void)block;                                                                                \
-        p2_render(v0, v1, v2, pow2, 0);                                                             \
-    }                                                                                               \
-    void BR_ASM_CALL TriangleRender_ZTI_I8_D16_##n(struct brp_block *block, union brp_vertex *v0,   \
-                                                   union brp_vertex *v1, union brp_vertex *v2)     \
-    {                                                                                               \
-        (void)block;                                                                                \
-        p2_render(v0, v1, v2, pow2, 1);                                                             \
-    }
+    P2_KERNEL(TriangleRender_ZT_I8_D16_##n, P2_UNLIT, pow2)                                         \
+    P2_KERNEL(TriangleRender_ZTI_I8_D16_##n, P2_SMOOTH, pow2)                                       \
+    P2_KERNEL(TriangleRender_ZT_I8_D16_##n##_FLAT, P2_FLAT, pow2)
 
 P2_KERNELS(8, 3)
 P2_KERNELS(16, 4)
 P2_KERNELS(32, 5)
 P2_KERNELS(64, 6)
 P2_KERNELS(128, 7)
+P2_KERNEL(TriangleRender_ZT_I8_D16_256_FLAT, P2_FLAT, 8) /* 256: the smooth ZT/ZTI live in the i8 port */
 P2_KERNELS(1024, 10)

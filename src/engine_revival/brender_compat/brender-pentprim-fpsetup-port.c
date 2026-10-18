@@ -71,6 +71,20 @@ void fps_colour(union brp_vertex *v0)
     fps.colour = (uint8_t)(fps_fix16((double)v0->comp_f[C_I]) >> 16); /* byte ptr temporary_intensity+2 */
 }
 
+void fps_const_i(union brp_vertex *v)
+{
+    fps.s_i = fps_fix16((double)v->comp_f[C_I]); /* fld [v].C_I ; fadd conv ; store, pdx = pdy = 0 */
+    fps.d_i_x = fps.d_i_y_0 = fps.d_i_y_1 = 0;
+}
+
+void fps_flat_shade(union brp_vertex *v0)
+{
+    /* mov bh, byte ptr temporary_intensity+2 ; add shade_table,ebx: the row is
+     * the integer intensity, so the base is shade_table + (row << 8). */
+    uint32_t row = (uint32_t)(fps_fix16((double)v0->comp_f[C_I]) >> 16) & 0xffu;
+    fps.shade_row = work.shade_table == NULL ? NULL : (const uint8_t *)work.shade_table + ((size_t)row << 8);
+}
+
 int fps_setup(union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
 {
     /* sort_table_1, _0 and _2 overlap in fpsetup.asm's data: one array */

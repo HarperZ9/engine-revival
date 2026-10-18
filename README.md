@@ -10,7 +10,7 @@ survives today and under what licence, and which ones are being rebuilt.
 
 **Read it as a site: [harperz9.github.io/engine-revival](https://harperz9.github.io/engine-revival/)**
 
-[![version: 0.11.0](https://img.shields.io/badge/version-0.11.0-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/engine-revival/releases/latest)
+[![version: 0.12.0](https://img.shields.io/badge/version-0.12.0-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/engine-revival/releases/latest)
 [![CI](https://github.com/HarperZ9/engine-revival/actions/workflows/ci.yml/badge.svg)](https://github.com/HarperZ9/engine-revival/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-FSL--1.1--MIT-e6e1d6?style=flat-square&labelColor=1a1712)](https://github.com/HarperZ9/engine-revival/blob/main/LICENSE)
 ![python 3.11+](https://img.shields.io/badge/python-3.11%2B-e6e1d6?style=flat-square&labelColor=1a1712)
@@ -42,7 +42,7 @@ Coming next: the revival candidates, highest priority first, are listed on the
 ## Use it
 
 ```
-pip install "engine-revival @ git+https://github.com/HarperZ9/engine-revival@v0.11.0"
+pip install "engine-revival @ git+https://github.com/HarperZ9/engine-revival@v0.12.0"
 git clone https://github.com/HarperZ9/engine-revival && cd engine-revival
 engine-revival validate        # every record carries the fields its schema names
 engine-revival audit-public    # nothing restricted is marked publishable
@@ -112,7 +112,7 @@ the [remaster lane](docs/REMASTER-LANE.md).
 
 ## What the archive holds
 
-![A table of twelve rows: what is in the archive, how many of it there are, and where each number is read from. Twelve record kinds are named in RECORD_DIRS, and four hundred and nine JSON records sit across their directories, with sources leading at ninety-four and artifacts and accessions at sixty-six each. Thirty-five engine targets span twenty categories. Ninety-four sources are cited, seventy-seven of them rated high confidence, sixteen moderate and one low. Eight hundred and six references point from one record to another, and the validator resolves every one of them. Five artifacts are marked do-not-redistribute, and none of them carries a publishable access level. Twelve schemas name one hundred and fifteen required fields between them. The report command writes two hundred and forty-one files and leaves the committed pages byte-identical. The portable materializer generates fifty-one files and twenty-one CTest targets, and CI builds and runs every one of them on Windows. Thirty-four of the thirty-five targets carry no rung claim above the first. One hundred and sixty-eight Python tests cover the loaders, the validator, the reports, the audit, the materializer, and every number drawn here.](docs/art/corpus-table.svg)
+![A table of twelve rows: what is in the archive, how many of it there are, and where each number is read from. Twelve record kinds are named in RECORD_DIRS, and four hundred and nine JSON records sit across their directories, with sources leading at ninety-four and artifacts and accessions at sixty-six each. Thirty-five engine targets span twenty categories. Ninety-four sources are cited, seventy-seven of them rated high confidence, sixteen moderate and one low. Eight hundred and six references point from one record to another, and the validator resolves every one of them. Five artifacts are marked do-not-redistribute, and none of them carries a publishable access level. Twelve schemas name one hundred and fifteen required fields between them. The report command writes two hundred and forty-one files and leaves the committed pages byte-identical. The portable materializer generates fifty-one files and twenty-one CTest targets, and CI builds and runs every one of them on Windows. Thirty-four of the thirty-five targets carry no rung claim above the first. One hundred and sixty-nine Python tests cover the loaders, the validator, the reports, the audit, the materializer, and every number drawn here.](docs/art/corpus-table.svg)
 
 Every count is read from the corpus or from the module that defines it. Rerun
 the commands below and the numbers regenerate.

@@ -693,8 +693,9 @@ def test_perspective_kernels_are_ported_once_and_not_stubbed():
     assert i8p.count("P8_KERNELS(256, 8)") == 1
     for name in ("TriangleRender_ZPT_I8_D16_256", "TriangleRender_ZPTI_I8_D16_256"):
         assert f"void BR_ASM_CALL {name}(" not in main, name
-    # the FLAT variant stays a stub
-    assert "void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_256_FLAT(" in main
+    # the flat perspective kernel (ZPTI_256_FLAT) is ported too
+    assert "void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_256_FLAT(" not in main
+    assert "P8_KERNEL(TriangleRender_ZPTI_I8_D16_##n##_FLAT, 2, pow2)" in i8p
     # cheat case: jc TriangleRasterise_ZT_I8_D16_256 / TriangleRasterise_ZTI_I8_D16_256
     assert "if (pow2 == 8) { if (lit) i8_rasterise_zti_256(); else i8_rasterise_zt_256(); }" in i8p
     assert i8.count("void i8_rasterise_zt_256(void)") == 1
@@ -878,8 +879,11 @@ def test_eight_bit_kernels_for_the_other_map_sizes_are_ported_not_stubbed(tmp_pa
     for name in [f"ZPT{i}_I8_D16_{n}" for n in (32, 64, 128, 1024) for i in ("", "I")] + \
                 [f"ZT{i}_I8_D16_{n}" for n in (8, 16, 32, 64, 128, 1024) for i in ("", "I")]:
         assert f"void BR_ASM_CALL TriangleRender_{name}(" not in main, name
-    # the FLAT variants stay stubs: no scene reaches them
-    assert "void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_64_FLAT(" in main
+    # the FLAT kernels are ported (engine-revival 0.12.0), not stubs
+    for name in [f"ZT_I8_D16_{n}_FLAT" for n in (8, 16, 32, 64, 128, 256, 1024)] + \
+                [f"ZPTI_I8_D16_{n}_FLAT" for n in (32, 64, 128, 256, 1024)]:
+        assert f"void BR_ASM_CALL TriangleRender_{name}(" not in main, name
+    assert "P2_KERNEL(TriangleRender_ZT_I8_D16_256_FLAT, P2_FLAT, 8)" in pow2
     # the cheat case of the other sizes goes to the power-of-two rasterisers
     assert "else if (lit) i8_rasterise_zti_pow2(pow2);" in i8p
     # kept as found: the decimal z gradient constant, and the lit kernel's whole-eax shade lookup
@@ -887,3 +891,23 @@ def test_eight_bit_kernels_for_the_other_map_sizes_are_ported_not_stubbed(tmp_pa
     assert "uint32_t row = (at & 0xffff0000u) | ((i >> 16) & 0xffu) << 8 | texel;" in pow2
     harness = _materialized_harness(tmp_path)
     assert "compat/brender-pentprim-i8pow2-port.c" in (harness / "cmake" / "brender-pentprim.cmake").read_text(encoding="utf-8")
+
+
+def test_the_flat_lit_kernels_are_ported_not_stubbed():
+    """zb8p2fla.asm's linear ZT_*_FLAT (8 to 1024) and fti8pizp.asm's
+    perspective ZPTI_*_FLAT (32 to 1024): flat lighting is a constant shade
+    row for the face. The linear kernel masks the texel to a byte, so it does
+    not read past the table the way the smooth 1024 kernel does."""
+    pow2, i8p = _compat_port("brender-pentprim-i8pow2-port.c"), _compat_port("brender-pentprim-i8p-port.c")
+    main = _compat_port("brender-pentprim-c-port.c")
+    for name in [f"ZT_I8_D16_{n}_FLAT" for n in (8, 16, 32, 64, 128, 256, 1024)]:
+        assert f"void BR_ASM_CALL TriangleRender_{name}(" not in main, name
+    for name in [f"ZPTI_I8_D16_{n}_FLAT" for n in (32, 64, 128, 256, 1024)]:
+        assert f"void BR_ASM_CALL TriangleRender_{name}(" not in main, name
+    # the flat shade row is fixed for the face, from v0's intensity
+    assert "void fps_flat_shade(union brp_vertex *v0)" in _compat_port("brender-pentprim-fpsetup-port.c")
+    # the flat kernel masks the texel to a byte, so no overread
+    assert "else if (mode == P2_FLAT) { /* and eax,0ffh ; mov al,[shade_row+eax] */" in pow2
+    assert "c = t->shade_row[texel];" in pow2
+    # the perspective flat intensity is a constant from v0 (SETUP_FLOAT leaves ebx = v0)
+    assert "else if (lit == 2) { fps_const_i(v0); }" in _compat_port("brender-pentprim-pfpsetup-port.c")
