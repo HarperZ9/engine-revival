@@ -6,30 +6,31 @@
  */
 /*
  * The 8-bit perspective correct texture kernels (INDEX_8, 16-bit depth,
- * 256 x 256 map), ported line by line from BRender v1.3.2
- * drivers/pentprim/fti8pizp.asm (MIT, Argonaut Software 1998):
+ * square maps 32, 64, 128, 256 and 1024 wide), ported line by line from
+ * BRender v1.3.2 drivers/pentprim/fti8pizp.asm (MIT, Argonaut Software 1998):
  *
- *   TriangleRender_ZPT_I8_D16_256   TrapeziumRender_ZPT_I8_D16 256,f and 256,b
+ *   TriangleRender_ZPT_I8_D16_<n>   TrapeziumRender_ZPT_I8_D16 n,f and n,b
  *                                   with ScanlineRender_ZPT_I8_D16, unlit
- *   TriangleRender_ZPTI_I8_D16_256  TrapeziumRender_ZPTI_I8_D16 256,f and 256,b
+ *   TriangleRender_ZPTI_I8_D16_<n>  TrapeziumRender_ZPTI_I8_D16 n,f and n,b
  *                                   with ScanlineRender_ZPTI_I8_D16, lit
  *                                   through the shade table
  *
  * with the setup they call, pfpsetup.asm's TriangleSetup_ZPT and
  * TriangleSetup_ZPTI, in brender-pentprim-pfpsetup-port.c. When the setup
  * finds the triangle flat enough in w it returns with carry set and the
- * kernel jumps into the linear rasteriser (fti8_piz.asm ZT, zb8.asm ZTI).
+ * kernel jumps into the linear rasteriser: for 256, fti8_piz.asm ZT and
+ * zb8.asm ZTI; for the other sizes, zb8p2unl.asm and zb8p2lit.asm
+ * (brender-pentprim-i8pow2-port.c).
  *
- * The texel offset is v * 256 + u in a register's low two bytes; the
- * assembly steps u with inc al / dec al and v with inc ah / dec ah, so both
- * wrap at 256. Each of u and v carries an error term, a numerator kept in
- * 0..q (q, the denominator, is 1/w scaled), stepped per pixel and per
- * scanline; the kernel picks one of five scanline loops by the signs of the
- * x gradients of q, u and v.
+ * The texel offset is v * n + u, and u and v each wrap at n: inc al and
+ * inc ah for 256; for the others the offset is shifted up so u and v fill
+ * whole bytes (words for 1024), stepped, shifted back and masked. Each of u
+ * and v carries an error term, a numerator kept in 0..q (q, the denominator,
+ * is 1/w scaled), stepped per pixel and scanline; the kernel picks one of
+ * five scanline loops by the signs of the x gradients of q, u and v.
  *
- * The x86 conditions are kept as the assembly takes them: a signed jump
- * after add, sub or cmp tests the exact result (SF xor OF), jnc the carry,
- * and every register is a 32-bit unsigned value that wraps.
+ * x86 conditions as the assembly takes them: a signed jump after add, sub or
+ * cmp tests the exact result, jnc the carry; registers wrap at 32 bits.
  *
  * Additions, none of which changes a pixel the assembly would draw inside
  * its buffers: a pixel or depth value outside its buffer is not written, a
@@ -59,6 +60,7 @@ static struct {
     int32_t climit, zlimit, cstride, zstride;
     int32_t scan, depth, start, end, zstart;
     uint32_t main_i, main_d_i, source, dz, di, ddenominator;
+    uint32_t pow2;                                   /* the map is 1 << pow2 wide */
 } p8;
 
 static uint32_t p8_ror16(uint32_t v) { return (v >> 16) | (v << 16); }
@@ -69,12 +71,14 @@ static uint32_t p8_adjust(uint32_t g) { return g >= 0x80000000u ? g - 1u : g; }
 static int p8_lt_sum(uint32_t a, uint32_t b) { return (int64_t)(int32_t)a + (int32_t)b < 0; }
 static int p8_lt_diff(uint32_t a, uint32_t b) { return (int64_t)(int32_t)a - (int32_t)b < 0; }
 
-/* incu / decu: inc al, dec al; incv / decv: inc ah, dec ah */
+/* pre ; incu / decu (shift 0) or incv / decv (shift 8) ; post1 ; post2:
+ * u or v of the offset v * n + u, one up or down, wrapping at n. */
 static void p8_texel_step(uint32_t *src, int shift, int up)
 {
-    uint32_t mask = 0xffu << shift;
-    uint32_t moved = (*src + (up ? 1u << shift : 0u - (1u << shift))) & mask;
-    *src = (*src & ~mask) | moved;
+    uint32_t m = (1u << p8.pow2) - 1u, u = *src & m, v = (*src >> p8.pow2) & m, d = up ? 1u : m;
+    if (shift == 0) u = (u + d) & m;
+    else v = (v + d) & m;
+    *src = v << p8.pow2 | u;
 }
 
 static int p8_open(void)
@@ -232,7 +236,7 @@ static void p8_next_line(uint32_t *top_i, uint32_t top_d_i, int lit)
     }
 }
 
-/* TrapeziumRender_ZPT_I8_D16 / TrapeziumRender_ZPTI_I8_D16 256,dirn */
+/* TrapeziumRender_ZPT_I8_D16 / TrapeziumRender_ZPTI_I8_D16 n,dirn */
 static void p8_trapezium(uint32_t *top_i, uint32_t top_d_i, int32_t *count, int lit, int b)
 {
     int32_t ebp, edi;
@@ -257,14 +261,18 @@ static void p8_trapezium(uint32_t *top_i, uint32_t top_d_i, int32_t *count, int 
     }
 }
 
-static void p8_triangle(union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, int lit)
+static void p8_triangle(union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2, int lit, uint32_t pow2)
 {
     int r, b;
+    uint32_t m = (1u << pow2) - 1u;
     if (!p8_open()) return;
+    p8.pow2 = pow2;
     r = pfps_setup(v0, v1, v2, lit);
     if (r < 0) return;
-    if (r > 0) { /* jc TriangleRasterise_ZT(I)_I8_D16_256 */
-        if (lit) i8_rasterise_zti_256(); else i8_rasterise_zt_256();
+    if (r > 0) { /* jc TriangleRasterise_ZT(I)_I8_D16_<n> */
+        if (pow2 == 8) { if (lit) i8_rasterise_zti_256(); else i8_rasterise_zt_256(); }
+        else if (lit) i8_rasterise_zti_pow2(pow2);
+        else i8_rasterise_zt_pow2(pow2);
         return;
     }
     p8.scan = p8.cstride * (fps.t_y - 1) - 1;        /* colour.base + stride * (t_y - 1) - 1 */
@@ -273,21 +281,20 @@ static void p8_triangle(union brp_vertex *v0, union brp_vertex *v1, union brp_ve
     p8.main_d_i = p8_ror16(p8_adjust(fps.d_xm));
     p8.dz = p8_ror16(p8_adjust(fps.d_z_x));
     p8.di = p8_adjust(fps.d_i_x);                    /* ZPTI only: adjusted, not swapped */
-    p8.source = ((pfps.v_current & 0xffu) << 8) | (pfps.u_current & 0xffu);
+    /* (v mod n) * n + u mod n, as each size's instance computes it */
+    p8.source = ((pfps.v_current & m) << pow2) | (pfps.u_current & m);
     p8.ddenominator = pfps.pq.grad_x;
     b = pfps.direction != 0;
     p8_trapezium(&fps.x1, fps.d_x1, &fps.topCount, lit, b);
     p8_trapezium(&fps.x2, fps.d_x2, &fps.bottomCount, lit, b);
 }
 
-void BR_ASM_CALL TriangleRender_ZPT_I8_D16_256(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    (void)block;
-    p8_triangle(v0, v1, v2, 0);
-}
-
-void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_256(struct brp_block *block, union brp_vertex *v0, union brp_vertex *v1, union brp_vertex *v2)
-{
-    (void)block;
-    p8_triangle(v0, v1, v2, 1);
-}
+#define P8_KERNEL(name, lit, pow2) void BR_ASM_CALL name(struct brp_block *block, union brp_vertex *v0, \
+    union brp_vertex *v1, union brp_vertex *v2) { (void)block; p8_triangle(v0, v1, v2, lit, pow2); }
+#define P8_KERNELS(n, pow2) \
+    P8_KERNEL(TriangleRender_ZPT_I8_D16_##n, 0, pow2) P8_KERNEL(TriangleRender_ZPTI_I8_D16_##n, 1, pow2)
+P8_KERNELS(32, 5)
+P8_KERNELS(64, 6)
+P8_KERNELS(128, 7)
+P8_KERNELS(256, 8)
+P8_KERNELS(1024, 10)

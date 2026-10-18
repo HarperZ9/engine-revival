@@ -340,6 +340,7 @@ def test_compat_ports_and_schemas_ship_inside_the_package():
         "brender-pentprim-awsl-port.c",
         "brender-pentprim-zb16-port.c",
         "brender-pentprim-tip-port.c",
+        "brender-pentprim-i8pow2-port.c",
         "brender-pentprim-mmx-port.h",
         "brender-pentprim-mmx-tables-port.c",
         "brender-pentprim-mmx-common-port.c",

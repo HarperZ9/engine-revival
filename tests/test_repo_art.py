@@ -206,8 +206,8 @@ def test_the_materializer_writes_the_twenty_one_target_ladder():
     from engine_revival import brender_harness_templates as templates
 
     assert CARD["BRender ladder"]["value"] == "21 targets"
-    assert len(harness.OUTPUT_FILES) == 50
-    assert len(set(harness.OUTPUT_FILES)) == 50
+    assert len(harness.OUTPUT_FILES) == 51
+    assert len(set(harness.OUTPUT_FILES)) == 51
     project = templates.cmake_project_source(harness.CORE_FLOAT_DEFINES)
     softrend = inspect.getsource(harness).count('"add_test(NAME brender_core_')
     assert project.count("add_test(NAME") + softrend == 21

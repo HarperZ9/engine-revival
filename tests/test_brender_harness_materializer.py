@@ -110,6 +110,7 @@ def test_materialize_brender_core_harness_writes_out_of_tree_files(tmp_path):
         output / "compat/brender-pentprim-pfpsetup-port.h",
         output / "compat/brender-pentprim-pfpsetup-port.c",
         output / "compat/brender-pentprim-i8p-port.c",
+        output / "compat/brender-pentprim-i8pow2-port.c",
         output / "compat/brender-pentprim-tt-port.c",
         output / "compat/brender-pentprim-awsl-port.c",
         output / "compat/brender-pentprim-zb16-port.c",
@@ -684,22 +685,22 @@ def test_index8_kernels_are_ported_once_and_not_stubbed():
 
 
 def test_perspective_kernels_are_ported_once_and_not_stubbed():
-    """fti8pizp.asm's 256 x 256 perspective kernels live in the i8p port; their
-    diagnostic stubs are gone and the cheat case jumps into the linear ports."""
+    """fti8pizp.asm's perspective kernels live in the i8p port (256 here; the
+    other sizes in the next test); their diagnostic stubs are gone and the
+    cheat case jumps into the linear ports."""
     i8p, i8 = _compat_port("brender-pentprim-i8p-port.c"), _compat_port("brender-pentprim-i8-port.c")
     main = _compat_port("brender-pentprim-c-port.c")
+    assert i8p.count("P8_KERNELS(256, 8)") == 1
     for name in ("TriangleRender_ZPT_I8_D16_256", "TriangleRender_ZPTI_I8_D16_256"):
-        assert i8p.count(f"void BR_ASM_CALL {name}(") == 1, name
         assert f"void BR_ASM_CALL {name}(" not in main, name
-    # the other perspective sizes and the FLAT variant stay stubs
+    # the FLAT variant stays a stub
     assert "void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_256_FLAT(" in main
-    assert "void BR_ASM_CALL TriangleRender_ZPT_I8_D16_128(" in main
     # cheat case: jc TriangleRasterise_ZT_I8_D16_256 / TriangleRasterise_ZTI_I8_D16_256
-    assert "if (lit) i8_rasterise_zti_256(); else i8_rasterise_zt_256();" in i8p
+    assert "if (pow2 == 8) { if (lit) i8_rasterise_zti_256(); else i8_rasterise_zt_256(); }" in i8p
     assert i8.count("void i8_rasterise_zt_256(void)") == 1
     assert i8.count("void i8_rasterise_zti_256(void)") == 1
-    # inc al / inc ah: u and v wrap at 256 inside the texel offset
-    assert "uint32_t mask = 0xffu << shift;" in i8p
+    # inc al / inc ah (256), or the shifted forms: u and v wrap at the map size
+    assert "uint32_t m = (1u << p8.pow2) - 1u, u = *src & m, v = (*src >> p8.pow2) & m" in i8p
     # five scanline loops: udirn and vdirn of d, i or b
     assert "enum { P8_D, P8_I, P8_B };" in i8p
     # the major edge keeps its integer in the low word and adds the carry back
@@ -862,3 +863,27 @@ def test_softrend_subdivision_is_ported_not_stubbed(tmp_path):
     harness = _materialized_harness(tmp_path)
     cmake = (harness / "cmake" / "brender-softrend.cmake").read_text(encoding="utf-8")
     assert "compat/brender-softrend-subdiv-port.c" in cmake and "float-fallbacks" not in cmake
+
+
+def test_eight_bit_kernels_for_the_other_map_sizes_are_ported_not_stubbed(tmp_path):
+    """fti8pizp.asm's 32, 64, 128 and 1024 instances share the 256 port;
+    zb8p2unl.asm and zb8p2lit.asm (8 to 1024, not 256) have their own, which
+    the perspective kernels' cheat case jumps into. None is left a stub."""
+    i8p, pow2 = _compat_port("brender-pentprim-i8p-port.c"), _compat_port("brender-pentprim-i8pow2-port.c")
+    main = _compat_port("brender-pentprim-c-port.c")
+    for n, k in ((32, 5), (64, 6), (128, 7), (256, 8), (1024, 10)):
+        assert f"P8_KERNELS({n}, {k})" in i8p, n
+    for n, k in ((8, 3), (16, 4), (32, 5), (64, 6), (128, 7), (1024, 10)):
+        assert f"P2_KERNELS({n}, {k})" in pow2, n
+    for name in [f"ZPT{i}_I8_D16_{n}" for n in (32, 64, 128, 1024) for i in ("", "I")] + \
+                [f"ZT{i}_I8_D16_{n}" for n in (8, 16, 32, 64, 128, 1024) for i in ("", "I")]:
+        assert f"void BR_ASM_CALL TriangleRender_{name}(" not in main, name
+    # the FLAT variants stay stubs: no scene reaches them
+    assert "void BR_ASM_CALL TriangleRender_ZPTI_I8_D16_64_FLAT(" in main
+    # the cheat case of the other sizes goes to the power-of-two rasterisers
+    assert "else if (lit) i8_rasterise_zti_pow2(pow2);" in i8p
+    # kept as found: the decimal z gradient constant, and the lit kernel's whole-eax shade lookup
+    assert "edx = edx < 80000000u ? edx : edx - 1u;" in pow2
+    assert "uint32_t row = (at & 0xffff0000u) | ((i >> 16) & 0xffu) << 8 | texel;" in pow2
+    harness = _materialized_harness(tmp_path)
+    assert "compat/brender-pentprim-i8pow2-port.c" in (harness / "cmake" / "brender-pentprim.cmake").read_text(encoding="utf-8")
