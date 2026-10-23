@@ -171,13 +171,13 @@ ol.walkthrough p{margin:0 0 .3rem;max-width:44rem}
 <section class="block wrap" aria-labelledby="for-you">
   <h2 id="for-you">What it does for you</h2>
   <div class="measure">
-    <p>Old game engines, SDKs and renderers disappear behind dead links and unclear rights. engine-revival keeps one JSON record per lead with its sources, its rights posture and what has been shown so far, and checks the whole archive before anything is published. A project someone still maintains is linked, not forked. A lead with unresolved rights stays a dossier. It publishes metadata and evidence only: no proprietary SDKs, leaked source or game assets.</p>
+    <p>Old game engines, SDKs and renderers disappear behind dead links and unclear rights. engine-revival keeps one JSON record per lead with its sources, its rights posture and what has been shown so far, and checks the whole archive before anything is published. A project someone still maintains gets a link to its home. A lead with unresolved rights stays a dossier. What it publishes is metadata and evidence; proprietary SDKs, leaked source and game assets stay out of the repository.</p>
   </div>
   <ul class="uses">
     <li><b>One record per lead</b>382 JSON records across 12 kinds, each id matching its filename.</li>
-    <li><b>Rights before revival</b>Every target states a posture: open, clean-room only, restricted, rights-holder needed and more.</li>
+    <li><b>Rights before revival</b>Every target states a rights posture, such as open, clean-room, restricted or rights-holder needed.</li>
     <li><b>A public-clean guard</b>audit-public refuses restricted material marked publishable.</li>
-    <li><b>Claims by rung</b>Each rung names the claim it earns and nothing above it.</li>
+    <li><b>Claims by rung</b>Each rung names the one claim it earns, and a target claims the rung it has reached.</li>
   </ul>
   <p class="src">Source: <a href="https://github.com/HarperZ9/engine-revival/blob/e86d2171f8f525e0d10c3d8b4f0dadee48b36782/README.md">README.md</a> at e86d217 (version 0.2.0)</p>
 </section>
@@ -216,12 +216,12 @@ ol.walkthrough p{margin:0 0 .3rem;max-width:44rem}
       </div></li>
       <li class="step" tabindex="-1" data-scene="k2" data-state="s"><div class="card">
         <span class="num">03</span><h3>Rights decide the posture</h3>
-        <p>Before anything is rebuilt, each target states who holds the rights. Of 29 targets in 19 categories, 8 are open and 8 are public reference only. The rest are unresolved, need the rights holder, allow clean-room work only, or are restricted, and those stay dossiers.</p>
+        <p>Before anything is rebuilt, each target states who holds the rights. Of 29 targets in 19 categories, 8 are open and 8 are public reference. The other 13 are unresolved, need the rights holder, allow clean-room work, or are restricted, and those stay dossiers.</p>
         <p class="src">Source: <a href="https://github.com/HarperZ9/engine-revival/blob/e86d2171f8f525e0d10c3d8b4f0dadee48b36782/targets">targets</a>; README.md, "How a lead is triaged"</p>
       </div></li>
       <li class="step" tabindex="-1" data-scene="k3" data-state="s"><div class="card">
         <span class="num">04</span><h3>The public-clean guard</h3>
-        <p><code>audit-public</code> runs before publishing. It refuses an artifact marked do-not-redistribute or restricted whose access level is publishable, and flags wording such as leaked source. Pick a state in the panel: the LithTech Jupiter archive item is metadata only, and marking it public fails the audit.</p>
+        <p><code>audit-public</code> runs before publishing. It refuses an artifact marked do-not-redistribute or restricted whose access level is publishable, and flags wording such as leaked source. Pick a state in the panel: the LithTech Jupiter archive item is metadata-only access, and marking it public fails the audit.</p>
         <p class="src">Source: <a href="https://github.com/HarperZ9/engine-revival/blob/e86d2171f8f525e0d10c3d8b4f0dadee48b36782/src/engine_revival/audit.py">src/engine_revival/audit.py</a></p>
       </div></li>
       <li class="step" tabindex="-1" data-scene="k4" data-state="s"><div class="card">
@@ -231,8 +231,8 @@ ol.walkthrough p{margin:0 0 .3rem;max-width:44rem}
       </div></li>
       <li class="step" tabindex="-1" data-scene="k5" data-state="s"><div class="card">
         <span class="num">06</span><h3>Claims by rung</h3>
-        <p>The ladder has eight rungs, the first a dossier and the last a recovered title, and each names only the claim it earns. Twenty-eight of the 29 targets sit at the first rung. BRender carries evidence imported from the pinned BRender Archival v0.1.1 release: 21 of 21 CTest targets passing under Visual Studio Win32 Debug. That build was not rerun for this page.</p>
-        <p>Nothing here claims a remaster pass or a recovered title.</p>
+        <p>The ladder has eight rungs, the first a dossier and the last a recovered title, and each names the claim it earns. Twenty-eight of the 29 targets sit at the first rung. BRender carries evidence imported from the pinned BRender Archival v0.1.1 release: 21 of 21 CTest targets passing under Visual Studio Win32 Debug, as recorded in that release.</p>
+        <p>The top two rungs, a remaster pass and a recovered title, are still empty.</p>
         <p class="src">Source: <a href="https://github.com/HarperZ9/engine-revival/blob/e86d2171f8f525e0d10c3d8b4f0dadee48b36782/docs/REMASTER-LANE.md">docs/REMASTER-LANE.md</a>, <a href="https://github.com/HarperZ9/engine-revival/blob/e86d2171f8f525e0d10c3d8b4f0dadee48b36782/docs/BRENDER-ARCHIVAL.md">docs/BRENDER-ARCHIVAL.md</a></p>
       </div></li>
     </ol>
@@ -246,7 +246,7 @@ ol.walkthrough p{margin:0 0 .3rem;max-width:44rem}
     <li><h3>Install</h3><p>Install from a checkout. Python 3.11 or newer.</p>
 <pre class="cmd"><code>$ git clone https://github.com/HarperZ9/engine-revival && cd engine-revival
 $ python -m pip install -e ".[test]"</code></pre></li>
-    <li><h3>First run: validate the archive</h3><p>Check every record and reference. A clean archive prints nothing.</p>
+    <li><h3>First run: validate the archive</h3><p>Check every record and reference. A clean archive prints an empty result and exits 0.</p>
 <pre class="cmd"><code>$ engine-revival validate
 <span class="out">(no output)</span></code></pre></li>
     <li><h3>The public-clean guard</h3><p>Run the audit before publishing.</p>
@@ -264,12 +264,12 @@ tasks\brender-triage.json: unknown target_id: brender
 </section>
 
 <section class="block wrap" aria-labelledby="limits">
-  <h2 id="limits">What it does not do</h2>
+  <h2 id="limits">Scope</h2>
   <ul class="limits">
-    <li>The repository publishes metadata, schemas and evidence. It holds no proprietary SDKs, leaked source, game assets or upstream source snapshots.</li>
-    <li>The BRender packet does not claim textured output, x64 readiness, production readiness, adoption or endorsement.</li>
-    <li>The local portable materializer produces scaffold metadata; it is not the 21-target release, which lives in BRender Archival.</li>
-    <li>A source's confidence rating is a judgment recorded with it. The validator checks structure and references, not historical truth.</li>
+    <li>The repository publishes metadata, schemas and evidence. Proprietary SDKs, leaked source, game assets and upstream source snapshots stay out of it.</li>
+    <li>The BRender packet covers the 21-target Win32 Debug build. Textured output and x64 are later work.</li>
+    <li>The local portable materializer produces scaffold metadata. The 21-target release lives in BRender Archival.</li>
+    <li>A source's confidence rating is a judgment recorded with it. The validator checks structure and references; historical accuracy is up to the cited sources.</li>
   </ul>
   <p class="src">Source: README.md at e86d217, "Current Public Boundary" and "Non-Claims"</p>
 </section>
@@ -277,8 +277,8 @@ tasks\brender-triage.json: unknown target_id: brender
 <section class="block wrap recall" aria-labelledby="recall">
   <h2 id="recall">Check what stuck</h2>
   <p class="measure">Answer each one in your head before you open it.</p>
-  <details><summary>What happens to a lead whose rights are unresolved?</summary><p>It stays a dossier; nothing buildable is claimed.</p></details>
-  <details><summary>Someone marks a do-not-redistribute artifact as public. Which command stops it?</summary><p>engine-revival audit-public, which reports restricted material cannot be publishable.</p></details>
+  <details><summary>What happens to a lead whose rights are unresolved?</summary><p>It stays a dossier at the first rung.</p></details>
+  <details><summary>An artifact under a redistribution ban gets marked public. Which command catches it?</summary><p>engine-revival audit-public, which fails on restricted material marked publishable.</p></details>
   <details><summary>How many of the 29 targets claim more than the first rung?</summary><p>One, BRender, through imported evidence from a pinned external release.</p></details>
 </section>
 </main>
