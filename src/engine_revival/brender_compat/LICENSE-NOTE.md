@@ -8,5 +8,5 @@ The materializer copies them into the harness it writes.
   `foone/BRender-v1.3.2` at commit `d88d0ed41122664b9781015b517db64353e16f19`.
 - New work in these files: copyright 2026 Zain Dana Harper, MIT.
 
-The rest of the engine-revival package is FSL-1.1-MIT. Keep both notices with
+The rest of the engine-revival package is also MIT licensed. Keep both notices with
 any copy of these files.
