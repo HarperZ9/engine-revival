@@ -145,9 +145,7 @@ python -m pip install -e ".[media,test]"
 
 ## Licence
 
-Code is FSL-1.1-MIT from v0.2.0 (earlier releases MIT): the Functional Source
-License, Version 1.1, with MIT as the future licence, so each release becomes
-MIT two years after it ships. The BRender C ports in
+Code is licensed under the MIT License. The BRender C ports in
 `src/engine_revival/brender_compat/` are MIT, with the Argonaut Software 1998
 notice beside them. Upstream BRender source is never vendored here. See
 [LICENSE](LICENSE) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

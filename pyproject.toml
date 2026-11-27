@@ -8,7 +8,7 @@ version = "0.12.0"
 description = "Public tooling spine for historical engine, SDK, and rendering-library revival records."
 readme = "README.md"
 requires-python = ">=3.11"
-license = "FSL-1.1-MIT AND MIT"
+license = "MIT"
 license-files = ["LICENSE", "src/engine_revival/brender_compat/MIT-BRender.txt", "src/engine_revival/brender_compat/LICENSE-NOTE.md"]
 authors = [{ name = "Zain Dana Harper" }]
 keywords = ["game-engines", "preservation", "archives", "provenance", "rendering"]
